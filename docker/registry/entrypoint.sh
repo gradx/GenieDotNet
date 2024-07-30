@@ -1,2 +1,2 @@
 echo "Started"
-tail -f /dev/null
+sleep infinity
