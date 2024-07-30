@@ -13,4 +13,4 @@ EXPOSE 29092/tcp
 
 ADD entrypoint.sh .
 
-CMD tail -f /dev/null
+CMD /bin/bash entrypoint.sh
