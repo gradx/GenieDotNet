@@ -10,6 +10,6 @@ ENV KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
 EXPOSE 9092
 EXPOSE 9093
 
-ADD entrypoint.sh .
+#ADD entrypoint.sh .
 
-CMD /bin/bash entrypoint.sh
+#CMD /bin/bash entrypoint.sh
