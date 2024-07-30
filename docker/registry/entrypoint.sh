@@ -1,2 +1,4 @@
 echo "Started"
-while true; do sleep 86400; done
+while :; do
+  sleep 86400
+done\n
