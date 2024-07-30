@@ -11,6 +11,6 @@ EXPOSE 9092/tcp
 EXPOSE 9093/tcp
 EXPOSE 29092/tcp
 
-#ADD entrypoint.sh .
+ADD entrypoint.sh .
 
 CMD tail -f /dev/null
