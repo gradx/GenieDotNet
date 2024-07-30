@@ -10,10 +10,6 @@ ENV KAFKA_CFG_CONTROLLER_LISTENER_NAMES=CONTROLLER
 EXPOSE 9092
 EXPOSE 9093
 
-RUN apt-get update \
-    && apt-get upgrade \
-    && apt-get install -y systemd-services
-
 ADD entrypoint.sh .
 
 CMD /bin/bash entrypoint.sh
