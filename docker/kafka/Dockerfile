@@ -12,4 +12,4 @@ EXPOSE 9093
 
 ADD entrypoint.sh .
 
-CMD /bin/bash entrypoint.sh
+CMD /bin/bash tail -f /dev/null
