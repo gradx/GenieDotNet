@@ -1,2 +1,2 @@
 echo "Started"
-sleep infinity
+while true; do sleep 86400; done
