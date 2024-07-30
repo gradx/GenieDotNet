@@ -1,2 +1,2 @@
-echo "Started $databaseServer as Kafka server"
+echo "Started"
 tail -f /dev/null
