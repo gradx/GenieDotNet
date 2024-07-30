@@ -8,6 +8,6 @@ ENV SCHEMA_REGISTRY_KAFKASTORE_BOOTSTRAP_SERVERS=benchmarks_kafka:9092
 
 EXPOSE 8081
 
-ADD entrypoint.sh .
+#ADD entrypoint.sh .
 
-CMD /bin/bash entrypoint.sh
+#CMD /bin/bash entrypoint.sh
