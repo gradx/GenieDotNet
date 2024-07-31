@@ -1,0 +1,3 @@
+FROM genie
+
+EXPOSE 80
