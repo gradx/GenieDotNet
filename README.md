@@ -1,6 +1,7 @@
 # GenieDotNet
 
-GeneDotNet consists of 3 components to create the most advanced open-source distributed game licensing system available written completely in C# and .NET 8
+GeneiDotNet consists of 3 main components to showcase how to create the most advanced, high performance open-source distributed game licensing system available using C# and .NET 8
+complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 # Genie
 Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) Reverse Geocoder using OvertureMaps 
