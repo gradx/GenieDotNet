@@ -7,7 +7,7 @@ Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) 
 (and MaxMind) supporting ActiveMQ, RabbitMQ, Kafka, Pulsar, Proto.Actor and DuckDB
 
 # Genius
-Geospatial Event Network Information User Stream - (Stream processor) for time & location sensitive alerts
+Geospatial Event Network Information User Stream - (Stream processor) for time & location sensitive alerts featuring Proto.Actor
 
 # Genuine
-Geospatial Event Network User Integrated Network Encryption - Double Ratchet Replay & Tamper Resistant Protocol
+Geospatial Event Network User Integrated Network Encryption - Double Ratchet Replay & Tamper Resistant Protocol featuring X25519, Ed25519, HKDF and AES
