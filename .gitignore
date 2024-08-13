@@ -1,0 +1,12 @@
+GenieDotNet/GameLicenseExample/obj/
+GenieDotNet/Genie.Actors/obj/
+GenieDotNet/Genie.Benchmarks/BenchmarkDotNet.Artifacts/
+GenieDotNet/Genie.Benchmarks/obj/
+GenieDotNet/Genie.Common.Adapters.Crypto/obj/
+GenieDotNet/Genie.Common/obj/
+GenieDotNet/Genie.Extensions.Genius/obj/
+GenieDotNet/Genie.IngressConsumer/obj/
+GenieDotNet/Genie.Scratch/obj/
+GenieDotNet/Genie.Web.Api/obj/
+GenieDotNet/Genie.Web.Api/.vs/
+GenieDotNet/Genie.IngressConsumer/.vs/

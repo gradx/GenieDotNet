@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "Genie.Grpc";
+
+import "google/protobuf/timestamp.proto";
+import "shared.proto";
+
+package Genie;
+
+service EventRPC {
+	// Message
+	rpc EventPoll (stream EventPollRequest) returns (stream EventPollResponse);
+}
+
+message EventPollRequest {
+	BaseRequest request = 1;
+	repeated string identifier = 2;
+}
+
+message EventPollResponse {
+	BaseResponse response = 1;
+	EventTaskJob job = 2;
+}
+
+message EventTaskJob {
+	string job = 1;
+	string exception = 2;
+	enum Status {
+		InProgress = 0;
+		Completed = 1;
+		Errored = 2;
+	}
+	Status status = 3;
+	google.protobuf.Timestamp recordDate = 4;
+	oneof Source {
+		BaseResponse device = 5;
+		PartyResponse party_operation = 6;
+	}
+}
+

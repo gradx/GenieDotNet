@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+option csharp_namespace = "Genie.Actors";
+
+import "google/protobuf/timestamp.proto";
+import "google/protobuf/any.proto";
+
+
+
+service GrainService {
+    rpc Process (GrainRequest) returns (GrainResponse);
+	rpc Status (StatusRequest) returns (GrainResponse);
+}
+
+message GrainRequest {	
+	StatusRequest request = 1;
+	string key = 2;
+	google.protobuf.Any value = 3;
+	google.protobuf.Timestamp timestamp = 4;
+}
+
+
+message StatusRequest {
+	string topic = 1;
+	int32 offset = 2;
+}
+
+message GrainResponse {
+	enum ResponseLevel {
+		Queued = 0;
+		Processed = 1;
+		Errored = 2;
+		Info = 3;
+	}
+	ResponseLevel level = 1;
+	google.protobuf.Any response = 2; // GenieResponse
+	string message  = 3;
+	string exception = 4;
+}
+

@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option csharp_namespace = "Genie.Grpc";
+
+package Genie;
+
+message Difference {
+	string breadcrumb = 1;
+}
+
+message BasicDifference {
+	Difference breadcrumb = 1;
+	string value1 = 2;
+	string value2 = 3;
+	string child_property = 4;
+}
+
+message SetDifference {
+	Difference breadcrumb = 1;
+	repeated string expected = 2;
+	repeated string extra = 3;
+}
+
+message MissingEntryDifference {
+	Difference breadcrumb = 1;
+	enum MissingSide {
+		Actual = 0;
+		Expected = 1;
+	}
+	MissingSide side = 2;
+	string key = 3;
+	string value = 4;
+}
+
+message DifferenceOneOf {
+	oneof DifferenceType {
+		Difference difference = 1;
+		BasicDifference basic = 2;
+		SetDifference set = 3;
+		MissingEntryDifference missing = 4;
+	}
+}

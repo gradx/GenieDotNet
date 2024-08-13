@@ -1,0 +1,174 @@
+syntax = "proto3";
+
+option csharp_namespace = "Genie.Grpc";
+
+import "google/protobuf/timestamp.proto";
+import "shared.proto";
+
+package Genie;
+
+service GeniusEventRPC {
+	// Message
+	rpc EventPoll (stream GeniusEventPollRequest) returns (stream GeniusEventPollResponse);
+	rpc Process (stream GeniusEventRequest) returns (stream GeniusEventResponse);
+}
+
+message GeniusEventPollRequest {
+	BaseRequest request = 1;
+	repeated string identifier = 2;
+}
+
+message GeniusEventPollResponse {
+	BaseResponse response = 1;
+	GeniusEventTaskJob job = 2;
+}
+
+message GeniusEventTaskJob {
+	string job = 1;
+	string exception = 2;
+	enum Status {
+		InProgress = 0;
+		Completed = 1;
+		Errored = 2;
+	}
+	Status status = 3;
+	google.protobuf.Timestamp recordDate = 4;
+	oneof Source {
+		BaseResponse device = 5;
+		GeniusPartyResponse party_operation = 6;
+	}
+}
+
+message GeniusPartyRequest {
+	BaseRequest request = 1;
+	Party party = 2;
+}
+
+message GeniusPartyResponse {
+	BaseResponse response = 1;
+	Party party = 2;
+}
+
+
+// Abstract
+message GeniusEvent {
+	Event event = 1;
+	Party party = 2;
+	map<string, string> attributes = 3;
+}
+
+
+// Abstract
+message MachineEvent {
+	GeniusEvent genius_event = 1;
+}
+
+message MachineBootedEvent {
+	MachineEvent machine_event = 1;
+}
+
+message MachineShutdownEvent {
+	MachineEvent machine_event = 1;
+}
+
+message MachineHeartbeatEvent {
+	MachineEvent machine_event = 1;
+}
+
+message MachineServiceStartedEvent {
+	MachineEvent machine_event = 1;
+}
+
+message MachineServiceEndedEvent {
+	MachineEvent machine_event = 1;
+}
+
+message MachineLicenseEvent {
+	MachineEvent machine_event = 1;
+}
+
+
+// Abstract
+message SessionEvent {
+	MachineEvent machine_event = 1;
+	string session_id = 2;
+}
+
+message SessionStartedEvent {
+	SessionEvent session_event = 1;
+	TransactionEvent transaction_event = 2;
+}
+
+message SessionEndedEvent {
+	SessionEvent session_event = 1;
+	TransactionEvent transaction_event = 2;
+	GamePlayedEvent game_played_event = 3;
+}
+
+message ChallengeEndedEvent {
+	SessionEndedEvent session_ended_event = 1;
+	GamePlayedEvent game_played_event = 2;
+}
+
+message SessionTimedOutEvent {
+	SessionEvent session_event = 1;
+}
+
+// Abstract
+message TransactionEvent {
+	SessionEvent session_event = 1;
+	int64 amount = 2;
+}
+
+message DebitedEvent {
+	TransactionEvent transaction_event = 1;
+}
+
+message CreditedEvent {
+	TransactionEvent transaction_event = 1;
+}
+
+message GamePlayedEvent {
+	SessionEvent session_event = 1;
+	string name = 2;
+	int64 debit = 3;
+	int64 credit = 4;
+}
+
+message ChallengePlayedEvent {
+	GamePlayedEvent game_played = 1;
+}
+
+message GeniusEventRequest {
+	SignedParty signed_party = 1;
+	SealedEnvelope sealed_envelope = 2;
+	oneof Event {
+		MachineBootedEvent booted = 3;
+		MachineShutdownEvent shutdown = 4;
+		MachineHeartbeatEvent heartbeat = 5;
+		MachineServiceStartedEvent service_started = 6;
+		MachineServiceEndedEvent service_ended = 7;
+		MachineLicenseEvent license = 8;
+		SessionStartedEvent started = 9;
+		SessionEndedEvent ended = 10;
+		ChallengeEndedEvent challenge = 11;
+		SessionTimedOutEvent timed_out = 12;
+		DebitedEvent debited = 13;
+		CreditedEvent credited = 14;
+		GamePlayedEvent game_played = 15;
+		ChallengePlayedEvent challenge_played  = 16;
+	}
+}
+
+message GeniusEventResponse {
+	oneof Response {
+		BaseResponse base = 1;
+		GeniusPartyResponse party = 2;
+		LicenseResponse license = 3;
+	}
+}
+
+message LicenseResponse {
+	GeniusPartyResponse party = 1;
+	bool success = 2;
+}
