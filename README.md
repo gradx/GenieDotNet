@@ -21,6 +21,9 @@ Bitnami/Confluent- Schema Registry and Kafka [docker-compose.yml](https://github
 [Crank](https://github.com/dotnet/crank) - Web benchmark [agent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 ## Optional
-Pulsar
-RabbitMQ
-ActiveMQ
+Pulsar - near lowest in latency, highest concurrent connections (256)
+
+RabbitMQ - best peformance for fire & forget, close second to Proto.Actor in terms of raw performance but with persistence built in
+
+ActiveMQ - half the performance of others on average
+
