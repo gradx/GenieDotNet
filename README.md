@@ -5,7 +5,7 @@ complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https:/
 
 # Genie
 Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) Reverse Geocoder using [OvertureMaps](https://overturemaps.org/) 
-(and MaxMind) supporting ActiveMQ, RabbitMQ, Kafka, [Pulsar](https://github.com/fsprojects/pulsar-client-dotnet), [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) and [DuckDB](https://github.com/Giorgi/DuckDB.NET)
+(Opendatasoft or MaxMind) supporting ActiveMQ, RabbitMQ, Kafka, [Pulsar](https://github.com/fsprojects/pulsar-client-dotnet), [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) and [DuckDB](https://github.com/Giorgi/DuckDB.NET)
 
 # Genius
 Geospatial Event Network Information User Stream - (Stream processor) for time & location sensitive eventing featuring [Proto.Actor](https://github.com/asynkron/protoactor-dotnet)
