@@ -23,8 +23,8 @@ Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github
 ## Hosts
 Most services are referenced by a named host so will require hosts file manipulation (or config updates)
 
-## OvertureMaps
-Spatial map [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using a python script coming soon.
+## Spatial Map Data
+Map [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using a python script coming soon.
 
 ## Optional
 __All benchmarks were tested in "standalone" mode__ on a single node Intel 13980hx with 32GB DDR5 3200+ 
