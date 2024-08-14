@@ -1,6 +1,6 @@
 # GenieDotNet
 
-GenieDotNet consists of 3 main components to showcase how to create the most advanced, high performance cloud native open-source distributed game licensing system available using C# and .NET 8
+GenieDotNet consists of 3 main components to showcase how to create the most advanced, [high](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Adapters/RabbitMQ/RabbitMQPump.cs) [performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) cloud native, open-source, and distributed game licensing system available using C# and .NET 8
 complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 # Genie
