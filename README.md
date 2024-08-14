@@ -39,14 +39,16 @@ ActiveMQ - lowest optimal connections (3), half the performance of others on ave
 # Roadmap
 - Setup documentation
 - Benchmarks
-- Cashless transactions
-- KYC (Biometric ID)
-- KYC ID+++
-- Multiplayer system
-- Reward system
-- Reporting
-- Leaderboard
-- Locator
-- Wigle
-- Bid system
-- Live action sports
+- Code cleanup
+- Address support (Genie)
+- Cashless transactions (Genius)
+- KYC (Biometric ID) (Genius)
+- KYC ID+++ (Genius)
+- Multiplayer system (Genius)
+- Reward system (Genius)
+- Reporting (Genius)
+- Leaderboard (Genius)
+- Locator (Genius)
+- Wigle (Genius)
+- Bid system (Genius)
+- Live action sports (Genius)
