@@ -36,3 +36,17 @@ Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-
 
 ActiveMQ - lowest optimal connections (3), half the performance of others on average (200rps), with no clear advantage other than Java
 
+# Roadmap
+- Setup documentation
+- Benchmarks
+- Cashless transactions
+- KYC (Biometric ID)
+- KYC ID+++
+- Multiplayer system
+- Reward system
+- Reporting
+- Leaderboard
+- Locator
+- Wigle
+- Bid system
+- Live action sports
