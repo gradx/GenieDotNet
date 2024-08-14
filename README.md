@@ -33,5 +33,5 @@ Pulsar - highest concurrent connections (256) with decent throughput (4700rps) i
 
 RabbitMQ - clear best peformer (5x others) in fire & forget, close second to Proto.Actor in terms of acknwoledged delivery but with persistence built in. Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10)
 
-ActiveMQ - half the performance of others on average with no clear advantage other than Java
+ActiveMQ - lowest optimal connections (3), half the performance of others on average (200rps), with no clear advantage other than Java
 
