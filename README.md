@@ -1,6 +1,6 @@
 # GenieDotNet
 
-GenieDotNet consists of 3 main components to showcase how to create a (1) secure, (2) cloud native, (3) scalable, (4) distributed, (5) [high performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) (6) inference engine (7) and streaming processor (8) with a license provisioning [example](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L84) using C# and .NET 8
+GenieDotNet consists of 3 main components to showcase how to create a (1) secure, (2) cloud native, (3) scalable, (4) distributed, (5) [high performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) (6) inference engine and (7) extensible (8) streaming processor with a license provisioning [example](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L84) using C# and .NET 8
 complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 # Genie
