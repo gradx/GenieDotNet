@@ -24,7 +24,7 @@ Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github
 Most services are referenced by a named host so will require hosts file manipulation (or config updates)
 
 ## OvertureMaps
-OvertureMap paths need to be updated as well as code removed for the missing postal code file (too large to include).  Instructions on how to create these using the python package and an associated script coming soon.
+OvertureMap [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using the python package and an associated script coming soon.
 
 ## Optional
 Pulsar - near lowest in latency, highest concurrent connections (256)
