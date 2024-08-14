@@ -29,7 +29,7 @@ OvertureMap [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/S
 ## Optional
 Pulsar - near lowest in latency, highest concurrent connections (256)
 
-RabbitMQ - best peformance (5x others in fire & forget), close second to Proto.Actor in terms of performance but with persistence built in but like Proto.Actor suffers from a low optional concurrent connection count (6-10)
+RabbitMQ - clear best peformaer (5x others) in fire & forget, close second to Proto.Actor in terms of acknwoledged delivery but with persistence built in. Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10)
 
-ActiveMQ - half the performance of others on average
+ActiveMQ - half the performance of others on average with no clear advantage other than Java
 
