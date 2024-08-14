@@ -32,7 +32,7 @@ __All benchmarks were tested in "standalone" mode__ on a single node Intel 13980
 Pulsar - highest concurrent connections (256) with decent throughput (4700rps) in f&f
 
 RabbitMQ - clear best peformer (5x others) in fire & forget, close second to Proto.Actor (640rps/8conn vs 580rps/10conn) in terms of acknwoledged delivery but with persistence built in. 
-Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10) but also __has a very low error rate__ (33 errors with 2.6M req handled) while Proto.actor __is nearly errorless__!
+Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10) but also __has a very low error rate__ (33 errors with 26.7M req handled) while Proto.actor __is nearly errorless__!
 
 ActiveMQ - lowest optimal connections (3), half the performance of others on average (200rps), with no clear advantage other than Java
 
