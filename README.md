@@ -1,6 +1,6 @@
 # GenieDotNet
 
-GenieDotNet consists of 3 main components to showcase how to create the most advanced, [high](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Adapters/RabbitMQ/RabbitMQPump.cs) [performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) cloud native, open-source, and [distributed](https://github.com/grpc/grpc-dotnet) game [licensing system](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/SharedFiles/Protos/genius.proto) available using C# and .NET 8
+GenieDotNet consists of 3 main components to showcase how to create the most advanced, [high](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Adapters/RabbitMQ/RabbitMQPump.cs) [performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) cloud native, open-source, with a [distributed](https://github.com/grpc/grpc-dotnet) license provisioning [example](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L84) using C# and .NET 8
 complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 # Genie
@@ -11,7 +11,7 @@ Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) 
 Geospatial Event Network Information User Stream - (Stream processor) for [time & location-based](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L93) eventing featuring [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) with any level of granularity
 
 # Genuine
-Geospatial Event Network User Integrated Network Encryption - [Double Ratchet](https://signal.org/docs/specifications/doubleratchet/) (Signal algorithm) + Replay & Tamper Resistant [Protocol](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/GameLicenseExample/Game.cs#L112) featuring [Bouncycastle X25519 & Ed25519](https://github.com/bcgit/bc-csharp), [HKDF](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.hkdf?view=net-8.0), [AES](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0), and [CityHash](https://aras-p.info/blog/2016/08/09/More-Hash-Function-Tests/)
+Geospatial Event Network User Integrated Network Encryption - [Double Ratchet](https://signal.org/docs/specifications/doubleratchet/) (Signal algorithm) + Replay & Tamper Resistant [Protocol](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/GameLicenseExample/Game.cs#L134) featuring [Bouncycastle X25519 & Ed25519](https://github.com/bcgit/bc-csharp), [HKDF](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.hkdf?view=net-8.0), [AES](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0), and [CityHash](https://aras-p.info/blog/2016/08/09/More-Hash-Function-Tests/)
 
 ## Prerequisites
 [Consul](https://developer.hashicorp.com/consul) - Mesh provider (for Proto.actor)
