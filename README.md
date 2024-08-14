@@ -27,6 +27,7 @@ Most services are referenced by a named host so will require hosts file manipula
 OvertureMap [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using the python package and an associated script coming soon.
 
 ## Optional
+__All benchmarks were tested in "standalone" mode__ on a single node Intel 13980hx with 32GB DDR5 3200+ 
 Pulsar - near lowest in latency, highest concurrent connections (256)
 
 RabbitMQ - clear best peformaer (5x others) in fire & forget, close second to Proto.Actor in terms of acknwoledged delivery but with persistence built in. Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10)
