@@ -51,4 +51,4 @@ ActiveMQ - lowest optimal connections (3), half the performance of others on ave
 - Locator **(Genius)**
 - Wigle **(Genius)**
 - Bid system **(Genius)**
-- Live action sports **(Genius)**
+- Live action sports **(Genius)** -- imagine NBA Jam and Tecmo Bowl for Slots/Skill Games, alternative controller inputs (arcade stick, console controller)
