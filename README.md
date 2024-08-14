@@ -15,7 +15,9 @@ Geospatial Event Network User Integrated Network Encryption - [Double Ratchet](h
 
 ## Prerequisites
 [Consul](https://developer.hashicorp.com/consul) - Mesh provider
+
 [Confluent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/docker-compose.yml) - Schema Registry and Kafka
+
 [Crank](https://github.com/dotnet/crank) - Web benchmark [agent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 ## Optional
