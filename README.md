@@ -28,6 +28,7 @@ OvertureMap [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/S
 
 ## Optional
 __All benchmarks were tested in "standalone" mode__ on a single node Intel 13980hx with 32GB DDR5 3200+ 
+
 Pulsar - near lowest in latency, highest concurrent connections (256)
 
 RabbitMQ - clear best peformaer (5x others) in fire & forget, close second to Proto.Actor in terms of acknwoledged delivery but with persistence built in. Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10)
