@@ -16,7 +16,7 @@ Geospatial Event Network User Integrated Network Encryption - [Double Ratchet](h
 ## Prerequisites
 [Consul](https://developer.hashicorp.com/consul) - Mesh provider (for Proto.actor)
 
-Bitnami/Confluent- Schema Registry and Kafka [docker-compose.yml](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/docker-compose.yml) 
+Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/docker-compose.yml) 
 
 [Crank](https://github.com/dotnet/crank) - Web benchmark [agent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
