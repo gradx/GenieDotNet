@@ -51,7 +51,7 @@ __All benchmarks were tested in **standalone mode**__ on a single node Intel 139
 | Kafka  |  96 | 4300  |
 | Proto.Actor | n/a |  n/a  |
 | Pulsar  | 64 |  88000  |
-| RabbitMQ  | 32 |  88000 |
+| RabbitMQ  | 32 |  86000 |
 
 
 ActiveMQ - 32 conn, 1900 rps, 17ms latency, **extremely** low error rate.  Fire & Forget 5800 rps
