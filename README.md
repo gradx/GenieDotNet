@@ -41,7 +41,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | Broker   | Connections   | Requests/Sec  | Latency (ms)   | Error Rate   |
 |---|---|---|---|---|
 | ActiveMQ  | 32  | 1900   | 17  | Extremely low, 30 min+ sustained
-| Kafka  | 128  | 3300   | 41  | Very low
+| Kafka  | 128  | 3600   | 41  | Very low
 | Proto.Actor  | 32  | 3300   | 11 | None
 | Pulsar  | 32  | 580   | 55  | None 
 | RabbitMQ  | 32  | 1800   | 9  | Very Low (Message corruption)
