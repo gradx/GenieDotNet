@@ -2,10 +2,13 @@
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Genie.Common;
+using Genie.Common.Adapters;
 using Genie.Common.Adapters.Kafka;
+using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.ObjectPool;
 using System.Text;
 using ZLogger;
 
@@ -16,8 +19,6 @@ namespace Genie.IngressConsumer.Services
         public static async Task Start()
         {
             var context = GenieContext.Build().GenieContext;
-
-
 
             var config = KafkaUtils.GetConfig(context);
 
@@ -62,6 +63,9 @@ namespace Genie.IngressConsumer.Services
             using var producer = producerBuilder.Build();
 
             var deserializer = new AsyncSchemaRegistryDeserializer<PartyRequest>(registry, deserializerBuilder);
+            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+
+            var timer = new CounterConsoleLogger();
 
             while (true)
             {
@@ -69,25 +73,18 @@ namespace Genie.IngressConsumer.Services
                 {
                     using CancellationTokenSource cts = new();
                     Console.CancelKeyPress += (_, e) => { e.Cancel = true; cts.Cancel(); };
-                    var errors = 0;
+                    
                     while (true)
                     {
                         try
                         {
-                            Console.WriteLine("Starting Kafka2 Pump: " + cts.Token);
+                            Console.WriteLine("Starting Kafka Pump: " + cts.Token);
 
-
-                            var result = consumer.Consume(cts.Token);
-                            //Console.WriteLine("Message Received: " + result.Message.Key);
-                            //continue;
-
-                            var ackCounter = 0;
                             var pump = KafkaPump<string, byte[]>.Run(
                                 consumer,
                                 async message =>
                                 {
-                                    ackCounter++;
-                                    Console.WriteLine($@"Message Received: {ackCounter}");
+                                    timer.Process();
                                     //return;
 
                                     BaseRequest req = message.Key switch
@@ -96,7 +93,7 @@ namespace Genie.IngressConsumer.Services
                                         _ => throw new TypeLoadException($"Type not mapped: {message.Key}")
                                     };
 
-                                    await EventTask.Process(context, req, logger, cts.Token);
+                                    await EventTask.Process(context, CosmosAdapter.FromCosmos(req), logger, pool, cts.Token);
 
                                     var eventChannel = message.Headers.FirstOrDefault(t => t.Key == "EventChannel")!;
 
@@ -106,19 +103,17 @@ namespace Genie.IngressConsumer.Services
                                         await KafkaUtils.Post(producer, topic, new EventTaskJob { Id = req.Id, Job = "Report" }, cts.Token);
                                     }
                                 },
-                                maxDegreeOfParallelism: 16,
+                                maxDegreeOfParallelism: 32,
                                 cts.Token);
 
                             //pump.Stop();
 
                             await pump.Completion;
-
-                            errors = 0;
                         }
                         catch (Exception ex)
                         {
                             _ = ex;
-                            errors++;
+                            timer.ProcessError();
                         }
                     }
                 }

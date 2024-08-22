@@ -9,6 +9,7 @@ using Microsoft.Extensions.ObjectPool;
 using Genie.Common.Web;
 using Microsoft.AspNetCore.Http;
 using Proto.Remote;
+using Genie.Common.Performance;
 
 namespace Genie.Actors;
 
@@ -24,7 +25,7 @@ public class ActorCommandHandler(GenieContext genieContext) : BaseCommandHandler
         return await HandleCommand(grpc, command, cancellationToken);
     }
 
-    public static async ValueTask<GrainResponse?> HandleCommand(PartyRequest partyRequest, ActorCommand command, CancellationToken cancellationToken)
+    public static async ValueTask<GrainResponse?> HandleCommand(Google.Protobuf.IMessage partyRequest, ActorCommand command, CancellationToken cancellationToken)
     {
         //var reader = MaxMindDbSupport.Instance;
 
@@ -36,6 +37,7 @@ public class ActorCommandHandler(GenieContext genieContext) : BaseCommandHandler
         //grpc.Request.IpAddressDestination
 
         var pooledObj = command.GeniePool.Get();
+        pooledObj.Counter++;
 
         var response = await ActorUtils.InitiateActor(command.ActorSystem, new GrainRequest
         {
@@ -50,7 +52,28 @@ public class ActorCommandHandler(GenieContext genieContext) : BaseCommandHandler
 
         }, command.FireAndForget, cancellationToken);
 
-        pooledObj.Counter++;
+        //if(pooledObj.Counter > 100000)
+        //{
+        //    _ = Task.Run(async () =>
+        //    {
+        //        await ActorUtils.InitiateActor(command.ActorSystem, new GrainRequest
+        //        {
+        //            Key = "Shutdown",
+        //            Request = new StatusRequest
+        //            {
+        //                Topic = pooledObj.EventChannel,
+        //                Offset = pooledObj.Counter
+        //            },
+        //            Timestamp = DateTime.UtcNow.ToTimestamp(),
+
+        //        }, command.FireAndForget, cancellationToken);
+        //    });
+
+        //    pooledObj.EventChannel = Guid.NewGuid().ToString("N");
+        //    pooledObj.Counter = 0;
+        //}
+
+
         command.GeniePool.Return(pooledObj);
 
         return response;

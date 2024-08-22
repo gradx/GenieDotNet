@@ -7,11 +7,19 @@ using System.Text;
 using Genie.Common.Adapters.Pulsar;
 using Genie.Common.Utils;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.Extensions.ObjectPool;
+using Genie.Common.Performance;
+using Genie.Common.Types;
+using Microsoft.IO;
+using System.Buffers;
+using Apache.NMS;
 
 namespace Genie.IngressConsumer.Services;
 
 public class PulsarService
 {
+    private static readonly RecyclableMemoryStreamManager manager = new();
+
     public static async Task Start()
     {
         var context = GenieContext.Build().GenieContext;
@@ -31,7 +39,7 @@ public class PulsarService
     public static async Task Pulsar(GenieContext context, ILogger logger)
     {
         var client = await new PulsarClientBuilder()
-            .ServiceUrl("pulsar://pulsar:6650")
+            .ServiceUrl(context.Pulsar.ConnectionString)
             .BuildAsync();
 
         var consumer = await client.NewConsumer()
@@ -42,59 +50,74 @@ public class PulsarService
 
         using CancellationTokenSource cts = new();
         Console.CancelKeyPress += (_, e) => { e.Cancel = true; cts.Cancel(); };
-        var errors = 0;
+
+        var timer = new CounterConsoleLogger();
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+
+        var schemaBuilder = AvroSupport.GetSchemaBuilder();
+        var serializer = AvroSupport.GetSerializerBuilder().BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());
+
+        var dict = new Dictionary<string, IProducer<byte[]>>();
+
         while (true)
         {
             try
             {
                 Console.WriteLine("Starting Pulsar Pump: " + cts.Token);
-                var ackCounter = 0;
+                
                 var pump = PulsarPump<byte[]>.Run(
                     consumer,
                     async message =>
                     {
-                        ackCounter++;
-                        Console.WriteLine($@"Received Message {ackCounter}");
+
+                        timer.Process();
+                        
                         if (string.IsNullOrEmpty(message.Key))
                         {
                             await consumer.AcknowledgeAsync(message.MessageId);
                             return;
                         }
 
-                        var proto = Any.Parser.ParseFrom(message.Data).Unpack<Grpc.PartyRequest>();
+                        var proto = Any.Parser.ParseFrom(message.Data).Unpack<Grpc.PartyBenchmarkRequest>();
 
-                        await EventTask.Process(context, proto, logger, cts.Token);
+                        await EventTask.Process(context, proto, logger, pool, cts.Token);
 
+                        var exists = dict.TryGetValue(message.Key, out IProducer<byte[]>? producer);
 
-                        var producer = await client.NewProducer()
-                            .Topic(message.Key)
-                            .CreateAsync();
+                        if (!exists)
+                        {
+                            producer = await client.NewProducer()
+                                .Topic(message.Key)
+                                .CreateAsync();
 
-                        await producer.SendAsync(Encoding.UTF8.GetBytes("Done"));
+                            dict.Add(message.Key, producer);
+                        }
 
-                        //await producer.SendAsync(new EventTaskJob
-                        //{
-                        //    Id = proto.Request.CosmosBase.Identifier.Id,
-                        //    Job = "Report"
-                        //});
+                        using var ms = manager.GetStream();
+                        serializer(new EventTaskJob
+                        {
+                            Id = proto.Request.CosmosBase.Identifier.Id,
+                            Job = "Report",
+                            Status = EventTaskJobStatus.Completed
+                        }, new Chr.Avro.Serialization.BinaryWriter(ms));
+
+                        await producer!.SendAsync(ms.GetReadOnlySequence().ToArray());
 
                         await consumer.AcknowledgeAsync(message.MessageId);
 
-                        await producer.DisposeAsync();
+                        //await producer.DisposeAsync();
                     },
-                    maxDegreeOfParallelism: 16,
+                    maxDegreeOfParallelism: 32,
                     cts.Token);
 
                 ////pump.Stop();
 
                 await pump.Completion;
-
-                errors = 0;
             }
             catch (Exception ex)
             {
                 _ = ex;
-                errors++;
+                timer.ProcessError();
             }
         }
     }

@@ -151,14 +151,14 @@ public class BrokerBenchmarks
             rabbitConnect = GetConnection("guest", "guest", "", "localhost");
 
             rabbitIngress = rabbitConnect.CreateModel();
-            rabbitIngress.ExchangeDeclare(this.context.Rabbit.Exchange, ExchangeType.Direct);
-            rabbitIngress.QueueDeclare(this.context.Rabbit.Queue, false, false, false, null);
-            rabbitIngress.QueueBind(this.context.Rabbit.Queue, this.context.Rabbit.Exchange, this.context.Rabbit.RoutingKey, null);
+            rabbitIngress.ExchangeDeclare(this.context.RabbitMQ.Exchange, ExchangeType.Direct);
+            rabbitIngress.QueueDeclare(this.context.RabbitMQ.Queue, false, false, false, null);
+            rabbitIngress.QueueBind(this.context.RabbitMQ.Queue, this.context.RabbitMQ.Exchange, this.context.RabbitMQ.RoutingKey, null);
 
             rabbitEvents = rabbitConnect.CreateModel();
             rabbitEvents.ExchangeDeclare(context.Kafka.Events, ExchangeType.Direct);
             rabbitEvents.QueueDeclare(context.Kafka.Events, false, false, false, null);
-            rabbitEvents.QueueBind(context.Kafka.Events, context.Kafka.Events, this.context.Rabbit.RoutingKey, null);
+            rabbitEvents.QueueBind(context.Kafka.Events, context.Kafka.Events, this.context.RabbitMQ.RoutingKey, null);
 
             var consumer = new EventingBasicConsumer(rabbitEvents);
 
@@ -245,11 +245,11 @@ public class BrokerBenchmarks
 
         var bytes = protobufSerializer.SerializeAsync(grpc, new SerializationContext()).GetAwaiter().GetResult();
 
-        rabbitIngress?.ExchangeDeclare(this.context.Rabbit.Exchange, ExchangeType.Direct);
-        rabbitIngress?.QueueDeclare(this.context.Rabbit.Queue, false, false, false, null);
-        rabbitIngress?.QueueBind(this.context.Rabbit.Queue, this.context.Rabbit.Exchange, this.context.Rabbit.RoutingKey, null);
+        rabbitIngress?.ExchangeDeclare(this.context.RabbitMQ.Exchange, ExchangeType.Direct);
+        rabbitIngress?.QueueDeclare(this.context.RabbitMQ.Queue, false, false, false, null);
+        rabbitIngress?.QueueBind(this.context.RabbitMQ.Queue, this.context.RabbitMQ.Exchange, this.context.RabbitMQ.RoutingKey, null);
 
-        rabbitIngress?.BasicPublish(context.Rabbit.Exchange, this.context.Rabbit.RoutingKey, null, bytes);
+        rabbitIngress?.BasicPublish(context.RabbitMQ.Exchange, this.context.RabbitMQ.RoutingKey, null, bytes);
 
         // wait until message is received
         receiveSignal.WaitOne();
@@ -267,7 +267,7 @@ public class BrokerBenchmarks
         grpc.Request.CosmosBase.Identifier.Id = Guid.NewGuid().ToString("N");
 
         byte[] messageBodyBytes = System.Text.Encoding.UTF8.GetBytes("Hello, world!");
-        channel.BasicPublish(this.context.Rabbit.Exchange, this.context.Rabbit.RoutingKey, null, messageBodyBytes);
+        channel.BasicPublish(this.context.RabbitMQ.Exchange, this.context.RabbitMQ.RoutingKey, null, messageBodyBytes);
 
         AutoResetEvent hold = new(false);
         var consumer = new EventingBasicConsumer(channel);
@@ -283,7 +283,7 @@ public class BrokerBenchmarks
         };
         // this consumer tag identifies the subscription
         // when it has to be cancelled
-        string consumerTag = channel.BasicConsume(this.context.Rabbit.Queue, true, consumer);
+        string consumerTag = channel.BasicConsume(this.context.RabbitMQ.Queue, true, consumer);
 
         hold.WaitOne();
 

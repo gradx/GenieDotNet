@@ -1,7 +1,7 @@
 ﻿using Apache.NMS;
 using Apache.NMS.Util;
 using Genie.Common;
-using Genie.Common.Web;
+using Genie.Common.Performance;
 
 namespace Genie.Web.Api.Common;
 
@@ -9,56 +9,29 @@ public class ActiveMQPooledObject : GeniePooledObject
 {
     IConnection? ingress;
     IConnection? egress;
-    Apache.NMS.ISession? ingressSession;
-    Apache.NMS.ISession? egressSession;
-    IMessageProducer? producer;
-    IMessageConsumer? consumer;
-    readonly AutoResetEvent semaphore = new(false);
-    IMessage? response = null;
-    readonly TimeSpan timeout = new(300000);
+    public Apache.NMS.ISession? IngressSession { get; set; }
+    public Apache.NMS.ISession? EgressSession { get; set; }
+    public IMessageProducer? Producer { get; set; }
+    public IMessageConsumer? Consumer { get; set; }
 
     public void Configure(GenieContext genieContext)
     {
-        Uri connecturi = new("activemq:tcp://localhost:61616");
+        Uri connecturi = new(genieContext.ActiveMQ.ConnectionString);
         var factory = new NMSConnectionFactory(connecturi);
-        ingress = factory.CreateConnection("artemis", "artemis");
-        egress = factory.CreateConnection("artemis", "artemis");
-        ingressSession = ingress.CreateSession();
-        egressSession = egress.CreateSession();
+        ingress = factory.CreateConnection(genieContext.ActiveMQ.Username, genieContext.ActiveMQ.Password);
+        egress = factory.CreateConnection(genieContext.ActiveMQ.Username, genieContext.ActiveMQ.Password);
+        IngressSession = ingress.CreateSession();
+        EgressSession = egress.CreateSession();
 
         // sharing ingressSession causes an interleaving message error
         // TODO: Fix retry with replyto set
-        consumer = egressSession.CreateConsumer(SessionUtil.GetDestination(egressSession, $@"queue://{this.EventChannel}")); // DestinationType.TemporaryQueue));
-        consumer.Listener += new MessageListener(OnMessage);
+        Consumer = EgressSession.CreateConsumer(SessionUtil.GetDestination(EgressSession, $@"queue://{this.EventChannel}")); // DestinationType.TemporaryQueue));
 
-
-        producer = ingressSession.CreateProducer(SessionUtil.GetDestination(ingressSession, "queue://FOO.BAR"));
-        //producer.DeliveryMode = MsgDeliveryMode.NonPersistent;
-        producer.RequestTimeout = timeout;
+        Producer = IngressSession.CreateProducer(SessionUtil.GetDestination(IngressSession, genieContext.ActiveMQ.Ingress));
+        Producer.DeliveryMode = MsgDeliveryMode.NonPersistent;
+        Producer.RequestTimeout = new(300000);
 
         ingress.Start();
         egress.Start();
-    }
-
-    public IMessage? Send(byte[] message)
-    {
-
-
-        var request = ingressSession?.CreateBytesMessage(message)!;
-        request.NMSCorrelationID = this.EventChannel;
-        request.Properties["NMSXGroupID"] = "cheese";
-        request.Properties["myHeader"] = "Cheddar";
-
-        producer?.Send(request);
-
-        semaphore.WaitOne();
-
-        return response;
-    }
-
-    void OnMessage(IMessage receivedMsg)
-    {
-        response = receivedMsg;
-        semaphore.Set();
     }
 }

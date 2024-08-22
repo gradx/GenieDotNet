@@ -1,5 +1,5 @@
 ﻿using Genie.Common;
-using Genie.Common.Web;
+using Genie.Common.Performance;
 using Pulsar.Client.Api;
 
 namespace Genie.Web.Api.Common;
@@ -13,7 +13,7 @@ public class PulsarPooledObject : GeniePooledObject
     public void Configure(GenieContext genieContext)
     {
         PulsarClient = new PulsarClientBuilder()
-            .ServiceUrl("pulsar://pulsar:6650")
+            .ServiceUrl(genieContext.Pulsar.ConnectionString)
             .BuildAsync().GetAwaiter().GetResult();
 
         Producer = PulsarClient.NewProducer()
@@ -21,9 +21,8 @@ public class PulsarPooledObject : GeniePooledObject
             .CreateAsync().GetAwaiter().GetResult();
 
         Consumer = PulsarClient.NewConsumer()
-            //.NewConsumer<EventTaskJob>(Schema.AVRO<EventTaskJob>())
             .Topic(EventChannel)
-            .SubscriptionName("subscriptionName")
+            .SubscriptionName(this.GetType().Name)
             .SubscribeAsync().GetAwaiter().GetResult();
     }
 

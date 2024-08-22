@@ -77,11 +77,11 @@ scenarios:
       job: bombardier
       variables:
         serverPort: 80
-        path: /active
+        path: /pulsar
         timeout: 30
-        duration: 15
+        duration: 900
         #requests: 1
-        connections: 3
+        connections: 32
 
         ###################
         # Connection Tuning

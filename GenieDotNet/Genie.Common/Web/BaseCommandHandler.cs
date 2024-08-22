@@ -1,6 +1,7 @@
 ﻿using Google.Protobuf;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.IO;
 using Microsoft.Net.Http.Headers;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -9,6 +10,7 @@ namespace Genie.Common.Web;
 
 public class BaseCommandHandler(GenieContext genieContext)
 {
+    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
     protected GenieContext Context => genieContext;
 
     public static string? GetBoundary(string? contentType)
@@ -63,10 +65,10 @@ public class BaseCommandHandler(GenieContext genieContext)
                 // handle gRPC 
                 if (fileMultipartSection.Name == "grpc" && fileMultipartSection.FileStream != null)
                 {
-                    using var ms = new MemoryStream();
+                    using var ms = manager.GetStream();
                     await fileMultipartSection.FileStream.CopyToAsync(ms, cancellationToken);
 
-                    result!.Grpc = parser.ParseFrom(ms.ToArray());
+                    result!.Grpc = parser.ParseFrom(ms.GetReadOnlySequence());
 
                 }
                 else if (result is not null && result.Grpc is not null)

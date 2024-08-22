@@ -15,29 +15,38 @@ namespace Genie.Common
     {
         public AzureSettings Azure { get; set; }
         public KafkaSettings Kafka { get; set; }
-        public RabbitSettings Rabbit { get; set; }
-
+        public RabbitMQSettings RabbitMQ { get; set; }
         public ActorSettings Actor { get; set; }
+        public ActiveMQSettings ActiveMQ { get; set; }
+        public PulsarSettings Pulsar { get; set; }
         public CosmosClient CosmosClient { get; set; }
+        public ZloggerSettings Zlogger { get; set; }
         //public BlobServiceClient BlobServiceClient { get; set; }
 
 
         public GenieContext(IConfigurationRoot Configuration)
         {
-            Azure = new AzureSettings(new AzureStorage(Environment.GetEnvironmentVariable("SECRET_STORAGE")!,
+            Azure = new(new(Environment.GetEnvironmentVariable("SECRET_STORAGE")!,
                         Configuration["Azure:Storage:server"]!,
                         Configuration["Azure:Storage:share"]!
                     ),
-                     new AzureCosmos(Configuration["Azure:CosmosDB:id"]!, Configuration["Azure:CosmosDB:uri"]!,
+                     new(Configuration["Azure:CosmosDB:id"]!, Configuration["Azure:CosmosDB:uri"]!,
                      Configuration["Azure:CosmosDB:key"] ?? Environment.GetEnvironmentVariable("SECRET_COSMOS")!));
 
-            Kafka = new KafkaSettings(Configuration["Kafka:connectionString"]!, Configuration["Kafka:ingress"]!,
+            Kafka = new(Configuration["Kafka:connectionString"]!, Configuration["Kafka:ingress"]!,
                 Configuration["Kafka:events"]!, Configuration["Kafka:mountPath"]!);
 
-            Actor = new ActorSettings(Configuration["Actor:clusterName"]!, Configuration["Actor:consulProvider"]!);
+            Actor = new(Configuration["Actor:clusterName"]!, Configuration["Actor:consulProvider"]!);
 
-            Rabbit = new RabbitSettings(Configuration["Rabbit:exchange"]!, Configuration["Rabbit:queue"]!, Configuration["Rabbit:routingKey"]!,
+            RabbitMQ = new(Configuration["Rabbit:exchange"]!, Configuration["Rabbit:queue"]!, Configuration["Rabbit:routingKey"]!,
                 Configuration["Rabbit:user"]!, Configuration["Rabbit:pass"]!, Configuration["Rabbit:vhost"]!, Configuration["Rabbit:host"]!);
+
+            ActiveMQ = new(Configuration["ActiveMQ:connectionString"]!, Configuration["ActiveMQ:ingress"]!, 
+                Configuration["ActiveMQ:username"]!, Configuration["ActiveMQ:password"]!);
+
+            Pulsar = new(Configuration["Pulsar:connectionstring"]!);
+            
+            Zlogger = new(Configuration["Zlogger:path"]!);
 
             CosmosClient = new CosmosClientBuilder(Azure.CosmosDB.Uri, Azure.CosmosDB.Key)
                 .WithCustomSerializer(new GeoJsonCosmosSerializer())

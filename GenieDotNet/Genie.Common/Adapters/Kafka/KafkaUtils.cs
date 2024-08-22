@@ -42,7 +42,12 @@ public class KafkaUtils
             await adminClient.CreateTopicsAsync(topic.Select(t => new TopicSpecification
             {
                 Name = t,
-                NumPartitions = 1
+                NumPartitions = 1,
+                ReplicationFactor = 1,
+                Configs = new Dictionary<string, string>()
+                {
+                    { "retention.ms", "300000" }
+                }
             }));
 
             success = true;

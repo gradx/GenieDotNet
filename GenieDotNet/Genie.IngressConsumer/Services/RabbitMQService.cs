@@ -1,26 +1,31 @@
 ﻿using Genie.Common;
 using Genie.Common.Adapters.RabbitMQ;
+using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.ObjectPool;
+using Microsoft.IO;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
+using System.Buffers;
 using ZLogger;
 
 
 namespace Genie.IngressConsumer.Services;
 
+
 public class RabbitMQService
 {
+    private static readonly RecyclableMemoryStreamManager manager = new();
+
     public static async Task Start()
     {
         var context = GenieContext.Build().GenieContext;
 
-
         using var factory = ZloggerFactory.GetFactory(@"C:\temp\logs");
         var logger = factory.CreateLogger("Program");
-
 
         await RabbitMq(context, logger);
         Console.WriteLine("RabbitMQ exited");
@@ -28,15 +33,18 @@ public class RabbitMQService
 
     public static (IModel IngressChannel, IModel EventChannel) Channels()
     {
+        var args = new Dictionary<string, object>();
+        args.Add("x-max-length", 10000);
+
         var context = GenieContext.Build().GenieContext;
 
-        var conn = RabbitUtils.GetConnection(context.Rabbit, true);
+        var conn = RabbitUtils.GetConnection(context.RabbitMQ, true);
 
         var ingressChannel = conn.CreateModel();
 
-        ingressChannel.ExchangeDeclare(context.Rabbit.Exchange, ExchangeType.Direct);
-        ingressChannel.QueueDeclare(context.Rabbit.Queue, false, false, false, null);
-        ingressChannel.QueueBind(context.Rabbit.Queue, context.Rabbit.Exchange, context.Rabbit.RoutingKey, null);
+        ingressChannel.ExchangeDeclare(context.RabbitMQ.Exchange, ExchangeType.Direct);
+        ingressChannel.QueueDeclare(context.RabbitMQ.Queue, false, false, false, args);
+        ingressChannel.QueueBind(context.RabbitMQ.Queue, context.RabbitMQ.Exchange, context.RabbitMQ.RoutingKey, null);
 
         var eventChannel = conn.CreateModel();
         return (ingressChannel, eventChannel);
@@ -56,9 +64,10 @@ public class RabbitMQService
             var channels = Channels();
 
             var consumer = new AsyncEventingBasicConsumer(channels.IngressChannel);
-            var ackCounter = 0;
 
-            //var deserializer = new ProtobufDeserializer<Grpc.PartyRequest>();
+            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+
+            var timerService = new CounterConsoleLogger();
 
             var pump = RabbitMQPump<byte[]>.Run(
                 consumer,
@@ -66,19 +75,14 @@ public class RabbitMQService
                 {
                     try
                     {
-                        ackCounter++;
-                        Console.WriteLine($@"received {ackCounter}");
-                        //var proto = await deserializer.DeserializeAsync(message.Body,
-                        //    false,
-                        //    new Confluent.Kafka.SerializationContext());
+                        timerService.Process();
 
-                        var proto = Any.Parser.ParseFrom(message.Body.ToArray()).Unpack<Grpc.PartyRequest>();
-
-                        await EventTask.Process(context, proto, logger, cts.Token);
+                        var proto = Any.Parser.ParseFrom(message.Body.ToArray()).Unpack<Grpc.PartyBenchmarkRequest>();
+                        await EventTask.Process(context, proto, logger, pool, cts.Token);
 
                         if (!string.IsNullOrEmpty(message.BasicProperties.ReplyTo))
                         {
-                            var ms = new MemoryStream();
+                            using var ms = manager.GetStream();
                             serializer(new EventTaskJob
                             {
                                 Id = proto.Request.CosmosBase.Identifier.Id,
@@ -86,25 +90,27 @@ public class RabbitMQService
                                 Status = EventTaskJobStatus.Completed
                             }, new Chr.Avro.Serialization.BinaryWriter(ms));
 
-                            channels.EventChannel.BasicPublish(message.BasicProperties.ReplyTo, context.Rabbit.RoutingKey, null, ms.ToArray());
+                            channels.EventChannel.BasicPublish(message.BasicProperties.ReplyTo, context.RabbitMQ.RoutingKey, null, ms.GetReadOnlySequence().ToArray());
                         }
 
                     }
                     catch(Exception ex)
                     {
+                        timerService.ProcessError();
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("Error:" + ex.ToString());
                         logger.LogError(ex.ToString());
 
                         if (!string.IsNullOrEmpty(message.BasicProperties.ReplyTo))
                         {
-                            var ms = new MemoryStream();
+                            using var ms = manager.GetStream();
                             serializer(new EventTaskJob
                             {
                                 Exception = ex.Message,
                                 Status = EventTaskJobStatus.Errored
                             }, new Chr.Avro.Serialization.BinaryWriter(ms));
 
-                            channels.EventChannel.BasicPublish(message.BasicProperties.ReplyTo, context.Rabbit.RoutingKey, null, ms.ToArray());
+                            channels.EventChannel.BasicPublish(message.BasicProperties.ReplyTo, context.RabbitMQ.RoutingKey, null, ms.GetReadOnlySequence().ToArray());
                         }
                     }
                 },
@@ -112,21 +118,8 @@ public class RabbitMQService
                 cts.Token);
 
 
-            string consumerTag = channels.IngressChannel.BasicConsume(context.Rabbit.Queue, true, consumer);
+            string consumerTag = channels.IngressChannel.BasicConsume(context.RabbitMQ.Queue, true, consumer);
             await pump.Completion;
-
-            //pump.Stop();
-
-            //if (pump.Completion.IsCanceled)
-            //{
-            //    channels.IngressChannel.BasicCancel(consumerTag);
-            //    channels.IngressChannel.Close();
-            //    channels.EventChannel.Close();
-
-            //    //var reset = Channels();
-            //    //ingress = reset.IngressChannel;
-            //    //events = reset.EventChannel;
-            //}
         }
 
         catch(Exception ex)

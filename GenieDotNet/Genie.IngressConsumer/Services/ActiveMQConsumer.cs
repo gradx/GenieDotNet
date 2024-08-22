@@ -19,36 +19,48 @@ using DotPulsar.Internal;
 using Apache.NMS.ActiveMQ;
 using Proto;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.IO;
+using System.Buffers;
+using Genie.Common.Performance;
+using Microsoft.Extensions.ObjectPool;
 
 namespace Genie.IngressConsumer.Services;
 
 public class ActiveMQService
 {
+    private static readonly RecyclableMemoryStreamManager manager = new();
+
     public static async Task Start()
     {
         var context = GenieContext.Build().GenieContext;
 
-        await ActiveMQ(context);
+        using var factory = ZloggerFactory.GetFactory(context.Zlogger.Path);
+        var logger = factory.CreateLogger("Program");
 
-        Console.WriteLine("RabbitMQ exited");
+        await ActiveMQ(context, logger);
+
+        Console.WriteLine("ActiveMQ exited");
     }
 
 
-    public static async Task ActiveMQ(GenieContext context)
+    public static async Task ActiveMQ(GenieContext context, ILogger logger)
     {
         var schemaBuilder = AvroSupport.GetSchemaBuilder();
         var serializer = AvroSupport.GetSerializerBuilder().BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());
         var dict = new Dictionary<string, IMessageProducer>();
-        var ackCounter = 0;
-        Uri connecturi = new("activemq:tcp://localhost:61616");
+
+        Uri connecturi = new(context.ActiveMQ.ConnectionString);
         var factory = new NMSConnectionFactory(connecturi);
-        Apache.NMS.IConnection connection = factory.CreateConnection("artemis", "artemis");
+        Apache.NMS.IConnection connection = factory.CreateConnection(context.ActiveMQ.Username, context.ActiveMQ.Password);
         using ISession ingressSession = connection.CreateSession();; //
-        using IDestination destination = SessionUtil.GetDestination(ingressSession, "queue://FOO.BAR");
+        using IDestination destination = SessionUtil.GetDestination(ingressSession, context.ActiveMQ.Ingress);
         using IMessageConsumer consumer = ingressSession.CreateConsumer(destination);
 
-        Apache.NMS.IConnection egressConn = factory.CreateConnection("artemis", "artemis");
+        Apache.NMS.IConnection egressConn = factory.CreateConnection(context.ActiveMQ.Username, context.ActiveMQ.Password);
         ISession egressSession = egressConn.CreateSession();
+
+        var timer = new CounterConsoleLogger();
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         while (true)
         {
@@ -65,17 +77,13 @@ public class ActiveMQService
                     connection,
                     async message =>
                     {
-                        ackCounter++;
-                        Console.WriteLine($@"message received {ackCounter}");
-                        //var proto = await new ProtobufDeserializer<Grpc.PartyRequest>().DeserializeAsync(((IBytesMessage)message).Content,
-                        //    false,
-                        //    new Confluent.Kafka.SerializationContext());
+                        timer.Process();
 
-                        var proto = Any.Parser.ParseFrom(((IBytesMessage)message).Content).Unpack<Grpc.PartyRequest>();
+                        var proto = Any.Parser.ParseFrom(((IBytesMessage)message).Content).Unpack<Grpc.PartyBenchmarkRequest>();
 
-                        ////await EventTask.Process(context, proto, logger, cts.Token);
+                        await EventTask.Process(context, proto, logger, pool, cts.Token);
 
-                        var ms = new MemoryStream();
+                        using var ms = manager.GetStream();
                         serializer(new EventTaskJob
                         {
                             Id = proto.Request.CosmosBase.Identifier.Id,
@@ -88,17 +96,17 @@ public class ActiveMQService
                         {
                             IDestination destination = SessionUtil.GetDestination(egressSession, $@"queue://{message.NMSCorrelationID}");// DestinationType.TemporaryQueue);
                             producer = egressSession.CreateProducer(destination);
-                            //producer.DeliveryMode = MsgDeliveryMode.NonPersistent;
+                            producer.DeliveryMode = MsgDeliveryMode.NonPersistent;
                             dict.Add(message.NMSCorrelationID, producer);
                         }
 
-                        var msg = egressSession.CreateBytesMessage(ms.ToArray());
+                        var msg = egressSession.CreateBytesMessage(ms.GetReadOnlySequence().ToArray());
                         producer!.Send(msg);
 
                         await Task.CompletedTask;
 
                     },
-                    maxDegreeOfParallelism: 16,
+                    maxDegreeOfParallelism: 32,
                     cts.Token);
 
                 if(!connection.IsStarted)
@@ -110,6 +118,7 @@ public class ActiveMQService
             catch(Exception ex)
             {
                 _ = ex;
+                timer.ProcessError();
                 //egressConn.Stop();
                 //connection.Stop();
             }

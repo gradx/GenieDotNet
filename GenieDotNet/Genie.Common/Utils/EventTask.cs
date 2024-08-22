@@ -7,26 +7,30 @@ using Confluent.SchemaRegistry;
 using Genie.Common.Adapters;
 using Google.Protobuf;
 using Genie.Common.Adapters.Kafka;
+using Microsoft.Extensions.ObjectPool;
+using Genie.Common.Web;
+
 
 namespace Genie.Common.Utils;
 
 public class EventTask
 {
-    public static async Task<Grpc.GenieResponse> Process(GenieContext context, IMessage message, ILogger logger, CancellationToken cancellationToken)
+    public static async Task<Grpc.GenieResponse> Process<T>(GenieContext context, IMessage message, ILogger logger, ObjectPool<T> pool, CancellationToken cancellationToken) where T : class
     {
         switch (message)
         {
-            case Grpc.PartyRequest c: return await PartyRequest(context, CosmosAdapter.ToCosmos(c), cancellationToken);
+            case Grpc.PartyRequest c: return await PartyRequest(context, CosmosAdapter.ToCosmos(c), pool, cancellationToken);
+            case Grpc.PartyBenchmarkRequest b: return await PartyRequestBenchmark(CosmosAdapter.ToCosmos(b), pool);
             default: logger.ZLogInformation($"{message}"); return new Grpc.GenieResponse { };
         }
 
     }
 
-    public static async Task<Grpc.GenieResponse> Process(GenieContext context, BaseRequest request, ILogger logger, CancellationToken ct)
+    public static async Task<Grpc.GenieResponse> Process<T>(GenieContext context, ObjectPool<T> pool, BaseRequest request, ILogger logger, CancellationToken cancellationToken) where T : class
     {
         Grpc.GenieResponse a = request switch
         {
-            PartyRequest c => await PartyRequest(context, c, ct),
+            PartyRequest c => await PartyRequest(context, c, pool, cancellationToken),
             _ => Log(request, logger)
         };
 
@@ -40,11 +44,11 @@ public class EventTask
     }
 
 
-    private static async Task<Grpc.GenieResponse> PartyRequest(GenieContext context, PartyRequest request, CancellationToken cancellationToken)
+    private static async Task<Grpc.GenieResponse> PartyRequest<T>(GenieContext context, PartyRequest request, ObjectPool<T> pool, CancellationToken cancellationToken) where T : class
     {
         try
         {
-            request.Party?.ReversGeoCode();
+            request.Party?.ReversGeoCode(pool);
 
             return new Grpc.GenieResponse { 
                 Party = CosmosAdapter.FromCosmos(new PartyResponse { 
@@ -86,17 +90,28 @@ public class EventTask
     }
 
 
-    private static async Task PartyRequestBenchmark(PartyRequest request)
+    private static async Task<Grpc.GenieResponse> PartyRequestBenchmark<T>(CosmosAdapter.PartyBenchmarkRequest request, ObjectPool<T> pool) where T: class
     {
+
         // Simulate CDC
         var cosmos = CosmosAdapter.ToCosmos(GetOtherPartyRequest());
         var diff = request?.Party?.GetDeepEqualComparison(cosmos.Party!)!;
         _ = GetChangeLog(diff);
 
-        request?.Party?.ReversGeoCode();
+        request?.Party?.ReversGeoCode(pool);
         await Task.CompletedTask;
 
         //logger.ZLogInformation($"{new AvroOneOf(request, changeLog)}");
+
+        return new Grpc.GenieResponse
+        {
+            Party = CosmosAdapter.FromCosmos(new PartyResponse
+            {
+                Party = request?.Party,
+                Success = true
+            })
+        };
+
 
         static Grpc.PartyRequest GetOtherPartyRequest()
         {
@@ -186,8 +201,8 @@ public class EventTask
                     differences.Add(new ChangeFeed.BasicDifference
                     {
                         Breadcrumb = b.Breadcrumb,
-                        Value1 = GeoJsonCosmosSerializer.ToJson(b.Value1),
-                        Value2 = GeoJsonCosmosSerializer.ToJson(b.Value2),
+                        Value1 = SpanJson.JsonSerializer.Generic.Utf16.Serialize(b.Value1),
+                        Value2 = SpanJson.JsonSerializer.Generic.Utf16.Serialize(b.Value2),
                         ChildProperty = b.ChildProperty.Empty()
                     });
                     break;
@@ -214,8 +229,8 @@ public class EventTask
             diff.Breadcrumb
         };
 
-        diff.Expected.ForEach(e => result.Expected.Add(GeoJsonCosmosSerializer.ToJson(e)));
-        diff.Extra.ForEach(e => result.Extra.Add(GeoJsonCosmosSerializer.ToJson(e)));
+        diff.Expected.ForEach(e => result.Expected.Add(SpanJson.JsonSerializer.Generic.Utf16.Serialize(e)));
+        diff.Extra.ForEach(e => result.Extra.Add(SpanJson.JsonSerializer.Generic.Utf16.Serialize(e)));
 
         return result;
     }
@@ -224,8 +239,8 @@ public class EventTask
     {
         return new ChangeFeed.MissingEntryDifference { Breadcrumb = diff.Breadcrumb,
             Side = diff.Side == DeepEqual.MissingSide.Actual ? ChangeFeed.MissingSide.Actual : ChangeFeed.MissingSide.Expected,
-            Key = GeoJsonCosmosSerializer.ToJson(diff.Key),
-            Value = GeoJsonCosmosSerializer.ToJson(diff.Value)
+            Key = SpanJson.JsonSerializer.Generic.Utf16.Serialize(diff.Key),
+            Value = SpanJson.JsonSerializer.Generic.Utf16.Serialize(diff.Value)
         };
     }
 }

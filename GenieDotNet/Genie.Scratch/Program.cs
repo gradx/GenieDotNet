@@ -2,9 +2,29 @@
 using Genie.Common;
 using Genie.Extensions.Genius;
 using Proto.Cluster;
+using Genie.Scratch;
+using Genie.Common.Utils;
+using Genie.Common.Adapters;
+using NetTopologySuite.Features;
+using Apache.NMS;
+using Microsoft.Extensions.ObjectPool;
+using Genie.Common.Performance;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 
 
-//const string baseUrl = "https://luxur.ai:5003";
+
+//const string baseUrl = "https://luxur.ai:5003";`
+
+//await LoadElastic.Test();
+
+
+var geo = GeometryCalculator.Polygon(38.89781822004474, -77.03655126065402, 10, 4);
+
+var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+MapAdapter.ReverseGeoCode(pool, geo, new());
+
+//await LoadPostgis.Start();
 
 var context = GenieContext.Build().GenieContext;
 
@@ -13,6 +33,9 @@ var geniusSystem = ActorUtils.JoinActorSystem(context.Actor.ClusterName, context
 await geniusSystem.Cluster().StartMemberAsync();
 
 
+//string value = db.StringGet("mykey");
+
+//Console.WriteLine(value); // writes: "abcdefg"
 
 Console.WriteLine("Wait for Instructions");
 while (Console.ReadLine() != null)

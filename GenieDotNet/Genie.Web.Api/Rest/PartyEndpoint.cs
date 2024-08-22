@@ -5,7 +5,7 @@ using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Confluent.SchemaRegistry.Serdes;
 using Genie.Actors;
-using Genie.Common.Web;
+using Genie.Common.Performance;
 using Genie.Extensions.Commands;
 using Genie.Grpc;
 using Genie.Web.Api.Common;
@@ -47,31 +47,32 @@ namespace Genie.Web.Api.Rest
                 return HttpStatusCode.OK;
             });
 
-            //app.MapGet("proto.actor", async 
-            //    (ObjectPool<GeniePooledObject> geniePool, 
-            //    ActorSystem actorSystem, 
-            //    HttpContext httpContext,
-            //    IMediator mediator) =>
-            //{
-            //    var cmd = new ActorCommand(geniePool, actorSystem, false, httpContext);
-            //    var result = await mediator.Send(cmd);
-            //    return HttpStatusCode.OK;
-            //});
+            app.MapGet("proto.actor", async
+                (ObjectPool<GeniePooledObject> geniePool,
+                ActorSystem actorSystem,
+                HttpContext httpContext,
+                IMediator mediator) =>
+            {
+                var cmd = new ActorCommand(geniePool, actorSystem, false, httpContext);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
 
-            //app.MapGet("proto.actor.fire", async
-            //    (ObjectPool<GeniePooledObject> geniePool,
-            //    ActorSystem actorSystem,
-            //    HttpContext httpContext,
-            //    IMediator mediator) =>
-            //{
-            //    var cmd = new ActorCommand(geniePool, actorSystem, true, httpContext);
-            //    var result = await mediator.Send(cmd);
-            //    return HttpStatusCode.OK;
-            //});
+            app.MapGet("proto.actor.fire", async
+                (ObjectPool<GeniePooledObject> geniePool,
+                ActorSystem actorSystem,
+                HttpContext httpContext,
+                IMediator mediator) =>
+            {
+                var cmd = new ActorCommand(geniePool, actorSystem, true, httpContext);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
 
 
             app.MapGet("kafka", async 
-                (ObjectPool<KafkaPooledObject> geniePool, 
+                (ObjectPool<KafkaPooledObject> geniePool,
+                SchemaBuilder schemaBuilder,
                 IAdminClient adminClient, 
                 IProducer<string, Genie.Common.Types.PartyRequest> producer, 
                 CachedSchemaRegistryClient schemaRegistry,  
@@ -84,6 +85,7 @@ namespace Genie.Web.Api.Rest
 
             app.MapGet("kafka.fire", async
                 (ObjectPool<KafkaPooledObject> geniePool,
+                SchemaBuilder schemaBuilder,
                 IAdminClient adminClient,
                 IProducer<string, Genie.Common.Types.PartyRequest> producer,
                 CachedSchemaRegistryClient schemaRegistry,
@@ -95,19 +97,21 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("pulsar", async
-                (ObjectPool<PulsarPooledObject> geniePool, 
+                (ObjectPool<PulsarPooledObject> geniePool,
+                SchemaBuilder schemaBuilder,
                 IMediator mediator) =>
             {
-                var cmd = new PulsarCommand(geniePool, false);
+                var cmd = new PulsarCommand(geniePool, schemaBuilder, false);
                 var result = await mediator.Send(cmd);
                 return HttpStatusCode.OK;
             });
 
             app.MapGet("pulsar.fire", async
                 (ObjectPool<PulsarPooledObject> geniePool,
+                SchemaBuilder schemaBuilder,
                 IMediator mediator) =>
             {
-                var cmd = new PulsarCommand(geniePool, true);
+                var cmd = new PulsarCommand(geniePool, schemaBuilder, true);
                 var result = await mediator.Send(cmd);
                 return HttpStatusCode.OK;
             });
@@ -132,13 +136,24 @@ namespace Genie.Web.Api.Rest
                 return HttpStatusCode.OK;
             });
 
+            app.MapGet("active.fire", async
+                (ObjectPool<ActiveMQPooledObject> geniePool,
+                SchemaBuilder schemaBuilder,
+                ILogger<Exception> logger,
+                IMediator mediator) =>
+            {
+                var cmd = new ActiveMQCommand(geniePool, schemaBuilder, logger, true);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
+
             app.MapGet("active", async
                 (ObjectPool<ActiveMQPooledObject> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
             {
-                var cmd = new ActiveMQCommand(geniePool, schemaBuilder, logger);
+                var cmd = new ActiveMQCommand(geniePool, schemaBuilder, logger, false);
                 var result = await mediator.Send(cmd);
                 return HttpStatusCode.OK;
             });

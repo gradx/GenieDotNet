@@ -4,12 +4,14 @@ using System.Text.Json.Serialization;
 using System.Text.Json;
 using System.Text;
 using NetTopologySuite.IO;
+using Microsoft.IO;
 
 namespace Genie.Common.Utils.Cosmos;
 
 public class GeoJsonCosmosSerializer : CosmosSerializer
 {
 
+    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
     private readonly JsonSerializerOptions options;
 
     public GeoJsonCosmosSerializer()
@@ -39,7 +41,7 @@ public class GeoJsonCosmosSerializer : CosmosSerializer
 
     public override Stream ToStream<T>(T input)
     {
-        MemoryStream ms = new();
+        using MemoryStream ms = manager.GetStream();
         JsonSerializer.Serialize(ms, input, options);
 
         return ms;

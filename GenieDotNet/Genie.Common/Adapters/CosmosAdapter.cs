@@ -3,18 +3,35 @@ using Genie.Common.Types;
 using Genie.Common.Utils;
 using Google.Protobuf;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IO;
+using System.Buffers;
 using System.Diagnostics;
 
 namespace Genie.Common.Adapters;
 
 public partial class CosmosAdapter
 {
+    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
+
     public static PartyRequest ToCosmos(Grpc.PartyRequest req)
     {
         var r = ToCosmos<PartyRequest>(req.Request);
         r.Party = ToCosmos<Party>(req.Party);
 
         return r;
+    }
+
+    public static PartyBenchmarkRequest ToCosmos(Grpc.PartyBenchmarkRequest req)
+    {
+        var r = ToCosmos<PartyBenchmarkRequest>(req.Request);
+        r.Party = ToCosmos<Party>(req.Party);
+
+        return r;
+    }
+
+    public record PartyBenchmarkRequest : PartyRequest
+    {
+
     }
 
     public static Grpc.PartyResponse FromCosmos(PartyResponse resp)
@@ -288,12 +305,13 @@ public partial class CosmosAdapter
         return gl;
     }
 
-    public static FileContentResult FileContentResult<T>(T r) where T : Google.Protobuf.IMessage, new()
+    public static FileContentResult FileContentResult<T>(T r) where T : IMessage, new()
     {
-        using (var ms = new MemoryStream())
+        using var ms = manager.GetStream();
         {
-            MessageExtensions.WriteTo(r, ms);
-            return new FileContentResult(ms.ToArray(), "application/octet-stream") { FileDownloadName = "grpc" };
+            var s = ms.AsStream();
+            MessageExtensions.WriteTo(r, s);
+            return new FileContentResult(ms.GetReadOnlySequence().ToArray(), "application/octet-stream") { FileDownloadName = "grpc" };
         }
     }
 

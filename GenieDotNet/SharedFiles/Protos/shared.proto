@@ -35,6 +35,13 @@ message PartyRequest {
 	SignedParty signed_party = 3;
 }
 
+message PartyBenchmarkRequest {
+	BaseRequest request = 1;
+	Party party = 2;
+	SignedParty signed_party = 3;
+}
+
+
 message PartyResponse {
 	BaseResponse response = 1;
 	Party party = 2;

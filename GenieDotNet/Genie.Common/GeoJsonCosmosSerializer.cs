@@ -1,6 +1,7 @@
 ﻿using Microsoft.Azure.Cosmos;
-using NetTopologySuite.IO.Converters;
+using Microsoft.IO;
 using NetTopologySuite.IO;
+using NetTopologySuite.IO.Converters;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -37,9 +38,11 @@ public class GeoJsonCosmosSerializer : CosmosSerializer
         }
     }
 
+    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
+
     public override Stream ToStream<T>(T input)
     {
-        MemoryStream ms = new();
+        MemoryStream ms = manager.GetStream();
         JsonSerializer.Serialize(ms, input, options);
 
         return ms;
@@ -56,7 +59,7 @@ public class GeoJsonCosmosSerializer : CosmosSerializer
     {
         var c = new GeoJsonCosmosSerializer();
 
-        using (StringReader sw = new(s))
-            return c.FromStream<T>(new MemoryStream(Encoding.UTF8.GetBytes(s)));
+        using StringReader sw = new(s);
+        return c.FromStream<T>(manager.GetStream(Encoding.UTF8.GetBytes(s)));
     }
 }

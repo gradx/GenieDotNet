@@ -8,6 +8,7 @@ using Genie.Web.Api.Common;
 using Google.Protobuf.WellKnownTypes;
 using Google.Protobuf;
 using Genie.Common.Web;
+using System.Diagnostics;
 
 namespace Genie.Web.Api.Mediator.Commands;
 
@@ -18,6 +19,8 @@ public class RabbitMQCommandHandler(GenieContext genieContext) : BaseCommandHand
     public async ValueTask<Unit> Handle(RabbitMQCommand command, CancellationToken cancellationToken)
     {
         var grpc = MockPartyCreator.GetParty();
+
+
         var pooledObj = command.GeniePool.Get();
 
         var bytes = Any.Pack(grpc).ToByteArray();
@@ -26,13 +29,17 @@ public class RabbitMQCommandHandler(GenieContext genieContext) : BaseCommandHand
             pooledObj.Configure(command.SchemaBuilder, this.Context);
 
         var props = pooledObj.Ingress!.CreateBasicProperties();
-
         props.ReplyTo = command.FireAndForget ? null : pooledObj.EventChannel;
-            
-        pooledObj.Ingress.BasicPublish(this.Context.Rabbit.Exchange, this.Context.Rabbit.RoutingKey, props, bytes);
+        pooledObj.Ingress.BasicPublish(this.Context.RabbitMQ.Exchange, this.Context.RabbitMQ.RoutingKey, props, bytes);
 
         var success = command.FireAndForget || pooledObj.ReceiveSignal.WaitOne(30000);
 
+        //if (pooledObj.Counter < 50000)
+        //    pooledObj.Counter++;
+        //else {
+        //    pooledObj.Reset();
+        //    pooledObj.Counter = 0;
+        //}
         pooledObj.Counter++;
         command.GeniePool.Return(pooledObj);
 

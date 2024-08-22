@@ -68,7 +68,7 @@ public class GeniusGrain : GeniusServiceBase
 
         IMessage message = genieResp.ResponseCase switch
         {
-            GenieResponse.ResponseOneofCase.Party => ProcessCountyLicenseRequest(genieResp.Party),
+            GenieResponse.ResponseOneofCase.Party => ProcessLicenseRequest(genieResp.Party),
             _ => throw new TypeLoadException($"Type not mapped: {request.Key}")
         };
 
@@ -81,7 +81,7 @@ public class GeniusGrain : GeniusServiceBase
     }
 
 
-    private GeniusEventResponse ProcessCountyLicenseRequest(PartyResponse party)
+    private GeniusEventResponse ProcessLicenseRequest(PartyResponse party)
     {
         var geojson = party.Party.Communications[0].CommunicationIdentity.GeographicLocation.GeoJsonLocation.GeoJson;
         var reality = GeoJsonCosmosSerializer.FromJson<Common.Types.GeoJsonLocation>(geojson);
@@ -90,31 +90,35 @@ public class GeniusGrain : GeniusServiceBase
 
         if (attr != null)
         {
+            return ValidateLicense(attr, "zcta5_code", @$"Postal Code [{attr["zcta5_code"]}] Provisioner - Menustrating MISERable",
+                   "https://www.youtube.com/watch?v=22tVWwmTie8",
+                   this.PostalCodeProvisioner);
+
             if (DateTime.Now.Second > 50)
-                return ValidateLicense(attr, "coty_name", "State Provisioner - Bruno Marz",
-                    "https://www.youtube.com/watch?v=UqyT8IEBkvY&t",
-                    this.CountyProvisioner);
-            else if (DateTime.Now.Second > 45)
-                return ValidateLicense(attr, "ste_name", "Country Provisioner - Kristina Hackerella",
+                return ValidateLicense(attr, "ste_name", $@"State Provisioner [{attr["ste_name"]}] - Kristina Hackerella",
                     "https://www.youtube.com/watch?v=kIDWgqDBNXA",
                     this.StateProvisioner);
+            else if (DateTime.Now.Second > 45)
+                return ValidateLicense(attr, "coty_name", $@"County Provisioner [{attr["coty_name"]}] - Bruno Marz",
+                    "https://www.youtube.com/watch?v=UqyT8IEBkvY&t",
+                    this.CountyProvisioner);
             else if (DateTime.Now.Second > 40)
-                return ValidateLicense(attr, "pla_name", "City Provisioner - Tuposer FISHERville",
+                return ValidateLicense(attr, "pla_name", $@"City Provisioner [{attr["pla_name"]}] - Tuposer FISHERville",
                     "https://youtu.be/41qC3w3UUkU?si=Vey51RuiLH8_h9kP",
                     this.MunicipalProvisioner);
             else if (DateTime.Now.Second > 35)
-                return ValidateLicense(attr, "zcta5_code", "Postal Code Provisioner - Menustrating MISERable",
+                return ValidateLicense(attr, "zcta5_code", @$"Postal Code [{attr["zcta5_code"]}] Provisioner - Menustrating MISERable",
                     "https://www.youtube.com/watch?v=22tVWwmTie8",
                     this.PostalCodeProvisioner);
             else if (DateTime.Now.Second > 30)
-                return GenerateResponse("Default Provisioner - A Hello", "https://www.youtube.com/watch?v=DDWKuo3gXMQ", false);
+                return GenerateResponse("Default Provisioner [A Hello]", "https://www.youtube.com/watch?v=DDWKuo3gXMQ", false);
             else if (DateTime.Now.Second > 25)
-                return GenerateResponse("Default Provisioner - Meditation Romance", "https://www.youtube.com/watch?v=ADwfyxpriAM", false);
+                return GenerateResponse("Default Provisioner [Meditation Romance]", "https://www.youtube.com/watch?v=ADwfyxpriAM", false);
             else if (DateTime.Now.Second > 20)
-                return GenerateResponse("Default Provisioner - A Dustball", "https://www.youtube.com/watch?v=Iq3zo432sAU", false);
+                return GenerateResponse("Default Provisioner [A Dustball]", "https://www.youtube.com/watch?v=Iq3zo432sAU", false);
         }
 
-        return GenerateResponse("Default Provisioner - https://defacto2.net/home", "https://www.youtube.com/watch?v=4Q46xYqUwZQ", false);
+        return GenerateResponse("Default Provisioner (https://defacto2.net/home)", "https://www.youtube.com/watch?v=4Q46xYqUwZQ", false);
 
         static GeniusEventResponse GenerateResponse(string name, string id, bool success)
         {
@@ -134,10 +138,8 @@ public class GeniusGrain : GeniusServiceBase
         static GeniusEventResponse ValidateLicense(IAttributesTable attr, string attribute, string name, string id, HashSet<string> licenses)
         {
             var value = (string)attr[attribute];
-            if (value != null && licenses.Contains(value))
-                return GenerateResponse(name, id, true);
-            else
-                return GenerateResponse(name, id, false);
+
+            return GenerateResponse(name, id, value != null && licenses.Contains(value));
         }
     }
 }

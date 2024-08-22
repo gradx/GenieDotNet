@@ -5,7 +5,7 @@ namespace Genie.Common.Adapters.RabbitMQ;
 
 public class RabbitUtils
 {
-    public static IConnection GetConnection(RabbitSettings settings, bool isAsync)
+    public static IConnection GetConnection(RabbitMQSettings settings, bool isAsync)
     {
         ConnectionFactory factory = new ConnectionFactory();
 

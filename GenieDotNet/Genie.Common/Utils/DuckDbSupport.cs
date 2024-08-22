@@ -1,7 +1,10 @@
-﻿using DuckDB.NET.Data;
+﻿using Apache.NMS.ActiveMQ.Commands;
+using DuckDB.NET.Data;
+using Genie.Common.Web;
 using System.Data.Common;
 
 namespace Genie.Common.Utils;
+
 
 public class DuckDbSupport
 {
@@ -13,7 +16,7 @@ public class DuckDbSupport
     public static DuckDBConnection InstanceSpatial => lazySpatial.Value;
     public static DuckDBConnection InstanceOverture => lazyOverture.Value;
 
-    private static DuckDBConnection GetSpatialDb()
+    public static DuckDBConnection GetSpatialDb()
     {
         string world = @"C:\temp\world-administrative-boundaries-cleansed.parquet";
         string state = @"C:\temp\georef-united-states-of-america-state-cleansed.parquet";
@@ -42,6 +45,19 @@ public class DuckDbSupport
         command.ExecuteNonQuery();
 
         command.CommandText = $@"CREATE TABLE place AS SELECT * REPLACE (ST_GeomFromWKB(geo_shape) as geo_shape) FROM '{place}';";
+        command.ExecuteNonQuery();
+
+        return duckDBConnection;
+    }
+
+
+    public static DuckDBConnection GetSpatialDb2()
+    {
+        var duckDBConnection = new DuckDBConnection(@"Data Source=C:\temp\duckdb\file.db");
+        duckDBConnection.Open();
+
+        using var command = duckDBConnection.CreateCommand();
+        command.CommandText = "INSTALL spatial; LOAD spatial;";
         command.ExecuteNonQuery();
 
         return duckDBConnection;

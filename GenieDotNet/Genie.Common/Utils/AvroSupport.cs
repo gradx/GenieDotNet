@@ -7,6 +7,7 @@ using Genie.Common.Types;
 using Genie.Common.Utils.ChangeFeed;
 using Genie.Common.Utils.Cosmos;
 using Google.Protobuf;
+using Microsoft.IO;
 using System.Text;
 using ZstdSharp;
 using ZstdSharp.Unsafe;
@@ -90,9 +91,11 @@ public class AvroSupport
         return GenerateAvroContainer(channels, null);
     }
 
+    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
+
     public static byte[] GenerateAvroContainer<T>(List<T> channels, int? zStandardLevel = null)
     {
-        var output = new MemoryStream();
+        using var output = manager.GetStream();
         var writer = new Chr.Avro.Serialization.BinaryWriter(output);
         var codedStream = new CodedOutputStream(output);
 
@@ -145,7 +148,7 @@ public class AvroSupport
 
         var serialize = serializerBuilder.BuildDelegate<T>(schema!);
 
-        var ms = new MemoryStream();
+        using var ms = manager.GetStream();
         var listWriter = new Chr.Avro.Serialization.BinaryWriter(ms);
 
         foreach (var c in channels)
@@ -154,7 +157,7 @@ public class AvroSupport
 
         if (zStandardLevel != null)
         {
-            var compressStream = new MemoryStream();
+            using var compressStream = manager.GetStream();
             var compress = new CompressionStream(compressStream, level: zStandardLevel.Value, leaveOpen: false);
             compress.SetParameter(ZSTD_cParameter.ZSTD_c_nbWorkers, Environment.ProcessorCount);
             ms.CopyTo(compress);

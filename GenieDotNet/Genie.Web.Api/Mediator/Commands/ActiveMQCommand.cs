@@ -9,10 +9,11 @@ using System.Net;
 using Google.Protobuf.WellKnownTypes;
 using Google.Protobuf;
 using Genie.Common.Web;
+using ProtoBuf.Reflection;
 
 namespace Genie.Web.Api.Mediator.Commands;
 
-public record ActiveMQCommand(ObjectPool<ActiveMQPooledObject> GeniePool, SchemaBuilder SchemaBuilder, ILogger<Exception> Logger) : IRequest<HttpStatusCode>;
+public record ActiveMQCommand(ObjectPool<ActiveMQPooledObject> GeniePool, SchemaBuilder SchemaBuilder, ILogger<Exception> Logger, bool FireAndForget) : IRequest<HttpStatusCode>;
 
 public class ActiveMQCommandHandler(GenieContext genieContext) : BaseCommandHandler(genieContext), IRequestHandler<ActiveMQCommand, HttpStatusCode>
 {
@@ -29,13 +30,22 @@ public class ActiveMQCommandHandler(GenieContext genieContext) : BaseCommandHand
             if (pooledObj.Counter == 0)
                 pooledObj.Configure(this.Context);
 
-            var result = pooledObj.Send(bytes);
+            var request = pooledObj.IngressSession?.CreateBytesMessage(bytes)!;
+            request.NMSCorrelationID = pooledObj.EventChannel;
+
+            pooledObj?.Producer?.SendAsync(request);
+
+            Apache.NMS.IMessage? result = null;
+            if (!command.FireAndForget)
+                result = pooledObj.Consumer.Receive();
 
             pooledObj.Counter++;
             command.GeniePool.Return(pooledObj);
 
-            if (result != null)
+            if (result != null || command.FireAndForget)
                 return await Task.FromResult(HttpStatusCode.OK);
+            else
+                throw new Exception("No Response from server............................................");
         }
         catch(Exception ex)
         {

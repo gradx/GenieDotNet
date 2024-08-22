@@ -8,6 +8,8 @@ using Microsoft.Extensions.ObjectPool;
 using System.Text;
 using Genie.Web.Api.Common;
 using Genie.Common.Web;
+using Chr.Avro.Abstract;
+using ProtoBuf.Reflection;
 
 namespace Genie.Web.Api.Mediator.Commands;
 
@@ -38,15 +40,21 @@ public class KafkaCommandHandler(GenieContext genieContext) : BaseCommandHandler
 
         await command.Producer.ProduceAsync(this.Context.Kafka.Ingress, msg, cancellationToken);
 
+        EventTaskJob? result = null;
         if (!command.FireAndForget)
         {
             var cr = pooledObj.Consumer!.Consume(cancellationToken);
-            _ = cr.Message.Value;
+            result = cr.Message.Value;
         }
 
         pooledObj.Counter++;
         command.GeniePool.Return(pooledObj);
 
-        return new Unit();
+        if (command.FireAndForget)
+            return await Task.FromResult(new Unit());
+        else if (result?.Status == Genie.Common.Types.EventTaskJobStatus.Errored)
+            throw new Exception("Actor Error: " + result?.Exception);
+        else
+            return new Unit();
     }
 }

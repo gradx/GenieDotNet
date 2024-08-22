@@ -3,8 +3,8 @@ using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Genie.Actors;
 using Genie.Common;
+using Genie.Common.Performance;
 using Genie.Common.Utils;
-using Genie.Common.Web;
 using Genie.Extensions.Genius;
 using Genie.Web.Api.Actor;
 using Genie.Web.Api.Common;
@@ -59,7 +59,7 @@ static WebApplication Build(string[] args)
     builder.Services.TryAddSingleton(serviceProvider =>
     {
         var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-        var policy = new LimitedPooledObjectPolicy<RabbitMQPooledObject>(6);
+        var policy = new DefaultPooledObjectPolicy<RabbitMQPooledObject>();
         return provider.Create(policy);
     });
 

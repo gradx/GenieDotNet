@@ -11,12 +11,18 @@ using System.Buffers;
 using Genie.Common.Types;
 using Apache.NMS;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.Extensions.ObjectPool;
+using Genie.Common.Adapters;
+using Genie.Common.Performance;
+using Microsoft.IO;
 
 
 namespace Genie.IngressConsumer.Services;
 
 public class ApachePulsarService
 {
+    private static readonly RecyclableMemoryStreamManager manager = new();
+
     public static async Task Start()
     {
         var context = GenieContext.Build().GenieContext;
@@ -46,6 +52,8 @@ public class ApachePulsarService
 
         var serialize = serializerBuilder.BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());
 
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+
         while (true)
         {
             using CancellationTokenSource cts = new();
@@ -68,18 +76,18 @@ public class ApachePulsarService
 
                     var proto = Any.Parser.ParseFrom(request.ToArray()).Unpack<Grpc.PartyRequest>();
 
-                    await EventTask.Process(context, proto, logger, cts.Token);
+                    await EventTask.Process(context, proto, logger, pool, cts.Token);
 
                     var producer = client.NewProducer(Schema.ByteArray)
                         .Topic(proto.Request.CosmosBase.Identifier.Id)
                         .Create();
 
-                    var ms = new MemoryStream();
+                    using var ms = manager.GetStream();
 
                     serialize(new EventTaskJob { Id = proto.Request.CosmosBase.Identifier.Id, Job = "Report" },
                         new Chr.Avro.Serialization.BinaryWriter(ms));
 
-                    await producer.Send(ms.ToArray());
+                    await producer.Send(ms.GetReadOnlySequence().ToArray());
 
                     await consumer.Acknowledge(cr.MessageId);
 

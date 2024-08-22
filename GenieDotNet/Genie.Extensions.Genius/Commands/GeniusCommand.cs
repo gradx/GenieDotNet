@@ -10,6 +10,7 @@ using Proto.Cluster;
 using Genie.Grpc;
 using Grpc.Core;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
+using Genie.Common.Performance;
 
 namespace Genie.Extensions.Commands;
 

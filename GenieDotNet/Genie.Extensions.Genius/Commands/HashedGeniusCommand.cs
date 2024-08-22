@@ -26,6 +26,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using Genie.Common.Adapters;
 using System.Security.Cryptography;
 using NetTopologySuite.Utilities;
+using Genie.Common.Performance;
 
 namespace Genie.Extensions.Commands;
 

@@ -5,7 +5,8 @@ using RabbitMQ.Client;
 using Genie.Common;
 using Genie.Common.Adapters.RabbitMQ;
 using Genie.Common.Types;
-using Genie.Common.Web;
+using Genie.Common.Performance;
+using static Confluent.Kafka.ConfigPropertyNames;
 
 namespace Genie.Web.Api.Common;
 
@@ -19,21 +20,40 @@ public class RabbitMQPooledObject : GeniePooledObject
 
     public EventTaskJob? Result { get; set; }
 
+    public void Reset()
+    {
+        Connect?.Close();
+        Connect?.Dispose();
+        Ingress?.Close();
+        Ingress?.Dispose();
+        Events?.Close();
+        Events?.Dispose();
+
+        Connect = null;
+        Ingress = null;
+        Events = null;
+        ReceiveSignal = new(false);
+        Consumer = null;
+    }
 
     public void Configure(SchemaBuilder schemaBuilder, GenieContext genieContext)
     {
         ReceiveSignal = new(false);
-        this.Connect = RabbitUtils.GetConnection(genieContext.Rabbit, false);
+
+        var args = new Dictionary<string, object>();
+        args.Add("x-max-length", 10000);
+
+        this.Connect = RabbitUtils.GetConnection(genieContext.RabbitMQ, false);
         this.Ingress = this.Connect.CreateModel();
         this.Events = this.Connect.CreateModel();
 
-        this.Ingress.ExchangeDeclare(genieContext.Rabbit.Exchange, ExchangeType.Direct);
-        this.Ingress.QueueDeclare(genieContext.Rabbit.Queue, false, false, false, null);
-        this.Ingress.QueueBind(genieContext.Rabbit.Queue, genieContext.Rabbit.Exchange, genieContext.Rabbit.RoutingKey, null);
+        this.Ingress.ExchangeDeclare(genieContext.RabbitMQ.Exchange, ExchangeType.Direct);
+        this.Ingress.QueueDeclare(genieContext.RabbitMQ.Queue, false, false, false, args);
+        this.Ingress.QueueBind(genieContext.RabbitMQ.Queue, genieContext.RabbitMQ.Exchange, genieContext.RabbitMQ.RoutingKey, null);
 
         this.Events.ExchangeDeclare(this.EventChannel, ExchangeType.Direct);
-        this.Events.QueueDeclare(this.EventChannel, false, false, false, null);
-        this.Events.QueueBind(this.EventChannel, this.EventChannel, genieContext.Rabbit.RoutingKey, null);
+        this.Events.QueueDeclare(this.EventChannel, false, false, false, args);
+        this.Events.QueueBind(this.EventChannel, this.EventChannel, genieContext.RabbitMQ.RoutingKey, null);
 
         Consumer = new EventingBasicConsumer(this.Events);
 

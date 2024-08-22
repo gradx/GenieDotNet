@@ -1,10 +1,13 @@
 ﻿
+using Chr.Avro.Abstract;
 using Chr.Avro.Confluent;
+using Chr.Avro.Serialization;
 using Confluent.Kafka;
 using Genie.Common;
 using Genie.Common.Adapters.Kafka;
+using Genie.Common.Performance;
 using Genie.Common.Types;
-using Genie.Common.Web;
+using Genie.Common.Utils;
 using Genie.Web.Api.Mediator.Commands;
 
 namespace Genie.Web.Api.Common;
@@ -29,5 +32,4 @@ public class KafkaPooledObject : GeniePooledObject
         await KafkaUtils.CreateTopic(command.AdminClient, [this.EventChannel]);
         Consumer.Subscribe(EventChannel);
     }
-
 }

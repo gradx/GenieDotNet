@@ -5,9 +5,9 @@ namespace Genie.Common.Web
 {
     public class MockPartyCreator
     {
-        public static PartyRequest GetParty()
+        public static PartyBenchmarkRequest GetParty()
         {
-            var p = new PartyRequest
+            var p = new PartyBenchmarkRequest
             {
                 Request = new BaseRequest
                 {
@@ -55,26 +55,26 @@ namespace Genie.Common.Web
                 }
             });
 
-            p.Party.Communications.Add(new PartyCommunication
-            {
-                BeginDate = Epoch.Convert(DateTime.UtcNow),
-                CommunicationIdentity = new CommunicationIdentity
-                {
-                    GeographicLocation = new GeographicLocation
-                    {
-                        LocationName = "White House",
-                        LocationAddress = new LocationAddress { Line1Address = "1600 Pennsylvania Ave NW", MunicipalityName = "Washington", StateCode = "DC", PostalCode = "20500" },
-                        GeoJsonLocation = new GeoJsonLocation
-                        {
-                            Circle = new GeoJsonCircle
-                            {
-                                Centroid = new Coordinate { Latitude = 38.897678, Longitude = -77.036552, Altitude = 0 },
-                                Radius = 50
-                            }
-                        }
-                    }
-                }
-            });
+            //p.Party.Communications.Add(new PartyCommunication
+            //{
+            //    BeginDate = Epoch.Convert(DateTime.UtcNow),
+            //    CommunicationIdentity = new CommunicationIdentity
+            //    {
+            //        GeographicLocation = new GeographicLocation
+            //        {
+            //            LocationName = "White House",
+            //            LocationAddress = new LocationAddress { Line1Address = "1600 Pennsylvania Ave NW", MunicipalityName = "Washington", StateCode = "DC", PostalCode = "20500" },
+            //            GeoJsonLocation = new GeoJsonLocation
+            //            {
+            //                Circle = new GeoJsonCircle
+            //                {
+            //                    Centroid = new Coordinate { Latitude = 38.897678, Longitude = -77.036552, Altitude = 0 },
+            //                    Radius = 50
+            //                }
+            //            }
+            //        }
+            //    }
+            //});
 
             return p;
         }

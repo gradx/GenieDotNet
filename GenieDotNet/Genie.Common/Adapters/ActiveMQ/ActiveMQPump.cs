@@ -99,23 +99,6 @@ public sealed class ActiveMQPump<T>
 
             BufferBlock<IMessage> buffer = new(bufferOptions);
 
-            //Uri connecturi = new Uri("activemq:tcp://localhost:61616");
-            //Apache.NMS.IConnectionFactory factory = new NMSConnectionFactory(connecturi);
-            //Apache.NMS.IConnection connection = factory.CreateConnection("artemis", "artemis");
-            //ISession session = connection.CreateSession();
-            //IDestination destination = SessionUtil.GetDestination(session, "queue://FOO.BAR");
-            IMessage? message = null;
-
-            AutoResetEvent semaphore = new(false);
-
-            void OnMessage(IMessage receivedMsg)
-            {
-                message = receivedMsg;
-                semaphore.Set();
-            }
-
-            //using IMessageConsumer messageConsumer = session.CreateConsumer(destination);
-            MessageQueue.Listener += new MessageListener(OnMessage);
             Connection.Start();
             Task producer = Task.Run(async () =>
             {
@@ -123,9 +106,9 @@ public sealed class ActiveMQPump<T>
                 {
                     while (Stop1.Task.Status != TaskStatus.RanToCompletion)
                     {
-                        semaphore.WaitOne();
-                        if (message != null)
-                            await buffer.SendAsync(message).ConfigureAwait(false);
+                        var result = await MessageQueue.ReceiveAsync();
+                        await buffer.SendAsync(result).ConfigureAwait(false);
+
                         ct.ThrowIfCancellationRequested();
                     }
                 }
