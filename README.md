@@ -58,7 +58,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 
 # Roadmap
 - Setup documentation
-- Benchmarks - ~~Broker~~, Spatial DB
+- Benchmarks - ~~Broker~~, Spatial DB (Investigate Couch, Cockroach, Crate and Snowflake)
 - Code cleanup
 - Address support **(Genie)**
 - Cashless transactions **(Genius)**
