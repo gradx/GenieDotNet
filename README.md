@@ -38,11 +38,11 @@ __All benchmarks were tested in **standalone mode**__ on a single node Intel 139
 
 | Broker   | Connections   | Requests/Sec  | Latency (ms)   | Error Rate   |
 |---|---|---|---|---|
-| ActiveMQ  | 32  | 1900   | 17  | Extremely low
-| Kafka  | 128  | 3300   | 41  | Extremely low
+| ActiveMQ  | 32  | 1900   | 17  | Extremely low, 30 min+ sustained
+| Kafka  | 128  | 3300   | 41  | Very low
 | Proto.Actor  | 32  | 3300   | 11 | None
 | Pulsar  | 32  | 580   | 55  | None 
-| RabbitMQ  | 32  | 1800   | 9  | Low (Message corruption)
+| RabbitMQ  | 32  | 1800   | 9  | Very Low (Message corruption)
 
 #### Fire & Forget
 | Broker   | Connections   | Requests/Sec
