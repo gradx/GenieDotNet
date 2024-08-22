@@ -56,20 +56,9 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | RabbitMQ  | 32 |  86000 |
 
 
-ActiveMQ - 32 conn, 1900 rps, 17ms latency, **extremely** low error rate.  Fire & Forget 5800 rps
-Kafka - 128 conn, 3300 rps, 41ms latency, very low error rate.  Fire & Forget 4300 rps
-Proto.Actor - 32 conn, 3300 rps, 11ms latency, zero errors.  Fire & Forget not realistic
-Pulsar - 128 conn, 3300 rps, 41ms latency, zero errors.  Fire & Forget 88000 rps
-RabbitMQ - 32 conn, 1800 rps, 9ms latency, very low error rate.  Fire & Forget 86000 rps
-
-
-
-
-ActiveMQ - lowest optimal connections (3), half the performance of others on average (200rps), with no clear advantage other than Java
-
 # Roadmap
 - Setup documentation
-- Benchmarks
+- Benchmarks - ~~Broker~~, Spatial DB
 - Code cleanup
 - Address support **(Genie)**
 - Cashless transactions **(Genius)**
