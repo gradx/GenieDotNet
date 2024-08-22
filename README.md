@@ -23,13 +23,45 @@ Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github
 ## Spatial Map Data
 Map [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using a python script coming soon.
 
-## Optional
-__All benchmarks were tested in "standalone" mode__ on a single node Intel 13980hx with 32GB DDR5 3200+ 
+## Benchmarks
+__All benchmarks were tested in **standalone mode**__ on a single node Intel 13980hx with 32GB DDR5 3200+ 
 
-Pulsar - highest concurrent connections (256) with decent throughput (4700rps) in f&f.  Recommended for longer running tasks not requiring ack.
+#### Round trip
+| Broker   | Connections   | Requests/Sec  | Latency (ms)   |
+|---|---|---|---|
+| Baseline  | 1  | 22738   | 0  |
+| ActiveMQ  | 1  | 421   | 2  |
+| Kafka  | 1  | 33   | 33  |
+| Proto.Actor  | 1  | 653  | 1 |
+| Pulsar  | 1  | 36   | 31  |
+| RabbitMQ  | 1  | 457   | 2  |
 
-RabbitMQ - clear best peformer (5x others) in fire & forget, close second to Proto.Actor (640rps/8conn vs 580rps/10conn) in terms of acknwoledged delivery but with persistence built in. 
-Like Proto.Actor (8) suffers from a low optional concurrent connection count (6-10) but also __has a very low error rate__ (33 errors with 26.7M req handled in f&f) while Proto.actor __is nearly errorless__!
+| Broker   | Connections   | Requests/Sec  | Latency (ms)   | Error Rate   |
+|---|---|---|---|---|
+| ActiveMQ  | 32  | 1900   | 17  | Extremely low
+| Kafka  | 128  | 3300   | 41  | Extremely low
+| Proto.Actor  | 32  | 3300   | 11 | None
+| Pulsar  | 32  | 580   | 55  | None 
+| RabbitMQ  | 32  | 1800   | 9  | Low (Message corruption)
+
+#### Fire & Forget
+| Broker   | Connections   | Requests/Sec
+|---|---|---|
+| ActiveMQ  | 48 | 5800   |
+| Kafka  |  96 | 4300  |
+| Proto.Actor | n/a |  n/a  |
+| Pulsar  | 64 |  88000  |
+| RabbitMQ  | 32 |  88000 |
+
+
+ActiveMQ - 32 conn, 1900 rps, 17ms latency, **extremely** low error rate.  Fire & Forget 5800 rps
+Kafka - 128 conn, 3300 rps, 41ms latency, very low error rate.  Fire & Forget 4300 rps
+Proto.Actor - 32 conn, 3300 rps, 11ms latency, zero errors.  Fire & Forget not realistic
+Pulsar - 128 conn, 3300 rps, 41ms latency, zero errors.  Fire & Forget 88000 rps
+RabbitMQ - 32 conn, 1800 rps, 9ms latency, very low error rate.  Fire & Forget 86000 rps
+
+
+
 
 ActiveMQ - lowest optimal connections (3), half the performance of others on average (200rps), with no clear advantage other than Java
 
