@@ -49,7 +49,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 #### Fire & Forget
 | Broker   | Connections   | Requests/Sec
 |---|---|---|
-| ActiveMQ  | 48 | 5800   |
+| ActiveMQ  | 48 | 58000   |
 | Kafka  |  96 | 4300  |
 | Proto.Actor | n/a |  n/a  |
 | Pulsar  | 64 |  88000  |
