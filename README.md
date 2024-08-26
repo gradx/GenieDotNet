@@ -16,17 +16,27 @@ Geospatial Event Network Information User Stream - (Real-time Streaming Processo
 Geospatial Event Network User Integrated Network Encryption - [Double Ratchet](https://signal.org/docs/specifications/doubleratchet/) (Signal algorithm) + Replay & Tamper Resistant [Protocol](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/GameLicenseExample/Game.cs#L134) featuring [Bouncycastle X25519 & Ed25519](https://github.com/bcgit/bc-csharp), [HKDF](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.hkdf?view=net-8.0), [AES](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0), and [CityHash](https://aras-p.info/blog/2016/08/09/More-Hash-Function-Tests/)
 
 ## Prerequisites
-[Consul](https://developer.hashicorp.com/consul) - Mesh provider (for Proto.actor)
-
-Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/docker-compose.yml) 
-
-[Crank](https://github.com/dotnet/crank) - Web benchmark [agent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
+- PostGIS
+- Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/docker-compose.yml) 
+- [Crank](https://github.com/dotnet/crank) - Web benchmark [agent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 ## Spatial Map Data
-Map [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using a python script coming soon.
+To do: include setup instructions for creating the PostGIS database
 
 ## Benchmarks
 __All benchmarks were produced with Crank in **standalone mode**__ on a single node Intel 13980hx with 32GB DDR5 3200+.  IPC was avoided for all brokers supporting it.
+
+__What's in  the benchmark__
+ - Client: Serialize mock object #1 GRPC to Byte[]
+ - Client: Send payload to broker
+ - Client: If __NOT__ Fire & Forget, wait for server response.
+	 - Server: Deserialize payload from client
+	 - Server: Perform change data capture vs mock object #2
+	 - Server: Perform PostGIS ST_Intersects query on OpenDataSoft postal code data
+	 - Server: Send response to client (Avro serialization)
+ - Client: Deserialize and validate response from server
+
+
 
 ### Round trip
 #### Baseline
