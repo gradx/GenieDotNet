@@ -35,7 +35,7 @@ __What's in  the benchmark__
 	 - Server: Perform change data capture vs mock object #2
 	 - Server: Perform PostGIS ST_Intersects query on OpenDataSoft postal code data
 	 - Server: Send response to client (Avro serialization)
- - Client: Deserialize and validate response from server
+	 - Client: Deserialize and validate response from server
 
 ### Configuration
 | Rank  | Broker   | License | Client| Configuration
