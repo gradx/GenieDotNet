@@ -47,7 +47,7 @@ __What's in  the benchmark__
 6| [Proto.Actor](https://proto.actor) | Apache v2 | [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) | 1.6, [Consul](https://www.consul.io/) mesh provider, grains (virtual actors)
 7| [Pulsar](https://pulsar.apache.org) | Apache v2 | [Pulsar.Client](https://github.com/fsprojects/pulsar-client-dotnet) | 3.3.0
 8| [RabbitMQ](https://www.rabbitmq.com/) | MPL 2.0 | [RabbitMQ.Client](https://github.com/rabbitmq/rabbitmq-dotnet-client) | 3.13.6
-9| [ZeroMQ](https://zeromq.org) | MPL 2.0 | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13, DealerSocket/DeakerSocket
+9| [ZeroMQ](https://zeromq.org) | MPL 2.0 | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13, [Dealer/Deaker](https://sachabarbs.wordpress.com/2014/08/21/zeromq-2-the-socket-types-2/)
 
 ### Round trip
 #### Baseline
