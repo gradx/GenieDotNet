@@ -82,7 +82,7 @@ __What's in  the benchmark__
 
 ### Fire & Forget
 #### Baseline
-| Broker   | Connections   | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
+| Broker   | Conn  | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
 |---|---|---|---|---|---|
 | None  | 1  | 22,738   | 0.04  | 9.06 | 347
 | Pulsar  | 1 |  18,213  | 0.05 | 8.04 | 1,014
@@ -98,7 +98,7 @@ __What's in  the benchmark__
 ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
 
 #### Scaled
-| Broker   | Connections   | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
+| Broker   | Conn   | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
 |---|---|---|---|---|---|
 | Pulsar  | 64 |  88,748  | 0.72 | 801 | 1,078
 | RabbitMQ  | 32 |  78,543 | 0.40 | 296 | 543
