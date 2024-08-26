@@ -87,7 +87,7 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 | Aeron| 64 | 20.779   | 3.08 | 227 | 594
 | Kafka  |  96 | 4,298 | 23.24 | 12,104 | 2,036
 
-### Ranking
+### Overall Ranking
 | Rank  | Broker   | Opinion
 |---|---|---|
 |1 | Proto.Actor | Top overall performer. Ranks a close third in throughput but with 1/4 latency.  Virtual grains provide stateful possibilities. Requires no external dependencies for IPC.
