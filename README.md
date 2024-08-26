@@ -25,7 +25,7 @@ Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github
 Map [paths](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/SharedFiles/OvertureMaps) need to be updated as well as code [removed](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Common/Utils/DuckDbSupport.cs) for the missing postal code file (too large to include).  Instructions on how to create these using a python script coming soon.
 
 ## Benchmarks
-__All benchmarks were produced with Crank in **standalone mode**__ on a single node Intel 13980hx with 32GB DDR5 3200+ 
+__All benchmarks were produced with Crank in **standalone mode**__ on a single node Intel 13980hx with 32GB DDR5 3200+.  IPC was avoided for all brokers supporting it.
 
 ### Round trip
 #### Baseline
@@ -45,12 +45,12 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 #### Scaled
 | Broker   | Connections   | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|
+| ZeroMQ| 128| 3,351   | 40.76  | 135 | 843
 | Kafka  | 128  | 3,340   | 38.45  | 5,699 | 3,618 | 636
 | Proto.Actor  | 32  | 3,329   | 10.20 | 93 | 548
-| ZeroMQ| 128| 3,311   | 40.76  | 135 | 843
 | ZeroMQ| 64 | 3,031   | 22.12  | 129 | 1,372
 | NATS| 64 | 2,542   | 26.45  | 1,908 | 574
-| RabbitMQ  | 32  | 1,889 | 8.5  | 1719 | 774 | 82
+| RabbitMQ  | 32  | 1,889 | 8.5  | 1719 | 774 | 82, message corruption
 | ActiveMQ  | 32  | 1,880   | 17.88  | 135 | 1,180 | 1 hour, no errors
 | MQTT | 128| 1,706   | 78.33  | 6,396 | 538 | Errors out < 10 min
 | MQTT | 64| 1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
@@ -67,7 +67,8 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | ZeroMQ*| 1 |  15,564  | 0.06 | 6.50 | 700
 | RabbitMQ  | 1|  12,262 | 0.08 | 26.73 | 465
 | Proto.Actor* | 1| 11,915  | 0.08 | 12.59 | 263
-| Aeron| 1| 11,693  | 0.08 | 28.14 | 688
+| Aeron | 1| 11,693  | 0.08 | 28.14 | 688
+| NATS | 1| 10,355  | 0.09| 8.10 | 543
 | ActiveMQ  | 1 | 10,259  | 0.10 | 6.65 | 848
 | MQTT| 1 | 7,142   | 0.14 | 6.45 | 481
 | Kafka  |  1 | 64 | 15.86 | 47.97 | 1,994
@@ -79,11 +80,23 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 |---|---|---|---|---|---|
 | Pulsar  | 64 |  88,748  | 0.72 | 801 | 1,078
 | RabbitMQ  | 32 |  78,543 | 0.40 | 296 | 543
+| NATS | 128 | 76,144   | 1.63 | 292 | 580
 | ActiveMQ  | 48 | 58,179   | 0.87 | 7,596 | 755
 | MQTT| 128 | 51,975   | 2.42 | 198 | 496
 | Aeron| 64 | 20.779   | 3.08 | 227 | 594
 | Kafka  |  96 | 4,298 | 23.24 | 12,104 | 2,036
 
+### Ranking
+| Rank  | Broker   | Opinion
+|---|---|---|
+|1 | Proto.Actor | Top overall performer. Ranks a close third in throughput but with 1/4 latency.  Virtual grains provide stateful possibilities. Requires no external dependencies for IPC.
+|2 | ZeroMQ | Best overall performance ranking in roundtrip (1st), scaled (1st) and Fire & Forget (2nd).  Requires no external dependencies.
+|3 | Kafka | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_
+|4 | NATS | Solid overall performer in both roundtrip and Fire & Forget throughput
+|5 | Pulsar | Clear choice for Fire & Forget
+|6 | RabbitMQ | Top performer for scaled latency in both roundtrip and Fire & Forget, second overall in Fire & Forget throughput. Suffers from occasional message corruption issues _(possibly memory related)_.
+|7 | MQTT | EMQX wouldn't run at peak throughput (scaled, 128conn, 1700rps) for longer than 10 minutes.
+|8 | Aeron | Financial markets are reliant on low latency where trading is time-sensitive. Unfortunately it doesn't appear to have the throughput we need in an more generic event sourcing model.  Even according to the maintainers it [may not be the best option](https://github.com/AdaptiveConsulting/Aeron.NET/issues/59#issuecomment-278673122).
 
 
 # Roadmap
