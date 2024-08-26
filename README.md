@@ -56,7 +56,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | MQTT | 128| 1650-1750 |1,706  | 78.33  | 6,396 | 538 | Errors out < 10 min
 | MQTT | 64| n/a |1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
 | Pulsar  | 32  | 550 - 625 | 607| 55.18  | 184 | 1,472
-| Aeron| | | | | | Duplicates and loses messages with multiple threads
+| Aeron| | | | || | Duplicates and loses messages with multiple threads
 
 
 ### Fire & Forget
