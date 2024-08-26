@@ -92,7 +92,7 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 |---|---|---|
 |1 | Proto.Actor | Top overall performer. Ranks a close third in throughput but with 1/4 latency.  Virtual grains provide stateful possibilities. Requires no external dependencies for IPC.
 |2 | ZeroMQ | Best overall performance ranking in roundtrip (1st), scaled (1st) and Fire & Forget (2nd).  Requires no external dependencies.
-|3 | Kafka | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_
+|3 | Kafka | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_.  Not ideal for frequent bursts but rather sustained long term loads.
 |4 | NATS | Solid overall performer in both roundtrip and Fire & Forget throughput
 |5 | Pulsar | Clear choice for Fire & Forget
 |6 | RabbitMQ | Top performer for scaled latency in both roundtrip and Fire & Forget, second overall in Fire & Forget throughput. Suffers from occasional message corruption issues _(possibly memory related)_.
