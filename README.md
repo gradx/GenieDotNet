@@ -47,7 +47,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | Broker   | Connections   | Range (Requests/sec) | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
 | ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
-| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 in 1 hour
+| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636
 | Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
 | ZeroMQ| 64 | n/a |3,031   | 22.12  | 129 | 1,372
 | NATS| 64 | 2400-2600 | 2,542   | 26.45  | 1,908 | 574
@@ -56,7 +56,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | MQTT | 128| 1650-1750 |1,706  | 78.33  | 6,396 | 538 | Errors out < 10 min
 | MQTT | 64| n/a |1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
 | Pulsar  | 32  | 550 - 625 | 607| 55.18  | 184 | 1,472
-| Aeron| | | | || | Duplicates and loses messages with multiple threads
+| Aeron| | | | | | Duplicates and loses messages with multiple threads
 
 
 ### Fire & Forget
@@ -92,12 +92,13 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 |---|---|---|
 |1 | Proto.Actor | Top overall performer. Ranks a close third in throughput but with 1/4 latency.  Virtual grains provide stateful possibilities. Requires no external dependencies for IPC.
 |2 | ZeroMQ | Best overall performance ranking in roundtrip (1st), scaled (1st) and Fire & Forget (2nd).  Requires no external dependencies.
-|3 | Kafka | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_.  Not ideal for frequent bursts but rather sustained long term loads.
+|3 | Kafka | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_
 |4 | NATS | Solid overall performer in both roundtrip and Fire & Forget throughput
 |5 | Pulsar | Clear choice for Fire & Forget
-|6 | RabbitMQ | Top performer for scaled latency in both roundtrip and Fire & Forget, second overall in Fire & Forget throughput. Suffers from occasional message corruption issues _(possibly memory related)_.
-|7 | MQTT | EMQX wouldn't run at peak throughput (scaled, 128conn, 1700rps) for longer than 10 minutes.
-|8 | Aeron |  Financial markets are reliant on low latency where trading is time-sensitive. Unfortunately it doesn't appear to have the throughput we need in an more generic event sourcing model.  Even according to the maintainers it [may not be the best option](https://github.com/AdaptiveConsulting/Aeron.NET/issues/59#issuecomment-278673122). **Suffered from message loss and duplication when scaled and the [service implementation](https://github.com/AdaptiveConsulting/Aeron.NET/tree/master/src/Samples/Adaptive.Aeron.Samples.ClusterService) returned messages with no payload**  
+|6 | ActiveMQ |Similar performance to RabbitMQ but also error free
+|7 | RabbitMQ | Top performer for scaled latency in both roundtrip and Fire & Forget, second overall in Fire & Forget throughput. Suffers from occasional message corruption issues _(possibly memory related)_.
+|8 | MQTT | EMQX wouldn't run at peak throughput (scaled, 128conn, 1700rps) for longer than 10 minutes.
+|9 | Aeron |  Financial markets are reliant on low latency where trading is time-sensitive. Unfortunately it doesn't appear to have the throughput we need in an more generic event sourcing model.  Even according to the maintainers it [may not be the best option](https://github.com/AdaptiveConsulting/Aeron.NET/issues/59#issuecomment-278673122). **Suffered from message loss and duplication when scaled and the [service implementation](https://github.com/AdaptiveConsulting/Aeron.NET/tree/master/src/Samples/Adaptive.Aeron.Samples.ClusterService) returned messages with no payload**  
 
 
 # Roadmap
