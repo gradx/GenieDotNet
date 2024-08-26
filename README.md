@@ -36,6 +36,7 @@ __What's in  the benchmark__
 	 - Client: Deserialize and validate response from server
 
 ### Configuration
+Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Docker) files are located here
 | Rank  | Broker   | License | Client| Configuration
 |---|---|---|---|---|
 1| [ActiveMQ](https://activemq.apache.org) | Apache v2 |[Apache.NMS.ActiveMQ](https://activemq.apache.org/components/nms/providers/activemq/) | ActiveMQ Artemis 2.36.0, Producer/Consumer
