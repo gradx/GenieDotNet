@@ -47,7 +47,7 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | Broker   | Connections   | Range (Requests/sec) | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
 | ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
-| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636
+| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 in 1 hour
 | Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
 | ZeroMQ| 64 | n/a |3,031   | 22.12  | 129 | 1,372
 | NATS| 64 | 2400-2600 | 2,542   | 26.45  | 1,908 | 574
