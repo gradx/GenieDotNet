@@ -1,3 +1,4 @@
+
 # GenieDotNet
 
 GenieDotNet consists of 3 main components to showcase how to create a (1) secure, (2) cloud native, (3) scalable, (4) distributed, (5) [high performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) (6) inference engine and (7) extensible (8) real-time streaming processor with a license provisioning [example](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L84) using C# and .NET 8
@@ -28,32 +29,61 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 
 ### Round trip
 #### Baseline
-| Broker   | Connections   | Requests/Sec  | Latency (ms)   |
-|---|---|---|---|
-| None  | 1  | 22738   | 0  |
-| ActiveMQ  | 1  | 421   | 2  |
-| Kafka  | 1  | 33   | 33  |
-| Proto.Actor  | 1  | 653  | 1 |
-| Pulsar  | 1  | 36   | 31  |
-| RabbitMQ  | 1  | 457   | 2  |
+| Broker   | Connections   | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)   | First Req (ms)   |
+|---|---|---|---|---|---|
+| None  | 1  | 22,738   | 0.04  | 9.06 | 347
+| ZeroMQ  | 1  | 721 | 1.38 | 11.10 | 714
+| Proto.Actor  | 1  | 687  | 1.44 | 13.68 | 428
+ NATS| 1  | 492 | 2.03  | 60.88 | 744
+| RabbitMQ  | 1  | 466   | 2.14  | 47.63 | 690
+| ActiveMQ  | 1  | 408   | 2.45  | 51.38 | 952
+| Pulsar  | 1  | 37   | 31.86  | 56.65 | 1,218
+| Kafka  | 1  | 33   | 31.68  | 50.59 | 3,570
+| MQTT| 1  | 22 | 50.00  | 69.14 | 766
+| Aeron| 1  | 21 | 48.97  | 110.74 | 2,620
 
 #### Scaled
-| Broker   | Connections   | Requests/Sec  | Latency (ms)   | Error Rate   |
-|---|---|---|---|---|
-| ActiveMQ  | 32  | 1900   | 17  | Extremely low, 30 min+ sustained
-| Kafka  | 128  | 3600   | 41  | Very low
-| Proto.Actor  | 32  | 3300   | 11 | None
-| Pulsar  | 32  | 580   | 55  | None 
-| RabbitMQ  | 32  | 1800   | 9  | Very Low (Message corruption)
+| Broker   | Connections   | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
+|---|---|---|---|---|---|---|
+| ZeroMQ| 128| 3,351   | 40.76  | 135 | 843
+| Kafka  | 128  | 3,340   | 38.45  | 5,699 | 3,618 | 636
+| Proto.Actor  | 32  | 3,329   | 10.20 | 93 | 548
+| ZeroMQ| 64 | 3,031   | 22.12  | 129 | 1,372
+| NATS| 64 | 2,542   | 26.45  | 1,908 | 574
+| RabbitMQ  | 32  | 1,889 | 8.5  | 1719 | 774 | 82
+| ActiveMQ  | 32  | 1,880   | 17.88  | 135 | 1,180 | 1 hour, no errors
+| MQTT | 128| 1,706   | 78.33  | 6,396 | 538 | Errors out < 10 min
+| MQTT | 64| 1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
+| Pulsar  | 32  | 607| 55.18  | 184 | 1,472
+| Aeron| | | | | | Duplicates and loses messages with multiple threads
 
-#### Fire & Forget
-| Broker   | Connections   | Requests/Sec
-|---|---|---|
-| ActiveMQ  | 48 | 58000   |
-| Kafka  |  96 | 4300  |
-| Proto.Actor | n/a |  n/a  |
-| Pulsar  | 64 |  88000  |
-| RabbitMQ  | 32 |  86000 |
+
+### Fire & Forget
+#### Baseline
+| Broker   | Connections   | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
+|---|---|---|---|---|---|
+| None  | 1  | 22,738   | 0.04  | 9.06 | 347
+| Pulsar  | 1 |  18,213  | 0.05 | 8.04 | 1,014
+| ZeroMQ*| 1 |  15,564  | 0.06 | 6.50 | 700
+| RabbitMQ  | 1|  12,262 | 0.08 | 26.73 | 465
+| Proto.Actor* | 1| 11,915  | 0.08 | 12.59 | 263
+| Aeron| 1| 11,693  | 0.08 | 28.14 | 688
+| ActiveMQ  | 1 | 10,259  | 0.10 | 6.65 | 848
+| MQTT| 1 | 7,142   | 0.14 | 6.45 | 481
+| Kafka  |  1 | 64 | 15.86 | 47.97 | 1,994
+
+ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
+
+#### Scaled
+| Broker   | Connections   | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
+|---|---|---|---|---|---|
+| Pulsar  | 64 |  88,748  | 0.72 | 801 | 1,078
+| RabbitMQ  | 32 |  78,543 | 0.40 | 296 | 543
+| ActiveMQ  | 48 | 58,179   | 0.87 | 7,596 | 755
+| MQTT| 128 | 51,975   | 2.42 | 198 | 496
+| Aeron| 64 | 20.779   | 3.08 | 227 | 594
+| Kafka  |  96 | 4,298 | 23.24 | 12,104 | 2,036
+
 
 
 # Roadmap
