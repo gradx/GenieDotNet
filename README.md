@@ -7,7 +7,8 @@ GenieDotNet consists of 3 main components to showcase how to create a (1) secure
 complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 # Genie
-Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) Reverse Geocoder
+Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) Reverse Geocoder using [OvertureMaps](https://overturemaps.org/) 
+(Opendatasoft or MaxMind) supporting ActiveMQ, RabbitMQ, Kafka, [Pulsar](https://github.com/fsprojects/pulsar-client-dotnet), [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) and [DuckDB](https://github.com/Giorgi/DuckDB.NET)
 
 # Genius
 Geospatial Event Network Information User Stream - (Real-time Streaming Processor) for [time & location-based](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L93) eventing featuring Proto.Actor with any level of granularity
@@ -16,7 +17,7 @@ Geospatial Event Network Information User Stream - (Real-time Streaming Processo
 Geospatial Event Network User Integrated Network Encryption - [Double Ratchet](https://signal.org/docs/specifications/doubleratchet/) (Signal algorithm) + Replay & Tamper Resistant [Protocol](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/GameLicenseExample/Game.cs#L134) featuring [Bouncycastle X25519 & Ed25519](https://github.com/bcgit/bc-csharp), [HKDF](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.hkdf?view=net-8.0), [AES](https://learn.microsoft.com/en-us/dotnet/api/system.security.cryptography.aes?view=net-8.0), and [CityHash](https://aras-p.info/blog/2016/08/09/More-Hash-Function-Tests/)
 
 ## Prerequisites
-- PostGIS (Postgres 16.4)
+- PostGIS
 - Confluent/Bitnami- Schema Registry and Kafka [docker-compose.yml](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/docker-compose.yml) 
 - [Crank](https://github.com/dotnet/crank) - Web benchmark [agent](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
@@ -44,14 +45,14 @@ __What's in  the benchmark__
 3| [Kafka](https://kafka.apache.org/) | Apache v2 | [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) | Bitnami Kafka 3.7.1
 4| [MQTT](https://mqtt.org/) |Apache v2 | [MQTTnet](https://github.com/dotnet/MQTTnet) | EMQX 5.7.2
 5| [NATS](https://nats.io) | Apache v2 | [NATS .NET](https://github.com/nats-io/nats.net)| 2.10.18
-6| [Proto.Actor](https://proto.actor) | Apache v2 | [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) | 1.6, [Consul](https://www.consul.io/) mesh provider, grains (virtual actors)
+6| [Proto.Actor](https://proto.actor) | Apache v2 | [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) | 1.6, [Consul](https://www.consul.io/) mesh provider, virtual grains
 7| [Pulsar](https://pulsar.apache.org) | Apache v2 | [Pulsar.Client](https://github.com/fsprojects/pulsar-client-dotnet) | 3.3.0
 8| [RabbitMQ](https://www.rabbitmq.com/) | MPL 2.0 | [RabbitMQ.Client](https://github.com/rabbitmq/rabbitmq-dotnet-client) | 3.13.6
-9| [ZeroMQ](https://zeromq.org) | MPL 2.0 | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13, [Dealer/Deaker](https://sachabarbs.wordpress.com/2014/08/21/zeromq-2-the-socket-types-2/)
+9| [ZeroMQ](https://zeromq.org) | MPL 2.0 | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13, [Dealer/Dealer](https://sachabarbs.wordpress.com/2014/08/21/zeromq-2-the-socket-types-2/)
 
 ### Round trip
 #### Baseline
-| Broker   | Connections   | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)   | First Req (ms)   |
+| Broker   | Conn   | Req/sec  | Mean Lat (ms)   | Max Lat (ms)   | First Req (ms)   |
 |---|---|---|---|---|---|
 | None  | 1  | 22,738   | 0.04  | 9.06 | 347
 | ZeroMQ  | 1  | 721 | 1.38 | 11.10 | 714
@@ -65,7 +66,7 @@ __What's in  the benchmark__
 | Aeron| 1  | 21 | 48.97  | 110.74 | 2,620
 
 #### Scaled
-| Broker   | Connections   | Range (Requests/sec) | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
+| Broker   | Conn   | Range (Req/sec) | Req/sec  | Mean Lat (ms)   | Max Lat (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
 | ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
 | Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 (1 hour)
@@ -82,7 +83,7 @@ __What's in  the benchmark__
 
 ### Fire & Forget
 #### Baseline
-| Broker   | Conn  | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
+| Broker   | Conn  | Req/sec | Mean Lat (ms) | Max Lat (ms) | First Req (ms)
 |---|---|---|---|---|---|
 | None  | 1  | 22,738   | 0.04  | 9.06 | 347
 | Pulsar  | 1 |  18,213  | 0.05 | 8.04 | 1,014
@@ -98,7 +99,7 @@ __What's in  the benchmark__
 ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
 
 #### Scaled
-| Broker   | Conn   | Requests/Sec | Mean Latency (ms) | Max Latency (ms) | First Request (ms)
+| Broker   | Connections   | Req/sec | Mean Lat (ms) | Max Lat(ms) | First Req (ms)
 |---|---|---|---|---|---|
 | Pulsar  | 64 |  88,748  | 0.72 | 801 | 1,078
 | RabbitMQ  | 32 |  78,543 | 0.40 | 296 | 543
