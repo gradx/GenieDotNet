@@ -73,7 +73,7 @@ __What's in  the benchmark__
 | Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
 | ZeroMQ| 64 | n/a |3,031   | 22.12  | 129 | 1,372
 | NATS| 64 | 2400-2600 | 2,542   | 26.45  | 1,908 | 574
-| RabbitMQ  | 32  | 1700-1900 | 1,889 | 8.5  | 1719 | 774 | 82, message corruption
+| RabbitMQ  | 32  | 1700-1900 | 1,889 | 8.5  | 1719 | 774 | 82 (1 hour) message corruption
 | ActiveMQ  | 32  | 1700-1900 | 1,880   | 17.88  | 135 | 1,180 | 1 hour, no errors
 | MQTT | 128| 1650-1750 |1,706  | 78.33  | 6,396 | 538 | Errors out < 10 min
 | MQTT | 64| n/a |1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
