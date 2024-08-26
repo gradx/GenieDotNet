@@ -28,7 +28,7 @@ To do: include setup instructions for creating the PostGIS database
 __All benchmarks were produced with Crank in **standalone mode**__ on a single node Intel 13980hx with 32GB DDR5 3200+.  IPC was avoided for all brokers supporting it.
 
 __What's in  the benchmark__
- - Client: Serialize mock object #1 GRPC to Byte[] **Kafka still uses the Avro serializer**
+ - Client: Serialize mock object #1 GRPC to Byte[] _(Kafka uses the [Avro](https://github.com/ch-robinson/dotnet-avro) serializer for other testing purposes)_
  - Client: Send payload to broker
  - Client: If __NOT__ Fire & Forget, wait for server response.
 	 - Server: Deserialize payload from client
