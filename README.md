@@ -1,4 +1,5 @@
 
+
 # GenieDotNet
 
 GenieDotNet consists of 3 main components to showcase how to create a (1) secure, (2) cloud native, (3) scalable, (4) distributed, (5) [high performance](https://learn.microsoft.com/en-us/aspnet/core/performance/objectpool?view=aspnetcore-8.0) (6) inference engine and (7) extensible (8) real-time streaming processor with a license provisioning [example](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L84) using C# and .NET 8
@@ -43,18 +44,18 @@ __All benchmarks were produced with Crank in **standalone mode**__ on a single n
 | Aeron| 1  | 21 | 48.97  | 110.74 | 2,620
 
 #### Scaled
-| Broker   | Connections   | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
-|---|---|---|---|---|---|---|
-| ZeroMQ| 128| 3,351   | 40.76  | 135 | 843
-| Kafka  | 128  | 3,340   | 38.45  | 5,699 | 3,618 | 636
-| Proto.Actor  | 32  | 3,329   | 10.20 | 93 | 548
-| ZeroMQ| 64 | 3,031   | 22.12  | 129 | 1,372
-| NATS| 64 | 2,542   | 26.45  | 1,908 | 574
-| RabbitMQ  | 32  | 1,889 | 8.5  | 1719 | 774 | 82, message corruption
-| ActiveMQ  | 32  | 1,880   | 17.88  | 135 | 1,180 | 1 hour, no errors
-| MQTT | 128| 1,706   | 78.33  | 6,396 | 538 | Errors out < 10 min
-| MQTT | 64| 1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
-| Pulsar  | 32  | 607| 55.18  | 184 | 1,472
+| Broker   | Connections   | Range (Requests/sec) | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
+|---|---|---|---|---|---|---|---|
+| ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
+| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636
+| Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
+| ZeroMQ| 64 | |3,031   | 22.12  | 129 | 1,372
+| NATS| 64 | | 2,542   | 26.45  | 1,908 | 574
+| RabbitMQ  | 32  | | 1,889 | 8.5  | 1719 | 774 | 82, message corruption
+| ActiveMQ  | 32  | | 1,880   | 17.88  | 135 | 1,180 | 1 hour, no errors
+| MQTT | 128| ||1,706  | 78.33  | 6,396 | 538 | Errors out < 10 min
+| MQTT | 64| |1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
+| Pulsar  | 32  || 607| 55.18  | 184 | 1,472
 | Aeron| | | | | | Duplicates and loses messages with multiple threads
 
 
