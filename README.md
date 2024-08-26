@@ -1,4 +1,5 @@
 
+  
 
 # GenieDotNet
 
@@ -36,7 +37,18 @@ __What's in  the benchmark__
 	 - Server: Send response to client (Avro serialization)
  - Client: Deserialize and validate response from server
 
-
+### Configuration
+| Rank  | Broker   | License | Client| Configuration
+|---|---|---|---|---|
+1| [ActiveMQ](https://activemq.apache.org) | Apache v2 |[Apache.NMS.ActiveMQ](https://activemq.apache.org/components/nms/providers/activemq/) | ActiveMQ Artemis 2.36.0, Producer/Consumer
+2| [Aeron](https://aeron.io)| Apache v2|[Aeron.NET](https://github.com/AdaptiveConsulting/Aeron.NET) | [Media Driver 1.40](https://github.com/AdaptiveConsulting/Aeron.NET/tree/master/driver), Pub/Sub
+3| [Kafka](https://kafka.apache.org/) | Apache v2 | [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) | Bitnami Kafka 3.7.1
+4| [MQTT](https://mqtt.org/) |Apache v2 | [MQTTnet](https://github.com/dotnet/MQTTnet) | EMQX 5.7.2
+5| [NATS](https://nats.io) | Apache v2 | [NATS .NET](https://github.com/nats-io/nats.net)| 2.10.18
+6| [Proto.Actor](https://proto.actor) | Apache v2 | [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) | 1.6
+7| [Pulsar](https://pulsar.apache.org) | Apache v2 | [Pulsar.Client](https://github.com/fsprojects/pulsar-client-dotnet) | 3.3.0
+8| [RabbitMQ](https://www.rabbitmq.com/) | MPL 2.0 | [RabbitMQ.Client](https://github.com/rabbitmq/rabbitmq-dotnet-client) | 3.13.6
+9| [ZeroMQ](https://zeromq.org) | MPL 2.0 | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13
 
 ### Round trip
 #### Baseline
@@ -57,7 +69,7 @@ __What's in  the benchmark__
 | Broker   | Connections   | Range (Requests/sec) | Requests/Sec  | Mean Latency (ms)   | Max Latency (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
 | ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
-| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636
+| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 (1 hour)
 | Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
 | ZeroMQ| 64 | n/a |3,031   | 22.12  | 129 | 1,372
 | NATS| 64 | 2400-2600 | 2,542   | 26.45  | 1,908 | 574
