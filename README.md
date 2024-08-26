@@ -7,9 +7,7 @@ GenieDotNet consists of 3 main components to showcase how to create a (1) secure
 complete with [Crank](https://github.com/dotnet/crank) benchmarks [here](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Benchmarks/benchmark.yaml)
 
 # Genie
-Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) Reverse Geocoder using [OvertureMaps](https://overturemaps.org/) 
-(Opendatasoft or MaxMind) supporting ActiveMQ, RabbitMQ, Kafka, [Pulsar](https://github.com/fsprojects/pulsar-client-dotnet), [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) and [DuckDB](https://github.com/Giorgi/DuckDB.NET)
-
+Geospatial Event Network Inference Engine - (Event-Sourced Microservice Broker) Reverse Geocoder
 # Genius
 Geospatial Event Network Information User Stream - (Real-time Streaming Processor) for [time & location-based](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Genie.Extensions.Genius/GeniusGrain.cs#L93) eventing featuring Proto.Actor with any level of granularity
 
