@@ -1,4 +1,5 @@
 
+
   
 
 # GenieDotNet
@@ -37,76 +38,80 @@ __What's in  the benchmark__
 
 ### Configuration
 Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Docker) files are located here
-| Rank  | Broker   | License | Client| Configuration
+ | Broker   | License | Client| Configuration
 |---|---|---|---|---|
-1| [ActiveMQ](https://activemq.apache.org) | Apache v2 |[Apache.NMS.ActiveMQ](https://activemq.apache.org/components/nms/providers/activemq/) | ActiveMQ Artemis 2.36.0, Producer/Consumer
-2| [Aeron](https://aeron.io)| Apache v2|[Aeron.NET](https://github.com/AdaptiveConsulting/Aeron.NET) | [Media Driver 1.40](https://github.com/AdaptiveConsulting/Aeron.NET/tree/master/driver), Pub/Sub
-3| [Kafka](https://kafka.apache.org/) | Apache v2 | [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) | Bitnami Kafka 3.7.1
-4| [MQTT](https://mqtt.org/) |Apache v2 | [MQTTnet](https://github.com/dotnet/MQTTnet) | EMQX 5.7.2
-5| [NATS](https://nats.io) | Apache v2 | [NATS .NET](https://github.com/nats-io/nats.net)| 2.10.18
-6| [Proto.Actor](https://proto.actor) | Apache v2 | [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) | 1.6, [Consul](https://www.consul.io/) mesh provider, virtual actors
-7| [Pulsar](https://pulsar.apache.org) | Apache v2 | [Pulsar.Client](https://github.com/fsprojects/pulsar-client-dotnet) | 3.3.0
-8| [RabbitMQ](https://www.rabbitmq.com/) | MPL 2.0 | [RabbitMQ.Client](https://github.com/rabbitmq/rabbitmq-dotnet-client) | 3.13.6
-9| [ZeroMQ](https://zeromq.org) | LGPL | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13, [Dealer/Dealer](https://sachabarbs.wordpress.com/2014/08/21/zeromq-2-the-socket-types-2/)
+ [ActiveMQ](https://activemq.apache.org) | Apache v2 |[Apache.NMS.ActiveMQ](https://activemq.apache.org/components/nms/providers/activemq/) | ActiveMQ Artemis 2.36.0, Producer/Consumer
+ [Aeron](https://aeron.io)| Apache v2|[Aeron.NET](https://github.com/AdaptiveConsulting/Aeron.NET) | [Media Driver 1.40](https://github.com/AdaptiveConsulting/Aeron.NET/tree/master/driver), Pub/Sub
+[Kafka](https://kafka.apache.org/) | Apache v2 | [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) | Bitnami Kafka 3.7.1
+[MQTT](https://mqtt.org/) |Apache v2 | [MQTTnet](https://github.com/dotnet/MQTTnet) | EMQX 5.7.2
+[NATS](https://nats.io) | Apache v2 | [NATS .NET](https://github.com/nats-io/nats.net)| 2.10.18
+[Proto.Actor](https://proto.actor) | Apache v2 | [Proto.Actor](https://github.com/asynkron/protoactor-dotnet) | 1.6, [Consul](https://www.consul.io/) mesh provider, virtual actors
+ [Pulsar](https://pulsar.apache.org) | Apache v2 | [Pulsar.Client](https://github.com/fsprojects/pulsar-client-dotnet) | 3.3.0
+[RabbitMQ](https://www.rabbitmq.com/) | MPL 2.0 | [RabbitMQ.Client](https://github.com/rabbitmq/rabbitmq-dotnet-client) | 3.13.6
+[Redpanda](https://www.rabbitmq.com/) | BSL | [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) | 24.2.2
+[ZeroMQ](https://zeromq.org) | LGPL | [NetMQ](https://github.com/zeromq/netmq) | 4.0.1.13, [Dealer/Dealer](https://sachabarbs.wordpress.com/2014/08/21/zeromq-2-the-socket-types-2/)
 
 ### Round trip
 #### Baseline
-| Broker   | Conn   | Req/sec  | Mean Lat (ms)   | Max Lat (ms)   | First Req (ms)   |
+| Broker   | Conn   | Req/sec  | Mean Lat (ms)   | p99 Lat (ms)   | First Req (ms)   |
 |---|---|---|---|---|---|
-| None  | 1  | 22,738   | 0.04  | 9.06 | 347
-| ZeroMQ  | 1  | 721 | 1.38 | 11.10 | 714
-| Proto.Actor  | 1  | 687  | 1.44 | 13.68 | 428
- NATS| 1  | 492 | 2.03  | 60.88 | 744
-| RabbitMQ  | 1  | 466   | 2.14  | 47.63 | 690
+| None  | 1  | 22,738   | 0.04  | 0.55 | 347
+| ZeroMQ  | 1  | 723 | 1.38 | 2.55 | 714
+| Proto.Actor  | 1  | 687  | 1.44 | 2.70 | 428
+ NATS| 1  | 492 | 2.03  | 4.22 | 744
+| RabbitMQ  | 1  | 466   | 2.14  | 4.23 | 690
 | ActiveMQ  | 1  | 408   | 2.45  | 51.38 | 952
-| Pulsar  | 1  | 37   | 31.86  | 56.65 | 1,218
-| Zlogger  | 1  | 33   | 31.68  | 50.59 | 3,570
-| MQTT| 1  | 22 | 50.00  | 69.14 | 766
-| Aeron| 1  | 21 | 48.97  | 110.74 | 2,620
+| Pulsar  | 1  | 37   | 31.86  | 40.87 | 1,218
+| MQTT| 1  | 22 | 50.00  | 65.47 | 766
+| Aeron| 1  | 21 | 48.97  | 64.22 | 2,620
+| Redpanda| 1  | 17   | 64.67  | 222.95 | 2,791
+| Kafka| 1  | 16   | 66.54  | 264.75 | 4,256
 
 #### Scaled
-| Broker   | Conn   | Range (Req/sec) | Req/sec  | Mean Lat (ms)   | Max Lat (ms)  | First Req (ms) | Bad Responses |
+| Broker   | Conn   | Range (Req/sec) | Req/sec  | Mean Lat (ms)   | p99 Lat (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
-| ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
-| Zlogger  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 (1 hour), 192 (8 hours), possibly startup related
-| Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
-| ZeroMQ| 64 | n/a |3,031   | 22.12  | 129 | 1,372
-| NATS| 64 | 2400-2600 | 2,542   | 26.45  | 1,908 | 574
-| RabbitMQ  | 32  | 1700-1900 | 1,889 | 8.5  | 1719 | 774 | 82 (1 hour), message deserialization error (corrupted in storage/transit)
-| ActiveMQ  | 32  | 1700-1900 | 1,880   | 17.88  | 135 | 1,180 | 1 hour, no errors
-| MQTT | 128| 1650-1750 |1,706  | 78.33  | 6,396 | 538 | Errors out < 10 min
-| MQTT | 64| n/a |1,015   | 63.77  | 2,038 | 951 | 1 hour, no errors
-| Pulsar  | 32  | 550 - 625 | 607| 55.18  | 184 | 1,472
+| ZeroMQ| 128| 3300-4000| 3,207   |42.14  | 72.92| 1,128
+| Proto.Actor  | 32  | 3300-3700 | 3,288  | 10.35 | 25.91 | 610
+| ZeroMQ| 64 | n/a |3,031   | 22.12  | 37.28| 1,372
+| NATS| 64 | 2400-2600 | 2,572   | 26.20  | 44.21 | 762
+| RabbitMQ  | 32  | 1700-1900 | 1,825 | 17.97  | 34.07 | 881 | Uses Avro serialier since Google Protobuf suffers from intermittent corrupted messages
+| ActiveMQ  | 32  | 1700-1900 | 1,890   | 17.80  | 65.56 | 1,255 | 1 hour, no errors but does suffer from sporatic issues
+| MQTT | 128| 1650-1750 |1,706  | 78.33  | 80.38 | 538 | Errors out < 10 min
+| Kafka| 32| 1300-1450 | 1,390   | 23.82  | 39.97 | 3,998
+| MQTT | 64| n/a |1,011   | 63.97  | 80.15 | 908 | 1 hour, no errors
+| Pulsar  | 32  | 550 - 625 | 540| 61.28  | 119.26 | 1,292
 | Aeron| | | | || | Duplicates and loses messages with multiple threads
 
 
 ### Fire & Forget
 #### Baseline
-| Broker   | Conn  | Req/sec | Mean Lat (ms) | Max Lat (ms) | First Req (ms)
+| Broker   | Conn  | Req/sec | Mean Lat (ms) | p99 Lat (ms) | First Req (ms)
 |---|---|---|---|---|---|
-| None  | 1  | 22,738   | 0.04  | 9.06 | 347
-| Pulsar  | 1 |  18,213  | 0.05 | 8.04 | 1,014
-| ZeroMQ*| 1 |  15,564  | 0.06 | 6.50 | 700
-| RabbitMQ  | 1|  12,262 | 0.08 | 26.73 | 465
-| Proto.Actor* | 1| 11,915  | 0.08 | 12.59 | 263
-| Aeron | 1| 11,693  | 0.08 | 28.14 | 688
-| NATS | 1| 10,355  | 0.09| 8.10 | 543
-| ActiveMQ  | 1 | 10,259  | 0.10 | 6.65 | 848
-| MQTT| 1 | 7,142   | 0.14 | 6.45 | 481
-| Zlogger  |  1 | 64 | 15.86 | 47.97 | 1,994
+| None  | 1  | 22,738   | 0.04  | 0.55 | 347
+| Pulsar  | 1 |  18,213  | 0.05 | 0.54 | 1,014
+| ZeroMQ*| 1 |  15,564  | 0.06 | 0.55 | 700
+| RabbitMQ  | 1|  12,262 | 0.08 | 0.55 | 465
+| Proto.Actor* | 1| 11,915  | 0.08 |  | 263
+| Aeron | 1| 11,693  | 0.08 | 0.55 | 688
+| NATS | 1| 10,355  | 0.09| 0.55 | 543
+| ActiveMQ  | 1 | 10,259  | 0.10 | 0.55 | 848
+| MQTT| 1 | 7,142   | 0.14 | 0.55 | 481
+| Redpanda |  1 | 65 | 15.79 | 22.62 | 971
+| Kafka|  1 | 29 | 36.38 | 170.65 | 2,362
 
 ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
 
 #### Scaled
-| Broker   | Connections   | Req/sec | Mean Lat (ms) | Max Lat(ms) | First Req (ms)
+| Broker   | Connections   | Req/sec | Mean Lat (ms) | p99 Lat(ms) | First Req (ms)
 |---|---|---|---|---|---|
-| Pulsar  | 64 |  88,748  | 0.72 | 801 | 1,078
-| RabbitMQ  | 32 |  78,543 | 0.40 | 296 | 543
-| NATS | 128 | 76,144   | 1.63 | 292 | 580
-| ActiveMQ  | 48 | 58,179   | 0.87 | 7,596 | 755
-| MQTT| 128 | 51,975   | 2.42 | 198 | 496
-| Aeron| 64 | 20.779   | 3.08 | 227 | 594
-| Zlogger  |  96 | 4,298 | 23.24 | 12,104 | 2,036
+| Pulsar  | 64 |  88,748  | 0.72 | 3.17 | 1,078
+| RabbitMQ  | 32 |  78,543 | 0.40 | 7.55 | 543
+| NATS | 96 | 73,025   | 1.28 | 7.59 | 473
+| ActiveMQ  | 48 | 58,179   | 0.87 | 4.55 | 755
+| MQTT| 128 | 51,975   | 2.42 | 8.19 | 496
+| Aeron| 64 | 20.779   | 3.08 | 11.55 | 594
+| Redpanda |  96 | 4,214 | 23.90 | 24.53 | 1,278
+| Kafka |  96 | 4,130 | 24.72 | 46.86 | 2,699
 
 ### Overall Ranking
 | Rank  | Broker   | Opinion
