@@ -60,7 +60,7 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | RabbitMQ  | 1  | 466   | 2.14  | 47.63 | 690
 | ActiveMQ  | 1  | 408   | 2.45  | 51.38 | 952
 | Pulsar  | 1  | 37   | 31.86  | 56.65 | 1,218
-| Kafka  | 1  | 33   | 31.68  | 50.59 | 3,570
+| Zlogger  | 1  | 33   | 31.68  | 50.59 | 3,570
 | MQTT| 1  | 22 | 50.00  | 69.14 | 766
 | Aeron| 1  | 21 | 48.97  | 110.74 | 2,620
 
@@ -68,7 +68,7 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | Broker   | Conn   | Range (Req/sec) | Req/sec  | Mean Lat (ms)   | Max Lat (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
 | ZeroMQ| 128| 3300-4000| 3,351   | 40.76  | 135 | 843
-| Kafka  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 (1 hour), 192 (8 hours), possibly startup related
+| Zlogger  | 128  | 3100-3800 | 3,340   | 38.45  | 5,699 | 3,618 | 636 (1 hour), 192 (8 hours), possibly startup related
 | Proto.Actor  | 32  | 3300-3700 | 3,329   | 10.20 | 93 | 548
 | ZeroMQ| 64 | n/a |3,031   | 22.12  | 129 | 1,372
 | NATS| 64 | 2400-2600 | 2,542   | 26.45  | 1,908 | 574
@@ -93,7 +93,7 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | NATS | 1| 10,355  | 0.09| 8.10 | 543
 | ActiveMQ  | 1 | 10,259  | 0.10 | 6.65 | 848
 | MQTT| 1 | 7,142   | 0.14 | 6.45 | 481
-| Kafka  |  1 | 64 | 15.86 | 47.97 | 1,994
+| Zlogger  |  1 | 64 | 15.86 | 47.97 | 1,994
 
 ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
 
@@ -106,14 +106,14 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 | ActiveMQ  | 48 | 58,179   | 0.87 | 7,596 | 755
 | MQTT| 128 | 51,975   | 2.42 | 198 | 496
 | Aeron| 64 | 20.779   | 3.08 | 227 | 594
-| Kafka  |  96 | 4,298 | 23.24 | 12,104 | 2,036
+| Zlogger  |  96 | 4,298 | 23.24 | 12,104 | 2,036
 
 ### Overall Ranking
 | Rank  | Broker   | Opinion
 |---|---|---|
 |1 | Proto.Actor | Top overall performer. Ranks a close third in throughput but with 1/4 latency.  Virtual actors provide stateful possibilities. Requires no external dependencies for IPC.
 |2 | ZeroMQ | Best overall performance ranking in roundtrip (1st), scaled (1st) and Fire & Forget (2nd).  Requires no external dependencies.
-|3 | Kafka | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_
+|3 | Zlogger | High initial overhead is mitigated with great scalability to reach 2nd in overall throughput.  Suffers from a very low error count _(possibly startup related)_
 |4 | NATS | Solid overall performer in both roundtrip and Fire & Forget throughput
 |5 | Pulsar | Clear choice for Fire & Forget
 |6 | ActiveMQ |Close in performance to RabbitMQ but also error free
