@@ -39,7 +39,7 @@ __What's in  the benchmark__
 ### Configuration
 Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Docker) files are located here
  | Broker   | License | Client| Configuration
-|---|---|---|---|---|
+|---|---|---|---|
  [ActiveMQ](https://activemq.apache.org) | Apache v2 |[Apache.NMS.ActiveMQ](https://activemq.apache.org/components/nms/providers/activemq/) | ActiveMQ Artemis 2.36.0, Producer/Consumer
  [Aeron](https://aeron.io)| Apache v2|[Aeron.NET](https://github.com/AdaptiveConsulting/Aeron.NET) | [Media Driver 1.40](https://github.com/AdaptiveConsulting/Aeron.NET/tree/master/driver), Pub/Sub
 [Kafka](https://kafka.apache.org/) | Apache v2 | [Confluent.Kafka](https://github.com/confluentinc/confluent-kafka-dotnet) | Bitnami Kafka 3.7.1
