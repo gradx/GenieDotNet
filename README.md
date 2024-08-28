@@ -67,6 +67,10 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | Redpanda| 1  | 17   | 64.67  | 222.95 | 2,791
 | Kafka| 1  | 16   | 66.54  | 264.75 | 4,256
 
+![Unscaled Latency](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_Roundtrip_Singlethreaded.png?raw=true)
+
+![Unscaled Requests per Sec](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSec_Unscaled.png?raw=true)
+
 #### Scaled
 | Broker   | Conn   | Range (Req/sec) | Req/sec  | Mean Lat (ms)   | p99 Lat (ms)  | First Req (ms) | Bad Responses |
 |---|---|---|---|---|---|---|---|
@@ -77,11 +81,15 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | RabbitMQ  | 32  | 1700-1900 | 1,825 | 17.97  | 34.07 | 881 | Uses Avro serialier since Google Protobuf suffers from intermittent corrupted messages
 | ActiveMQ  | 32  | 1700-1900 | 1,890   | 17.80  | 65.56 | 1,255 | 1 hour, no errors but does suffer from sporatic issues
 | MQTT | 128| 1650-1750 |1,706  | 78.33  | 80.38 | 538 | Errors out < 10 min
+| Redpanda| 64 | 1300-1450 | 1420   | 46.31  | 69.17 | 3,273
 | Kafka| 32| 1300-1450 | 1,390   | 23.82  | 39.97 | 3,998
 | MQTT | 64| n/a |1,011   | 63.97  | 80.15 | 908 | 1 hour, no errors
 | Pulsar  | 32  | 550 - 625 | 540| 61.28  | 119.26 | 1,292
 | Aeron| | | | || | Duplicates and loses messages with multiple threads
 
+![Roundtrip Requests per Sec Scaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSecScaled.png?raw=true)
+
+![Roundtrip Latency Scaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_Roundtrip_Scaled.png?raw=true)
 
 ### Fire & Forget
 #### Baseline
@@ -101,6 +109,9 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 
 ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
 
+![Fire & Forget Latency Unscaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_FireForget_SingleThreaded.png?raw=true)
+
+![Fire & Forget Requests Per Sec Unscaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSec_FireForget_Unscaled.png?raw=true)
 #### Scaled
 | Broker   | Connections   | Req/sec | Mean Lat (ms) | p99 Lat(ms) | First Req (ms)
 |---|---|---|---|---|---|
@@ -109,9 +120,13 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 | NATS | 96 | 73,025   | 1.28 | 7.59 | 473
 | ActiveMQ  | 48 | 58,179   | 0.87 | 4.55 | 755
 | MQTT| 128 | 51,975   | 2.42 | 8.19 | 496
-| Aeron| 64 | 20.779   | 3.08 | 11.55 | 594
+| Aeron| 64 | 20,779   | 3.08 | 11.55 | 594
 | Redpanda |  96 | 4,214 | 23.90 | 24.53 | 1,278
 | Kafka |  96 | 4,130 | 24.72 | 46.86 | 2,699
+
+![Fire & Forget Requests Per Sec Scaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSec_FireForget_Scaled.png?raw=true)
+
+![Latency Fire & Forget](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_FireForget_Scaled.png?raw=true)
 
 ### Overall Ranking
 | Rank  | Broker   | Opinion
