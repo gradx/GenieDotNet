@@ -1,0 +1,92 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 12                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 38                 |
+| Build Time (ms)         | 1,421              |
+| Start Time (ms)         | 599                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 773                |
+| Requests                | 1,567,725          |
+| Bad responses           | 298                |
+| Latency 50th (ms)       | 15.61              |
+| Latency 75th (ms)       | 23.11              |
+| Latency 90th (ms)       | 28.00              |
+| Latency 95th (ms)       | 30.61              |
+| Latency 99th (ms)       | 36.16              |
+| Mean latency (ms)       | 18.35              |
+| Max latency (ms)        | 1,007.98           |
+| Requests/sec            | 1,785              |
+| Requests/sec (max)      | 6,467              |
+| Read throughput (MB/s)  | 0.27               |
+
+[11:51:42.055] 'load' is running ... http://localhost:5010/jobs/26/output
+
+[11:51:59 AM] Overall 1489 Period: 1493 Errors: 16
+[11:52:14 AM] Overall 1529 Period: 1576 Errors: 21
+[11:52:30 AM] Overall 1552 Period: 1602 Errors: 29
+[11:52:45 AM] Overall 1577 Period: 1662 Errors: 36
+[11:53:00 AM] Overall 1603 Period: 1717 Errors: 36
+[11:53:14 AM] Overall 1618 Period: 1698 Errors: 47
+[11:53:29 AM] Overall 1629 Period: 1708 Errors: 52
+[11:53:44 AM] Overall 1638 Period: 1709 Errors: 60
+[11:53:58 AM] Overall 1649 Period: 1746 Errors: 64
+[11:54:12 AM] Overall 1660 Period: 1767 Errors: 70
+[11:54:26 AM] Overall 1673 Period: 1824 Errors: 73
+[11:54:39 AM] Overall 1688 Period: 1870 Errors: 75
+[11:54:53 AM] Overall 1697 Period: 1819 Errors: 75
+[11:55:07 AM] Overall 1708 Period: 1861 Errors: 75
+[11:55:20 AM] Overall 1719 Period: 1900 Errors: 77
+[11:55:34 AM] Overall 1725 Period: 1822 Errors: 85
+[11:55:49 AM] Overall 1719 Period: 1633 Errors: 88
+[11:56:03 AM] Overall 1720 Period: 1733 Errors: 88
+[11:56:19 AM] Overall 1712 Period: 1583 Errors: 93
+[11:56:35 AM] Overall 1705 Period: 1587 Errors: 99
+[11:56:49 AM] Overall 1708 Period: 1783 Errors: 102
+[11:57:04 AM] Overall 1708 Period: 1716 Errors: 109
+[11:57:18 AM] Overall 1709 Period: 1739 Errors: 118
+[11:57:32 AM] Overall 1713 Period: 1815 Errors: 124
+[11:57:45 AM] Overall 1719 Period: 1868 Errors: 126
+[11:57:59 AM] Overall 1725 Period: 1891 Errors: 129
+[11:58:12 AM] Overall 1731 Period: 1905 Errors: 132
+[11:58:25 AM] Overall 1736 Period: 1899 Errors: 138
+[11:58:38 AM] Overall 1743 Period: 1941 Errors: 147
+[11:58:51 AM] Overall 1746 Period: 1848 Errors: 148
+[11:59:05 AM] Overall 1748 Period: 1816 Errors: 152
+[11:59:20 AM] Overall 1744 Period: 1639 Errors: 153
+[11:59:36 AM] Overall 1741 Period: 1648 Errors: 158
+[11:59:51 AM] Overall 1736 Period: 1594 Errors: 161
+[12:00:08 PM] Overall 1728 Period: 1495 Errors: 182
+[12:00:24 PM] Overall 1725 Period: 1620 Errors: 190
+[12:00:39 PM] Overall 1723 Period: 1679 Errors: 196
+[12:00:56 PM] Overall 1713 Period: 1414 Errors: 203
+[12:01:14 PM] Overall 1703 Period: 1381 Errors: 208
+[12:01:31 PM] Overall 1696 Period: 1491 Errors: 212
+[12:01:45 PM] Overall 1698 Period: 1783 Errors: 212
+[12:02:00 PM] Overall 1698 Period: 1685 Errors: 219
+[12:02:15 PM] Overall 1698 Period: 1699 Errors: 228
+[12:02:29 PM] Overall 1699 Period: 1739 Errors: 232
+[12:02:44 PM] Overall 1700 Period: 1754 Errors: 235
+[12:02:58 PM] Overall 1701 Period: 1776 Errors: 235
+[12:03:12 PM] Overall 1702 Period: 1744 Errors: 243
+[12:03:26 PM] Overall 1704 Period: 1815 Errors: 252
+[12:03:39 PM] Overall 1707 Period: 1843 Errors: 262
+[12:03:54 PM] Overall 1707 Period: 1708 Errors: 264
+[12:04:08 PM] Overall 1708 Period: 1758 Errors: 266
+[12:04:22 PM] Overall 1709 Period: 1792 Errors: 276
+[12:04:36 PM] Overall 1711 Period: 1796 Errors: 278
+[12:04:50 PM] Overall 1713 Period: 1865 Errors: 287
+[12:05:04 PM] Overall 1714 Period: 1770 Errors: 287
+[12:05:17 PM] Overall 1717 Period: 1901 Errors: 288
+[12:05:31 PM] Overall 1719 Period: 1833 Errors: 291
+[12:05:45 PM] Overall 1720 Period: 1766 Errors: 294
+[12:05:59 PM] Overall 1722 Period: 1846 Errors: 298
+[12:06:12 PM] Overall 1723 Period: 1814 Errors: 301
+[12:06:26 PM] Overall 1725 Period: 1864 Errors: 308
+[12:06:39 PM] Overall 1727 Period: 1861 Errors: 309
+[12:06:53 PM] Overall 1728 Period: 1797 Errors: 311

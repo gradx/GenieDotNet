@@ -1,0 +1,93 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 12                 |
+| Max Working Set (MB)    | 24                 |
+| Max Private Memory (MB) | 39                 |
+| Build Time (ms)         | 2,446              |
+| Start Time (ms)         | 619                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 881                |
+| Requests                | 1,600,653          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 15.23              |
+| Latency 75th (ms)       | 22.84              |
+| Latency 90th (ms)       | 27.23              |
+| Latency 95th (ms)       | 29.52              |
+| Latency 99th (ms)       | 34.07              |
+| Mean latency (ms)       | 17.97              |
+| Max latency (ms)        | 1,535.51           |
+| Requests/sec            | 1,825              |
+| Requests/sec (max)      | 6,183              |
+| Read throughput (MB/s)  | 0.27               |
+
+[01:10:09.263] 'load' is running ... http://localhost:5010/jobs/34/output
+
+[1:10:28 PM] Overall 1306 Period: 1310
+[1:10:45 PM] Overall 1405 Period: 1524
+[1:11:00 PM] Overall 1473 Period: 1632
+[1:11:15 PM] Overall 1516 Period: 1663
+[1:11:31 PM] Overall 1533 Period: 1612
+[1:11:45 PM] Overall 1562 Period: 1726
+[1:12:01 PM] Overall 1564 Period: 1579
+[1:12:17 PM] Overall 1570 Period: 1625
+[1:12:31 PM] Overall 1592 Period: 1788
+[1:12:45 PM] Overall 1606 Period: 1756
+[1:12:59 PM] Overall 1625 Period: 1842
+[1:13:12 PM] Overall 1639 Period: 1819
+[1:13:26 PM] Overall 1652 Period: 1817
+[1:13:40 PM] Overall 1663 Period: 1837
+[1:13:54 PM] Overall 1668 Period: 1733
+[1:14:08 PM] Overall 1675 Period: 1796
+[1:14:22 PM] Overall 1680 Period: 1768
+[1:14:36 PM] Overall 1686 Period: 1804
+[1:14:50 PM] Overall 1692 Period: 1801
+[1:15:04 PM] Overall 1698 Period: 1822
+[1:15:17 PM] Overall 1704 Period: 1856
+[1:15:31 PM] Overall 1707 Period: 1767
+[1:15:46 PM] Overall 1710 Period: 1773
+[1:16:00 PM] Overall 1712 Period: 1763
+[1:16:14 PM] Overall 1713 Period: 1748
+[1:16:28 PM] Overall 1717 Period: 1813
+[1:16:42 PM] Overall 1720 Period: 1814
+[1:16:56 PM] Overall 1723 Period: 1816
+[1:17:10 PM] Overall 1725 Period: 1775
+[1:17:24 PM] Overall 1726 Period: 1766
+[1:17:38 PM] Overall 1729 Period: 1832
+[1:17:52 PM] Overall 1729 Period: 1724
+[1:18:06 PM] Overall 1730 Period: 1779
+[1:18:20 PM] Overall 1733 Period: 1830
+[1:18:33 PM] Overall 1735 Period: 1834
+[1:18:48 PM] Overall 1737 Period: 1782
+[1:19:02 PM] Overall 1737 Period: 1765
+[1:19:16 PM] Overall 1737 Period: 1750
+[1:19:30 PM] Overall 1739 Period: 1787
+[1:19:44 PM] Overall 1740 Period: 1804
+[1:19:58 PM] Overall 1742 Period: 1811
+[1:20:12 PM] Overall 1743 Period: 1817
+[1:20:26 PM] Overall 1743 Period: 1750
+[1:20:40 PM] Overall 1744 Period: 1784
+[1:20:54 PM] Overall 1744 Period: 1739
+[1:21:09 PM] Overall 1744 Period: 1760
+[1:21:22 PM] Overall 1746 Period: 1845
+[1:21:36 PM] Overall 1747 Period: 1795
+[1:21:50 PM] Overall 1749 Period: 1864
+[1:22:04 PM] Overall 1748 Period: 1706
+[1:22:18 PM] Overall 1750 Period: 1868
+[1:22:32 PM] Overall 1751 Period: 1792
+[1:22:46 PM] Overall 1752 Period: 1772
+[1:23:00 PM] Overall 1752 Period: 1804
+[1:23:14 PM] Overall 1753 Period: 1808
+[1:23:27 PM] Overall 1755 Period: 1829
+[1:23:41 PM] Overall 1756 Period: 1871
+[1:23:55 PM] Overall 1756 Period: 1717
+[1:24:09 PM] Overall 1756 Period: 1779
+[1:24:23 PM] Overall 1757 Period: 1853
+[1:24:37 PM] Overall 1758 Period: 1797
+[1:24:50 PM] Overall 1759 Period: 1835
+[1:25:04 PM] Overall 1760 Period: 1840
+[1:25:18 PM] Overall 1762 Period: 1840

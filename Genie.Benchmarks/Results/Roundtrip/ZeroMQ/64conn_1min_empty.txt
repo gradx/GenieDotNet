@@ -1,0 +1,118 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 17                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 40                 |
+| Build Time (ms)         | 2,914              |
+| Start Time (ms)         | 880                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 1,140              |
+| Requests                | 1,891,234          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 1.91               |
+| Latency 75th (ms)       | 2.43               |
+| Latency 90th (ms)       | 2.79               |
+| Latency 95th (ms)       | 2.94               |
+| Latency 99th (ms)       | 3.39               |
+| Mean latency (ms)       | 2.03               |
+| Max latency (ms)        | 32.59              |
+| Requests/sec            | 31,522             |
+| Requests/sec (max)      | 44,353             |
+| Read throughput (MB/s)  | 4.84               |
+
+[9:04:16 AM] Overall 13324 Period: 13340
+[9:04:17 AM] Overall 14300 Period: 15424
+[9:04:19 AM] Overall 14714 Period: 15627
+[9:04:20 AM] Overall 16112 Period: 22546
+[9:04:21 AM] Overall 17659 Period: 28668
+[9:04:22 AM] Overall 19044 Period: 31335
+[9:04:23 AM] Overall 20127 Period: 30561
+[9:04:23 AM] Overall 21102 Period: 31936
+[9:04:24 AM] Overall 21865 Period: 30753
+[9:04:25 AM] Overall 22453 Period: 29617
+[9:04:26 AM] Overall 23015 Period: 30713
+[9:04:27 AM] Overall 23585 Period: 32416
+[9:04:27 AM] Overall 24036 Period: 31169
+[9:04:28 AM] Overall 24439 Period: 31264
+[9:04:29 AM] Overall 24808 Period: 31452
+[9:04:30 AM] Overall 25057 Period: 29494
+[9:04:31 AM] Overall 25385 Period: 32098
+[9:04:31 AM] Overall 25686 Period: 32177
+[9:04:32 AM] Overall 25870 Period: 29688
+[9:04:33 AM] Overall 26055 Period: 30155
+[9:04:34 AM] Overall 26236 Period: 30421
+[9:04:35 AM] Overall 26380 Period: 29819
+[9:04:36 AM] Overall 26564 Period: 31383
+[9:04:36 AM] Overall 26742 Period: 31618
+[9:04:37 AM] Overall 26936 Period: 32642
+[9:04:38 AM] Overall 27091 Period: 31652
+[9:04:39 AM] Overall 27266 Period: 32790
+[9:04:39 AM] Overall 27393 Period: 31356
+[9:04:40 AM] Overall 27543 Period: 32517
+[9:04:41 AM] Overall 27694 Period: 32934
+[9:04:42 AM] Overall 27740 Period: 29170
+[9:04:43 AM] Overall 27827 Period: 30864
+[9:04:44 AM] Overall 27896 Period: 30332
+[9:04:44 AM] Overall 27952 Period: 29925
+[9:04:45 AM] Overall 28006 Period: 29983
+[9:04:46 AM] Overall 28113 Period: 32472
+[9:04:47 AM] Overall 28173 Period: 30511
+[9:04:48 AM] Overall 28276 Period: 32716
+[9:04:48 AM] Overall 28339 Period: 30948
+[9:04:49 AM] Overall 28413 Period: 31640
+[9:04:50 AM] Overall 28507 Period: 32864
+[9:04:51 AM] Overall 28571 Period: 31433
+[9:04:51 AM] Overall 28650 Period: 32477
+[9:04:52 AM] Overall 28684 Period: 30249
+[9:04:53 AM] Overall 28725 Period: 30638
+[9:04:54 AM] Overall 28803 Period: 32792
+[9:04:55 AM] Overall 28827 Period: 29949
+[9:04:56 AM] Overall 28872 Period: 31190
+[9:04:56 AM] Overall 28942 Period: 32711
+[9:04:57 AM] Overall 28983 Period: 31146
+[9:04:58 AM] Overall 29058 Period: 33419
+[9:04:59 AM] Overall 29129 Period: 33275
+[9:04:59 AM] Overall 29174 Period: 31657
+[9:05:00 AM] Overall 29221 Period: 31988
+[9:05:01 AM] Overall 29268 Period: 32042
+[9:05:02 AM] Overall 29303 Period: 31409
+[9:05:03 AM] Overall 29346 Period: 31957
+[9:05:03 AM] Overall 29367 Period: 30656
+[9:05:04 AM] Overall 29399 Period: 31357
+[9:05:05 AM] Overall 29407 Period: 29888
+[9:05:06 AM] Overall 29438 Period: 31472
+[9:05:06 AM] Overall 29493 Period: 33264
+[9:05:07 AM] Overall 29526 Period: 31715
+[9:05:08 AM] Overall 29574 Period: 32923
+[9:05:09 AM] Overall 29623 Period: 33091
+[9:05:10 AM] Overall 29654 Period: 31879
+[9:05:10 AM] Overall 29685 Period: 31880
+[9:05:11 AM] Overall 29729 Period: 33024
+[9:05:12 AM] Overall 29729 Period: 29716
+[9:05:13 AM] Overall 29758 Period: 31908
+[9:05:14 AM] Overall 29778 Period: 31297
+[9:05:14 AM] Overall 29797 Period: 31202
+[9:05:15 AM] Overall 29815 Period: 31172
+[9:05:16 AM] Overall 29854 Period: 33046
+[9:05:17 AM] Overall 29880 Period: 31872
+[9:05:17 AM] Overall 29902 Period: 31668
+[9:05:18 AM] Overall 29933 Period: 32525
+[9:05:19 AM] Overall 29967 Period: 32829
+[9:05:20 AM] Overall 30007 Period: 33489
+[9:05:21 AM] Overall 30022 Period: 31229
+[9:05:21 AM] Overall 30039 Period: 31511
+[9:05:22 AM] Overall 30048 Period: 30732
+[9:05:23 AM] Overall 30060 Period: 31101
+[9:05:24 AM] Overall 30094 Period: 33296
+[9:05:25 AM] Overall 30097 Period: 30309
+[9:05:25 AM] Overall 30086 Period: 29213
+[9:05:26 AM] Overall 30041 Period: 26609
+[9:05:27 AM] Overall 30061 Period: 31825
+[9:05:28 AM] Overall 30092 Period: 33183
+[9:05:29 AM] Overall 30112 Period: 32026
+[9:05:29 AM] Overall 30136 Period: 32432

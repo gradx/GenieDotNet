@@ -1,0 +1,80 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 8                  |
+| Max Working Set (MB)    | 26                 |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 2,834              |
+| Start Time (ms)         | 776                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 3,273              |
+| Requests                | 1,243,253          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 46.14              |
+| Latency 75th (ms)       | 51.80              |
+| Latency 90th (ms)       | 57.22              |
+| Latency 95th (ms)       | 60.85              |
+| Latency 99th (ms)       | 69.17              |
+| Mean latency (ms)       | 46.31              |
+| Max latency (ms)        | 1,049.89           |
+| Requests/sec            | 1,420              |
+| Requests/sec (max)      | 9,694              |
+| Read throughput (MB/s)  | 0.21               |
+
+[03:01:56.493] 'load' is running ... http://localhost:5010/jobs/59/output
+
+
+[3:02:20 PM] Overall 1138 Period: 1140
+[3:02:39 PM] Overall 1227 Period: 1332
+[3:02:58 PM] Overall 1251 Period: 1305
+[3:03:16 PM] Overall 1273 Period: 1346
+[3:03:34 PM] Overall 1292 Period: 1380
+[3:03:53 PM] Overall 1299 Period: 1336
+[3:04:11 PM] Overall 1310 Period: 1382
+[3:04:31 PM] Overall 1304 Period: 1268
+[3:04:51 PM] Overall 1302 Period: 1287
+[3:05:09 PM] Overall 1308 Period: 1373
+[3:05:27 PM] Overall 1316 Period: 1399
+[3:05:46 PM] Overall 1314 Period: 1296
+[3:06:05 PM] Overall 1316 Period: 1347
+[3:06:23 PM] Overall 1320 Period: 1382
+[3:06:41 PM] Overall 1324 Period: 1381
+[3:06:59 PM] Overall 1327 Period: 1371
+[3:07:18 PM] Overall 1329 Period: 1367
+[3:07:37 PM] Overall 1326 Period: 1284
+[3:07:53 PM] Overall 1335 Period: 1528
+[3:08:12 PM] Overall 1337 Period: 1374
+[3:08:30 PM] Overall 1340 Period: 1393
+[3:08:47 PM] Overall 1342 Period: 1409
+[3:09:06 PM] Overall 1342 Period: 1333
+[3:09:25 PM] Overall 1341 Period: 1331
+[3:09:43 PM] Overall 1342 Period: 1371
+[3:10:02 PM] Overall 1344 Period: 1379
+[3:10:19 PM] Overall 1348 Period: 1473
+[3:10:36 PM] Overall 1351 Period: 1433
+[3:10:54 PM] Overall 1351 Period: 1368
+[3:11:14 PM] Overall 1349 Period: 1300
+[3:11:32 PM] Overall 1350 Period: 1361
+[3:11:48 PM] Overall 1354 Period: 1519
+[3:12:06 PM] Overall 1357 Period: 1439
+[3:12:24 PM] Overall 1357 Period: 1364
+[3:12:43 PM] Overall 1356 Period: 1347
+[3:13:01 PM] Overall 1358 Period: 1407
+[3:13:19 PM] Overall 1358 Period: 1386
+[3:13:36 PM] Overall 1360 Period: 1418
+[3:13:54 PM] Overall 1361 Period: 1412
+[3:14:12 PM] Overall 1361 Period: 1362
+[3:14:30 PM] Overall 1362 Period: 1407
+[3:14:48 PM] Overall 1363 Period: 1401
+[3:15:06 PM] Overall 1364 Period: 1408
+[3:15:23 PM] Overall 1366 Period: 1446
+[3:15:41 PM] Overall 1366 Period: 1377
+[3:16:00 PM] Overall 1366 Period: 1359
+[3:16:18 PM] Overall 1366 Period: 1378
+[3:16:36 PM] Overall 1366 Period: 1369
+[3:16:55 PM] Overall 1366 Period: 1384
+[3:17:13 PM] Overall 1366 Period: 1385

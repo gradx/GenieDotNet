@@ -1,0 +1,229 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 6                  |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 38                 |
+| Build Time (ms)         | 1,329              |
+| Start Time (ms)         | 542                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 631                |
+| Requests                | 156,077            |
+| Bad responses           | 13                 |
+| Latency 50th (ms)       | 16.15              |
+| Latency 75th (ms)       | 21.57              |
+| Latency 90th (ms)       | 26.23              |
+| Latency 95th (ms)       | 28.90              |
+| Latency 99th (ms)       | 34.21              |
+| Mean latency (ms)       | 18.44              |
+| Max latency (ms)        | 953.88             |
+| Requests/sec            | 1,762              |
+| Requests/sec (max)      | 6,365              |
+| Read throughput (MB/s)  | 0.27               |
+
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillFromCodedInputStream(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytes(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.ParsingPrimitivesMessages.ReadRawMessage(ParseContext& ctx, IMessage message)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Google.Protobuf.WellKnownTypes.Any.MergeFrom(CodedInputStream input)
+   at Google.Protobuf.MessageExtensions.MergeFrom(IMessage message, Byte[] data, Boolean discardUnknownFields, ExtensionRegistry registry)
+   at Google.Protobuf.MessageParser`1.ParseFrom(Byte[] data)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext() in C:\Users\gradx\repos\GenieDotNet\Genie.IngressConsumer\Services\RabbitMQService.cs:line 80
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillFromCodedInputStream(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawByte(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.ParsingPrimitives.ParseRawVarint32SlowPath(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.ParsingPrimitives.ParseRawVarint32(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(ParseContext& ctx)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(UnknownFieldSet unknownFields, ParseContext& ctx)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.ParsingPrimitivesMessages.ReadRawMessage(ParseContext& ctx, IMessage message)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Google.Protobuf.WellKnownTypes.Any.MergeFrom(CodedInputStream input)
+   at Google.Protobuf.MessageExtensions.MergeFrom(IMessage message, Byte[] data, Boolean discardUnknownFields, ExtensionRegistry registry)
+   at Google.Protobuf.MessageParser`1.ParseFrom(Byte[] data)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext() in C:\Users\gradx\repos\GenieDotNet\Genie.IngressConsumer\Services\RabbitMQService.cs:line 80
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillFromCodedInputStream(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytes(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.ParsingPrimitivesMessages.ReadRawMessage(ParseContext& ctx, IMessage message)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Google.Protobuf.WellKnownTypes.Any.MergeFrom(CodedInputStream input)
+   at Google.Protobuf.MessageExtensions.MergeFrom(IMessage message, Byte[] data, Boolean discardUnknownFields, ExtensionRegistry registry)
+   at Google.Protobuf.MessageParser`1.ParseFrom(Byte[] data)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext() in C:\Users\gradx\repos\GenieDotNet\Genie.IngressConsumer\Services\RabbitMQService.cs:line 80
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillFromCodedInputStream(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawByte(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.ParsingPrimitives.ParseRawVarint32SlowPath(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.ParsingPrimitives.ParseRawVarint32(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(ParseContext& ctx)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(UnknownFieldSet unknownFields, ParseContext& ctx)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.ParsingPrimitivesMessages.ReadRawMessage(ParseContext& ctx, IMessage message)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Google.Protobuf.WellKnownTypes.Any.MergeFrom(CodedInputStream input)
+   at Google.Protobuf.MessageExtensions.MergeFrom(IMessage message, Byte[] data, Boolean discardUnknownFields, ExtensionRegistry registry)
+   at Google.Protobuf.MessageParser`1.ParseFrom(Byte[] data)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext() in C:\Users\gradx\repos\GenieDotNet\Genie.IngressConsumer\Services\RabbitMQService.cs:line 80
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: Protocol message contained an invalid tag (zero).
+   at Google.Protobuf.ParsingPrimitives.ParseTag(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: Protocol message contained a tag with an invalid wire type.
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(ParseContext& ctx)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(UnknownFieldSet unknownFields, ParseContext& ctx)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+[5:02:29 PM] Overall 1506 Period: 1511 Errors: 14
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ParseRawVarint32SlowPath(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(ParseContext& ctx)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(UnknownFieldSet unknownFields, ParseContext& ctx)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+[5:02:44 PM] Overall 1553 Period: 1607 Errors: 15
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+[5:02:59 PM] Overall 1602 Period: 1715 Errors: 18
+[5:03:14 PM] Overall 1626 Period: 1707 Errors: 18
+[5:03:28 PM] Overall 1647 Period: 1743 Errors: 18
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: Protocol message contained a tag with an invalid wire type.
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(ParseContext& ctx)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(UnknownFieldSet unknownFields, ParseContext& ctx)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ParseRawVarint32SlowPath(ReadOnlySpan`1& buffer, ParserInternalState& state)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(ParseContext& ctx)
+   at Google.Protobuf.UnknownFieldSet.MergeFieldFrom(UnknownFieldSet unknownFields, ParseContext& ctx)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+[5:03:42 PM] Overall 1665 Period: 1761 Errors: 24
+Error:Google.Protobuf.InvalidProtocolBufferException: While parsing a protocol message, the input ended unexpectedly in the middle of a field.  This could mean either that the input has been truncated or that an embedded message misreported its own length.
+   at Google.Protobuf.SegmentedBufferHelper.RefillBuffer(ReadOnlySpan`1& buffer, ParserInternalState& state, Boolean mustSucceed)
+   at Google.Protobuf.ParsingPrimitives.ReadRawBytesSlow(ReadOnlySpan`1& buffer, ParserInternalState& state, Int32 size)
+   at Google.Protobuf.WellKnownTypes.Any.pb::Google.Protobuf.IBufferMessage.InternalMergeFrom(ParseContext& input)
+   at Google.Protobuf.CodedInputStream.ReadRawMessage(IMessage message)
+   at Genie.IngressConsumer.Services.RabbitMQService.<>c__DisplayClass3_0.<<RabbitMq>b__0>d.MoveNext()
+[5:03:56 PM] Overall 1691 Period: 1872 Errors: 25

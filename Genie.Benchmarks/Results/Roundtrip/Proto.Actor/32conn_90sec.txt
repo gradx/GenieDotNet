@@ -1,0 +1,39 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 12                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 37                 |
+| Build Time (ms)         | 2,144              |
+| Start Time (ms)         | 669                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 406                |
+| Requests                | 277,743            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 7.11               |
+| Latency 75th (ms)       | 16.27              |
+| Latency 90th (ms)       | 19.45              |
+| Latency 95th (ms)       | 20.70              |
+| Latency 99th (ms)       | 23.18              |
+| Mean latency (ms)       | 10.35              |
+| Max latency (ms)        | 47.99              |
+| Requests/sec            | 3,250              |
+| Requests/sec (max)      | 7,862              |
+| Read throughput (MB/s)  | 0.47               |
+
+[4:37:28 PM] Overall 1951 Period: 1958
+[4:37:37 PM] Overall 2273 Period: 2731
+[4:37:46 PM] Overall 2441 Period: 2875
+[4:37:54 PM] Overall 2543 Period: 2912
+[4:38:03 PM] Overall 2629 Period: 3048
+[4:38:11 PM] Overall 2693 Period: 3076
+[4:38:19 PM] Overall 2750 Period: 3156
+[4:38:27 PM] Overall 2790 Period: 3117
+[4:38:35 PM] Overall 2821 Period: 3108
+[4:38:43 PM] Overall 2855 Period: 3201
+[4:38:50 PM] Overall 2882 Period: 3186
+[4:38:58 PM] Overall 2908 Period: 3234

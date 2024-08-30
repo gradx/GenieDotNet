@@ -1,0 +1,139 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 22                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 39                 |
+| Build Time (ms)         | 2,473              |
+| Start Time (ms)         | 704                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 537                |
+| Requests                | 2,822,043          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 6.21               |
+| Latency 75th (ms)       | 16.46              |
+| Latency 90th (ms)       | 20.00              |
+| Latency 95th (ms)       | 22.07              |
+| Latency 99th (ms)       | 25.07              |
+| Mean latency (ms)       | 10.18              |
+| Max latency (ms)        | 99.94              |
+| Requests/sec            | 3,335              |
+| Requests/sec (max)      | 9,006              |
+| Read throughput (MB/s)  | 0.48               |
+[10:30:40 AM] Overall 1829 Period: 1838
+[10:30:49 AM] Overall 2185 Period: 2719
+[10:30:58 AM] Overall 2369 Period: 2858
+[10:31:08 AM] Overall 2435 Period: 2669
+[10:31:16 AM] Overall 2530 Period: 3005
+[10:31:24 AM] Overall 2604 Period: 3051
+[10:31:32 AM] Overall 2656 Period: 3028
+[10:31:41 AM] Overall 2700 Period: 3067
+[10:31:49 AM] Overall 2738 Period: 3094
+[10:31:57 AM] Overall 2767 Period: 3062
+[10:32:05 AM] Overall 2800 Period: 3178
+[10:32:12 AM] Overall 2830 Period: 3205
+[10:32:20 AM] Overall 2856 Period: 3214
+[10:32:28 AM] Overall 2876 Period: 3180
+[10:32:36 AM] Overall 2891 Period: 3124
+[10:32:44 AM] Overall 2904 Period: 3135
+[10:32:52 AM] Overall 2919 Period: 3173
+[10:33:00 AM] Overall 2931 Period: 3167
+[10:33:08 AM] Overall 2941 Period: 3129
+[10:33:16 AM] Overall 2951 Period: 3153
+[10:33:24 AM] Overall 2960 Period: 3162
+[10:33:32 AM] Overall 2969 Period: 3179
+[10:33:40 AM] Overall 2976 Period: 3137
+[10:33:48 AM] Overall 2980 Period: 3094
+[10:33:56 AM] Overall 2988 Period: 3184
+[10:34:04 AM] Overall 2994 Period: 3169
+[10:34:11 AM] Overall 3001 Period: 3189
+[10:34:19 AM] Overall 3007 Period: 3172
+[10:34:27 AM] Overall 3010 Period: 3101
+[10:34:35 AM] Overall 3014 Period: 3138
+[10:34:43 AM] Overall 3017 Period: 3134
+[10:34:51 AM] Overall 3021 Period: 3158
+[10:34:59 AM] Overall 3025 Period: 3171
+[10:35:07 AM] Overall 3028 Period: 3106
+[10:35:15 AM] Overall 3030 Period: 3133
+[10:35:23 AM] Overall 3033 Period: 3124
+[10:35:31 AM] Overall 3034 Period: 3105
+[10:35:39 AM] Overall 3036 Period: 3112
+[10:35:47 AM] Overall 3039 Period: 3137
+[10:35:55 AM] Overall 3041 Period: 3125
+[10:36:03 AM] Overall 3042 Period: 3123
+[10:36:11 AM] Overall 3045 Period: 3159
+[10:36:19 AM] Overall 3048 Period: 3175
+[10:36:27 AM] Overall 3050 Period: 3167
+[10:36:35 AM] Overall 3052 Period: 3122
+[10:36:43 AM] Overall 3054 Period: 3156
+[10:36:51 AM] Overall 3055 Period: 3133
+[10:36:59 AM] Overall 3057 Period: 3115
+[10:37:07 AM] Overall 3056 Period: 3055
+[10:37:15 AM] Overall 3057 Period: 3087
+[10:37:23 AM] Overall 3059 Period: 3151
+[10:37:31 AM] Overall 3061 Period: 3188
+[10:37:39 AM] Overall 3063 Period: 3165
+[10:37:47 AM] Overall 3064 Period: 3140
+[10:37:55 AM] Overall 3065 Period: 3130
+[10:38:03 AM] Overall 3067 Period: 3160
+[10:38:11 AM] Overall 3067 Period: 3116
+[10:38:19 AM] Overall 3069 Period: 3141
+[10:38:27 AM] Overall 3070 Period: 3143
+[10:38:35 AM] Overall 3070 Period: 3119
+[10:38:43 AM] Overall 3071 Period: 3137
+[10:38:51 AM] Overall 3073 Period: 3185
+[10:38:59 AM] Overall 3074 Period: 3126
+[10:39:07 AM] Overall 3075 Period: 3132
+[10:39:15 AM] Overall 3076 Period: 3168
+[10:39:23 AM] Overall 3077 Period: 3149
+[10:39:31 AM] Overall 3078 Period: 3146
+[10:39:39 AM] Overall 3078 Period: 3097
+[10:39:47 AM] Overall 3079 Period: 3134
+[10:39:55 AM] Overall 3079 Period: 3137
+[10:40:03 AM] Overall 3080 Period: 3138
+[10:40:11 AM] Overall 3079 Period: 3030
+[10:40:19 AM] Overall 3080 Period: 3133
+[10:40:27 AM] Overall 3080 Period: 3071
+[10:40:35 AM] Overall 3080 Period: 3083
+[10:40:43 AM] Overall 3081 Period: 3175
+[10:40:51 AM] Overall 3082 Period: 3123
+[10:40:59 AM] Overall 3083 Period: 3174
+[10:41:07 AM] Overall 3084 Period: 3160
+[10:41:15 AM] Overall 3084 Period: 3138
+[10:41:23 AM] Overall 3085 Period: 3166
+[10:41:31 AM] Overall 3086 Period: 3156
+[10:41:39 AM] Overall 3087 Period: 3159
+[10:41:47 AM] Overall 3087 Period: 3127
+[10:41:55 AM] Overall 3088 Period: 3153
+[10:42:03 AM] Overall 3088 Period: 3156
+[10:42:11 AM] Overall 3088 Period: 3095
+[10:42:19 AM] Overall 3089 Period: 3177
+[10:42:26 AM] Overall 3090 Period: 3191
+[10:42:34 AM] Overall 3091 Period: 3177
+[10:42:42 AM] Overall 3093 Period: 3210
+[10:42:50 AM] Overall 3094 Period: 3191
+[10:42:58 AM] Overall 3094 Period: 3172
+[10:43:06 AM] Overall 3094 Period: 3111
+[10:43:14 AM] Overall 3095 Period: 3141
+[10:43:22 AM] Overall 3095 Period: 3154
+[10:43:30 AM] Overall 3096 Period: 3127
+[10:43:38 AM] Overall 3096 Period: 3156
+[10:43:46 AM] Overall 3096 Period: 3118
+[10:43:54 AM] Overall 3097 Period: 3164
+[10:44:02 AM] Overall 3098 Period: 3176
+[10:44:09 AM] Overall 3099 Period: 3185
+[10:44:17 AM] Overall 3099 Period: 3147
+[10:44:25 AM] Overall 3099 Period: 3148
+[10:44:33 AM] Overall 3100 Period: 3197
+[10:44:41 AM] Overall 3101 Period: 3154
+[10:44:49 AM] Overall 3101 Period: 3158
+[10:44:57 AM] Overall 3102 Period: 3164
+[10:45:05 AM] Overall 3102 Period: 3083
+[10:45:13 AM] Overall 3102 Period: 3114
+[10:45:21 AM] Overall 3102 Period: 3155
+[10:45:29 AM] Overall 3102 Period: 3116
+[10:45:37 AM] Overall 3103 Period: 3182

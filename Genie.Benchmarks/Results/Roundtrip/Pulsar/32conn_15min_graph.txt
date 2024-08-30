@@ -1,0 +1,48 @@
+37 54 1
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 8                  |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 35                 |
+| Build Time (ms)         | 2,308              |
+| Start Time (ms)         | 659                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 1,292              |
+| Requests                | 469,913            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 60.46              |
+| Latency 75th (ms)       | 66.87              |
+| Latency 90th (ms)       | 75.72              |
+| Latency 95th (ms)       | 86.00              |
+| Latency 99th (ms)       | 119.26             |
+| Mean latency (ms)       | 61.28              |
+| Max latency (ms)        | 313.59             |
+| Requests/sec            | 540                |
+| Requests/sec (max)      | 3,857              |
+| Read throughput (MB/s)  | 0.08               |
+
+[10:45:43.959] 'load' is running ... http://localhost:5010/jobs/22/output
+
+[10:46:35 AM] Overall 489 Period: 490
+[10:47:20 AM] Overall 523 Period: 561
+[10:48:06 AM] Overall 531 Period: 547
+[10:48:50 AM] Overall 538 Period: 563
+[10:49:35 AM] Overall 541 Period: 554
+[10:50:21 AM] Overall 543 Period: 550
+[10:51:05 AM] Overall 545 Period: 559
+[10:52:10 AM] Overall 518 Period: 386
+[10:52:59 AM] Overall 517 Period: 511
+[10:53:45 AM] Overall 520 Period: 550
+[10:54:32 AM] Overall 521 Period: 532
+[10:55:19 AM] Overall 522 Period: 530
+[10:56:07 AM] Overall 522 Period: 523
+[10:56:55 AM] Overall 522 Period: 518
+[10:57:50 AM] Overall 517 Period: 457
+[10:58:38 AM] Overall 517 Period: 515
+[10:59:24 AM] Overall 518 Period: 539
+[11:00:13 AM] Overall 518 Period: 518

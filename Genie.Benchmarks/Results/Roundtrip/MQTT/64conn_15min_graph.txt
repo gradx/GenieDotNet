@@ -1,0 +1,66 @@
+25 47 1
+
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 29                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 2,188              |
+| Start Time (ms)         | 709                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 908                |
+| Requests                | 899,020            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 61.96              |
+| Latency 75th (ms)       | 69.38              |
+| Latency 90th (ms)       | 72.21              |
+| Latency 95th (ms)       | 77.43              |
+| Latency 99th (ms)       | 80.15              |
+| Mean latency (ms)       | 63.97              |
+| Max latency (ms)        | 1,526.72           |
+| Requests/sec            | 1,011              |
+| Requests/sec (max)      | 8,621              |
+| Read throughput (MB/s)  | 0.15               |
+
+[10:26:08.764] 'load' is running ... http://localhost:5010/jobs/18/output
+
+[10:26:51 AM] Overall 581 Period: 580
+[10:27:16 AM] Overall 736 Period: 1004
+[10:27:42 AM] Overall 801 Period: 969
+[10:28:07 AM] Overall 843 Period: 1001
+[10:28:31 AM] Overall 872 Period: 1008
+[10:28:56 AM] Overall 891 Period: 1002
+[10:29:21 AM] Overall 905 Period: 1000
+[10:29:46 AM] Overall 916 Period: 1001
+[10:30:11 AM] Overall 925 Period: 1003
+[10:30:36 AM] Overall 933 Period: 1001
+[10:31:01 AM] Overall 939 Period: 1002
+[10:31:26 AM] Overall 944 Period: 998
+[10:31:51 AM] Overall 948 Period: 1000
+[10:32:16 AM] Overall 951 Period: 1000
+[10:32:41 AM] Overall 955 Period: 1003
+[10:33:06 AM] Overall 958 Period: 1001
+[10:33:30 AM] Overall 960 Period: 1003
+[10:33:55 AM] Overall 963 Period: 1000
+[10:34:20 AM] Overall 965 Period: 999
+[10:34:45 AM] Overall 966 Period: 1004
+[10:35:10 AM] Overall 968 Period: 999
+[10:35:35 AM] Overall 970 Period: 1001
+[10:36:00 AM] Overall 971 Period: 1001
+[10:36:25 AM] Overall 972 Period: 1001
+[10:36:50 AM] Overall 973 Period: 1003
+[10:37:16 AM] Overall 973 Period: 950
+[10:37:41 AM] Overall 974 Period: 1002
+[10:38:06 AM] Overall 975 Period: 1001
+[10:38:31 AM] Overall 976 Period: 1001
+[10:38:56 AM] Overall 976 Period: 1001
+[10:39:21 AM] Overall 977 Period: 1002
+[10:39:46 AM] Overall 978 Period: 997
+[10:40:11 AM] Overall 979 Period: 1000
+[10:40:37 AM] Overall 979 Period: 973
+[10:41:01 AM] Overall 979 Period: 1003
