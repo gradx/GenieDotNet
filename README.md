@@ -78,7 +78,7 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | Proto.Actor  | 32  | 3300-3700 | 3,288  | 10.35 | 25.91 | 610
 | ZeroMQ| 64 | n/a |3,031   | 22.12  | 37.28| 1,372
 | NATS| 64 | 2400-2600 | 2,572   | 26.20  | 44.21 | 762
-| RabbitMQ  | 32  | 1700-1900 | 1,825 | 17.97  | 34.07 | 881 | Uses Avro serialier since Google Protobuf suffers from intermittent corrupted messages
+| RabbitMQ  | 32  | 1700-1900 | 1,825 | 17.97  | 34.07 | 881 |
 | ActiveMQ  | 32  | 1700-1900 | 1,890   | 17.80  | 65.56 | 1,255 | 1 hour, no errors but does suffer from sporatic issues
 | MQTT | 128| 1650-1750 |1,706  | 78.33  | 80.38 | 538 | Errors out < 10 min
 | Redpanda| 64 | 1300-1450 | 1420   | 46.31  | 69.17 | 3,273
@@ -133,7 +133,7 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 |---|---|---|
 |1 | Proto.Actor | Top overall performer. Ranks a close third in throughput but with 1/4 latency.  Virtual actors provide stateful possibilities. Requires no external dependencies for IPC.
 |2 | ZeroMQ | Best overall performance ranking in roundtrip (1st), scaled (1st) and Fire & Forget (2nd).  Requires no external dependencies.
-|3 | RabbitMQ | Top performer for scaled latency in both roundtrip and Fire & Forget, second overall in Fire & Forget throughput. Suffers from occasional message corruption issues with the Protobuf deserializer.
+|3 | RabbitMQ | Top performer for scaled latency in both roundtrip and Fire & Forget, second overall in Fire & Forget throughput.
 |4 | Pulsar | Clear choice for Fire & Forget
 |5 | NATS | Solid overall performer in both roundtrip and Fire & Forget throughput
 |6 | ActiveMQ |Close in performance to RabbitMQ
