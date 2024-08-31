@@ -40,7 +40,7 @@ namespace GameLicenseExample;
 
     public int Risk { get; set; }
 
-    private DefaultObjectPoolProvider objectPoolProvider = new DefaultObjectPoolProvider();
+    private readonly DefaultObjectPoolProvider objectPoolProvider = new();
 
 
 
@@ -126,7 +126,7 @@ namespace GameLicenseExample;
             var cityhash = CityHashFactory.Instance.Create(new CityHashConfig { HashSizeInBits = 64 });
             var hash = cityhash.ComputeHash(MessageExtensions.ToByteArray(req));
 
-            var channelKey = Ed25519Adapter.Instance.Import(new Genie.Common.Types.GeoCryptoKey
+            var channelKey = Ed25519Adapter.Import(new Genie.Common.Types.GeoCryptoKey
             {
                 //Key = Convert.ToBase64String(File.ReadAllBytes(@"Keys\Alice\Ed25519SigningAdapter.key")),
                 X509 = File.ReadAllBytes(@"Keys\Alice\Ed25519SigningAdapter.key"),
@@ -145,11 +145,11 @@ namespace GameLicenseExample;
     private static SealedEnvelope CreateSealedEnvelope(ObjectPool<StringBuilder> pool, string message, string keyPath, out byte[] hkdfKey)
     {
 
-        var alice_private_keypair = X25519Adapter.Instance.GenerateKeyPair();
+        var alice_private_keypair = X25519Adapter.GenerateKeyPair();
         var alice_private_key = (X25519PrivateKeyParameters)alice_private_keypair.Private;
         _ = (X25519PublicKeyParameters)alice_private_keypair.Public;
 
-        var alice_public_cert = X25519Adapter.Instance.ExportX509PublicCertificate(alice_private_keypair, "Genie PKI").RawData;
+        var alice_public_cert = X25519Adapter.ExportX509PublicCertificate(alice_private_keypair, "Genie PKI").RawData;
 
         var key = new GeoCryptoKey
         {
@@ -169,24 +169,24 @@ namespace GameLicenseExample;
         alice_private_key.GenerateSecret(bob_public_key, secret, 0);
 
         // Create the AesGcm salt and nonce
-        string hkdf_salt = RandomString(pool, 16);
-        string nonce = RandomString(pool, 12);
+        var hkdf_salt = Utf8String.Format($"{RandomString(pool, 16)}");
+        var nonce = Utf8String.Format($"{RandomString(pool, 12)}");
 
         // Create an HDKF key
         var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{key.Id}"));
-        hkdfKey = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, Utf8String.Format($"{hkdf_salt}"));
+        hkdfKey = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, hkdf_salt);
 
         // Encrypt the data with AES GCM
-        var encrypted_data = AesAdapter.GcmEncryptData(Utf8String.Format($"{message}"), Convert.ToBase64String(hkdfKey), nonce);
+        var (Result, Tag) = AesAdapter.GcmEncryptData(Utf8String.Format($"{message}"), hkdfKey, nonce);
 
         return new SealedEnvelope
         {
             Key = key,
             Cipher = SealedEnvelope.Types.SealedEnvelopeType.Aes,
-            Data = Convert.ToBase64String(encrypted_data.Result),
-            Hkdf = hkdf_salt,
-            Nonce = nonce,
-            Tag = Convert.ToBase64String(encrypted_data.Tag)
+            Data = ByteString.CopyFrom(Result),
+            Hkdf = ByteString.CopyFrom(hkdf_salt),
+            Nonce = ByteString.CopyFrom(nonce),
+            Tag = ByteString.CopyFrom(Tag)
         };
 
         static string RandomString(ObjectPool<StringBuilder> pool, int length)

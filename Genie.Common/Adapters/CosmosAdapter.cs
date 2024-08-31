@@ -13,7 +13,7 @@ namespace Genie.Common.Adapters;
 
 public partial class CosmosAdapter
 {
-    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
+    private static readonly RecyclableMemoryStreamManager manager = new();
 
     public static PartyRequest ToCosmos(Grpc.PartyRequest req)
     {
@@ -597,7 +597,7 @@ public partial class CosmosAdapter
 
     public static T ToCosmos<T>(Grpc.GeoCryptoKey k) where T : GeoCryptoKey, new()
     {
-        return new T { X509 = k.X509.ToArray(), KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id };
+        return new T { X509 = [.. k.X509], KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id };
     }
 
 
@@ -606,10 +606,10 @@ public partial class CosmosAdapter
         if (d == null) return null;
 
         var s = ToCosmos<SealedEnvelope>(d.Key);
-        s.Hkdf = d.Hkdf.Null();
-        s.Data = d.Data.Null();
-        s.Nonce = d.Nonce.Null();
-        s.Tag = d.Tag.Null();
+        s.Hkdf = [.. d.Hkdf];
+        s.Data = [.. d.Data];
+        s.Nonce = [.. d.Nonce];
+        s.Tag = [.. d.Tag];
         s.Cipher = (SealedEnvelope.CipherType)d.Cipher;
         return s;
 
@@ -622,10 +622,10 @@ public partial class CosmosAdapter
         return new Grpc.SealedEnvelope
         {
             Key = FromCosmos((GeoCryptoKey)d),
-            Hkdf = d.Hkdf ?? "",
-            Data = d.Data ?? "",
-            Nonce = d.Nonce ?? "",
-            Tag = d.Tag ?? "",
+            Hkdf = ByteString.CopyFrom(d.Hkdf),
+            Data = ByteString.CopyFrom(d.Data),
+            Nonce = ByteString.CopyFrom(d.Nonce),// d.Nonce ?? "",
+            Tag = ByteString.CopyFrom(d.Tag),
             Cipher = (Grpc.SealedEnvelope.Types.SealedEnvelopeType)d.Cipher
         };
     }

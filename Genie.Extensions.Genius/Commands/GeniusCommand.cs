@@ -12,7 +12,7 @@ using Grpc.Core;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using Genie.Common.Performance;
 
-namespace Genie.Extensions.Commands;
+namespace Genie.Extensions.Genius.Commands;
 
 public record GeniusCommand(IAsyncStreamReader<GeniusEventPollRequest>? Request, IServerStreamWriter<GeniusEventPollResponse>? Response, ServerCallContext? Context, ObjectPool<GeniePooledObject> GeniePool, ActorSystem ActorSystem, bool FireAndForget) : IRequest;
 

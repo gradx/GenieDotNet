@@ -6,15 +6,15 @@ namespace Genie.Common.Crypto.Adapters;
 public class AesAdapter : ISymmetricBase
 {
     // Aes ISymmetricBase is GCM 
-    public (byte[] Result, byte[] Tag) Encrypt(byte[] data, string key, string nonce)
+    public (byte[] Result, byte[] Tag) Encrypt(Span<byte> data, Span<byte> key, Span<byte> nonce)
     {
         return GcmEncryptData(data, key, nonce);
     }
 
     // Aes ISymmetricBase is GCM 
-    public byte[] Decrypt(byte[] data, string key, string nonce, byte[] tag)
+    public Span<byte> Decrypt(Span<byte> data, Span<byte> key, Span<byte> nonce, Span<byte> tag)
     {
-        return GcmDecryptData(data.AsSpan(), key, nonce, tag.AsSpan()).ToArray();
+        return GcmDecryptData(data, key, nonce, tag).ToArray();
     }
 
     public static void CbcEncryptStream(string inputFile, string outputFile, byte[] key, byte[] iv)
@@ -66,22 +66,22 @@ public class AesAdapter : ISymmetricBase
         fsOut.Close();
     }
 
-    public static (byte[] Result, byte[] Tag) GcmEncryptData(Span<byte> data, string key, string nonce)
+    public static (byte[] Result, byte[] Tag) GcmEncryptData(Span<byte> data, Span<byte> key, Span<byte> nonce)
     {
-        AesGcm c = new(Utf8String.Format($"{key}").AsSpan(), 16);
+        AesGcm c = new(key, 16);
         byte[] result = new byte[data.Length];
         var spanned = result.AsSpan();
         var tag = new byte[16];
-        c.Encrypt(Utf8String.Format($"{nonce}"), data, spanned, tag.AsSpan());
+        c.Encrypt(nonce, data, spanned, tag.AsSpan());
         return (result, tag);
     }
 
-    public static Span<byte> GcmDecryptData(Span<byte> data, string key, string nonce, Span<byte> tag)
+    public static Span<byte> GcmDecryptData(Span<byte> data, Span<byte> key, Span<byte> nonce, Span<byte> tag)
     {
-        AesGcm c = new(Utf8String.Format($"{key}").AsSpan(), 16);
+        AesGcm c = new(key, 16);
         var result = new byte[data.Length];
         var spanned = result.AsSpan();
-        c.Decrypt(Utf8String.Format($"{nonce}"), data, tag, spanned);
+        c.Decrypt(nonce, data, tag, spanned);
         return spanned;
     }
 }

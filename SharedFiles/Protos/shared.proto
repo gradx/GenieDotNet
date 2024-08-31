@@ -202,11 +202,11 @@ message SealedEnvelope {
 	}
 	SealedEnvelopeType cipher = 2;
 	// inputs
-	string hkdf = 3; // CM uses random 16 byte strings, DM uses numeric counter
-	string nonce = 4;
+	bytes hkdf = 3; // CM uses random 16 byte strings, DM uses numeric counter
+	bytes nonce = 4;
 	// outputs
-	string data = 5;
-	string tag = 6;
+	bytes data = 5;
+	bytes tag = 6;
 }
 
 

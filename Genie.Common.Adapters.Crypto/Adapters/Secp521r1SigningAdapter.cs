@@ -15,7 +15,7 @@ public class Secp521r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
         return Instance.GenerateKeyPair<T>();
     }
 
-    public ECDsa GenerateKeyPair()
+    public static ECDsa GenerateKeyPair()
     {
         var key = ECDsa.Create();
         key.GenerateKey(ECCurve.CreateFromValue(oid));
@@ -37,12 +37,12 @@ public class Secp521r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
         return k.IsPrivate ? Import<T>(k) : ImportX509<T>(k.X509!);
     }
 
-    public ECDsa? Import(GeoCryptoKey k)
+    public static ECDsa? Import(GeoCryptoKey k)
     {
         if (k.IsPrivate)
         {
             var r = ECDsa.Create();
-            r.ImportPkcs8PrivateKey(k.X509!, out int read);
+            r.ImportPkcs8PrivateKey(k.X509!, out int _);
             return r;
         }
 
@@ -55,7 +55,7 @@ public class Secp521r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
         return Instance.ImportX509<T>(x509);
     }
 
-    public ECDsa? ImportX509(byte[] x509)
+    public static ECDsa? ImportX509(byte[] x509)
     {
         var cert = new X509Certificate2(x509);
         return cert.GetECDsaPublicKey();
@@ -67,7 +67,7 @@ public class Secp521r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
         return isPrivate ? key.ExportPkcs8PrivateKey() : key.ExportSubjectPublicKeyInfo();
     }
 
-    public X509Certificate2 ExportX509Certificate(ECDsa key, string issuer)
+    public static X509Certificate2 ExportX509Certificate(ECDsa key, string issuer)
     {
         CertificateRequest request = new("CN=" + issuer, key, HashAlgorithmName.SHA512);
         request.CertificateExtensions.Add(new X509KeyUsageExtension(X509KeyUsageFlags.DigitalSignature, critical: false));

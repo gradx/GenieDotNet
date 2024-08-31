@@ -4,10 +4,10 @@ namespace Genie.Common.Types;
 
 public record SealedEnvelope : GeoCryptoKey
 {
-    public string? Hkdf { get; set; }
-    public string? Data { get; set; }
-    public string? Nonce { get; set; }
-    public string? Tag { get; set; }
+    public byte[]? Hkdf { get; set; }
+    public byte[]? Data { get; set; }
+    public byte[]? Nonce { get; set; }
+    public byte[]? Tag { get; set; }
     public enum CipherType
     {
         None = 0,

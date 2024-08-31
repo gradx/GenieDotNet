@@ -3,7 +3,7 @@ using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Genie.Actors;
 using Genie.Common.Performance;
-using Genie.Extensions.Commands;
+using Genie.Extensions.Genius.Commands;
 using Genie.Grpc;
 using Genie.Web.Api.Common;
 using Genie.Web.Api.Mediator.Commands;

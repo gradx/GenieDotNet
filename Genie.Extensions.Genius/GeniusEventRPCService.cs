@@ -1,10 +1,8 @@
 ﻿using Genie.Common.Performance;
-using Genie.Extensions.Commands;
+using Genie.Extensions.Genius.Commands;
 using Genie.Grpc;
 using Grpc.Core;
 using Mediator;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Proto;
 

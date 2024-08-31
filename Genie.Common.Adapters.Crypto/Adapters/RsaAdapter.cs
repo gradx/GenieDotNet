@@ -21,14 +21,14 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
         return Instance.GenerateKeyPair<T>();
     }
 
-    public RSA GenerateKeyPair()
+    public static RSA GenerateKeyPair()
     {
         return GetCrypoProvider();
     }
 
     public byte[] Sign(byte[] data, RSAParameters key)
     {
-        using (var p = GetCrypoProvider())
+        using var p = GetCrypoProvider();
         {
             p.ImportParameters(key);
             return p.SignData(data, HashAlgorithmName.SHA512, RSASignaturePadding.Pkcs1);
@@ -37,7 +37,7 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
 
     public bool Verify(byte[] data, byte[] signature, RSAParameters key)
     {
-        using (var p = GetCrypoProvider())
+        using var p = GetCrypoProvider();
         {
             p.ImportParameters(key);
             return p.VerifyData(data, signature, HashAlgorithmName.SHA512, RSASignaturePadding.Pkcs1);
@@ -49,12 +49,12 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
         return k.IsPrivate ? Import<T>(k) : ImportX509<T>(k.X509!);
     }
 
-    public RSA? Import(GeoCryptoKey k)
+    public static RSA? Import(GeoCryptoKey k)
     {
         if (k.IsPrivate)
         {
             var r = RSA.Create();
-            r.ImportPkcs8PrivateKey(k.X509!, out int read);
+            r.ImportPkcs8PrivateKey(k.X509!, out int _);
             return r;
         }
         else
@@ -69,10 +69,10 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
         return Instance.ImportX509<T>(x509);
     }
 
-    public RSA ImportX509(byte[] x509)
+    public static RSA ImportX509(byte[] x509)
     {
         var r = RSA.Create();
-        r.ImportRSAPublicKey(new X509Certificate2(x509).GetPublicKey(), out int read);
+        r.ImportRSAPublicKey(new X509Certificate2(x509).GetPublicKey(), out int _);
         return r;
     }
 
@@ -81,7 +81,7 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
         return isPrivate ? RSA.Create(key).ExportPkcs8PrivateKey() : RSA.Create(key).ExportSubjectPublicKeyInfo();
     }
 
-    public X509Certificate2 ExportX509Certificate(RSA key, string issuer)
+    public static X509Certificate2 ExportX509Certificate(RSA key, string issuer)
     {
         CertificateRequest request = new("CN=" + issuer, key, HashAlgorithmName.SHA512, RSASignaturePadding.Pkcs1);
         request.CertificateExtensions.Add(new X509KeyUsageExtension(X509KeyUsageFlags.DataEncipherment, critical: false));

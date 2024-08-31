@@ -1,15 +1,11 @@
 ﻿
-using Confluent.Kafka;
 using Genie.Common;
 using Genie.Grpc;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
-using Microsoft.Extensions.Logging;
 using NetTopologySuite.Features;
 using Proto;
 using Proto.Cluster;
-using ZLogger;
-
 
 namespace Genie.Extensions.Genius;
 

@@ -4,37 +4,24 @@ using Genie.Common;
 using Genie.Actors;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.ObjectPool;
-using Microsoft.AspNetCore.Http;
 using Genie.Common.Web;
-using Genie.Extensions.Genius;
 using Proto.Cluster;
-using Confluent.Kafka;
-using Confluent.SchemaRegistry;
-using Genie.Common.Utils;
 using Genie.Grpc;
-using Microsoft.Azure.Cosmos.Spatial;
 using Grpc.Core;
-using Chr.Avro.Confluent;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
-using CommunityToolkit.HighPerformance;
 using Google.Protobuf;
 using System.Data.HashFunction.CityHash;
 using Genie.Common.Crypto.Adapters;
-using System.Text;
-using System;
 using Org.BouncyCastle.Crypto.Parameters;
 using Genie.Common.Adapters;
 using System.Security.Cryptography;
 using NetTopologySuite.Utilities;
 using Genie.Common.Performance;
 using Utf8StringInterpolation;
-using Cysharp.IO;
 using Microsoft.IO;
-using Microsoft.Azure.Cosmos.Core;
-using System.IO;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Genie.Extensions.Commands;
+namespace Genie.Extensions.Genius.Commands;
 
 public record HashedGeniusCommand(IAsyncStreamReader<GeniusEventRequest> Request, IServerStreamWriter<GeniusEventResponse> Response, ServerCallContext Context, ObjectPool<GeniePooledObject> GeniePool, ActorSystem ActorSystem, bool FireAndForget) : IRequest;
 
@@ -80,7 +67,7 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
 
             var signature_verified = Ed25519Adapter.Instance.Verify(hash.Hash,
                 Convert.FromBase64String(signedparty),
-                Ed25519Adapter.Instance.Import(new Common.Types.GeoCryptoKey { IsPrivate = false,
+                Ed25519Adapter.Import(new Common.Types.GeoCryptoKey { IsPrivate = false,
                     KeyType = Common.Types.GeoCryptoKey.CryptoKeyType.Ed25519,
                     //Key = Convert.ToBase64String(File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")),
                     X509 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")
@@ -98,11 +85,11 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
             {
                 // Import Alice's Key
                 var sealed_envelope = CosmosAdapter.ToCosmos(command.Request.Current.SealedEnvelope)!;
-                var alice_public_key = X25519Adapter.Instance.GetX25519PublicKeyParameters(new X509Certificate2(sealed_envelope.X509!));
+                var alice_public_key = X25519Adapter.GetX25519PublicKeyParameters(new X509Certificate2(sealed_envelope.X509!));
 
                 // Import Bob's Private Key
                 var bob_key = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Bob\X25519Adapter.key");
-                var bob_private_key = (X25519PrivateKeyParameters)X25519Adapter.Instance.Import(new Common.Types.GeoCryptoKey
+                var bob_private_key = (X25519PrivateKeyParameters)X25519Adapter.Import(new Common.Types.GeoCryptoKey
                 {
                     IsPrivate = true,
                     X509 = bob_key
@@ -113,17 +100,17 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
                 bob_private_key.GenerateSecret(alice_public_key, secret, 0);
 
                 // Extract the HKDF key
-                var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{command.Request.Current.SealedEnvelope.Key.Id}"));
-                var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, Utf8String.Format($"{command.Request.Current.SealedEnvelope.Hkdf}"));
+                var envelope = command.Request.Current.SealedEnvelope;
+                var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{envelope.Key.Id}"));
+                var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, [.. envelope.Hkdf]);
 
                 // Decrypt the Data
-                var decrypted_bytes = AesAdapter.GcmDecryptData(Convert.FromBase64String(command.Request.Current.SealedEnvelope.Data), Convert.ToBase64String(hkdf_key),
-                    command.Request.Current.SealedEnvelope.Nonce, Convert.FromBase64String(command.Request.Current.SealedEnvelope.Tag)).ToArray();
+                var decrypted_bytes = AesAdapter.GcmDecryptData([.. envelope.Data], hkdf_key,[.. envelope.Nonce], [.. envelope.Tag]).ToArray();
                 using var ms = manager.GetStream();
-                await ms.WriteAsync(decrypted_bytes);
+                await ms.WriteAsync(decrypted_bytes, cancellationToken);
                 ms.Position = 0;
                 using var reader = new StreamReader(ms);               
-                var decrypted_string_message = await reader.ReadToEndAsync();
+                var decrypted_string_message = await reader.ReadToEndAsync(cancellationToken);
 
                 // Proof
                 Assert.IsTrue(decrypted_string_message == "Genie In A Bottle");

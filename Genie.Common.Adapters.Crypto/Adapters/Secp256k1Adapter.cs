@@ -25,7 +25,7 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
         return Instance.GenerateKeyPair<T>();
     }
 
-    public AsymmetricCipherKeyPair GenerateKeyPair()
+    public static AsymmetricCipherKeyPair GenerateKeyPair()
     {
         var ecParams = ECNamedCurveTable.GetByName("secp256k1");
         var domainParameters = new ECDomainParameters(ecParams.Curve, ecParams.G, ecParams.N, ecParams.H);
@@ -40,9 +40,7 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
         var signer = new ECDsaSigner();
         signer.Init(true, key);
         var signature = signer.GenerateSignature(data);
-        return signature[0].ToByteArrayUnsigned()
-            .Concat(signature[1].ToByteArrayUnsigned())
-                .ToArray();
+        return [.. signature[0].ToByteArrayUnsigned(), .. signature[1].ToByteArrayUnsigned()];
     }
 
     public bool Verify(byte[] data, byte[] signature, ICipherParameters key)
@@ -62,7 +60,7 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
         return k.IsPrivate ? Instance.Import<T>(k) : Instance.ImportX509<T>(k.X509!);
     }
 
-    public AsymmetricKeyParameter Import(GeoCryptoKey k)
+    public static AsymmetricKeyParameter Import(GeoCryptoKey k)
     {
         if (k.IsPrivate)
         {
@@ -79,7 +77,7 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
         return Instance.ImportX509<T>(x509);
     }
 
-    public AsymmetricKeyParameter ImportX509(byte[] x509)
+    public static AsymmetricKeyParameter ImportX509(byte[] x509)
     {
         var ecP = ECNamedCurveTable.GetByName("secp256k1");
         var ecSpec = new ECDomainParameters(ecP.Curve, ecP.G, ecP.N, ecP.H);
@@ -92,7 +90,7 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
         return isPrivate ? ((ECPrivateKeyParameters)key).D.ToByteArray() : ((ECPublicKeyParameters)key).Q.GetEncoded();
     }
 
-    public X509Certificate2 ExportX509Certificate(AsymmetricCipherKeyPair kp, string issuer)
+    public static X509Certificate2 ExportX509Certificate(AsymmetricCipherKeyPair kp, string issuer)
     {
         X509V3CertificateGenerator genX509 = new();
         genX509.SetPublicKey(kp.Public);

@@ -24,7 +24,7 @@ public class Ed25519Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParam
         return Instance.GenerateKeyPair<T>();
     }
 
-    public AsymmetricCipherKeyPair GenerateKeyPair()
+    public static AsymmetricCipherKeyPair GenerateKeyPair()
     {
         var gen = new Ed25519KeyPairGenerator();
         gen.Init(new Ed25519KeyGenerationParameters(new()));
@@ -57,7 +57,7 @@ public class Ed25519Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParam
         return k.IsPrivate ? Instance.Import<T>(k) : Instance.ImportX509<T>(k.X509!);
     }
 
-    public AsymmetricKeyParameter Import(GeoCryptoKey k)
+    public static AsymmetricKeyParameter Import(GeoCryptoKey k)
     {
         return k.IsPrivate ? new Ed25519PrivateKeyParameters(k.X509, 0) : ImportX509(k.X509!);
     }
@@ -67,7 +67,7 @@ public class Ed25519Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParam
         return Instance.ImportX509<T>(x509);
     }
 
-    public AsymmetricKeyParameter ImportX509(byte[] x509)
+    public static AsymmetricKeyParameter ImportX509(byte[] x509)
     {
         return new Ed25519PublicKeyParameters(new X509Certificate2(x509).GetPublicKey(), 0);
     }
@@ -77,7 +77,7 @@ public class Ed25519Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParam
         return key is Ed25519PrivateKeyParameters @private ? @private.GetEncoded() : ((Ed25519PublicKeyParameters)key).GetEncoded();
     }
 
-    public X509Certificate2 ExportX509Certificate(AsymmetricCipherKeyPair kp, string issuer)
+    public static X509Certificate2 ExportX509Certificate(AsymmetricCipherKeyPair kp, string issuer)
     {
         X509V3CertificateGenerator genX509 = new();
         genX509.SetPublicKey(kp.Public);

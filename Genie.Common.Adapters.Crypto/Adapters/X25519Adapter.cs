@@ -28,7 +28,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         return Instance.GenerateKeyPair<T>();
     }
 
-    public AsymmetricCipherKeyPair GenerateKeyPair()
+    public static AsymmetricCipherKeyPair GenerateKeyPair()
     {
         var genX = new X25519KeyPairGenerator();
         var kg = new KeyGenerationParameters(new SecureRandom(), 521);
@@ -45,7 +45,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
             return Instance.ImportX509<T>(new X509Certificate2(k.X509!).GetPublicKey());
     }
 
-    public AsymmetricKeyParameter Import(GeoCryptoKey k)
+    public static AsymmetricKeyParameter Import(GeoCryptoKey k)
     {
         if (k.IsPrivate)
             return new X25519PrivateKeyParameters(k.X509, 0);
@@ -58,7 +58,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         return Instance.ImportX509<T>(x509);
     }
 
-    public AsymmetricKeyParameter ImportX509(byte[] x509)
+    public static AsymmetricKeyParameter ImportX509(byte[] x509)
     {
         return new X25519PublicKeyParameters(new X509Certificate2(x509).GetPublicKey(), 0);
     }
@@ -90,7 +90,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         return ies.ProcessBlock(data, 0, data.Length);
     }
 
-    public byte[] Export(AsymmetricKeyParameter key, bool isPrivate)
+    public static byte[] Export(AsymmetricKeyParameter key)
     {
         if (key is X25519PrivateKeyParameters parameters)
             return parameters.GetEncoded();
@@ -98,7 +98,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
             return ((X25519PublicKeyParameters)key).GetEncoded();
     }
 
-    public X509Certificate2 ExportX509PublicCertificate(AsymmetricCipherKeyPair kp, string issuer)
+    public static X509Certificate2 ExportX509PublicCertificate(AsymmetricCipherKeyPair kp, string issuer)
     {
 
         X509V3CertificateGenerator genX509 = new();
@@ -118,7 +118,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         return new X509Certificate2(genX509.Generate(sigFac).GetEncoded());
     }
 
-    public X25519PublicKeyParameters GetX25519PublicKeyParameters(X509Certificate2 c)
+    public static X25519PublicKeyParameters GetX25519PublicKeyParameters(X509Certificate2 c)
     {
         return new X25519PublicKeyParameters(c.PublicKey.EncodedKeyValue.RawData, 0);
     }
