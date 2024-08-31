@@ -1,10 +1,12 @@
-﻿using Microsoft.Azure.Cosmos;
+﻿using Cysharp.IO;
+using Microsoft.Azure.Cosmos;
 using Microsoft.IO;
 using NetTopologySuite.IO;
 using NetTopologySuite.IO.Converters;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using Utf8StringInterpolation;
 
 namespace Genie.Common;
 
@@ -52,7 +54,11 @@ public class GeoJsonCosmosSerializer : CosmosSerializer
     {
         var c = new GeoJsonCosmosSerializer();
         var str = (MemoryStream)c.ToStream(geometry);
-        return Encoding.UTF8.GetString(str.ToArray());
+
+        str.Position = 0;
+        using var sr = new Utf8StreamReader(str);
+        var reader = sr.AsTextReader();
+        return reader.ReadToEndAsync().Result;
     }
 
     public static T FromJson<T>(string s)
@@ -60,6 +66,6 @@ public class GeoJsonCosmosSerializer : CosmosSerializer
         var c = new GeoJsonCosmosSerializer();
 
         using StringReader sw = new(s);
-        return c.FromStream<T>(manager.GetStream(Encoding.UTF8.GetBytes(s)));
+        return c.FromStream<T>(manager.GetStream(Utf8String.Format($"{s}")));
     }
 }

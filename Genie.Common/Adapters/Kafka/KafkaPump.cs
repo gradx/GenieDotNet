@@ -8,7 +8,7 @@ namespace Genie.Common.Adapters.Kafka;
 public sealed class KafkaPump<K, V>
 {
     /// <summary>
-    /// Creates a <see cref="KafkaMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="KafkaPump"/> and immediately starts pumping.
     /// </summary>
     public static KafkaPump<K, V> Run(IConsumer<K, V> messageQueue, Func<Message<K, V>, Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

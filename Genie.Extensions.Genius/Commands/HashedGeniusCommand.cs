@@ -27,6 +27,12 @@ using Genie.Common.Adapters;
 using System.Security.Cryptography;
 using NetTopologySuite.Utilities;
 using Genie.Common.Performance;
+using Utf8StringInterpolation;
+using Cysharp.IO;
+using Microsoft.IO;
+using Microsoft.Azure.Cosmos.Core;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace Genie.Extensions.Commands;
 
@@ -34,6 +40,8 @@ public record HashedGeniusCommand(IAsyncStreamReader<GeniusEventRequest> Request
 
 public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommandHandler(genieContext), IRequestHandler<HashedGeniusCommand>
 {
+    private static readonly RecyclableMemoryStreamManager manager = new();
+
     public async ValueTask<Unit> Handle(HashedGeniusCommand command, CancellationToken cancellationToken)
     {
         // Inheriting from ActorCommand causes it to route to only ActorCommandHandler
@@ -74,7 +82,8 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
                 Convert.FromBase64String(signedparty),
                 Ed25519Adapter.Instance.Import(new Common.Types.GeoCryptoKey { IsPrivate = false,
                     KeyType = Common.Types.GeoCryptoKey.CryptoKeyType.Ed25519,
-                    Key = Convert.ToBase64String(File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer"))
+                    //Key = Convert.ToBase64String(File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")),
+                    X509 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")
                 }));
 
             if (!signature_verified)
@@ -87,23 +96,37 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
 
             if (command.Request.Current.SealedEnvelope != null)
             {
+                // Import Alice's Key
+                var sealed_envelope = CosmosAdapter.ToCosmos(command.Request.Current.SealedEnvelope)!;
+                var alice_public_key = X25519Adapter.Instance.GetX25519PublicKeyParameters(new X509Certificate2(sealed_envelope.X509!));
+
+                // Import Bob's Private Key
                 var bob_key = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Bob\X25519Adapter.key");
-                var privateKey = (X25519PrivateKeyParameters)X25519Adapter.Instance.Import(new Common.Types.GeoCryptoKey { IsPrivate = true, 
-                    Key = Convert.ToBase64String(bob_key) });
+                var bob_private_key = (X25519PrivateKeyParameters)X25519Adapter.Instance.Import(new Common.Types.GeoCryptoKey
+                {
+                    IsPrivate = true,
+                    X509 = bob_key
+                });
 
-
-                var adapter = (X25519PrivateKeyParameters)X25519Adapter.Instance.Import(CosmosAdapter.ToCosmos(command.Request.Current.SealedEnvelope)!);
+                // Recreate the secret generated from Alice's private key and Bob's public Key
                 var secret = new byte[32];
-                privateKey.GenerateSecret((X25519PublicKeyParameters)adapter.GeneratePublicKey(), secret, 0);
+                bob_private_key.GenerateSecret(alice_public_key, secret, 0);
 
-                var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Encoding.UTF8.GetBytes("partyId"));
-                var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, Encoding.UTF8.GetBytes(command.Request.Current.SealedEnvelope.Hkdf));
-                var decrypted = AesAdapter.DecryptData(Convert.FromBase64String(command.Request.Current.SealedEnvelope.Data), Convert.ToBase64String(hkdf_key),
-                    command.Request.Current.SealedEnvelope.Nonce, Convert.FromBase64String(command.Request.Current.SealedEnvelope.Tag));
+                // Extract the HKDF key
+                var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{command.Request.Current.SealedEnvelope.Key.Id}"));
+                var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, Utf8String.Format($"{command.Request.Current.SealedEnvelope.Hkdf}"));
 
-                var decrypted_message = Encoding.UTF8.GetString(decrypted);
+                // Decrypt the Data
+                var decrypted_bytes = AesAdapter.GcmDecryptData(Convert.FromBase64String(command.Request.Current.SealedEnvelope.Data), Convert.ToBase64String(hkdf_key),
+                    command.Request.Current.SealedEnvelope.Nonce, Convert.FromBase64String(command.Request.Current.SealedEnvelope.Tag)).ToArray();
+                using var ms = manager.GetStream();
+                await ms.WriteAsync(decrypted_bytes);
+                ms.Position = 0;
+                using var reader = new StreamReader(ms);               
+                var decrypted_string_message = await reader.ReadToEndAsync();
 
-                Assert.IsTrue(decrypted_message == "Genie In A Bottle");
+                // Proof
+                Assert.IsTrue(decrypted_string_message == "Genie In A Bottle");
             }
 
 
@@ -151,6 +174,6 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
             return null;
         }
         else
-            return await grainClient.Process(request, cancellationToken);
+            return await grainClient.Process(request, new CancellationToken());
     }
 }

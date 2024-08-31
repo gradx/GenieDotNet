@@ -26,7 +26,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.IngressConsumer", "..
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Extensions.Genius", "..\Genie.Extensions.Genius\Genie.Extensions.Genius.csproj", "{8627E456-22E5-42FB-A055-4FE7C80A1852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameLicenseExample", "..\GameLicenseExample\GameLicenseExample.csproj", "{E2F9BBCE-A45B-4E93-86A1-F1D3EC24CFE3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GameLicenseExample", "..\GameLicenseExample\GameLicenseExample.csproj", "{E2F9BBCE-A45B-4E93-86A1-F1D3EC24CFE3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{729FA1B2-130A-400B-ACA9-5282680C1989}"
 	ProjectSection(SolutionItems) = preProject
@@ -36,7 +36,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Protos", "Protos", "{729FA1
 		..\SharedFiles\Protos\shared.proto = ..\SharedFiles\Protos\shared.proto
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genie.Common.Crypto", "..\Genie.Common.Adapters.Crypto\Genie.Common.Crypto.csproj", "{F3C91301-8385-4997-941A-9AC48D443417}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Common.Crypto", "..\Genie.Common.Adapters.Crypto\Genie.Common.Crypto.csproj", "{F3C91301-8385-4997-941A-9AC48D443417}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keys", "Keys", "{2DA4BF80-6AD9-4214-A568-E63CF8BAD745}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alice", "Alice", "{0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer
+		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key
+		..\SharedFiles\Keys\Alice\X25519Adapter.cer = ..\SharedFiles\Keys\Alice\X25519Adapter.cer
+		..\SharedFiles\Keys\Alice\X25519Adapter.key = ..\SharedFiles\Keys\Alice\X25519Adapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bob", "Bob", "{BEB6C52B-344C-4410-B2D6-8FD1F622F14D}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer
+		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.key
+		..\SharedFiles\Keys\Bob\X25519Adapter.cer = ..\SharedFiles\Keys\Bob\X25519Adapter.cer
+		..\SharedFiles\Keys\Bob\X25519Adapter.key = ..\SharedFiles\Keys\Bob\X25519Adapter.key
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,6 +104,9 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{729FA1B2-130A-400B-ACA9-5282680C1989} = {6BE6890F-D8A6-49D6-9D18-F82D88EB0953}
+		{2DA4BF80-6AD9-4214-A568-E63CF8BAD745} = {6BE6890F-D8A6-49D6-9D18-F82D88EB0953}
+		{0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5} = {2DA4BF80-6AD9-4214-A568-E63CF8BAD745}
+		{BEB6C52B-344C-4410-B2D6-8FD1F622F14D} = {2DA4BF80-6AD9-4214-A568-E63CF8BAD745}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E145E9C1-1C32-4C32-B9E5-527B3264C841}

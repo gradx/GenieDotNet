@@ -10,7 +10,7 @@ public sealed class RabbitMQPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="RabbitMQPump"/> and does **NOT** starts pumping, must be started in the parent scope
     /// </summary>
     public static RabbitMQPump<T> Run(AsyncEventingBasicConsumer messageQueue, Func<RabbitMessage, Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

@@ -15,7 +15,7 @@ public sealed class MQTTPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="MQTTPump"/> and immediately starts pumping.
     /// </summary>
     public static MQTTPump<T> Run(IMqttClient client, Func<byte[], Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

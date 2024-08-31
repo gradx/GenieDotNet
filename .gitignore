@@ -13,3 +13,11 @@ Genie.Benchmarks/obj/
 Genie.Common/obj/
 Genie.IngressConsumer/.vs/
 Genie.Common.Adapters.Crypto/obj/
+GameLicenseExample/bin/
+Genie.IngressConsumer/bin/
+Genie.Web.Api/bin/
+Genie.Extensions.Genius/bin/
+Genie.Common/bin/
+Genie.Common.Adapters.Crypto/bin/
+Genie.Actors/bin/
+Genie.Benchmarks/bin/

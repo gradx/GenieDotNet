@@ -1,17 +1,21 @@
 ﻿
+using Cysharp.IO;
 using Genie.Common.Crypto.Adapters;
 using Genie.Grpc;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
+using Microsoft.Extensions.ObjectPool;
 using Org.BouncyCastle.Crypto.Parameters;
 using System.Data.HashFunction.CityHash;
+using System.IO;
 using System.Net;
 using System.Runtime.ConstrainedExecution;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Channels;
+using Utf8StringInterpolation;
 using static Azure.Core.HttpHeader;
 
 namespace GameLicenseExample;
@@ -36,15 +40,20 @@ namespace GameLicenseExample;
 
     public int Risk { get; set; }
 
+    private DefaultObjectPoolProvider objectPoolProvider = new DefaultObjectPoolProvider();
+
+
 
     public async Task GetLicense()
     {
+        var stringBuilderPool = objectPoolProvider.CreateStringBuilderPool();
+
         var client = new GeniusEventRPC.GeniusEventRPCClient(GrpcChannel.ForAddress(c_URL, new GrpcChannelOptions
         {
             HttpClient = CreateHttpClient(c_CERTIFICATE),
         }));
 
-        var req = GetMockLicenseRequest();
+        var req = GetMockLicenseRequest(stringBuilderPool);
 
         var process = client.Process();
         await process.RequestStream.WriteAsync(req);
@@ -65,8 +74,9 @@ namespace GameLicenseExample;
             }
         }
 
-        static GeniusEventRequest GetMockLicenseRequest()
+        static GeniusEventRequest GetMockLicenseRequest(ObjectPool<StringBuilder> pool)
         {
+            // Create the request
             var req = new GeniusEventRequest
             {
                 License = new()
@@ -85,6 +95,7 @@ namespace GameLicenseExample;
                 }
             };
 
+            // Provide Geospatial details
             req.License.MachineEvent.GeniusEvent.Party.Communications.Add(new PartyCommunication
             {
                 CommunicationIdentity = new()
@@ -108,17 +119,17 @@ namespace GameLicenseExample;
                 LocalityCode = "Philadelphia"
             });
 
+            // Encrypt the message and create the sealed envelope
+            req.SealedEnvelope = CreateSealedEnvelope(pool, "Genie In A Bottle", @"Keys\Bob\X25519Adapter.cer", out byte[] _);
 
-            req.SealedEnvelope = CreateEnvelope("Genie In A Bottle", @"Keys\Bob\X25519Adapter.cer", out byte[] _);
-
-
-            // Hash request
+            // Hash the request
             var cityhash = CityHashFactory.Instance.Create(new CityHashConfig { HashSizeInBits = 64 });
             var hash = cityhash.ComputeHash(MessageExtensions.ToByteArray(req));
 
             var channelKey = Ed25519Adapter.Instance.Import(new Genie.Common.Types.GeoCryptoKey
             {
-                Key = Convert.ToBase64String(File.ReadAllBytes(@"Keys\Alice\Ed25519SigningAdapter.key")),
+                //Key = Convert.ToBase64String(File.ReadAllBytes(@"Keys\Alice\Ed25519SigningAdapter.key")),
+                X509 = File.ReadAllBytes(@"Keys\Alice\Ed25519SigningAdapter.key"),
                 KeyType = Genie.Common.Types.GeoCryptoKey.CryptoKeyType.Ed25519,
                 IsPrivate = true
             });
@@ -131,50 +142,59 @@ namespace GameLicenseExample;
         }
     }
 
-    private static SealedEnvelope CreateEnvelope(string message, string keyPath, out byte[] hdkfKey)
+    private static SealedEnvelope CreateSealedEnvelope(ObjectPool<StringBuilder> pool, string message, string keyPath, out byte[] hkdfKey)
     {
-        var ephemeral_key = X25519Adapter.Instance.GenerateKeyPair();
-        var eph_x25_priv = (X25519PrivateKeyParameters)ephemeral_key.Private;
-        _ = (X25519PublicKeyParameters)ephemeral_key.Public;
+
+        var alice_private_keypair = X25519Adapter.Instance.GenerateKeyPair();
+        var alice_private_key = (X25519PrivateKeyParameters)alice_private_keypair.Private;
+        _ = (X25519PublicKeyParameters)alice_private_keypair.Public;
+
+        var alice_public_cert = X25519Adapter.Instance.ExportX509PublicCertificate(alice_private_keypair, "Genie PKI").RawData;
 
         var key = new GeoCryptoKey
         {
-            Key = Convert.ToBase64String(X25519Adapter.Instance.Export(ephemeral_key.Private, true)),
+            //Key = Convert.ToBase64String(alice_public_cert),
+            X509 = ByteString.CopyFrom(alice_public_cert),
             KeyType = KeyType.X25519,
-            IsPrivate = true,
-            Id = "New Thread"
+            IsPrivate = false,
+            Id = Guid.NewGuid().ToString("N")
         };
 
-        // Read Bob's (channel) public key and generate a secret
-        var bob = new X509Certificate2(File.ReadAllBytes(keyPath));
-        var bob_x25_pub = new X25519PublicKeyParameters(bob.GetPublicKey(), 0);
+        // Read Bob's public key
+        var bob_certificate = new X509Certificate2(File.ReadAllBytes(keyPath));
+        var bob_public_key = new X25519PublicKeyParameters(bob_certificate.GetPublicKey(), 0);
 
+        // Create a secret with Alice's private key and Bob's public Key
         byte[] secret = new byte[32];
-        eph_x25_priv.GenerateSecret(bob_x25_pub, secret, 0);
+        alice_private_key.GenerateSecret(bob_public_key, secret, 0);
 
-        // Encrypt the data
-        var geniune = Encoding.UTF8.GetBytes(message);
-        string hkdf_salt = RandomString(16);
-        string nonce = RandomString(12);
+        // Create the AesGcm salt and nonce
+        string hkdf_salt = RandomString(pool, 16);
+        string nonce = RandomString(pool, 12);
 
-        var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Encoding.UTF8.GetBytes("partyId"));
-        hdkfKey = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, Encoding.UTF8.GetBytes(hkdf_salt));
-        var envelope = AesAdapter.EncryptData(geniune, Convert.ToBase64String(hdkfKey), nonce);
+        // Create an HDKF key
+        var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{key.Id}"));
+        hkdfKey = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, Utf8String.Format($"{hkdf_salt}"));
+
+        // Encrypt the data with AES GCM
+        var encrypted_data = AesAdapter.GcmEncryptData(Utf8String.Format($"{message}"), Convert.ToBase64String(hkdfKey), nonce);
 
         return new SealedEnvelope
         {
             Key = key,
             Cipher = SealedEnvelope.Types.SealedEnvelopeType.Aes,
-            Data = Convert.ToBase64String(envelope.Result),
+            Data = Convert.ToBase64String(encrypted_data.Result),
             Hkdf = hkdf_salt,
             Nonce = nonce,
-            Tag = Convert.ToBase64String(envelope.Tag)
+            Tag = Convert.ToBase64String(encrypted_data.Tag)
         };
 
-        static string RandomString(int length)
+        static string RandomString(ObjectPool<StringBuilder> pool, int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@";
-            StringBuilder res = new(length);
+            var res = pool.Get();
+
+            //res.Length = length + 1;
 
             while (length-- > 0)
             {
@@ -183,7 +203,9 @@ namespace GameLicenseExample;
                 res.Append(valid[(int)(num % (uint)valid.Length)]);
             }
 
-            return res.ToString();
+            var result =  res.ToString();
+            pool.Return(res);
+            return result;
         }
     }
 

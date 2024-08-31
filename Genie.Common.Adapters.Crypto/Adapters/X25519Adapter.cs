@@ -42,15 +42,15 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         if (k.IsPrivate)
             return Instance.Import<T>(k);
         else
-            return Instance.ImportX509<T>(new X509Certificate2(Convert.FromBase64String(k.Key!)).GetPublicKey());
+            return Instance.ImportX509<T>(new X509Certificate2(k.X509!).GetPublicKey());
     }
 
     public AsymmetricKeyParameter Import(GeoCryptoKey k)
     {
         if (k.IsPrivate)
-            return new X25519PrivateKeyParameters(Convert.FromBase64String(k.Key!), 0);
+            return new X25519PrivateKeyParameters(k.X509, 0);
         else
-            return ImportX509(Convert.FromBase64String(k.Key!));
+            return ImportX509(k.X509!);
     }
 
     public T ImportX509<T>(byte[] x509)
@@ -98,7 +98,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
             return ((X25519PublicKeyParameters)key).GetEncoded();
     }
 
-    public X509Certificate2 ExportX509Certificate(AsymmetricCipherKeyPair kp, string issuer)
+    public X509Certificate2 ExportX509PublicCertificate(AsymmetricCipherKeyPair kp, string issuer)
     {
 
         X509V3CertificateGenerator genX509 = new();
@@ -118,7 +118,7 @@ public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         return new X509Certificate2(genX509.Generate(sigFac).GetEncoded());
     }
 
-    public X25519PublicKeyParameters ImportX509Certificate(X509Certificate2 c)
+    public X25519PublicKeyParameters GetX25519PublicKeyParameters(X509Certificate2 c)
     {
         return new X25519PublicKeyParameters(c.PublicKey.EncodedKeyValue.RawData, 0);
     }

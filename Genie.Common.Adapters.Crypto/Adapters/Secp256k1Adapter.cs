@@ -59,7 +59,7 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
 
     public T Import<T>(GeoCryptoKey k)
     {
-        return k.IsPrivate ? Instance.Import<T>(k) : Instance.ImportX509<T>(Convert.FromBase64String(k.Key!));
+        return k.IsPrivate ? Instance.Import<T>(k) : Instance.ImportX509<T>(k.X509!);
     }
 
     public AsymmetricKeyParameter Import(GeoCryptoKey k)
@@ -68,10 +68,10 @@ public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
         {
             var ecP = ECNamedCurveTable.GetByName("secp256k1");
             var ecSpec = new ECDomainParameters(ecP.Curve, ecP.G, ecP.N, ecP.H);
-            return new ECPrivateKeyParameters(new BigInteger(Convert.FromBase64String(k.Key!)), ecSpec);
+            return new ECPrivateKeyParameters(new BigInteger(k.X509!), ecSpec);
         }
         else
-            return ImportX509(Convert.FromBase64String(k.Key!));
+            return ImportX509(k.X509!);
     }
 
     public T ImportX509<T>(byte[] x509)

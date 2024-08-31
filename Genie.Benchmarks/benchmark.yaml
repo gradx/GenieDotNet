@@ -77,9 +77,9 @@ scenarios:
       job: bombardier
       variables:
         serverPort: 80
-        path: /rabbit
+        path: /active
         timeout: 30
-        duration: 3600
+        duration: 900
         #requests: 1
         connections: 32
 

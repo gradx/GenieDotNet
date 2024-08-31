@@ -9,6 +9,7 @@ using Genie.Common.Utils.Cosmos;
 using Google.Protobuf;
 using Microsoft.IO;
 using System.Text;
+using Utf8StringInterpolation;
 using ZstdSharp;
 using ZstdSharp.Unsafe;
 
@@ -106,7 +107,7 @@ public class AvroSupport
         //////////////////////////////
 
         // Avro Marker
-        var avro = Encoding.UTF8.GetBytes("Obj");
+        var avro = Utf8String.Format($"Obj");
         output.Write(avro);
 
 

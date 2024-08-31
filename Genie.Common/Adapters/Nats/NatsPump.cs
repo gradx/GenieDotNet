@@ -10,7 +10,7 @@ public sealed class NatsPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="NatsPump"/> and immediately starts pumping.
     /// </summary>
     public static NatsPump<T> Run(NatsConnection connection, Func<byte[], Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

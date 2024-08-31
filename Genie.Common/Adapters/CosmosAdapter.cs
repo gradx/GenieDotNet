@@ -1,5 +1,6 @@
 ﻿using Apache.NMS.ActiveMQ;
 using CommunityToolkit.HighPerformance;
+using Elastic.Clients.Elasticsearch.Ingest;
 using Genie.Common.Types;
 using Genie.Common.Utils;
 using Google.Protobuf;
@@ -579,7 +580,7 @@ public partial class CosmosAdapter
 
     public static Grpc.GeoCryptoKey FromCosmos(GeoCryptoKey k)
     {
-        return new Grpc.GeoCryptoKey { Key = k.Key ?? "", KeyType = (Grpc.KeyType)k.KeyType, KeyUsage = (Grpc.KeyUsage)k.KeyUsage, IsPrivate = k.IsPrivate, Id = k.Id ?? "" };
+        return new Grpc.GeoCryptoKey { X509 = ByteString.CopyFrom(k.X509), KeyType = (Grpc.KeyType)k.KeyType, KeyUsage = (Grpc.KeyUsage)k.KeyUsage, IsPrivate = k.IsPrivate, Id = k.Id ?? "" };
     }
 
     public static Certificate? ToCosmos(Grpc.Certificate c)
@@ -596,7 +597,7 @@ public partial class CosmosAdapter
 
     public static T ToCosmos<T>(Grpc.GeoCryptoKey k) where T : GeoCryptoKey, new()
     {
-        return new T { Key = k.Key.Null(), KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id };
+        return new T { X509 = k.X509.ToArray(), KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id };
     }
 
 

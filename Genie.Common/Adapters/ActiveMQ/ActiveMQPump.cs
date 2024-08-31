@@ -10,7 +10,7 @@ public sealed class ActiveMQPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="ActiveMQPump"/> and immediately starts pumping.
     /// </summary>
     public static ActiveMQPump<T> Run(IMessageConsumer messageQueue, IConnection connection, Func<IMessage, Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

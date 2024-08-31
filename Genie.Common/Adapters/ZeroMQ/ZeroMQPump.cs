@@ -12,7 +12,7 @@ public sealed class ZeroMQPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="ZeroMQPump"/> and immediately starts pumping.
     /// </summary>
     public static ZeroMQPump<T> Run(DealerSocket consumer, Func<byte[], Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

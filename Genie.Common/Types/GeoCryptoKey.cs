@@ -1,9 +1,11 @@
-﻿namespace Genie.Common.Types;
+﻿using Elastic.Clients.Elasticsearch.Ingest;
+
+namespace Genie.Common.Types;
 
 public record GeoCryptoKey
 {
     public string? Id { get; set; }
-    public string? Key { get; set; }
+    public byte[]? X509 { get; set; }
     public enum CryptoKeyType
     {
         X25519 = 0,

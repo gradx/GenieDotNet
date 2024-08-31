@@ -46,7 +46,7 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
 
     public T Import<T>(GeoCryptoKey k)
     {
-        return k.IsPrivate ? Import<T>(k) : ImportX509<T>(Convert.FromBase64String(k.Key!));
+        return k.IsPrivate ? Import<T>(k) : ImportX509<T>(k.X509!);
     }
 
     public RSA? Import(GeoCryptoKey k)
@@ -54,12 +54,12 @@ public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParame
         if (k.IsPrivate)
         {
             var r = RSA.Create();
-            r.ImportPkcs8PrivateKey(Convert.FromBase64String(k.Key!), out int read);
+            r.ImportPkcs8PrivateKey(k.X509!, out int read);
             return r;
         }
         else
         {
-            var cert = new X509Certificate2(Convert.FromBase64String(k.Key!));
+            var cert = new X509Certificate2(k.X509!);
             return cert.GetRSAPublicKey();
         }
     }

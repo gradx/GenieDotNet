@@ -11,7 +11,7 @@ public sealed class PulsarPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="PulsarPump"/> and immediately starts pumping.
     /// </summary>
     public static PulsarPump<T> Run(IConsumer<T> messageQueue, Func<Message<T>, Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

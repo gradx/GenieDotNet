@@ -50,7 +50,7 @@ public class RabbitMQService
 
         await ingressChannel.ExchangeDeclareAsync(context.RabbitMQ.Exchange, ExchangeType.Direct);
         await ingressChannel.QueueDeclareAsync(context.RabbitMQ.Queue, false, false, false, args);
-        await ingressChannel.QueueBindAsync(context.RabbitMQ.Queue, context.RabbitMQ.Exchange, context.RabbitMQ.RoutingKey, null);
+        await ingressChannel.QueueBindAsync(context.RabbitMQ.Queue, context.RabbitMQ.Exchange, context.RabbitMQ.RoutingKey);
 
         var eventChannel = await conn.CreateChannelAsync();
         return (ingressChannel, eventChannel);

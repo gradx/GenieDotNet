@@ -23,7 +23,7 @@ public class RabbitMQCommandHandler(GenieContext genieContext) : BaseCommandHand
         var pooledObj = command.GeniePool.Get();
 
         if (pooledObj.Counter == 0)
-            await pooledObj.Configure(command.SchemaBuilder, this.Context);
+            await pooledObj.Configure(command.SchemaBuilder, this.Context, cancellationToken);
 
         var bytes = Any.Pack(grpc).ToByteArray();
 

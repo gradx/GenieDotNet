@@ -2,6 +2,7 @@
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Consul;
+using Cysharp.IO;
 using Genie.Common;
 using Genie.Common.Adapters;
 using Genie.Common.Adapters.Kafka;
@@ -10,6 +11,7 @@ using Genie.Common.Types;
 using Genie.Common.Utils;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
+using Microsoft.IO;
 using System.Text;
 using ZLogger;
 using static Genie.Common.Adapters.CosmosAdapter;
@@ -18,6 +20,8 @@ namespace Genie.IngressConsumer.Services
 {
     public class KafkaService
     {
+        private static readonly RecyclableMemoryStreamManager manager = new();
+
         public static async Task Start()
         {
             var context = GenieContext.Build().GenieContext;
@@ -102,7 +106,13 @@ namespace Genie.IngressConsumer.Services
 
                                     if (eventChannel != null)
                                     {
-                                        var topic = Encoding.UTF8.GetString(eventChannel.GetValueBytes());
+                                        using var ms = manager.GetStream();
+                                        await ms.WriteAsync(eventChannel.GetValueBytes());
+                                        ms.Position = 0;
+                                        Utf8StreamReader reader = new Utf8StreamReader(ms);
+                                        var topic = reader.AsTextReader().ReadToEndAsync().Result;
+
+                                        //var topic = Encoding.UTF8.GetString(eventChannel.GetValueBytes());
                                         await KafkaUtils.Post(producer, topic, new EventTaskJob { Id = req.Id, Job = "Report", Status = EventTaskJobStatus.Completed }, cts.Token);
                                     }
                                 },

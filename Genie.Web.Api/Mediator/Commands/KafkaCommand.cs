@@ -8,6 +8,7 @@ using Microsoft.Extensions.ObjectPool;
 using System.Text;
 using Genie.Web.Api.Common;
 using Genie.Common.Web;
+using Utf8StringInterpolation;
 
 namespace Genie.Web.Api.Mediator.Commands;
 
@@ -34,7 +35,7 @@ public class KafkaCommandHandler(GenieContext genieContext) : BaseCommandHandler
         };
 
         if (!command.FireAndForget)
-            msg.Headers.Add("EventChannel", Encoding.UTF8.GetBytes(pooledObj.EventChannel));
+            msg.Headers.Add("EventChannel", Utf8String.Format($"{pooledObj.EventChannel}"));
 
         await command.Producer.ProduceAsync(this.Context.Kafka.Ingress, msg, cancellationToken);
 

@@ -43,7 +43,7 @@ public class RabbitMQPooledObject : GeniePooledObject
         //Consumer = null;
     }
 
-    public async Task Configure(SchemaBuilder schemaBuilder, GenieContext genieContext)
+    public async Task Configure(SchemaBuilder schemaBuilder, GenieContext genieContext, CancellationToken cancellationToken)
     {
         ReceiveSignal = new(false);
 
@@ -55,44 +55,17 @@ public class RabbitMQPooledObject : GeniePooledObject
         this.Ingress = await RabbitMQPooledObject.Connect.CreateChannelAsync();
         this.Events =  await RabbitMQPooledObject.Connect.CreateChannelAsync();
 
-
-        //await this.Ingress.ExchangeDeclareAsync(genieContext.RabbitMQ.Exchange, ExchangeType.Direct);
-        //await this.Ingress.QueueDeclareAsync(genieContext.RabbitMQ.Queue, false, false, false, args);
-        //await this.Ingress.QueueBindAsync(genieContext.RabbitMQ.Queue, genieContext.RabbitMQ.Exchange, genieContext.RabbitMQ.RoutingKey, null);
-
-        await this.Events.ExchangeDeclareAsync(this.EventChannel, ExchangeType.Direct);
-        await this.Events.QueueDeclareAsync(this.EventChannel, false, false, false, args);
-        await this.Events.QueueBindAsync(this.EventChannel, this.EventChannel, genieContext.RabbitMQ.RoutingKey, null);
+        await Events.ExchangeDeclareAsync(this.EventChannel, ExchangeType.Direct, cancellationToken: cancellationToken);
+        await Events.QueueDeclareAsync(this.EventChannel, false, false, false, args, cancellationToken: cancellationToken);
+        await Events.QueueBindAsync(this.EventChannel, this.EventChannel, genieContext.RabbitMQ.RoutingKey, cancellationToken: cancellationToken);
 
         AsyncHandler = new AsyncEventingBasicConsumer(this.Events);
-        var result = await this.Events.BasicConsumeAsync(this.EventChannel, true, AsyncHandler, new CancellationToken());
+        var result = await this.Events.BasicConsumeAsync(this.EventChannel, true, AsyncHandler, cancellationToken);
         var schema = schemaBuilder.BuildSchema<EventTaskJob>();
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
         Deserializer = deserializerBuilder.BuildDelegate<EventTaskJob>(schema);
 
         AsyncHandler.Received += EventReceived;
-
-        //Consumer = new EventingBasicConsumer(this.Events);
-
-
-
-        //Consumer.Received += (sender, ea) =>
-        //{
-        //    var reader = new Chr.Avro.Serialization.BinaryReader(ea.Body.ToArray());
-        //    Result = binaryDeserializer(ref reader);
-
-        //    this.ReceiveSignal.Set();
-        //};
-
-        //this.Events.BasicConsume(this.EventChannel, true, Consumer);
-
-        var config = AvroSupport.GetSchemaRegistryConfig();
-        var schemaRegistry = new CachedSchemaRegistryClient(config);
-
-        var serBuilder = AvroSupport.GetSerializerBuilder(config, schemaBuilder);
-        Serializer = serBuilder.Build<PartyBenchmarkRequest>
-            (typeof(PartyBenchmarkRequest).Name, AutomaticRegistrationBehavior.Always, TombstoneBehavior.None)
-            .GetAwaiter().GetResult();
     }
 
     private Task EventReceived(object sender, BasicDeliverEventArgs @event)
@@ -102,10 +75,5 @@ public class RabbitMQPooledObject : GeniePooledObject
         ReceiveSignal.Set();
 
         return Task.CompletedTask;
-    }
-
-    public byte[] Serialize(PartyBenchmarkRequest data)
-    {
-        return Serializer.Serialize(data, new SerializationContext());
     }
 }

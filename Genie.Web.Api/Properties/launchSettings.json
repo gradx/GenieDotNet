@@ -21,7 +21,7 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:80"
+      "applicationUrl": "https://a.luxur.ai:5003" // http://localhost:80
     }
   }
 }

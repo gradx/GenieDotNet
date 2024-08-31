@@ -10,6 +10,7 @@ using Org.BouncyCastle.Crypto.Parameters;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using Utf8StringInterpolation;
 
 namespace Genie.Common.Crypto.Adapters;
 public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
@@ -34,7 +35,7 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
 
     public T Import<T>(GeoCryptoKey k)
     {
-        return k.IsPrivate ? Import<T>(k) : ImportX509<T>(Convert.FromBase64String(k.Key!));
+        return k.IsPrivate ? Import<T>(k) : ImportX509<T>(k.X509!);
     }
 
     public ECDiffieHellman? Import(GeoCryptoKey k)
@@ -42,11 +43,11 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
         if (k.IsPrivate)
         {
             var r = ECDiffieHellman.Create();
-            r.ImportPkcs8PrivateKey(Convert.FromBase64String(k.Key!), out int read);
+            r.ImportPkcs8PrivateKey(k.X509!.AsSpan(), out int _);
             return r;
         }
         else
-            return ImportX509(Convert.FromBase64String(k.Key!));
+            return ImportX509(k.X509!);
     }
 
     public T ImportX509<T>(byte[] x509)
@@ -95,7 +96,7 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
 
         var signing = ECDsa.Create(ECCurve.CreateFromValue(oid));
         DateTimeOffset start = DateTimeOffset.UtcNow;
-        var cert = request.Create(new X500DistinguishedName("CN=" + issuer), X509SignatureGenerator.CreateForECDsa(signing), start, start.AddYears(3), Encoding.UTF8.GetBytes("Serial No."));
+        var cert = request.Create(new X500DistinguishedName("CN=" + issuer), X509SignatureGenerator.CreateForECDsa(signing), start, start.AddYears(3), Utf8String.Format($"Serial No."));
 
         return cert;
     }

@@ -10,7 +10,7 @@ public sealed class AeronPump<T>
 {
 
     /// <summary>
-    /// Creates a <see cref="PulsarMessagePump"/> and immediately starts pumping.
+    /// Creates a <see cref="AeronPump"/> and immediately starts pumping.
     /// </summary>
     public static AeronPump<T> Run(AeronSubscription messageQueue, Func<byte[], Task> processMessage, int maxDegreeOfParallelism,
         CancellationToken ct = default)

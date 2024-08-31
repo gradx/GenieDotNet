@@ -54,12 +54,12 @@ public class Ed25519Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParam
 
     public T Import<T>(GeoCryptoKey k)
     {
-        return k.IsPrivate ? Instance.Import<T>(k) : Instance.ImportX509<T>(Convert.FromBase64String(k.Key!));
+        return k.IsPrivate ? Instance.Import<T>(k) : Instance.ImportX509<T>(k.X509!);
     }
 
     public AsymmetricKeyParameter Import(GeoCryptoKey k)
     {
-        return k.IsPrivate ? new Ed25519PrivateKeyParameters(Convert.FromBase64String(k.Key!), 0) : ImportX509(Convert.FromBase64String(k.Key!));
+        return k.IsPrivate ? new Ed25519PrivateKeyParameters(k.X509, 0) : ImportX509(k.X509!);
     }
 
     public T ImportX509<T>(byte[] x509)

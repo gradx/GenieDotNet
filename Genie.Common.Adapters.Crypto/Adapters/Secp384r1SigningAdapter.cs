@@ -34,7 +34,7 @@ public class Secp384r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
     }
     public T Import<T>(GeoCryptoKey k)
     {
-        return k.IsPrivate ? Import<T>(k) : ImportX509<T>(Convert.FromBase64String(k.Key!));
+        return k.IsPrivate ? Import<T>(k) : ImportX509<T>(k.X509!);
     }
 
     public ECDsa? Import(GeoCryptoKey k)
@@ -42,12 +42,12 @@ public class Secp384r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
         if (k.IsPrivate)
         {
             var r = ECDsa.Create();
-            r.ImportPkcs8PrivateKey(Convert.FromBase64String(k.Key!), out int read);
+            r.ImportPkcs8PrivateKey(k.X509, out int read);
             return r;
         }
 
         else
-            return ImportX509(Convert.FromBase64String(k.Key!));
+            return ImportX509(k.X509!);
     }
 
     public T ImportX509<T>(byte[] x509)

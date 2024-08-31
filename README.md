@@ -67,6 +67,9 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | Redpanda| 1  | 17   | 64.67  | 222.95 | 2,791
 | Kafka| 1  | 16   | 66.54  | 264.75 | 4,256
 
+![Unscaled Latency](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_Roundtrip_Singlethreaded.png?raw=true)
+
+![Unscaled Requests per Sec](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSec_Unscaled.png?raw=true)
 
 #### Scaled
 | Broker   | Conn   | Range (Req/sec) | Req/sec  | Mean Lat (ms)   | p99 Lat (ms)  | First Req (ms) | Bad Responses |
@@ -84,6 +87,9 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 | Pulsar  | 32  | 550 - 625 | 540| 61.28  | 119.26 | 1,292
 | Aeron| | | | || | Duplicates and loses messages with multiple threads
 
+![Roundtrip Requests per Sec Scaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSecScaled.png?raw=true)
+
+![Roundtrip Latency Scaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_Roundtrip_Scaled.png?raw=true)
 
 ### Fire & Forget
 #### Baseline
@@ -103,6 +109,9 @@ Startup [Docker](https://github.com/gradx/GenieDotNet/tree/main/GenieDotNet/Dock
 
 ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for comparison only
 
+![Fire & Forget Latency Unscaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_FireForget_SingleThreaded.png?raw=true)
+
+![Fire & Forget Requests Per Sec Unscaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSec_FireForget_Unscaled.png?raw=true)
 #### Scaled
 | Broker   | Connections   | Req/sec | Mean Lat (ms) | p99 Lat(ms) | First Req (ms)
 |---|---|---|---|---|---|
@@ -115,6 +124,9 @@ ZeroMQ and Proto.Actor have no persistence so it's a synthetic benchmark for com
 | Redpanda |  96 | 4,214 | 23.90 | 24.53 | 1,278
 | Kafka |  96 | 4,130 | 24.72 | 46.86 | 2,699
 
+![Fire & Forget Requests Per Sec Scaled](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/RequestsPerSec_FireForget_Scaled.png?raw=true)
+
+![Latency Fire & Forget](https://github.com/gradx/GenieDotNet/blob/main/GenieDotNet/Readme_Files/Latency_FireForget_Scaled.png?raw=true)
 
 ### Overall Ranking
 | Rank  | Broker   | Opinion

@@ -56,7 +56,7 @@ public class ActiveMQService
             {
                 using CancellationTokenSource cts = new();
 
-                if(!egressConn.IsStarted)
+                if (!egressConn.IsStarted)
                     egressConn.Start();
 
                 Console.WriteLine("Starting ActiveMQ Pump: " + cts.Token);
