@@ -1,8 +1,9 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Common.Crypto.Adapters.Interfaces;
+using Genie.Common.Types;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Genie.Common.Crypto.Adapters;
+namespace Genie.Common.Crypto.Adapters.Rsa;
 // Signing
 // Encryption
 public sealed class RsaAdapter : IAsymmetricBase, IAsymmetricSignature<RSAParameters>, IAsymmetricCipher<RSA>

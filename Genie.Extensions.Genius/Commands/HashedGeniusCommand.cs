@@ -11,7 +11,6 @@ using Grpc.Core;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
 using Google.Protobuf;
 using System.Data.HashFunction.CityHash;
-using Genie.Common.Crypto.Adapters;
 using Org.BouncyCastle.Crypto.Parameters;
 using Genie.Common.Adapters;
 using System.Security.Cryptography;
@@ -20,6 +19,11 @@ using Genie.Common.Performance;
 using Utf8StringInterpolation;
 using Microsoft.IO;
 using System.Security.Cryptography.X509Certificates;
+using Org.BouncyCastle.Pqc.Crypto.Crystals.Kyber;
+using Genie.Common.Crypto.Adapters.Pqc;
+using Genie.Common.Crypto.Adapters.Nist;
+using Genie.Common.Crypto.Adapters.Curve25519;
+using Azure.Core;
 
 namespace Genie.Extensions.Genius.Commands;
 
@@ -28,6 +32,7 @@ public record HashedGeniusCommand(IAsyncStreamReader<GeniusEventRequest> Request
 public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommandHandler(genieContext), IRequestHandler<HashedGeniusCommand>
 {
     private static readonly RecyclableMemoryStreamManager manager = new();
+
 
     public async ValueTask<Unit> Handle(HashedGeniusCommand command, CancellationToken cancellationToken)
     {
@@ -65,55 +70,121 @@ public class HashedGeniusCommandHandler(GenieContext genieContext) : BaseCommand
             command.Request.Current.SignedParty = null;
             var hash = cityhash.ComputeHash(MessageExtensions.ToByteArray(command.Request.Current), cancellationToken);
 
-            var signature_verified = Ed25519Adapter.Instance.Verify(hash.Hash,
+            if(command.Request.Current.SealedEnvelope.Key.KeyType == KeyType.Dilithium)
+            {
+                var signature_verified = DilithiumAdapter.Instance.Verify(hash.Hash,
+                    Convert.FromBase64String(signedparty),
+                    DilithiumAdapter.Import(new Common.Types.GeoCryptoKey
+                    {
+                        IsPrivate = false,
+                        KeyType = Common.Types.GeoCryptoKey.CryptoKeyType.Dilithium,
+                        //Key = Convert.ToBase64String(File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")),
+                        X509 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\DilithiumAdapter.cer")
+                    }));
+
+                if (!signature_verified)
+                {
+                    var resp = new GeniusEventResponse { Base = new BaseResponse { Success = false } };
+                    resp.Base.Errors.Add("Signature failed");
+                    await command.Response.WriteAsync(resp, cancellationToken);
+                    break;
+                }
+            }
+            else
+            {
+                var signature_verified = Ed25519Adapter.Instance.Verify(hash.Hash,
                 Convert.FromBase64String(signedparty),
-                Ed25519Adapter.Import(new Common.Types.GeoCryptoKey { IsPrivate = false,
+                Ed25519Adapter.Import(new Common.Types.GeoCryptoKey
+                {
+                    IsPrivate = false,
                     KeyType = Common.Types.GeoCryptoKey.CryptoKeyType.Ed25519,
                     //Key = Convert.ToBase64String(File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")),
                     X509 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Alice\Ed25519SigningAdapter.cer")
                 }));
 
-            if (!signature_verified)
-            {
-                var resp = new GeniusEventResponse { Base = new BaseResponse { Success = false } };
-                resp.Base.Errors.Add("Signature failed");
-                await command.Response.WriteAsync(resp, cancellationToken);
-                break;
+                if (!signature_verified)
+                {
+                    var resp = new GeniusEventResponse { Base = new BaseResponse { Success = false } };
+                    resp.Base.Errors.Add("Signature failed");
+                    await command.Response.WriteAsync(resp, cancellationToken);
+                    break;
+                }
             }
+
+
 
             if (command.Request.Current.SealedEnvelope != null)
             {
-                // Import Alice's Key
-                var sealed_envelope = CosmosAdapter.ToCosmos(command.Request.Current.SealedEnvelope)!;
-                var alice_public_key = X25519Adapter.GetX25519PublicKeyParameters(new X509Certificate2(sealed_envelope.X509!));
-
-                // Import Bob's Private Key
-                var bob_key = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Bob\X25519Adapter.key");
-                var bob_private_key = (X25519PrivateKeyParameters)X25519Adapter.Import(new Common.Types.GeoCryptoKey
+                if (command.Request.Current.SealedEnvelope.Key.QuantumEncapsulation != null)
                 {
-                    IsPrivate = true,
-                    X509 = bob_key
-                });
+                    // Import Alice's Key
+                    var sealed_envelope = CosmosAdapter.ToCosmos(command.Request.Current.SealedEnvelope)!;
+                    var alice_public_key = (KyberPublicKeyParameters)KyberAdapter.ImportX509(sealed_envelope.X509!);
 
-                // Recreate the secret generated from Alice's private key and Bob's public Key
-                var secret = new byte[32];
-                bob_private_key.GenerateSecret(alice_public_key, secret, 0);
+                    // Import Bob's Private Key
+                    var bob_key = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Bob\KyberAdapter.key");
+                    var bob_private_key = (KyberPrivateKeyParameters)KyberAdapter.Import(new Common.Types.GeoCryptoKey
+                    {
+                        IsPrivate = true,
+                        X509 = bob_key
+                    });
 
-                // Extract the HKDF key
-                var envelope = command.Request.Current.SealedEnvelope;
-                var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{envelope.Key.Id}"));
-                var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, [.. envelope.Hkdf]);
+                    // Recreate the secret generated from Bob's private key and Alice's public Key
+                    var kyber = new KyberKemExtractor(bob_private_key);
+                    var secret = kyber.ExtractSecret(sealed_envelope.QuantumEncapsulation);
 
-                // Decrypt the Data
-                var decrypted_bytes = AesAdapter.GcmDecryptData([.. envelope.Data], hkdf_key,[.. envelope.Nonce], [.. envelope.Tag]).ToArray();
-                using var ms = manager.GetStream();
-                await ms.WriteAsync(decrypted_bytes, cancellationToken);
-                ms.Position = 0;
-                using var reader = new StreamReader(ms);               
-                var decrypted_string_message = await reader.ReadToEndAsync(cancellationToken);
 
-                // Proof
-                Assert.IsTrue(decrypted_string_message == "Genie In A Bottle");
+                    // Extract the HKDF key
+                    var envelope = command.Request.Current.SealedEnvelope;
+                    var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{envelope.Key.Id}"));
+                    var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, [.. envelope.Hkdf]);
+
+                    // Decrypt the Data
+                    var decrypted_bytes = AesAdapter.GcmDecryptData([.. envelope.Data], hkdf_key, [.. envelope.Nonce], [.. envelope.Tag]).ToArray();
+                    using var ms = manager.GetStream();
+                    await ms.WriteAsync(decrypted_bytes, cancellationToken);
+                    ms.Position = 0;
+                    using var reader = new StreamReader(ms);
+                    var decrypted_string_message = await reader.ReadToEndAsync(cancellationToken);
+
+                    // Proof
+                    Assert.IsTrue(decrypted_string_message == "Genie In A Bottle");
+                }
+                else
+                {
+                    // Import Alice's Key
+                    var sealed_envelope = CosmosAdapter.ToCosmos(command.Request.Current.SealedEnvelope)!;
+                    var alice_public_key = X25519Adapter.GetX25519PublicKeyParameters(new X509Certificate2(sealed_envelope.X509!));
+
+                    // Import Bob's Private Key
+                    var bob_key = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"Keys\Bob\X25519Adapter.key");
+                    var bob_private_key = (X25519PrivateKeyParameters)X25519Adapter.Import(new Common.Types.GeoCryptoKey
+                    {
+                        IsPrivate = true,
+                        X509 = bob_key
+                    });
+
+                    // Recreate the secret generated from Alice's private key and Bob's public Key
+                    var secret = new byte[32];
+                    bob_private_key.GenerateSecret(alice_public_key, secret, 0);
+
+                    // Extract the HKDF key
+                    var envelope = command.Request.Current.SealedEnvelope;
+                    var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{envelope.Key.Id}"));
+                    var hkdf_key = HKDF.Expand(HashAlgorithmName.SHA256, extract, 24, [.. envelope.Hkdf]);
+
+                    // Decrypt the Data
+                    var decrypted_bytes = AesAdapter.GcmDecryptData([.. envelope.Data], hkdf_key, [.. envelope.Nonce], [.. envelope.Tag]).ToArray();
+                    using var ms = manager.GetStream();
+                    await ms.WriteAsync(decrypted_bytes, cancellationToken);
+                    ms.Position = 0;
+                    using var reader = new StreamReader(ms);
+                    var decrypted_string_message = await reader.ReadToEndAsync(cancellationToken);
+
+                    // Proof
+                    Assert.IsTrue(decrypted_string_message == "Genie In A Bottle");
+                }
+
             }
 
 

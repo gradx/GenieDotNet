@@ -11,10 +11,11 @@ using Adaptive.Aeron.Samples.SimplePublisher;
 using Genie.Scratch.NATS;
 using NATS.Client.Core;
 using Genie.Scratch.MQTTNet;
+using Genie.Scratch.Quantum;
 
 
 
-await MQTTTest.Start();
+Pqc.DilithiumExample();
 
 Console.WriteLine("Here");
 Console.ReadLine();

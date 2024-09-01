@@ -1,4 +1,5 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Common.Crypto.Adapters.Interfaces;
+using Genie.Common.Types;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
@@ -10,7 +11,7 @@ using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Genie.Common.Crypto.Adapters;
+namespace Genie.Common.Crypto.Adapters.Curve25519;
 
 // Signing
 public class Ed25519Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParameters>

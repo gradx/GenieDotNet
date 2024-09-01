@@ -1,4 +1,5 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Common.Crypto.Adapters.Interfaces;
+using Genie.Common.Types;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Asn1.X9;
 using Org.BouncyCastle.Crypto;
@@ -12,7 +13,7 @@ using Org.BouncyCastle.X509;
 using System.Security.Cryptography.X509Certificates;
 
 
-namespace Genie.Common.Crypto.Adapters;
+namespace Genie.Common.Crypto.Adapters.Nist;
 // Signing
 public class Secp256k1Adapter : IAsymmetricBase, IAsymmetricSignature<ICipherParameters>
 {

@@ -20,10 +20,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.cer" Link="Keys\Alice\DilithiumAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.key" Link="Keys\Alice\DilithiumAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer" Link="Keys\Alice\Ed25519SigningAdapter.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key" Link="Keys\Alice\Ed25519SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\KyberAdapter.cer" Link="Keys\Alice\KyberAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\KyberAdapter.key" Link="Keys\Alice\KyberAdapter.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.cer" Link="Keys\Alice\X25519Adapter.cer">
@@ -32,7 +44,13 @@
     <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.key" Link="Keys\Alice\X25519Adapter.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="..\SharedFiles\Keys\Bob\DilithiumAdapter.cer" Link="Keys\Bob\DilithiumAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer" Link="Keys\Bob\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\KyberAdapter.cer" Link="Keys\Bob\KyberAdapter.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\SharedFiles\Keys\Bob\X25519Adapter.cer" Link="Keys\Bob\X25519Adapter.cer">

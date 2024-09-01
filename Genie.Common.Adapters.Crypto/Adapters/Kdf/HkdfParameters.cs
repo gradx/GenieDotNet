@@ -1,6 +1,6 @@
 ﻿using Org.BouncyCastle.Crypto.Parameters;
 
-namespace Genie.Common.Crypto.Adapters;
+namespace Genie.Common.Crypto.Adapters.Kdf;
 public class HkdfParameters
 {
     public HkdfParameters(ECPrivateKeyParameters privKey, ECPublicKeyParameters pubKey, byte[] hkdf, byte[] nonce)

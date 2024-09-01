@@ -178,6 +178,8 @@ enum KeyType {
 	SECP_256K1 = 3; // Signing Oid: 1.3.132.0.10 ansip256k1 (bitcoin)
 	SECP_521R1_SIGNING = 4; // Oid:  1.3.132.0.35 ansip521r1
 	SECP_521R1_AGREEMENT = 5; // Oid: 1.2.840.10045.4.3.4
+	KYBER = 6;
+	DILITHIUM = 7;
 }
 
 enum KeyUsage {
@@ -191,6 +193,7 @@ message GeoCryptoKey {
 	KeyType key_type = 3;
 	KeyUsage key_usage = 4;
 	bool is_private = 5;
+	bytes quantum_encapsulation = 6;
 }
 
 message SealedEnvelope {

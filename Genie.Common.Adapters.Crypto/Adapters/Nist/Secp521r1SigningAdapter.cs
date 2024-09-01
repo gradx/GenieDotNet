@@ -1,14 +1,15 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Common.Crypto.Adapters.Interfaces;
+using Genie.Common.Types;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 
-namespace Genie.Common.Crypto.Adapters;
-public class Secp384r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECDsa>
+namespace Genie.Common.Crypto.Adapters.Nist;
+public class Secp521r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECDsa>
 {
-    private static readonly Lazy<Secp384r1SigningAdapter> _instance = new(() => new());
-    private Secp384r1SigningAdapter() { }
-    public static Secp384r1SigningAdapter Instance { get { return _instance.Value; } }
-    const string oid = "1.3.132.0.34";
+    private static readonly Lazy<Secp521r1SigningAdapter> _instance = new(() => new());
+    private Secp521r1SigningAdapter() { }
+    public static Secp521r1SigningAdapter Instance { get { return _instance.Value; } }
+    const string oid = "1.3.132.0.35";
 
     public T GenerateKeyPair<T>()
     {
@@ -19,18 +20,18 @@ public class Secp384r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
     {
         var key = ECDsa.Create();
         key.GenerateKey(ECCurve.CreateFromValue(oid));
-        key.KeySize = 384;
+        key.KeySize = 521;
         return key;
     }
 
     public byte[] Sign(byte[] data, ECDsa key)
     {
-        return key.SignData(data, HashAlgorithmName.SHA256);
+        return key.SignData(data, HashAlgorithmName.SHA512);
     }
 
     public bool Verify(byte[] data, byte[] signature, ECDsa key)
     {
-        return key.VerifyData(data, signature, HashAlgorithmName.SHA256);
+        return key.VerifyData(data, signature, HashAlgorithmName.SHA512);
     }
     public T Import<T>(GeoCryptoKey k)
     {
@@ -42,7 +43,7 @@ public class Secp384r1SigningAdapter : IAsymmetricBase, IAsymmetricSignature<ECD
         if (k.IsPrivate)
         {
             var r = ECDsa.Create();
-            r.ImportPkcs8PrivateKey(k.X509, out int _);
+            r.ImportPkcs8PrivateKey(k.X509!, out int _);
             return r;
         }
 

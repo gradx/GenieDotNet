@@ -1,4 +1,6 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Common.Crypto.Adapters.Interfaces;
+using Genie.Common.Crypto.Adapters.Kdf;
+using Genie.Common.Types;
 using Org.BouncyCastle.Crypto.Agreement;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Engines;
@@ -11,15 +13,16 @@ using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using Utf8StringInterpolation;
+using HkdfParameters = Genie.Common.Crypto.Adapters.Kdf.HkdfParameters;
 
-namespace Genie.Common.Crypto.Adapters;
-public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
+namespace Genie.Common.Crypto.Adapters.Nist;
+public class Secp384r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
 {
-    private static readonly Lazy<Secp521r1AgreementAdapter> _instance = new(() => new());
-    private Secp521r1AgreementAdapter() { }
-    public static Secp521r1AgreementAdapter Instance { get { return _instance.Value; } }
+    private static readonly Lazy<Secp384r1AgreementAdapter> _instance = new(() => new());
+    private Secp384r1AgreementAdapter() { }
+    public static Secp384r1AgreementAdapter Instance { get { return _instance.Value; } }
 
-    const string oid = "1.3.132.0.35"; // externally with ECDH: 1.2.840.10045.4.3.4
+    const string oid = "1.3.132.0.34";
 
     public T GenerateKeyPair<T>()
     {
@@ -29,7 +32,7 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
     public ECDiffieHellman GenerateKeyPair()
     {
         var key = ECDiffieHellman.Create(ECCurve.CreateFromValue(oid));
-        key.KeySize = 521;
+        key.KeySize = 384;
         return key;
     }
 
@@ -43,7 +46,7 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
         if (k.IsPrivate)
         {
             var r = ECDiffieHellman.Create();
-            r.ImportPkcs8PrivateKey(k.X509!.AsSpan(), out int _);
+            r.ImportPkcs8PrivateKey(k.X509, out int read);
             return r;
         }
         else
@@ -73,10 +76,10 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
     private static byte[] Encryption(bool forEncryption, HkdfParameters provider, byte[] data)
     {
         var gcm = new GcmBlockCipher(new AesEngine());
-        var ies = new IesEngine(new ECDHBasicAgreement(), new Kdf2BytesGenerator(new Sha512Digest()),
-            new HMac(new Sha512Digest()), new PaddedBufferedBlockCipher(gcm.UnderlyingCipher, new ZeroBytePadding()));
+        var ies = new IesEngine(new ECDHBasicAgreement(), new Kdf2BytesGenerator(new Sha256Digest()),
+            new HMac(new Sha256Digest()), new PaddedBufferedBlockCipher(gcm.UnderlyingCipher, new ZeroBytePadding()));
 
-        ies.Init(forEncryption, provider.Private, provider.Public, new IesWithCipherParameters(provider.Hkdf, provider.Nonce, 512, 256));
+        ies.Init(forEncryption, provider.Private, provider.Public, new IesWithCipherParameters(provider.Hkdf, provider.Nonce, 256, 256));
         return ies.ProcessBlock(data, 0, data.Length);
     }
 
@@ -90,7 +93,7 @@ public class Secp521r1AgreementAdapter : IAsymmetricBase, IAsymmetricCipher<Hkdf
     {
 
         PublicKey pubKey = new(new Oid(oid), new AsnEncodedData(oid, new byte[] { 05, 00 }), new AsnEncodedData(ecdh.ExportSubjectPublicKeyInfo()));
-        CertificateRequest request = new(new X500DistinguishedName("CN=" + issuer), pubKey, HashAlgorithmName.SHA512);
+        CertificateRequest request = new(new X500DistinguishedName("CN=" + issuer), pubKey, HashAlgorithmName.SHA256);
         request.CertificateExtensions.Add(new X509KeyUsageExtension(X509KeyUsageFlags.KeyAgreement, critical: false));
         request.CertificateExtensions.Add(new X509BasicConstraintsExtension(false, false, 0, false));
 

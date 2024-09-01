@@ -34,12 +34,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Keys\Alice\" />
     <Folder Include="Keys\Bob\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.cer" Link="Keys\Alice\DilithiumAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer" Link="Keys\Alice\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\KyberAdapter.key" Link="Keys\Bob\KyberAdapter.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\SharedFiles\Keys\Bob\X25519Adapter.key" Link="Keys\Bob\X25519Adapter.key">

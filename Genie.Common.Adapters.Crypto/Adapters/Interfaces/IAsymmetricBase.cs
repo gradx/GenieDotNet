@@ -1,6 +1,6 @@
 ﻿using Genie.Common.Types;
 
-namespace Genie.Common.Crypto.Adapters;
+namespace Genie.Common.Crypto.Adapters.Interfaces;
 
 public interface IAsymmetricBase
 {

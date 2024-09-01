@@ -1,8 +1,10 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using GameLicenseExample;
+using Genie.Common.Crypto.Adapters;
 using System.Diagnostics;
 
 Console.WriteLine("Hello, World!");
+
 var game = new Game(100);
 
 var stopwatch = new Stopwatch();

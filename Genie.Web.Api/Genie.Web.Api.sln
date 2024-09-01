@@ -42,16 +42,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keys", "Keys", "{2DA4BF80-6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alice", "Alice", "{0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}"
 	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\DilithiumAdapter.cer = ..\SharedFiles\Keys\Alice\DilithiumAdapter.cer
+		..\SharedFiles\Keys\Alice\DilithiumAdapter.key = ..\SharedFiles\Keys\Alice\DilithiumAdapter.key
 		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer
 		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key
+		..\SharedFiles\Keys\Alice\KyberAdapter.cer = ..\SharedFiles\Keys\Alice\KyberAdapter.cer
+		..\SharedFiles\Keys\Alice\KyberAdapter.key = ..\SharedFiles\Keys\Alice\KyberAdapter.key
 		..\SharedFiles\Keys\Alice\X25519Adapter.cer = ..\SharedFiles\Keys\Alice\X25519Adapter.cer
 		..\SharedFiles\Keys\Alice\X25519Adapter.key = ..\SharedFiles\Keys\Alice\X25519Adapter.key
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bob", "Bob", "{BEB6C52B-344C-4410-B2D6-8FD1F622F14D}"
 	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\DilithiumAdapter.cer = ..\SharedFiles\Keys\Bob\DilithiumAdapter.cer
+		..\SharedFiles\Keys\Bob\DilithiumAdapter.key = ..\SharedFiles\Keys\Bob\DilithiumAdapter.key
 		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer
 		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.key
+		..\SharedFiles\Keys\Bob\KyberAdapter.cer = ..\SharedFiles\Keys\Bob\KyberAdapter.cer
+		..\SharedFiles\Keys\Bob\KyberAdapter.key = ..\SharedFiles\Keys\Bob\KyberAdapter.key
 		..\SharedFiles\Keys\Bob\X25519Adapter.cer = ..\SharedFiles\Keys\Bob\X25519Adapter.cer
 		..\SharedFiles\Keys\Bob\X25519Adapter.key = ..\SharedFiles\Keys\Bob\X25519Adapter.key
 	EndProjectSection

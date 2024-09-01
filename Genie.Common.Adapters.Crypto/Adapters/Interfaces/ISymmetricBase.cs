@@ -1,4 +1,4 @@
-﻿namespace Genie.Common.Crypto.Adapters;
+﻿namespace Genie.Common.Crypto.Adapters.Interfaces;
 public interface ISymmetricBase
 {
     (byte[] Result, byte[] Tag) Encrypt(Span<byte> data, Span<byte> key, Span<byte> nonce);

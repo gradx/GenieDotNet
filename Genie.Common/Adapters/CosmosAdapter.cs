@@ -597,7 +597,7 @@ public partial class CosmosAdapter
 
     public static T ToCosmos<T>(Grpc.GeoCryptoKey k) where T : GeoCryptoKey, new()
     {
-        return new T { X509 = [.. k.X509], KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id };
+        return new T { X509 = [.. k.X509], KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id, QuantumEncapsulation = k.QuantumEncapsulation.ToArray() };
     }
 
 
@@ -611,6 +611,7 @@ public partial class CosmosAdapter
         s.Nonce = [.. d.Nonce];
         s.Tag = [.. d.Tag];
         s.Cipher = (SealedEnvelope.CipherType)d.Cipher;
+        
         return s;
 
     }

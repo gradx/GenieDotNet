@@ -13,7 +13,9 @@ public record GeoCryptoKey
         Rsa = 2,
         Secp256k1 = 3,
         Secp521r1Signing = 4,
-        Secp521r1Agreement = 5
+        Secp521r1Agreement = 5,
+        Kyber = 6,
+        Dilithium = 7
     }
     public CryptoKeyType KeyType { get; set; }
     public enum Usage
@@ -23,4 +25,5 @@ public record GeoCryptoKey
     }
     public Usage KeyUsage { get; set; }
     public bool IsPrivate { get; set; }
+    public byte[]? QuantumEncapsulation { get; set; }
 }

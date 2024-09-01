@@ -1,4 +1,4 @@
-﻿namespace Genie.Common.Crypto.Adapters;
+﻿namespace Genie.Common.Crypto.Adapters.Interfaces;
 
 public interface IAsymmetricSignature<T>
 {

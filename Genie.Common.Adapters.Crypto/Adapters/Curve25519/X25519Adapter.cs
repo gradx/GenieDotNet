@@ -1,4 +1,6 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Common.Crypto.Adapters.Interfaces;
+using Genie.Common.Crypto.Adapters.Kdf;
+using Genie.Common.Types;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Agreement;
@@ -14,8 +16,9 @@ using Org.BouncyCastle.Math;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
 using System.Security.Cryptography.X509Certificates;
+using HkdfParameters = Genie.Common.Crypto.Adapters.Kdf.HkdfParameters;
 
-namespace Genie.Common.Crypto.Adapters;
+namespace Genie.Common.Crypto.Adapters.Curve25519;
 // Key Agreement
 public class X25519Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
 {
