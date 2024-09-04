@@ -42,6 +42,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keys", "Keys", "{2DA4BF80-6
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alice", "Alice", "{0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}"
 	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\AliceDilithium2.cer = ..\SharedFiles\Keys\Alice\AliceDilithium2.cer
+		..\SharedFiles\Keys\Alice\AliceDilithium2.key = ..\SharedFiles\Keys\Alice\AliceDilithium2.key
+		..\SharedFiles\Keys\Alice\AliceDilithium5.cer = ..\SharedFiles\Keys\Alice\AliceDilithium5.cer
+		..\SharedFiles\Keys\Alice\AliceDilithium5.key = ..\SharedFiles\Keys\Alice\AliceDilithium5.key
+		..\SharedFiles\Keys\Alice\AliceEd448.cer = ..\SharedFiles\Keys\Alice\AliceEd448.cer
+		..\SharedFiles\Keys\Alice\AliceEd448.key = ..\SharedFiles\Keys\Alice\AliceEd448.key
+		..\SharedFiles\Keys\Alice\AliceX448.cer = ..\SharedFiles\Keys\Alice\AliceX448.cer
+		..\SharedFiles\Keys\Alice\AliceX448.key = ..\SharedFiles\Keys\Alice\AliceX448.key
 		..\SharedFiles\Keys\Alice\DilithiumAdapter.cer = ..\SharedFiles\Keys\Alice\DilithiumAdapter.cer
 		..\SharedFiles\Keys\Alice\DilithiumAdapter.key = ..\SharedFiles\Keys\Alice\DilithiumAdapter.key
 		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer
@@ -54,6 +62,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alice", "Alice", "{0B9BA3B0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bob", "Bob", "{BEB6C52B-344C-4410-B2D6-8FD1F622F14D}"
 	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\BobDilithium2.cer = ..\SharedFiles\Keys\Bob\BobDilithium2.cer
+		..\SharedFiles\Keys\Bob\BobDilithium2.key = ..\SharedFiles\Keys\Bob\BobDilithium2.key
+		..\SharedFiles\Keys\Bob\BobDilithium5.cer = ..\SharedFiles\Keys\Bob\BobDilithium5.cer
+		..\SharedFiles\Keys\Bob\BobDilithium5.key = ..\SharedFiles\Keys\Bob\BobDilithium5.key
+		..\SharedFiles\Keys\Bob\BobEd448.cer = ..\SharedFiles\Keys\Bob\BobEd448.cer
+		..\SharedFiles\Keys\Bob\BobEd448.key = ..\SharedFiles\Keys\Bob\BobEd448.key
+		..\SharedFiles\Keys\Bob\BobX448.cer = ..\SharedFiles\Keys\Bob\BobX448.cer
+		..\SharedFiles\Keys\Bob\BobX448.key = ..\SharedFiles\Keys\Bob\BobX448.key
 		..\SharedFiles\Keys\Bob\DilithiumAdapter.cer = ..\SharedFiles\Keys\Bob\DilithiumAdapter.cer
 		..\SharedFiles\Keys\Bob\DilithiumAdapter.key = ..\SharedFiles\Keys\Bob\DilithiumAdapter.key
 		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer
@@ -63,6 +79,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bob", "Bob", "{BEB6C52B-344
 		..\SharedFiles\Keys\Bob\X25519Adapter.cer = ..\SharedFiles\Keys\Bob\X25519Adapter.cer
 		..\SharedFiles\Keys\Bob\X25519Adapter.key = ..\SharedFiles\Keys\Bob\X25519Adapter.key
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Utils", "..\Genie.Utils\Genie.Utils.csproj", "{73072F3E-59C2-4045-8BC3-ED47543182D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genie.Common.Crypto.Nist", "..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj", "{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -106,6 +126,14 @@ Global
 		{F3C91301-8385-4997-941A-9AC48D443417}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3C91301-8385-4997-941A-9AC48D443417}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3C91301-8385-4997-941A-9AC48D443417}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73072F3E-59C2-4045-8BC3-ED47543182D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73072F3E-59C2-4045-8BC3-ED47543182D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73072F3E-59C2-4045-8BC3-ED47543182D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73072F3E-59C2-4045-8BC3-ED47543182D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

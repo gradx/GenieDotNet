@@ -6,7 +6,8 @@ using ZstdSharp;
 while(true)
 {
     Console.WriteLine(@"Enter (K)afka, (R)abbitMQ, (A)ctiveMQ, (Pr)otoActor, (Pu)lsar, (Ap)ache Pulsar, (G)enius, (Z)eroMQ, (Ae)ron, (Ae2)ron, (N)ATS, or (M)QTT");
-    var input = Console.ReadLine();
+    //var input = Console.ReadLine();
+    string input = "g";
 
     Task task = input?.ToLower() switch
     {

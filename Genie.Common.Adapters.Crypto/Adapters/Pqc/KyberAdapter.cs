@@ -32,8 +32,13 @@ public class KyberAdapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
 
     public static AsymmetricCipherKeyPair GenerateKeyPair()
     {
+        return GenerateKeyPair(Params);
+    }
+
+    public static AsymmetricCipherKeyPair GenerateKeyPair(KyberParameters param)
+    {
         var genX = new KyberKeyPairGenerator();
-        var kg = new KyberKeyGenerationParameters(new SecureRandom(), Params);
+        var kg = new KyberKeyGenerationParameters(new SecureRandom(), param);
         genX.Init(kg);
 
         return genX.GenerateKeyPair();

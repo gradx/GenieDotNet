@@ -23,7 +23,7 @@
     <PackageReference Include="Chr.Avro.Confluent" Version="10.4.0" />
     <PackageReference Include="Chr.Avro.Json" Version="10.4.0" />
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.3.0" />
-    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Protobuf" Version="2.5.2" />
+    <PackageReference Include="Confluent.SchemaRegistry.Serdes.Protobuf" Version="2.5.3" />
     <PackageReference Include="DeepEqual" Version="5.1.0" />
     <PackageReference Include="DuckDB.NET.Data.Full" Version="1.0.2" />
     <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.15.5" />
@@ -45,25 +45,31 @@
     <PackageReference Include="Pulsar.Client" Version="3.6.0" />
     <PackageReference Include="RabbitMQ.Client" Version="7.0.0-rc.8" />
     <PackageReference Include="SpanJson" Version="4.2.0" />
-    <PackageReference Include="System.Data.HashFunction.CityHash" Version="2.0.0" />
     <PackageReference Include="System.Runtime.Caching" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
     <PackageReference Include="Utf8StreamReader" Version="1.3.2" />
-    <PackageReference Include="Utf8StringInterpolation" Version="1.3.1" />
     <PackageReference Include="ZLogger" Version="2.5.5" />
     <PackageReference Include="ZstdSharp.Port" Version="0.8.1" />
   </ItemGroup>
 
 
 
+
+
   <ItemGroup>
-    <Protobuf Include="..\SharedFiles\Protos\changefeed.proto">
+    <ProjectReference Include="..\Genie.Utils\Genie.Utils.csproj" />
+  </ItemGroup>
+
+
+
+  <ItemGroup>
+    <Protobuf Include="..\SharedFiles\Protos\changefeed.proto" Access="Public">
       <Link>Protos\changefeed.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\SharedFiles\Protos\event.proto">
+    <Protobuf Include="..\SharedFiles\Protos\event.proto" Access="Public">
       <Link>Protos\event.proto</Link>
     </Protobuf>
-    <Protobuf Include="..\SharedFiles\Protos\shared.proto">
+    <Protobuf Include="..\SharedFiles\Protos\shared.proto" Access="Public">
       <Link>Protos\shared.proto</Link>
     </Protobuf>
   </ItemGroup>

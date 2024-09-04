@@ -22,8 +22,13 @@ public class DilithiumAdapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
 
     public static AsymmetricCipherKeyPair GenerateKeyPair()
     {
+        return GenerateKeyPair(Params);
+    }
+
+    public static AsymmetricCipherKeyPair GenerateKeyPair(DilithiumParameters param)
+    {
         var gen = new DilithiumKeyPairGenerator();
-        gen.Init(new DilithiumKeyGenerationParameters(new SecureRandom(), Params));
+        gen.Init(new DilithiumKeyGenerationParameters(new SecureRandom(), param));
 
         return gen.GenerateKeyPair();
     }

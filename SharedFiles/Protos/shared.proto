@@ -193,7 +193,7 @@ message GeoCryptoKey {
 	KeyType key_type = 3;
 	KeyUsage key_usage = 4;
 	bool is_private = 5;
-	bytes quantum_encapsulation = 6;
+	bytes pqc_e = 6;
 }
 
 message SealedEnvelope {

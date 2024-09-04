@@ -52,4 +52,19 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="EncryptionRequests\kyber_dilithium.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\kyber_ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\x25519_dilithium.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\x25519_ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

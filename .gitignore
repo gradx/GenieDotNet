@@ -22,3 +22,7 @@ Genie.Common.Adapters.Crypto/bin/
 Genie.Actors/bin/
 Genie.Benchmarks/bin/
 Genie.Scratch/bin/
+Genie.Common.Crypto.Nist/bin/
+Genie.Common.Crypto.Nist/obj/
+Genie.Utils/obj/
+Genie.Utils/bin/

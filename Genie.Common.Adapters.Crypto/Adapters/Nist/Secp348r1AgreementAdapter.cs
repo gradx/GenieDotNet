@@ -11,7 +11,6 @@ using Org.BouncyCastle.Crypto.Paddings;
 using Org.BouncyCastle.Crypto.Parameters;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using Utf8StringInterpolation;
 using HkdfParameters = Genie.Common.Crypto.Adapters.Kdf.HkdfParameters;
 

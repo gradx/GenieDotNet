@@ -1,5 +1,4 @@
-﻿using Elastic.Clients.Elasticsearch.Ingest;
-
+﻿
 namespace Genie.Common.Types;
 
 public record GeoCryptoKey
@@ -25,5 +24,5 @@ public record GeoCryptoKey
     }
     public Usage KeyUsage { get; set; }
     public bool IsPrivate { get; set; }
-    public byte[]? QuantumEncapsulation { get; set; }
+    public byte[]? PqcE { get; set; }
 }

@@ -18,11 +18,8 @@ using Utf8StringInterpolation;
 
 namespace GameLicenseExample;
 
-public class Game(int credits)
+public class Game(int credits, bool usePqcSigning, bool usePqcExchange)
 {
-    private const bool usePqcSigning = true;
-    private const bool usePqcExchange = true;
-
     public int Credits { get; set; } = credits;
     
     private const string c_URL = "https://luxur.ai:5003";
@@ -52,7 +49,10 @@ public class Game(int credits)
             HttpClient = CreateHttpClient(c_CERTIFICATE),
         }));
 
-        var req = GetMockLicenseRequest(stringBuilderPool);
+        var req = GetMockLicenseRequest(stringBuilderPool, usePqcExchange, usePqcSigning);
+
+        
+        await File.WriteAllBytesAsync(@$"{(usePqcExchange ? "kyber" : "x25519")}_{(usePqcSigning ? "dilithium" : "ed25519")}.req", MessageExtensions.ToByteArray(req));
 
         var sw = new Stopwatch();
         sw.Start();
@@ -77,7 +77,7 @@ public class Game(int credits)
             }
         }
 
-        static GeniusEventRequest GetMockLicenseRequest(ObjectPool<StringBuilder> pool)
+        static GeniusEventRequest GetMockLicenseRequest(ObjectPool<StringBuilder> pool, bool usePqcExchange, bool usePqcSigning)
         {
             // Create the request
             var req = new GeniusEventRequest
@@ -125,7 +125,7 @@ public class Game(int credits)
             var cityhash = CityHashFactory.Instance.Create(new CityHashConfig { HashSizeInBits = 64 });
             if (usePqcExchange)
                 // Encrypt the message and create the sealed envelope
-                req.SealedEnvelope = CreateSealedEnvelope2(pool, "Genie In A Bottle", @"Keys\Bob\X25519Adapter.cer", out byte[] _);
+                req.SealedEnvelope = CreatePqcSealedEnvelope(pool, "Genie In A Bottle", @"Keys\Bob\X25519Adapter.cer", out byte[] _);
             else
                 req.SealedEnvelope = CreateSealedEnvelope(pool, "Genie In A Bottle", @"Keys\Bob\X25519Adapter.cer", out byte[] _);
 
@@ -170,7 +170,7 @@ public class Game(int credits)
         }
     }
 
-    private static SealedEnvelope CreateSealedEnvelope2(ObjectPool<StringBuilder> pool, string message, string keyPath, out byte[] hkdfKey)
+    private static SealedEnvelope CreatePqcSealedEnvelope(ObjectPool<StringBuilder> pool, string message, string keyPath, out byte[] hkdfKey)
     {
 
         var alice_private_keypair = KyberAdapter.GenerateKeyPair();
@@ -195,7 +195,7 @@ public class Game(int credits)
         // Create a secret with Alice's private key and Bob's public Key
         var kyber = KyberAdapter.GenerateSecret(bob_public_key);
         byte[] secret = kyber.GetSecret();
-        key.QuantumEncapsulation = ByteString.CopyFrom(kyber.GetEncapsulation());
+        key.PqcE = ByteString.CopyFrom(kyber.GetEncapsulation());
 
         // Create the AesGcm salt and nonce
         var hkdf_salt = Utf8String.Format($"{RandomString(pool, 16)}");

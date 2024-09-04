@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Genie.Common\Genie.Common.csproj" />
+    <ProjectReference Include="..\Genie.Utils\Genie.Utils.csproj" />
   </ItemGroup>
 
 </Project>

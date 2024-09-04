@@ -7,8 +7,10 @@ using Genie.Extensions.Genius.Commands;
 using Genie.Grpc;
 using Genie.Web.Api.Common;
 using Genie.Web.Api.Mediator.Commands;
+using Google.Protobuf;
 using Mediator;
 using Microsoft.Extensions.ObjectPool;
+using Org.BouncyCastle.Crypto.Paddings;
 using Proto;
 using System.Net;
 
@@ -16,11 +18,71 @@ namespace Genie.Web.Api.Rest
 {
     public static class PartyEndpoints
     {
+        private static readonly byte[] kyber_dilithium = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\kyber_dilithium.req");
+        private static readonly byte[] kyber_ed25519 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\kyber_ed25519.req");
+        private static readonly byte[] x25519_dilithium = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\x25519_dilithium.req");
+        private static readonly byte[] x25519_ed25519 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\x25519_ed25519.req");
+
         public static void Map(WebApplication app)
         {
             app.MapGet("test", async () =>
             {
                 return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapPost("encryption", async
+                (ObjectPool<GeniePooledObject> geniePool,
+                ActorSystem actorSystem,
+                HttpContext httpContext,
+                IMediator mediator) =>
+            {
+                var cmd = new NetworkBenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, httpContext, geniePool, actorSystem, false);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
+
+            app.MapGet("kd", async
+                    (ObjectPool<GeniePooledObject> geniePool,
+                    ActorSystem actorSystem,
+                    HttpContext httpContext,
+                    IMediator mediator) =>
+            {
+                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, kyber_dilithium, httpContext, geniePool, actorSystem, false);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
+
+            app.MapGet("ke", async
+                (ObjectPool<GeniePooledObject> geniePool,
+                ActorSystem actorSystem,
+                HttpContext httpContext,
+                IMediator mediator) =>
+            {
+                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, kyber_ed25519, httpContext, geniePool, actorSystem, false);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
+
+            app.MapGet("xd", async
+                    (ObjectPool<GeniePooledObject> geniePool,
+                    ActorSystem actorSystem,
+                    HttpContext httpContext,
+                    IMediator mediator) =>
+            {
+                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, x25519_dilithium, httpContext, geniePool, actorSystem, false);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
+            });
+
+            app.MapGet("xe", async
+                    (ObjectPool<GeniePooledObject> geniePool,
+                    ActorSystem actorSystem,
+                    HttpContext httpContext,
+                    IMediator mediator) =>
+            {
+                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, x25519_ed25519, httpContext, geniePool, actorSystem, false);
+                var result = await mediator.Send(cmd);
+                return HttpStatusCode.OK;
             });
 
             app.MapGet("mqtt", async

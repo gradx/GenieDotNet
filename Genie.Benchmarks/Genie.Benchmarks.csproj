@@ -8,6 +8,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="BrokerBenchmarks.cs" />
+    <Compile Remove="PqcBenchmarks.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="..\SharedFiles\appsettings.Development.json" Link="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -20,16 +25,102 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\SharedFiles\luxePod.pfx" Link="luxePod.pfx" />
+    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium2.cer" Link="Keys\Alice\AliceDilithium2.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium2.key" Link="Keys\Alice\AliceDilithium2.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium5.cer" Link="Keys\Alice\AliceDilithium5.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium5.key" Link="Keys\Alice\AliceDilithium5.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\AliceEd448.cer" Link="Keys\Alice\AliceEd448.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\AliceEd448.key" Link="Keys\Alice\AliceEd448.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.cer" Link="Keys\Alice\DilithiumAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.key" Link="Keys\Alice\DilithiumAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer" Link="Keys\Alice\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key" Link="Keys\Alice\Ed25519SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\KyberAdapter.cer" Link="Keys\Alice\KyberAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\KyberAdapter.key" Link="Keys\Alice\KyberAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.cer" Link="Keys\Alice\X25519Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.key" Link="Keys\Alice\X25519Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\BobDilithium2.cer" Link="Keys\Bob\BobDilithium2.cer" />
+    <None Include="..\SharedFiles\Keys\Bob\BobDilithium5.cer" Link="Keys\Bob\BobDilithium5.cer" />
+    <None Include="..\SharedFiles\Keys\Bob\DilithiumAdapter.cer" Link="Keys\Bob\DilithiumAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer" Link="Keys\Bob\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\KyberAdapter.cer" Link="Keys\Bob\KyberAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\X25519Adapter.cer" Link="Keys\Bob\X25519Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\luxePod.pfx" Link="luxePod.pfx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
     <PackageReference Include="DotPulsar" Version="3.3.2" />
+    <PackageReference Include="Google.Protobuf" Version="3.28.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.66.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Genie.Actors\Genie.Actors.csproj" />
+    <Folder Include="Keys\Alice\" />
+    <Folder Include="Keys\Bob\" />
+    <Folder Include="Protos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Genie.Common.Adapters.Crypto\Genie.Common.Crypto.csproj" />
+    <ProjectReference Include="..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="EncryptionRequests\kyber_dilithium.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\kyber_ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\x25519_dilithium.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\x25519_ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,9 @@ using System.Diagnostics;
 
 Console.WriteLine("Hello, World!");
 
-var game = new Game(100);
+// true true works
+// false false
+var game = new Game(100, false, true);
 
 var stopwatch = new Stopwatch();
 

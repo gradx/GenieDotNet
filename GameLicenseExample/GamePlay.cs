@@ -4,7 +4,7 @@ public class GamePlay
 {
     public void Test()
     {
-        var game = new Game(100);
+        var game = new Game(100, true, true);
         game.Risk = 1;
 
         var random = new Random();
