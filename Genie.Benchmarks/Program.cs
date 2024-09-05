@@ -13,6 +13,7 @@ using Genie.Common.Crypto.Adapters.Curve25519;
 using Genie.Common.Crypto.Adapters.Pqc;
 using Org.BouncyCastle.Pqc.Crypto.Crystals.Kyber;
 using Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium;
+using Org.BouncyCastle.Pqc.Crypto.Utilities;
 
 
 //var test = new PqcBenchmarks();
@@ -33,9 +34,8 @@ using Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium;
 //File.WriteAllBytes("BobEd448.key", Ed448Adapter.Instance.Export(bob.Private, true));
 //File.WriteAllBytes("BobEd448.cer", Ed448Adapter.ExportX509PublicCertificate(bob, "Genie").GetRawCertData());
 
-
-
-
+var what = new EncryptionBenchmarks();
+what.GetStats();
 //var results1 = BenchmarkRunner.Run<EncryptionBenchmarks>();
 //var results2 = BenchmarkRunner.Run<PqcNetworkBenchmarks>();
 var results3 = BenchmarkRunner.Run<EncryptionBenchmarks>();

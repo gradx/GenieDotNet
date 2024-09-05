@@ -1,3 +1,32 @@
+
+Nist Dilithium 2 Private: 2560 Public: 1312
+Nist Dilithium 3 Private: 4032 Public: 1952
+Nist Dilithium 5 Private: 4896 Public: 2592
+Nist Kyber 512 Private: 1632 Public: 800
+Nist Kyber 768 Private: 2400 Public: 1184
+Nist Kyber 1024 Private: 3168 Public: 1568
+
+
+Kyber512 Encapsulation 768
+Kyber768 Encapsulation 1088
+Kyber1024 Encapsulation 1568
+Ed25519 Signing 64
+Ed448 Signing 114
+Dilithium 2 Signing 2420
+Dilithium 3 Signing 3309
+Dilithium 5 Signing 4627
+Dilithium 2 Private: 3907 Public: 1336
+Dilithium 3 Private: 6019 Public: 1976
+Dilithium 5 Private: 7523 Public: 2616
+Kyber 512 Private: 1662 Public: 824
+Kyber 768 Private: 2430 Public: 1208
+Kyber 1024 Private: 3198 Public: 1592
+Ed25519 Private: 32 Public: 32
+Ed448 Private: 57 Public: 57
+X25519 Private: 32 Public: 32
+X448 Private: 56 Public: 56
+
+
 Single threaded  (benchmarkdotnet)
 
 | Method                           | Mean         | Error      | StdDev     |
