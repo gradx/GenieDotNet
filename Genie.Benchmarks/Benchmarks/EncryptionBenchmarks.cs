@@ -13,6 +13,7 @@ using System.Collections;
 using System.Data.HashFunction.CityHash;
 using NIST.CVP.ACVTS.Libraries.Crypto.Common.PQC.Kyber;
 using NIST.CVP.ACVTS.Libraries.Crypto.Kyber;
+using Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium;
 
 
 namespace Genie.Benchmarks.Benchmarks
@@ -206,18 +207,18 @@ namespace Genie.Benchmarks.Benchmarks
             Console.WriteLine($@"Dilithium 5 Signing {DilithiumAdapter.Instance.Sign(hash, dilithium5_private).Length}");
 
             var test1 = DilithiumAdapter.GenerateKeyPair(Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium.DilithiumParameters.Dilithium2);
-            Console.WriteLine($@"Dilithium 2 Private: {DilithiumAdapter.Instance.Export(test1.Private, true).Length} Public: {DilithiumAdapter.Instance.Export(test1.Public, false).Length}");
+            Console.WriteLine($@"Dilithium 2 Private: {DilithiumAdapter.Instance.Export(test1.Private, true).Length} ({((DilithiumPrivateKeyParameters)test1.Private).GetEncoded().Length}) Public: {DilithiumAdapter.Instance.Export(test1.Public, false).Length} ({((DilithiumPublicKeyParameters)test1.Public).GetEncoded().Length})");
             var test2 = DilithiumAdapter.GenerateKeyPair(Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium.DilithiumParameters.Dilithium3);
-            Console.WriteLine($@"Dilithium 3 Private: {DilithiumAdapter.Instance.Export(test2.Private, true).Length} Public: {DilithiumAdapter.Instance.Export(test2.Public, false).Length}");
+            Console.WriteLine($@"Dilithium 3 Private: {DilithiumAdapter.Instance.Export(test2.Private, true).Length} ({((DilithiumPrivateKeyParameters)test2.Private).GetEncoded().Length}) Public: {DilithiumAdapter.Instance.Export(test2.Public, false).Length} ({((DilithiumPublicKeyParameters)test2.Public).GetEncoded().Length})");
             var test3 = DilithiumAdapter.GenerateKeyPair(Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium.DilithiumParameters.Dilithium5);
-            Console.WriteLine($@"Dilithium 5 Private: {DilithiumAdapter.Instance.Export(test3.Private, true).Length} Public: {DilithiumAdapter.Instance.Export(test3.Public, false).Length}");
+            Console.WriteLine($@"Dilithium 5 Private: {DilithiumAdapter.Instance.Export(test3.Private, true).Length} ({((DilithiumPrivateKeyParameters)test3.Private).GetEncoded().Length}) Public: {DilithiumAdapter.Instance.Export(test3.Public, false).Length} ({((DilithiumPublicKeyParameters)test3.Public).GetEncoded().Length})");
 
             var test4 = KyberAdapter.GenerateKeyPair(Org.BouncyCastle.Pqc.Crypto.Crystals.Kyber.KyberParameters.kyber512);
-            Console.WriteLine($@"Kyber 512 Private: {KyberAdapter.Export(test4.Private).Length} Public: {KyberAdapter.Export(test4.Public).Length}");
+            Console.WriteLine($@"Kyber 512 Private: {KyberAdapter.Export(test4.Private).Length} ({((KyberPrivateKeyParameters)test4.Private).GetEncoded().Length}) Public: {KyberAdapter.Export(test4.Public).Length} ({((KyberPublicKeyParameters)test4.Public).GetEncoded().Length})");
             var test5 = KyberAdapter.GenerateKeyPair(Org.BouncyCastle.Pqc.Crypto.Crystals.Kyber.KyberParameters.kyber768);
-            Console.WriteLine($@"Kyber 768 Private: {KyberAdapter.Export(test5.Private).Length} Public: {KyberAdapter.Export(test5.Public).Length}");
+            Console.WriteLine($@"Kyber 768 Private: {KyberAdapter.Export(test5.Private).Length} ({((KyberPrivateKeyParameters)test5.Private).GetEncoded().Length}) Public: {KyberAdapter.Export(test5.Public).Length} ({((KyberPublicKeyParameters)test5.Public).GetEncoded().Length})");
             var test6 = KyberAdapter.GenerateKeyPair(Org.BouncyCastle.Pqc.Crypto.Crystals.Kyber.KyberParameters.kyber1024);
-            Console.WriteLine($@"Kyber 1024 Private: {KyberAdapter.Export(test6.Private).Length} Public: {KyberAdapter.Export(test6.Public).Length}");
+            Console.WriteLine($@"Kyber 1024 Private: {KyberAdapter.Export(test6.Private).Length} ({((KyberPrivateKeyParameters)test6.Private).GetEncoded().Length}) Public: {KyberAdapter.Export(test6.Public).Length} ({((KyberPublicKeyParameters)test6.Public).GetEncoded().Length})");
 
 
             var test7 = Ed25519Adapter.GenerateKeyPair();

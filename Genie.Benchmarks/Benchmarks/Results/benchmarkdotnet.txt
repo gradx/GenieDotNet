@@ -15,12 +15,12 @@ Ed448 Signing 114
 Dilithium 2 Signing 2420
 Dilithium 3 Signing 3309
 Dilithium 5 Signing 4627
-Dilithium 2 Private: 3907 Public: 1336
-Dilithium 3 Private: 6019 Public: 1976
-Dilithium 5 Private: 7523 Public: 2616
-Kyber 512 Private: 1662 Public: 824
-Kyber 768 Private: 2430 Public: 1208
-Kyber 1024 Private: 3198 Public: 1592
+Dilithium 2 Private: 3907 (2560) Public: 1336 (1312)
+Dilithium 3 Private: 6019 (4032) Public: 1976 (1952)
+Dilithium 5 Private: 7523 (4896) Public: 2616 (2592)
+Kyber 512 Private: 1662 (1632) Public: 824 (800)
+Kyber 768 Private: 2430 (2400) Public: 1208 (1184)
+Kyber 1024 Private: 3198 (3168) Public: 1592 (1568)
 Ed25519 Private: 32 Public: 32
 Ed448 Private: 57 Public: 57
 X25519 Private: 32 Public: 32
