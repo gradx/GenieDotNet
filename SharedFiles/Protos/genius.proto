@@ -141,7 +141,7 @@ message ChallengePlayedEvent {
 
 message GeniusEventRequest {
 	SignedParty signed_party = 1;
-	SealedEnvelope sealed_envelope = 2;
+	SealedEnvelope sealed_envelope = 2;;
 	oneof Event {
 		MachineBootedEvent booted = 3;
 		MachineShutdownEvent shutdown = 4;

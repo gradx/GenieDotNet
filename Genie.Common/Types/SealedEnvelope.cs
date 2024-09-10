@@ -12,7 +12,7 @@ public record SealedEnvelope : GeoCryptoKey
     {
         None = 0,
         AES = 1,
-        ChaChaPoly = 2
+        ChaCha20Poly = 2
     }
     public CipherType Cipher { get; set; }
 }

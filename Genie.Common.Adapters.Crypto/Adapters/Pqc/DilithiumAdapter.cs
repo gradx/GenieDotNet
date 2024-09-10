@@ -42,7 +42,7 @@ public class DilithiumAdapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
     }
 
 
-    public bool Verify(byte[] data, byte[] signature, ICipherParameters key)
+    public static bool Verify2(byte[] data, byte[] signature, ICipherParameters key)
     {
         var verifier = new DilithiumSigner();
         if (key is DilithiumPrivateKeyParameters @private)
@@ -52,6 +52,11 @@ public class DilithiumAdapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
 
 
         return verifier.VerifySignature(data, signature);
+    }
+
+    public bool Verify(byte[] data, byte[] signature, ICipherParameters key)
+    {
+        return Verify2(data, signature, key);
     }
 
     public T Import<T>(GeoCryptoKey k)

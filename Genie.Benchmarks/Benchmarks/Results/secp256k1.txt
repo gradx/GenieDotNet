@@ -1,0 +1,70 @@
+67 / 59
+
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 23                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 37                 |
+| Build Time (ms)         | 1,468              |
+| Start Time (ms)         | 232                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 121                |
+| Requests                | 1,031,037          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 24.39              |
+| Latency 75th (ms)       | 33.48              |
+| Latency 90th (ms)       | 39.31              |
+| Latency 95th (ms)       | 42.72              |
+| Latency 99th (ms)       | 62.67              |
+| Mean latency (ms)       | 27.89              |
+| Max latency (ms)        | 242.31             |
+| Requests/sec            | 1,213              |
+| Requests/sec (max)      | 9,880              |
+| Read throughput (MB/s)  | 0.18               |
+
+[4:06:50 PM] Overall 976 Period: 979
+[4:07:12 PM] Overall 1052 Period: 1143
+[4:07:33 PM] Overall 1084 Period: 1154
+[4:07:55 PM] Overall 1101 Period: 1156
+[4:08:17 PM] Overall 1109 Period: 1146
+[4:08:39 PM] Overall 1115 Period: 1145
+[4:09:01 PM] Overall 1118 Period: 1144
+[4:09:22 PM] Overall 1122 Period: 1149
+[4:09:45 PM] Overall 1123 Period: 1132
+[4:10:07 PM] Overall 1124 Period: 1133
+[4:10:28 PM] Overall 1126 Period: 1147
+[4:10:50 PM] Overall 1128 Period: 1151
+[4:11:12 PM] Overall 1128 Period: 1133
+[4:11:34 PM] Overall 1129 Period: 1141
+[4:11:56 PM] Overall 1130 Period: 1151
+[4:12:18 PM] Overall 1132 Period: 1154
+[4:12:39 PM] Overall 1133 Period: 1154
+[4:13:01 PM] Overall 1133 Period: 1133
+[4:13:23 PM] Overall 1134 Period: 1154
+[4:13:45 PM] Overall 1135 Period: 1150
+[4:14:07 PM] Overall 1135 Period: 1155
+[4:14:29 PM] Overall 1135 Period: 1137
+[4:14:51 PM] Overall 1135 Period: 1129
+[4:15:13 PM] Overall 1136 Period: 1152
+[4:15:34 PM] Overall 1136 Period: 1156
+[4:15:56 PM] Overall 1136 Period: 1130
+[4:16:18 PM] Overall 1136 Period: 1141
+[4:16:40 PM] Overall 1136 Period: 1133
+[4:17:02 PM] Overall 1136 Period: 1151
+[4:17:24 PM] Overall 1137 Period: 1153
+[4:17:46 PM] Overall 1137 Period: 1134
+[4:18:08 PM] Overall 1137 Period: 1134
+[4:18:30 PM] Overall 1137 Period: 1145
+[4:18:52 PM] Overall 1137 Period: 1131
+[4:19:14 PM] Overall 1137 Period: 1140
+[4:19:36 PM] Overall 1136 Period: 1127
+[4:19:58 PM] Overall 1137 Period: 1145
+[4:20:20 PM] Overall 1137 Period: 1152
+[4:20:41 PM] Overall 1137 Period: 1154
+[4:21:03 PM] Overall 1137 Period: 1139
+[4:21:26 PM] Overall 1137 Period: 1132

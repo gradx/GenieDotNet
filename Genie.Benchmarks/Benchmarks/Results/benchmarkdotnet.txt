@@ -1,3 +1,65 @@
+(?<=Overall )[\d]+
+https://regex101.com/
+
+
+| Method                 | Mean     | Error     | StdDev    |
+|----------------------- |---------:|----------:|----------:|
+| ChaCha20Poly1305       | 3.064 us | 0.0597 us | 0.0733 us | 26 / 62
+| AesGcm                 | 3.574 us | 0.0655 us | 0.1452 us | 26 / 62
+| AesCcm                 | 3.113 us | 0.0567 us | 0.0473 us | 24 / 62
+| BouncyChaCha20Poly1305 | 2.886 us | 0.0569 us | 0.0698 us | 28 / 62
+| BouncyAesGcm           | 3.066 us | 0.0604 us | 0.0646 us | 27 / 62
+| BouncyAesCcm           | 4.165 us | 0.0811 us | 0.0902 us | 23 / 62
+
+| Method                 | Mean     | Error     | StdDev    |
+|----------------------- |---------:|----------:|----------:|
+| ChaCha20Poly1305       | 3.088 us | 0.0612 us | 0.0897 us |
+| AesGcm                 | 3.633 us | 0.0720 us | 0.1669 us |
+| AesCcm                 | 3.150 us | 0.0625 us | 0.1263 us |
+| BouncyChaCha20Poly1305 | 2.875 us | 0.0528 us | 0.0882 us |
+| BouncyAesGcm           | 3.108 us | 0.0598 us | 0.0560 us |
+| BouncyAesCcm           | 4.161 us | 0.0802 us | 0.0711 us |
+
+| Method                 | Mean     | Error     | StdDev    |
+|----------------------- |---------:|----------:|----------:|
+| ChaCha20Poly1305       | 3.049 us | 0.0591 us | 0.0769 us |
+| AesGcm                 | 3.558 us | 0.0709 us | 0.1496 us |
+| AesCcm                 | 3.137 us | 0.0532 us | 0.0779 us |
+| BouncyChaCha20Poly1305 | 2.864 us | 0.0550 us | 0.1196 us |
+| BouncyAesGcm           | 3.001 us | 0.0254 us | 0.0212 us |
+| BouncyAesCcm           | 4.314 us | 0.0845 us | 0.1185 us |
+
+
+
+32 threads
+
+| Method                 | Mean     | Error    | StdDev   |
+|----------------------- |---------:|---------:|---------:|
+| ChaCha20Poly1305       | 36.35 us | 0.726 us | 1.309 us | 37 / 63
+| AesGcm                 | 62.53 us | 2.166 us | 6.386 us | 25 / 63
+| AesCcm                 | 53.28 us | 1.064 us | 1.307 us | 35 / 62
+| BouncyChaCha20Poly1305 | 35.22 us | 0.520 us | 0.869 us | 51 / 62 
+| BouncyAesGcm           | 38.43 us | 0.750 us | 0.833 us | 45 / 62
+| BouncyAesCcm           | 45.45 us | 0.878 us | 1.111 us | 40 / 62
+
+|----------------------- |---------:|---------:|---------:|
+| ChaCha20Poly1305       | 37.38 us | 0.696 us | 0.855 us | 35 / 63
+| AesGcm                 | 56.40 us | 1.127 us | 2.868 us | 27 / 63
+| AesCcm                 | 55.07 us | 1.031 us | 1.574 us | 35 / 62
+| BouncyChaCha20Poly1305 | 35.48 us | 0.709 us | 1.350 us | 51 / 62
+| BouncyAesGcm           | 36.75 us | 0.712 us | 0.762 us | 45 / 62
+| BouncyAesCcm           | 43.10 us | 0.784 us | 0.871 us | 38 / 62
+
+| Method                 | Mean     | Error    | StdDev   |
+|----------------------- |---------:|---------:|---------:|
+| ChaCha20Poly1305       | 36.81 us | 0.698 us | 0.717 us |
+| AesGcm                 | 58.85 us | 1.153 us | 1.829 us |
+| AesCcm                 | 54.41 us | 1.056 us | 1.174 us |
+| BouncyChaCha20Poly1305 | 34.50 us | 0.678 us | 0.833 us |
+| BouncyAesGcm           | 37.01 us | 0.597 us | 0.529 us |
+| BouncyAesCcm           | 43.48 us | 0.845 us | 1.005 us |
+
+
 
 Nist Dilithium 2 Private: 2560 Public: 1312
 Nist Dilithium 3 Private: 4032 Public: 1952
@@ -29,228 +91,335 @@ X448 Private: 56 Public: 56
 
 Single threaded  (benchmarkdotnet)
 
-| Method                           | Mean         | Error      | StdDev     |
-|--------------------------------- |-------------:|-----------:|-----------:|
-| Nist_Dilithium2_KeyGeneration    |  4,915.56 us |  97.924 us | 176.576 us |
-| Nist_Dilithium2_Signing          |  6,480.98 us | 126.509 us | 185.435 us |
-| Nist_Dilithium2_Verification     |  4,379.09 us |  87.367 us | 172.454 us |
-| Nist_Dilithium3_KeyGeneration    |  7,764.00 us | 115.409 us |  90.103 us |
-| Nist_Dilithium3_Signing          | 15,729.13 us | 243.253 us | 215.638 us |
-| Nist_Dilithium3_Verification     |  7,609.38 us | 150.241 us | 190.006 us |
-| Nist_Dilithium5_KeyGeneration    | 14,036.39 us | 275.068 us | 459.577 us |
-| Nist_Dilithium5_Signing          | 18,755.45 us | 361.246 us | 540.696 us |
-| Nist_Dilithium5_Verification     | 13,664.01 us | 271.508 us | 253.969 us |
-| Nist_Kyber512_KeyGeneration      |    314.08 us |   6.222 us |  13.789 us |
-| Nist_Kyber512_Exchange_Sender    |  1,273.56 us |  25.313 us |  44.334 us |
-| Nist_Kyber512_Exchange_Receiver  |    503.02 us |  10.004 us |  15.575 us |
-| Nist_Kyber768_KeyGeneration      |    422.39 us |   8.305 us |  11.911 us |
-| Nist_Kyber768_Exchange_Sender    |  1,548.54 us |  34.545 us | 101.314 us |
-| Nist_Kyber768_Exchange_Receiver  |    745.18 us |  12.256 us |  11.464 us |
-| Nist_Kyber1024_KeyGeneration     |    602.59 us |  11.337 us |  11.135 us |
-| Nist_Kyber1024_Exchange_Sender   |  1,410.77 us |  33.411 us |  94.238 us |
-| Nist_Kyber1024_Exchange_Receiver |  1,035.52 us |  20.447 us |  38.405 us |
-| Ed25519_Signing                  |     33.22 us |   0.661 us |   1.241 us |
-| Ed25519_Verification             |     60.18 us |   1.186 us |   1.914 us |
-| Ed25519_KeyGeneration            |     33.77 us |   0.605 us |   0.829 us |
-| Ed448_Signing                    |    109.22 us |   1.995 us |   3.796 us |
-| Ed448_Verification               |    231.80 us |   4.586 us |   7.662 us |
-| Ed448_KeyGeneration              |    111.26 us |   2.201 us |   2.703 us |
-| X25519_KeyGeneration             |     33.37 us |   0.661 us |   0.926 us |
-| X25519_Exchange_Sender           |     67.63 us |   1.348 us |   2.597 us |
-| X25519_Exchange_Receiver         |     68.60 us |   1.351 us |   2.366 us |
-| X448_KeyGeneration               |    118.91 us |   2.318 us |   6.539 us |
-| X448_Exchange_Sender             |    247.78 us |   4.923 us |   5.669 us |
-| X448_Exchange_Receiver           |    276.62 us |   5.446 us |   6.688 us |
-| Dilithium2_Signing               |    422.63 us |   7.000 us |   5.465 us |
-| Dilithium2_Verification          |     76.31 us |   1.356 us |   1.810 us |
-| Dilithium2_KeyGeneration         |     77.38 us |   1.513 us |   2.529 us |
-| Dilithium3_Signing               |    169.32 us |   3.359 us |   3.449 us |
-| Dilithium3_Verification          |    120.99 us |   2.356 us |   3.379 us |
-| Dilithium3_KeyGeneration         |    133.23 us |   2.444 us |   4.651 us |
-| Dilithium5_Signing               |  1,071.65 us |  20.865 us |  26.388 us |
-| Dilithium5_Verification          |    201.61 us |   3.993 us |   6.561 us |
-| Dilithium5_KeyGeneration         |    193.47 us |   3.794 us |   6.443 us |
-| Kyber512_KeyGeneration           |     35.43 us |   0.698 us |   1.293 us |
-| Kyber512_Exchange_Sender         |     36.73 us |   0.721 us |   0.674 us |
-| Kyber512_Exchange_Receiver       |     45.65 us |   0.877 us |   1.201 us |
-| Kyber768_KeyGeneration           |     52.01 us |   1.033 us |   2.133 us |
-| Kyber768_Exchange_Sender         |     52.10 us |   1.029 us |   1.057 us |
-| Kyber768_Exchange_Receiver       |     63.50 us |   1.257 us |   2.511 us |
-| Kyber1024_KeyGeneration          |     74.47 us |   1.479 us |   2.814 us |
-| Kyber1024_Exchange_Sender        |     72.41 us |   1.447 us |   2.337 us |
-| Kyber1024_Exchange_Receiver      |     89.17 us |   1.761 us |   2.894 us |
+Weierstrass / Koblitz
 
+| Method                               | Mean         | Error      | StdDev     |
+|------------------------------------- |-------------:|-----------:|-----------:|
+| Bouncy_Secp256k1_KeyGeneration       |   397.489 us |  7.5610 us |  7.0726 us | 52
+| Bouncy_Secp256k1_ImportKey_Private   |     1.646 us |  0.0325 us |  0.0374 us | 55
+| Bouncy_Secp256k1_ImportKey_Public    |     5.064 us |  0.0991 us |  0.1656 us | 34
+| Bouncy_Secp256k1_Signing             |   343.285 us |  6.7263 us | 10.2717 us | 40
+| Bouncy_Secp256k1_Verify              |   534.531 us | 10.5227 us | 18.1512 us | 60
+| Bouncy_Secp256k1_Exchange_Sender     |   423.254 us |  8.4279 us |  8.6548 us | 61
+| Bouncy_Secp256k1_Exchange_Receiver   |   434.545 us |  4.4838 us |  3.9748 us | 63
+| Bouncy_Secp256r1_KeyGeneration       |   413.243 us |  6.0019 us |  5.6142 us | 42
+| Bouncy_Secp256r1_ImportKey_Private   |     2.665 us |  0.0513 us |  0.0549 us | 51
+| Bouncy_Secp256r1_ImportKey_Public    |     2.675 us |  0.0499 us |  0.0442 us | 48
+| Bouncy_Secp256r1_Signing             |   421.703 us |  7.5577 us | 13.2367 us | 42
+| Bouncy_Secp256r1_Verify              |   508.937 us | 10.0699 us | 18.4133 us | 62
+| Bouncy_Secp256r1_Exchange_Sender     |   931.520 us | 18.6050 us | 31.0848 us | 65
+| Bouncy_Secp256r1_Exchange_Receiver   |   924.640 us | 17.9427 us | 22.6917 us | 63
+| Bouncy_Secp384r1_KeyGeneration       |   404.357 us |  7.0336 us |  6.2351 us | 42
+| Bouncy_Secp384r1_ImportKey_Private   |     2.681 us |  0.0532 us |  0.1167 us | 50
+| Bouncy_Secp384r1_ImportKey_Public    |     3.014 us |  0.0479 us |  0.0425 us | 46
+| Bouncy_Secp384r1_Signing             |   723.580 us | 14.3264 us | 13.4009 us | 59
+| Bouncy_Secp384r1_Verify              |   790.440 us | 15.4601 us | 24.5213 us | 64
+| Bouncy_Secp384r1_Exchange_Sender     | 1,431.585 us | 27.7824 us | 27.2861 us | 65
+| Bouncy_Secp384r1_Exchange_Receiver   | 1,481.556 us | 29.4991 us | 24.6331 us | 68
+| Bouncy_Secp521r1_KeyGeneration       | 1,004.334 us | 19.6444 us | 33.8856 us | 57
+| Bouncy_Secp521r1_ImportKey_Private   |     2.730 us |  0.0519 us |  0.0577 us | 50
+| Bouncy_Secp521r1_ImportKey_Public    |     3.360 us |  0.0513 us |  0.0480 us | 44
+| Bouncy_Secp521r1_Signing             | 1,022.499 us | 19.8736 us | 27.8600 us | 56
+| Bouncy_Secp521r1_Verify              | 1,050.875 us | 19.7332 us | 21.1143 us | 60
+| Bouncy_Sec521r1_Exchange_Sender      | 1,939.757 us | 38.0146 us | 64.5516 us | 65
+| Bouncy_Sec521r1_Exchange_Receiver    | 1,905.008 us | 37.7834 us | 63.1275 us | 66
+| Secp256r1_KeyGeneration              |   546.075 us | 10.3517 us | 14.5117 us | 37
+| Secp256r1_ImportSigningKey_Private   |   322.747 us |  6.2262 us |  8.3119 us | 36
+| Secp256r1_ImportSigningKey_Public    |   235.503 us |  4.5766 us |  7.2589 us | 31
+| Secp256r1_ImportAgreementKey_Private |   321.729 us |  4.7483 us |  4.2093 us | 37
+| Secp256r1_ImportAgreementKey_Public  |    36.719 us |  0.7310 us |  1.1164 us | 30
+| Secp256r1_Exchange_Sender            |   422.039 us |  8.4114 us | 17.5578 us | 49
+| Secp256r1_Exchange_Receiver          |   416.458 us |  8.2167 us | 14.8164 us | 49
+| Secp256r1_Sign_Signing               |   155.692 us |  2.9563 us |  3.6307 us | 39
+| Secp256r1_Sign_Verify                |   159.279 us |  2.7252 us |  2.4158 us | 38
+| Secp384r1_KeyGeneration              | 1,643.470 us | 32.3180 us | 57.4452 us | 46
+| Secp384r1_ImportSigningKey_Private   |   399.730 us |  7.9552 us |  7.0521 us | 37
+| Secp384r1_ImportSigningKey_Public    |   270.220 us |  5.2183 us |  7.8105 us | 32
+| Secp384r1_ImportAgreementKey_Private |   405.947 us |  7.3390 us | 10.7574 us | 37
+| Secp384r1_ImportAgreementKey_Public  |    36.564 us |  0.7132 us |  0.8490 us | 30
+| Secp384r1_Exchange_Sender            |   718.962 us | 14.1400 us | 13.2266 us | 50
+| Secp384r1_Exchange_Receiver          |   712.286 us | 12.9608 us | 12.1236 us | 50
+| Secp384r1_Sign_Signing               |   407.106 us |  6.3074 us |  5.5914 us | 48
+| Secp384r1_Sign_Verify                |   452.954 us |  9.0331 us | 12.9551 us | 48
+| Secp521r1_KeyGeneration              | 3,313.618 us | 64.8285 us | 79.6152 us | 50
+| Secp521r1_ImportSigningKey_Private   |   522.634 us | 10.3226 us | 21.5471 us | 39
+| Secp521r1_ImportSigningKey_Public    |   318.159 us |  6.3260 us |  7.7689 us | 33
+| Secp521r1_ImportAgreementKey_Private |   526.577 us | 10.3102 us | 16.9399 us | 37
+| Secp521r1_ImportAgreementKey_Public  |    37.096 us |  0.7307 us |  1.0937 us | 30
+| Secp521r1_Exchange_Sender            | 1,149.838 us | 19.8859 us | 29.7643 us | 54
+| Secp521r1_Exchange_Receiver          | 1,152.116 us | 22.5270 us | 29.2915 us | 54
+| Secp521r1_Sign_Signing               |   844.480 us |  7.6892 us |  6.4208 us | 51
+| Secp521r1_Sign_Verify                |   911.646 us | 12.2315 us | 11.4414 us | 51
+
+
+Curve25519
+
+| Method                    | Mean       | Error     | StdDev     | Median     |
+|-------------------------- |-----------:|----------:|-----------:|-----------:|
+| Ed25519_Signing           |  35.401 us | 0.5921 us |  0.5539 us |  35.377 us | 14
+| Ed25519_Verification      |  59.685 us | 0.6656 us |  0.6226 us |  59.739 us | 12
+| Ed25519_KeyGeneration     |  33.583 us | 0.6540 us |  1.1105 us |  33.472 us | 13 
+| Ed25519_ImportKey_Private |   1.456 us | 0.0240 us |  0.0236 us |   1.448 us | 25
+| Ed25519_ImportKey_Public  |   9.337 us | 0.1185 us |  0.0990 us |   9.342 us | 18
+| Ed448_Signing             | 108.500 us | 1.4459 us |  1.3525 us | 108.827 us | 10
+| Ed448_Verification        | 232.451 us | 4.0415 us |  3.5827 us | 231.258 us | 10
+| Ed448_KeyGeneration       | 117.526 us | 0.9471 us |  0.7909 us | 117.587 us | 10
+| Ed448_ImportKey_Private   |   1.461 us | 0.0285 us |  0.0317 us |   1.454 us | 29
+| Ed448_ImportKey_Public    |  24.554 us | 0.4060 us |  0.3798 us |  24.505 us | 15
+| X25519_KeyGeneration      |  32.413 us | 0.4709 us |  0.4175 us |  32.422 us | 14
+| X25519_ImportKey_Private  |   1.385 us | 0.0261 us |  0.0256 us |   1.382 us | 26
+| X25519_ImportKey_Public   |   3.469 us | 0.0579 us |  0.0513 us |   3.461 us | 23
+| X25519_Exchange_Sender    |  66.821 us | 1.2492 us |  1.1685 us |  66.306 us | 12
+| X25519_Exchange_Receiver  |  66.728 us | 1.1982 us |  1.0621 us |  66.532 us | 12
+| X448_KeyGeneration        | 121.747 us | 2.4326 us |  4.0644 us | 121.831 us | 10
+| X448_ImportKey_Private    |   1.535 us | 0.0276 us |  0.0422 us |   1.538 us | 26
+| X448_ImportKey_Public     |   3.805 us | 0.0857 us |  0.2487 us |   3.743 us | 23
+| X448_Exchange_Sender      | 254.837 us | 5.2347 us | 15.1867 us | 248.559 us | 10
+| X448_Exchange_Receiver    | 270.112 us | 4.7948 us |  5.7078 us | 269.743 us | 10
+
+
+Module-Lattice
+
+| Method                       | Mean         | Error      | StdDev     | Median       |
+|----------------------------- |-------------:|-----------:|-----------:|-------------:|
+| Dilithium2_Signing           |   462.013 us |  7.4034 us |  6.9252 us |   459.160 us | 11 / 57
+| Dilithium2_Verification      |    74.175 us |  1.4331 us |  1.8124 us |    73.770 us | 11 / 57
+| Dilithium2_KeyGeneration     |    74.844 us |  1.4629 us |  2.3623 us |    74.273 us | 11 / 57
+| Dilithium2_ImportKey_Private |     8.111 us |  0.1531 us |  0.1991 us |     8.070 us | 18 / 57
+| Dilithium2_ImportKey_Public  |     6.807 us |  0.1299 us |  0.1151 us |     6.799 us | 20 / 57
+| Dilithium3_Signing           |   166.339 us |  3.1682 us |  3.6485 us |   165.061 us | 10 / 57
+| Dilithium3_Verification      |   117.345 us |  2.3254 us |  3.8853 us |   115.913 us | 10 / 57
+| Dilithium3_KeyGeneration     |   130.492 us |  2.5833 us |  4.1715 us |   129.770 us | 17 / 57
+| Dilithium3_ImportKey_Private |     9.271 us |  0.1834 us |  0.2319 us |     9.229 us | 19 / 57
+| Dilithium3_ImportKey_Public  |     7.779 us |  0.1529 us |  0.2093 us |     7.792 us | 10 / 57
+| Dilithium5_Signing           | 1,024.799 us | 20.0953 us | 32.4502 us | 1,023.022 us | 11 / 57
+| Dilithium5_Verification      |   188.644 us |  3.6376 us |  4.3303 us |   189.280 us | 10 / 57
+| Dilithium5_KeyGeneration     |   187.630 us |  2.2766 us |  2.0181 us |   188.217 us | 10 / 57
+| Dilithium5_ImportKey_Private |    10.219 us |  0.1990 us |  0.2917 us |    10.124 us | 17 / 58
+| Dilithium5_ImportKey_Public  |     8.478 us |  0.1644 us |  0.2079 us |     8.468 us | 18 / 57
+| Kyber512_KeyGeneration       |    32.945 us |  0.6547 us |  1.1971 us |    32.619 us | 14 / 57
+| Kyber512_ImportKey_Private   |     2.458 us |  0.0484 us |  0.0977 us |     2.440 us | 27 / 57
+| Kyber512_ImportKey_Public    |     8.560 us |  0.1698 us |  0.2208 us |     8.501 us | 18 / 58
+| Kyber512_Exchange_Sender     |    34.499 us |  0.6706 us |  0.7722 us |    34.366 us | 13 / 57
+| Kyber512_Exchange_Receiver   |    42.584 us |  0.8210 us |  0.7278 us |    42.612 us | 12 / 58
+| Kyber768_KeyGeneration       |    49.518 us |  0.9114 us |  0.8525 us |    49.802 us | 12 / 58
+| Kyber768_ImportKey_Private   |     2.476 us |  0.0495 us |  0.0942 us |     2.456 us | 26 / 58
+| Kyber768_ImportKey_Public    |     7.714 us |  0.1507 us |  0.1259 us |     7.738 us | 14 / 58
+| Kyber768_Exchange_Sender     |    50.939 us |  1.0100 us |  1.1631 us |    50.699 us | 12 / 58
+| Kyber768_Exchange_Receiver   |    60.318 us |  1.1761 us |  1.9971 us |    59.843 us | 11 / 58
+| Kyber1024_KeyGeneration      |    71.201 us |  1.3995 us |  1.6660 us |    70.875 us | 11 / 58
+| Kyber1024_ImportKey_Private  |     2.592 us |  0.0504 us |  0.0755 us |     2.578 us | 26 / 58
+| Kyber1024_ImportKey_Public   |     6.960 us |  0.1350 us |  0.1197 us |     6.920 us | 19 / 58
+| Kyber1024_Exchange_Sender    |    71.423 us |  1.3937 us |  3.1171 us |    70.338 us | 11 / 58
+| Kyber1024_Exchange_Receiver  |    84.907 us |  1.6841 us |  3.2041 us |    84.854 us | 11 / 58
+
+RSA
+
+| Method                | Mean         | Error       | StdDev      |
+|---------------------- |-------------:|------------:|------------:|
+| Rsa1024_KeyGeneration |     1.493 us |   0.0270 us |   0.0322 us | 25
+| Rsa1024_ImportKey     |   230.150 us |   3.5766 us |   3.3456 us | 10
+| Rsa1024_Signing       |   305.572 us |   6.0736 us |   8.7105 us | 10
+| Rsa1024_Verify        |    11.620 us |   0.2241 us |   0.2581 us | 17
+| Rsa2048_KeyGeneration |     1.337 us |   0.0245 us |   0.0511 us | 26
+| Rsa2048_ImportKey     |   764.981 us |  14.2257 us |  14.6087 us | 9
+| Rsa2048_Signing       | 1,179.996 us |  23.2245 us |  33.3079 us | 9
+| Rsa2048_Verify        |    31.572 us |   0.6259 us |   0.8977 us | 14
+| Rsa4096_KeyGeneration |     1.339 us |   0.0265 us |   0.0354 us | 26
+| Rsa4096_ImportKey     | 2,838.826 us |  45.7957 us |  40.5967 us | 9
+| Rsa4096_Signing       | 6,100.416 us | 120.4636 us | 168.8732 us | 9
+| Rsa4096_Verify        |    98.607 us |   1.9290 us |   3.0032 us | 11
+
+NIST Ref
+
+| Method                           | Mean        | Error     | StdDev      | Median      |
+|--------------------------------- |------------:|----------:|------------:|------------:|
+| Nist_Dilithium2_KeyGeneration    |  5,208.3 us | 102.50 us |   197.49 us |  5,162.2 us |
+| Nist_Dilithium2_Signing          |  6,505.7 us | 128.20 us |   294.56 us |  6,387.3 us |
+| Nist_Dilithium2_Verification     |  6,201.5 us | 665.30 us | 1,961.65 us |  5,402.0 us |
+| Nist_Dilithium3_KeyGeneration    |  8,210.4 us | 163.44 us |   368.92 us |  8,161.0 us |
+| Nist_Dilithium3_Signing          | 15,862.6 us | 301.27 us |   469.04 us | 15,696.7 us |
+| Nist_Dilithium3_Verification     |  7,590.0 us | 144.94 us |   166.91 us |  7,567.0 us |
+| Nist_Dilithium5_KeyGeneration    | 14,026.5 us | 278.02 us |   542.25 us | 13,942.4 us |
+| Nist_Dilithium5_Signing          | 18,594.7 us | 365.14 us |   676.82 us | 18,456.2 us |
+| Nist_Dilithium5_Verification     | 13,501.0 us | 259.99 us |   278.18 us | 13,509.8 us |
+| Nist_Kyber512_KeyGeneration      |    314.8 us |   6.25 us |     7.44 us |    312.9 us |
+| Nist_Kyber512_Exchange_Sender    |    930.7 us |  17.17 us |    37.69 us |    928.6 us |
+| Nist_Kyber512_Exchange_Receiver  |    507.0 us |   6.92 us |     5.78 us |    506.0 us |
+| Nist_Kyber768_KeyGeneration      |    428.3 us |   6.63 us |     6.20 us |    428.3 us |
+| Nist_Kyber768_Exchange_Sender    |  1,268.9 us |  58.85 us |   173.53 us |  1,213.3 us |
+| Nist_Kyber768_Exchange_Receiver  |    747.1 us |  14.50 us |    16.12 us |    743.3 us |
+| Nist_Kyber1024_KeyGeneration     |    609.0 us |  11.81 us |    16.17 us |    603.0 us |
+| Nist_Kyber1024_Exchange_Sender   |  1,575.1 us |  60.79 us |   177.32 us |  1,543.7 us |
+| Nist_Kyber1024_Exchange_Receiver |  1,025.4 us |  19.36 us |    19.88 us |  1,020.7 us |
 
 32 threads (benchmarkdotnet)
 
-| Method                           | Mean        | Error     | StdDev    | Median      |
-|--------------------------------- |------------:|----------:|----------:|------------:|
-| Nist_Dilithium2_KeyGeneration    |  5,001.8 us |  98.94 us | 105.87 us |  5,009.2 us |
-| Nist_Dilithium2_Signing          |  6,528.9 us | 126.40 us | 193.02 us |  6,490.0 us |
-| Nist_Dilithium2_Verification     |  4,348.1 us |  86.90 us | 116.00 us |  4,309.8 us |
-| Nist_Dilithium3_KeyGeneration    |  7,995.2 us | 148.34 us | 187.60 us |  7,973.4 us |
-| Nist_Dilithium3_Signing          | 15,743.0 us | 296.31 us | 277.17 us | 15,759.1 us |
-| Nist_Dilithium3_Verification     |  7,663.1 us | 151.94 us | 236.55 us |  7,588.3 us |
-| Nist_Dilithium5_KeyGeneration    | 13,901.2 us | 277.17 us | 379.40 us | 13,882.1 us |
-| Nist_Dilithium5_Signing          | 18,891.6 us | 372.01 us | 611.23 us | 18,931.7 us |
-| Nist_Dilithium5_Verification     | 14,245.9 us | 331.94 us | 968.30 us | 14,082.9 us |
-| Nist_Kyber512_KeyGeneration      |    302.2 us |   6.02 us |   8.44 us |    302.1 us |
-| Nist_Kyber512_Exchange_Sender    |    992.2 us |  44.84 us | 129.38 us |    944.1 us |
-| Nist_Kyber512_Exchange_Receiver  |    493.1 us |   9.67 us |  14.77 us |    492.1 us |
-| Nist_Kyber768_KeyGeneration      |    409.8 us |   7.24 us |   6.77 us |    407.9 us |
-| Nist_Kyber768_Exchange_Sender    |  1,537.7 us |  30.44 us |  79.11 us |  1,534.3 us |
-| Nist_Kyber768_Exchange_Receiver  |    745.8 us |  13.97 us |  14.34 us |    748.4 us |
-| Nist_Kyber1024_KeyGeneration     |    593.0 us |  11.55 us |  18.97 us |    587.9 us |
-| Nist_Kyber1024_Exchange_Sender   |  1,775.9 us | 100.46 us | 296.21 us |  1,944.4 us |
-| Nist_Kyber1024_Exchange_Receiver |  1,033.8 us |  20.17 us |  32.57 us |  1,025.5 us |
-| Ed25519_Signing                  |    268.3 us |   5.22 us |   7.66 us |    268.3 us |
-| Ed25519_Verification             |    472.9 us |   9.19 us |  11.95 us |    473.7 us |
-| Ed25519_KeyGeneration            |    282.6 us |   5.40 us |   7.21 us |    282.3 us |
-| Ed448_Signing                    |    989.1 us |  19.53 us |  30.40 us |    987.7 us |
-| Ed448_Verification               |  1,962.9 us |  38.92 us |  62.85 us |  1,946.3 us |
-| Ed448_KeyGeneration              |    969.6 us |  19.27 us |  37.12 us |    961.6 us |
-| X25519_KeyGeneration             |    275.5 us |   5.32 us |   7.46 us |    274.3 us |
-| X25519_Exchange_Sender           |    524.0 us |  10.44 us |  25.02 us |    519.4 us |
-| X25519_Exchange_Receiver         |    564.4 us |  11.25 us |  30.61 us |    561.9 us |
-| X448_KeyGeneration               |  1,034.5 us |  20.33 us |  36.66 us |  1,039.3 us |
-| X448_Exchange_Sender             |  2,190.6 us |  42.09 us |  48.47 us |  2,189.2 us |
-| X448_Exchange_Receiver           |  2,236.5 us |  42.29 us |  72.95 us |  2,227.2 us |
-| Dilithium2_Signing               |  3,820.4 us |  68.55 us |  64.12 us |  3,806.7 us |
-| Dilithium2_Verification          |    791.5 us |  15.71 us |  18.09 us |    788.7 us |
-| Dilithium2_KeyGeneration         |    793.9 us |  15.13 us |  26.89 us |    790.6 us |
-| Dilithium3_Signing               |  1,689.1 us |  33.71 us |  65.75 us |  1,694.3 us |
-| Dilithium3_Verification          |  1,249.3 us |  24.49 us |  51.13 us |  1,238.5 us |
-| Dilithium3_KeyGeneration         |  1,377.8 us |  27.54 us |  65.98 us |  1,377.9 us |
-| Dilithium5_Signing               | 11,420.6 us | 225.24 us | 406.16 us | 11,262.1 us |
-| Dilithium5_Verification          |  1,925.7 us |  38.36 us |  35.88 us |  1,927.5 us |
-| Dilithium5_KeyGeneration         |  1,940.4 us |  38.67 us |  89.63 us |  1,935.8 us |
-| Kyber512_KeyGeneration           |  1,165.3 us |  22.99 us |  32.98 us |  1,163.7 us |
-| Kyber512_Exchange_Sender         |  1,216.2 us |  21.39 us |  29.27 us |  1,219.8 us |
-| Kyber512_Exchange_Receiver       |  1,484.0 us |  29.30 us |  56.46 us |  1,468.6 us |
-| Kyber768_KeyGeneration           |  1,730.7 us |  33.99 us |  52.92 us |  1,711.6 us |
-| Kyber768_Exchange_Sender         |  1,741.5 us |  32.44 us |  39.84 us |  1,741.3 us |
-| Kyber768_Exchange_Receiver       |  2,133.4 us |  42.25 us | 100.40 us |  2,106.6 us |
-| Kyber1024_KeyGeneration          |  2,443.7 us |  44.12 us |  69.98 us |  2,433.2 us |
-| Kyber1024_Exchange_Sender        |  2,389.6 us |  47.36 us |  86.60 us |  2,385.7 us |
-| Kyber1024_Exchange_Receiver      |  2,860.3 us |  57.13 us | 116.70 us |  2,845.2 us |
+Weierstrass / Koblitz
 
-Network Single threaded  (benchmarkdotnet)
+| Method                               | Mean         | Error      | StdDev     |
+|------------------------------------- |-------------:|-----------:|-----------:|
+| Bouncy_Secp256k1_KeyGeneration       |  7,141.68 us |  48.188 us |  45.075 us | 12
+| Bouncy_Secp256k1_ImportKey_Private   |     27.60 us |   0.248 us |   0.220 us | 28
+| Bouncy_Secp256k1_ImportKey_Public    |     90.50 us |   1.750 us |   4.703 us | 21 
+| Bouncy_Secp256k1_Signing             |  4,819.21 us |  93.456 us | 121.520 us | 10
+| Bouncy_Secp256k1_Verify              | 13,264.92 us | 190.649 us | 169.005 us | 10
+| Bouncy_Secp256k1_Exchange_Sender     | 10,650.00 us | 148.180 us | 131.358 us | 10
+| Bouncy_Secp256k1_Exchange_Receiver   | 11,065.97 us | 194.839 us | 182.253 us | 10
+| Bouncy_Secp256r1_KeyGeneration       |  6,373.05 us | 124.377 us | 170.248 us | 10
+| Bouncy_Secp256r1_ImportKey_Private   |     38.54 us |   0.270 us |   0.239 us | 26
+| Bouncy_Secp256r1_ImportKey_Public    |     37.71 us |   0.646 us |   0.863 us | 26
+| Bouncy_Secp256r1_Signing             |  6,285.17 us | 108.808 us |  96.456 us | 10
+| Bouncy_Secp256r1_Verify              | 12,281.31 us | 166.738 us | 155.967 us | 10
+| Bouncy_Secp256r1_Exchange_Sender     | 22,790.69 us | 387.226 us | 445.930 us | 10
+| Bouncy_Secp256r1_Exchange_Receiver   | 22,867.47 us | 345.762 us | 323.426 us | 10
+| Bouncy_Secp384r1_KeyGeneration       |  7,755.72 us | 119.206 us |  99.542 us | 10
+| Bouncy_Secp384r1_ImportKey_Private   |     37.16 us |   0.308 us |   0.288 us | 28
+| Bouncy_Secp384r1_ImportKey_Public    |     37.81 us |   0.230 us |   0.204 us | 26
+| Bouncy_Secp384r1_Signing             | 13,374.70 us | 262.869 us | 281.267 us | 10
+| Bouncy_Secp384r1_Verify              | 19,935.56 us | 183.947 us | 143.614 us | 10
+| Bouncy_Secp384r1_Exchange_Sender     | 36,534.62 us | 716.294 us | 670.021 us | 10
+| Bouncy_Secp384r1_Exchange_Receiver   | 38,013.17 us | 536.009 us | 475.158 us | 9
+| Bouncy_Secp521r1_KeyGeneration       | 15,094.09 us | 300.972 us | 281.529 us | 12
+| Bouncy_Secp521r1_ImportKey_Private   |     37.71 us |   0.428 us |   0.401 us | 26
+| Bouncy_Secp521r1_ImportKey_Public    |     39.43 us |   0.486 us |   0.455 us | 24
+| Bouncy_Secp521r1_Signing             | 14,739.84 us | 181.038 us | 169.343 us | 10
+| Bouncy_Secp521r1_Verify              | 21,446.17 us | 225.512 us | 199.911 us | 10
+| Bouncy_Sec521r1_Exchange_Sender      | 40,504.78 us | 766.542 us | 787.182 us | 10
+| Bouncy_Sec521r1_Exchange_Receiver    | 41,711.14 us | 686.757 us | 642.393 us | 10
+| Secp256r1_KeyGeneration              |  4,976.14 us |  97.922 us | 116.570 us | 10
+| Secp256r1_ImportSigningKey_Private   |  5,121.67 us | 101.001 us | 141.589 us | 10
+| Secp256r1_ImportSigningKey_Public    |  2,892.36 us |  57.671 us |  94.755 us | 10
+| Secp256r1_ImportAgreementKey_Private |  5,126.15 us |  99.217 us | 139.089 us | 10
+| Secp256r1_ImportAgreementKey_Public  |    353.34 us |   6.917 us |   9.697 us | 13
+| Secp256r1_Exchange_Sender            |  4,676.53 us |  37.512 us |  31.324 us | 10
+| Secp256r1_Exchange_Receiver          |  4,697.93 us |  55.854 us |  43.607 us | 10
+| Secp256r1_Sign_Signing               |  1,374.80 us |  27.268 us |  70.873 us | 10
+| Secp256r1_Sign_Verify                |  1,365.42 us |  26.394 us |  32.414 us | 10
+| Secp384r1_KeyGeneration              | 11,323.95 us | 126.979 us | 106.033 us | 9
+| Secp384r1_ImportSigningKey_Private   |  5,572.29 us | 107.071 us |  94.915 us | 10
+| Secp384r1_ImportSigningKey_Public    |  3,031.12 us |  58.307 us |  64.808 us | 10
+| Secp384r1_ImportAgreementKey_Private |  5,657.53 us | 112.645 us | 154.190 us | 11
+| Secp384r1_ImportAgreementKey_Public  |    341.67 us |   5.536 us |   4.322 us | 13
+| Secp384r1_Exchange_Sender            |  7,250.54 us | 139.345 us | 130.344 us | 10
+| Secp384r1_Exchange_Receiver          |  7,262.93 us | 140.694 us | 187.822 us | 10
+| Secp384r1_Sign_Signing               |  3,183.85 us |  52.901 us |  46.896 us | 10
+| Secp384r1_Sign_Verify                |  3,435.87 us |  46.876 us |  43.848 us | 10
+| Secp521r1_KeyGeneration              | 22,065.15 us | 402.020 us | 376.050 us | 9
+| Secp521r1_ImportSigningKey_Private   |  6,220.81 us | 111.859 us | 137.373 us | 10
+| Secp521r1_ImportSigningKey_Public    |  3,294.78 us |  47.688 us |  39.822 us | 11
+| Secp521r1_ImportAgreementKey_Private |  6,353.33 us | 126.874 us | 294.050 us | 10
+| Secp521r1_ImportAgreementKey_Public  |    373.28 us |   6.329 us |   5.920 us | 13
+| Secp521r1_Exchange_Sender            | 11,963.31 us |  63.839 us |  59.715 us | 9
+| Secp521r1_Exchange_Receiver          | 11,965.47 us | 137.327 us | 114.674 us | 9
+| Secp521r1_Sign_Signing               |  6,114.88 us | 119.944 us | 250.369 us | 9
+| Secp521r1_Sign_Verify                |  6,441.57 us | 128.792 us | 235.504 us | 9
 
-| Method           | Mean     | Error   | StdDev  |
-|----------------- |---------:|--------:|--------:|
-| Kyber_Ed25519    | 145.7 ms | 3.43 ms | 9.84 ms |
-| Kyber_Dilithium  | 158.0 ms | 3.14 ms | 5.90 ms |
-| X25519_Ed25519   | 137.0 ms | 2.73 ms | 6.42 ms |
-| X25519_Dilithium | 138.0 ms | 2.74 ms | 6.56 ms |
+Curve25519
 
-| Kyber_Ed25519    | 131.4 ms | 2.10 ms |  2.50 ms |
-| Kyber_Dilithium  | 154.8 ms | 3.22 ms |  9.35 ms |
-| X25519_Ed25519   | 132.9 ms | 2.64 ms |  5.22 ms |
-| X25519_Dilithium | 148.6 ms | 3.59 ms | 10.54 ms |
+| Method                    | Mean        | Error     | StdDev    |
+|-------------------------- |------------:|----------:|----------:|
+| Ed25519_Signing           |   295.91 us |  5.917 us | 11.952 us | 31
+| Ed25519_Verification      |   466.93 us |  8.832 us | 14.261 us | 34
+| Ed25519_KeyGeneration     |   277.28 us |  5.329 us |  7.113 us | 32
+| Ed25519_ImportKey_Private |    15.44 us |  0.304 us |  0.586 us | 48
+| Ed25519_ImportKey_Public  |    95.33 us |  1.906 us |  3.936 us | 31
+| Ed448_Signing             |   953.12 us | 18.809 us | 37.563 us | 30
+| Ed448_Verification        | 1,913.42 us | 36.739 us | 77.496 us | 35
+| Ed448_KeyGeneration       |   960.79 us | 19.087 us | 35.378 us | 29
+| Ed448_ImportKey_Private   |    14.94 us |  0.291 us |  0.323 us | 48
+| Ed448_ImportKey_Public    |   236.48 us |  4.671 us |  7.675 us | 29
+| X25519_KeyGeneration      |   270.74 us |  5.392 us |  9.009 us | 32
+| X25519_ImportKey_Private  |    15.63 us |  0.303 us |  0.462 us | 48
+| X25519_ImportKey_Public   |    85.31 us |  1.703 us |  3.517 us | 41
+| X25519_Exchange_Sender    |   507.21 us | 10.008 us | 18.797 us | 35
+| X25519_Exchange_Receiver  |   507.33 us |  9.956 us | 18.206 us | 35
+| X448_KeyGeneration        |   965.25 us | 18.875 us | 28.824 us | 30
+| X448_ImportKey_Private    |    15.56 us |  0.306 us |  0.476 us | 47
+| X448_ImportKey_Public     |    75.47 us |  1.456 us |  1.893 us | 40
+| X448_Exchange_Sender      | 2,012.39 us | 36.782 us | 40.883 us | 35
+| X448_Exchange_Receiver    | 1,974.90 us | 27.941 us | 26.136 us | 35
 
-| Method           | Mean     | Error   | StdDev   |
-|----------------- |---------:|--------:|---------:|
-| Kyber_Ed25519    | 143.1 ms | 2.59 ms |  4.67 ms |
-| Kyber_Dilithium  | 155.3 ms | 3.60 ms | 10.43 ms |
-| X25519_Ed25519   | 130.7 ms | 2.61 ms |  4.97 ms |
-| X25519_Dilithium | 147.9 ms | 3.45 ms | 10.06 ms |
+Module-Lattice
 
-| Method           | Mean     | Error   | StdDev  |
-|----------------- |---------:|--------:|--------:|
-| Kyber_Ed25519    | 161.7 ms | 3.18 ms | 6.21 ms |
-| Kyber_Dilithium  | 168.3 ms | 3.33 ms | 9.56 ms |
-| X25519_Ed25519   | 141.4 ms | 2.72 ms | 3.24 ms |
-| X25519_Dilithium | 150.0 ms | 2.76 ms | 2.30 ms |
+| Method                       | Mean         | Error      | StdDev     |
+|----------------------------- |-------------:|-----------:|-----------:|
+| Dilithium2_Signing           |  4,182.16 us |  83.487 us | 232.728 us | 35
+| Dilithium2_Verification      |    751.17 us |  15.021 us |  14.051 us | 28
+| Dilithium2_KeyGeneration     |    756.15 us |  12.381 us |  10.975 us | 28
+| Dilithium2_ImportKey_Private |    140.26 us |   2.752 us |   4.521 us | 30 
+| Dilithium2_ImportKey_Public  |    105.34 us |   1.870 us |   1.658 us | 35
+| Dilithium3_Signing           |  1,609.28 us |  28.871 us |  38.542 us | 30
+| Dilithium3_Verification      |  1,172.79 us |  18.556 us |  17.357 us | 29
+| Dilithium3_KeyGeneration     |  1,284.11 us |  23.631 us |  30.727 us | 29 
+| Dilithium3_ImportKey_Private |    165.61 us |   2.779 us |   2.599 us | 32
+| Dilithium3_ImportKey_Public  |    127.41 us |   2.544 us |   3.808 us | 31
+| Dilithium5_Signing           | 11,025.17 us | 216.667 us | 373.740 us | 34
+| Dilithium5_Verification      |  1,845.53 us |  34.456 us |  42.315 us | 30
+| Dilithium5_KeyGeneration     |  1,873.74 us |  37.454 us |  82.995 us | 31
+| Dilithium5_ImportKey_Private |    197.06 us |   3.934 us |   5.888 us | 32
+| Dilithium5_ImportKey_Public  |    140.70 us |   2.659 us |   2.731 us | 34
+| Kyber512_KeyGeneration       |  1,110.46 us |  21.742 us |  39.205 us | 13 
+| Kyber512_ImportKey_Private   |     37.74 us |   0.446 us |   0.417 us | 42
+| Kyber512_ImportKey_Public    |    139.59 us |   2.268 us |   2.785 us | 34
+| Kyber512_Exchange_Sender     |  1,144.89 us |  22.175 us |  29.603 us | 13
+| Kyber512_Exchange_Receiver   |  1,387.99 us |  16.465 us |  13.749 us | 12
+| Kyber768_KeyGeneration       |  1,699.10 us |  33.580 us |  60.552 us | 12
+| Kyber768_ImportKey_Private   |     38.98 us |   0.723 us |   0.743 us | 40
+| Kyber768_ImportKey_Public    |    130.51 us |   2.527 us |   2.911 us | 33
+| Kyber768_Exchange_Sender     |  1,657.48 us |  23.924 us |  21.208 us | 12
+| Kyber768_Exchange_Receiver   |  2,005.05 us |  38.883 us |  41.604 us | 12
+| Kyber1024_KeyGeneration      |  2,395.99 us |  46.458 us |  72.329 us | 11
+| Kyber1024_ImportKey_Private  |     43.68 us |   0.809 us |   0.757 us | 41
+| Kyber1024_ImportKey_Public   |    142.47 us |   2.795 us |   3.219 us | 36
+| Kyber1024_Exchange_Sender    |  2,316.74 us |  46.315 us |  69.322 us | 11
+| Kyber1024_Exchange_Receiver  |  2,759.13 us |  25.016 us |  20.890 us | 11
 
-| Method           | Mean     | Error   | StdDev   |
-|----------------- |---------:|--------:|---------:|
-| Kyber_Ed25519    | 161.5 ms | 3.18 ms |  4.24 ms |
-| Kyber_Dilithium  | 164.0 ms | 3.16 ms |  7.57 ms |
-| X25519_Ed25519   | 140.3 ms | 4.34 ms | 12.51 ms |
-| X25519_Dilithium | 152.8 ms | 3.04 ms |  5.56 ms |
+RSA
 
-| Method           | Mean     | Error   | StdDev  |
-|----------------- |---------:|--------:|--------:|
-| Kyber_Ed25519    | 157.6 ms | 2.80 ms | 2.88 ms |
-| Kyber_Dilithium  | 163.2 ms | 3.23 ms | 4.42 ms |
-| X25519_Ed25519   | 141.6 ms | 2.82 ms | 5.01 ms |
-| X25519_Dilithium | 156.8 ms | 3.13 ms | 8.61 ms |
-
-
-2 threads
-| Method           | Mean     | Error    | StdDev   |
-|----------------- |---------:|---------:|---------:|
-| Kyber_Ed25519    | 289.0 ms | 18.34 ms | 51.44 ms |
-| Kyber_Dilithium  | 351.1 ms | 23.02 ms | 65.30 ms |
-| X25519_Ed25519   | 254.2 ms | 13.17 ms | 38.62 ms |
-| X25519_Dilithium | 312.9 ms | 15.74 ms | 46.41 ms |
-
-10 threads
-
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 1.882 s | 0.0371 s | 0.0903 s |
-| Kyber_Dilithium  | 2.097 s | 0.0418 s | 0.1122 s |
-| X25519_Ed25519   | 1.771 s | 0.0418 s | 0.1232 s |
-| X25519_Dilithium | 1.787 s | 0.0352 s | 0.0999 s |
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 1.778 s | 0.0351 s | 0.0800 s |
-| Kyber_Dilithium  | 1.908 s | 0.0399 s | 0.1169 s |
-| X25519_Ed25519   | 1.664 s | 0.0329 s | 0.0860 s |
-| X25519_Dilithium | 1.817 s | 0.0449 s | 0.1318 s |
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 1.847 s | 0.0366 s | 0.1033 s |
-| Kyber_Dilithium  | 1.906 s | 0.0492 s | 0.1451 s |
-| X25519_Ed25519   | 1.612 s | 0.0321 s | 0.0852 s |
-| X25519_Dilithium | 1.792 s | 0.0354 s | 0.0761 s |
-
-32 threads
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 4.755 s | 0.0942 s | 0.2106 s |
-| Kyber_Dilithium  | 4.930 s | 0.0986 s | 0.2597 s |
-| X25519_Ed25519   | 5.095 s | 0.1010 s | 0.2153 s |
-| X25519_Dilithium | 5.203 s | 0.1037 s | 0.2186 s |
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 4.980 s | 0.0996 s | 0.2227 s |
-| Kyber_Dilithium  | 4.470 s | 0.0888 s | 0.2039 s |
-| X25519_Ed25519   | 4.588 s | 0.0980 s | 0.2890 s |
-| X25519_Dilithium | 5.110 s | 0.1022 s | 0.1498 s |
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 5.177 s | 0.1030 s | 0.2676 s |
-| Kyber_Dilithium  | 5.042 s | 0.0983 s | 0.1643 s |
-| X25519_Ed25519   | 5.375 s | 0.1065 s | 0.1594 s |
-| X25519_Dilithium | 5.287 s | 0.1043 s | 0.2107 s |
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 5.085 s | 0.0996 s | 0.1551 s |
-| Kyber_Dilithium  | 4.918 s | 0.1055 s | 0.3110 s |
-| X25519_Ed25519   | 4.676 s | 0.0913 s | 0.1646 s |
-| X25519_Dilithium | 4.917 s | 0.0983 s | 0.2589 s |
-
-| Method           | Mean    | Error    | StdDev   |
-|----------------- |--------:|---------:|---------:|
-| Kyber_Ed25519    | 5.208 s | 0.1028 s | 0.1661 s |
-| Kyber_Dilithium  | 4.897 s | 0.0976 s | 0.2538 s |
-| X25519_Ed25519   | 5.090 s | 0.1010 s | 0.1970 s |
-| X25519_Dilithium | 5.031 s | 0.0986 s | 0.1702 s |
+| Method                | Mean         | Error      | StdDev       |
+|---------------------- |-------------:|-----------:|-------------:|
+| Rsa1024_KeyGeneration |     17.64 us |   0.337 us |     0.361 us | 45
+| Rsa1024_ImportKey     |  1,965.57 us |  41.386 us |   120.069 us | 34
+| Rsa1024_Signing       |  2,559.48 us |  50.597 us |   104.492 us | 38
+| Rsa1024_Verify        |    125.93 us |   1.229 us |     1.090 us | 31
+| Rsa2048_KeyGeneration |     16.08 us |   0.171 us |     0.151 us | 48
+| Rsa2048_ImportKey     |  6,148.41 us | 121.390 us |   162.053 us | 45
+| Rsa2048_Signing       |  8,744.13 us | 174.217 us |   305.127 us | 53
+| Rsa2048_Verify        |    279.44 us |   5.299 us |     6.308 us | 34
+| Rsa4096_KeyGeneration |     15.28 us |   0.177 us |     0.148 us | 49
+| Rsa4096_ImportKey     | 20,644.01 us | 400.833 us |   535.100 us | 53
+| Rsa4096_Signing       | 41,652.53 us | 826.758 us | 1,932.520 us | 58
+| Rsa4096_Verify        |    760.74 us |  15.003 us |    22.912 us | 38
 
 
+NIST
 
-kyber_ed25519 2,481 / 2,484 / 2,532, 2,559 / 2,537 rps -- network (2,057b): flip flops 2/3.  
-x25519_ed25519 2,411 / 2,582 / 2,556 / 2,608 rps / 2,588 -- network (805b): fastest
-x25519_dilithium 2,230 / 2,342 / 2,359 / 2,371 / 2,358 rps -- network (5,133b): flip flops 2/3
-kyber_dilithium 2,252 / 2,321 / 2,276 / 2,351 / 2,334 rps  -- network (6,384b): slowest
+| Method                           | Mean       | Error      | StdDev     | Median     |
+|--------------------------------- |-----------:|-----------:|-----------:|-----------:|
+| Nist_Dilithium2_KeyGeneration    |  68.331 ms |  2.4814 ms |  7.1196 ms |  66.609 ms |
+| Nist_Dilithium2_Signing          |  69.256 ms |  0.4121 ms |  0.4048 ms |  69.195 ms |
+| Nist_Dilithium2_Verification     |  50.041 ms |  0.8897 ms |  0.7430 ms |  49.672 ms |
+| Nist_Dilithium3_KeyGeneration    |  99.225 ms |  1.9580 ms |  3.9102 ms |  98.996 ms |
+| Nist_Dilithium3_Signing          | 157.625 ms |  4.1595 ms | 11.3163 ms | 155.284 ms |
+| Nist_Dilithium3_Verification     |  76.745 ms |  1.5179 ms |  1.5588 ms |  76.619 ms |
+| Nist_Dilithium5_KeyGeneration    | 163.840 ms |  2.9605 ms |  2.3113 ms | 164.071 ms |
+| Nist_Dilithium5_Signing          | 194.552 ms |  4.1019 ms | 11.8350 ms | 192.998 ms |
+| Nist_Dilithium5_Verification     | 125.658 ms |  1.7687 ms |  1.6544 ms | 125.893 ms |
+| Nist_Kyber512_KeyGeneration      |   2.553 ms |  0.0217 ms |  0.0193 ms |   2.556 ms |
+| Nist_Kyber512_Exchange_Sender    |  59.847 ms |  4.0529 ms | 11.8864 ms |  62.919 ms |
+| Nist_Kyber512_Exchange_Receiver  |   5.084 ms |  0.6216 ms |  1.8329 ms |   4.135 ms |
+| Nist_Kyber768_KeyGeneration      |   3.632 ms |  0.0801 ms |  0.2336 ms |   3.586 ms |
+| Nist_Kyber768_Exchange_Sender    |  71.838 ms |  7.1865 ms | 21.1895 ms |  71.049 ms |
+| Nist_Kyber768_Exchange_Receiver  |   7.462 ms |  0.7722 ms |  2.2524 ms |   6.476 ms |
+| Nist_Kyber1024_KeyGeneration     |   5.163 ms |  0.1071 ms |  0.3141 ms |   5.182 ms |
+| Nist_Kyber1024_Exchange_Sender   |  92.254 ms | 11.1140 ms | 32.7699 ms |  90.031 ms |
+| Nist_Kyber1024_Exchange_Receiver |   8.474 ms |  0.2627 ms |  0.7496 ms |   8.380 ms |
+
+
+kyber_ed25519 2,481 / 2,484 / 2,532, 2,559 / 2,537 rps -- network (1,231b): 
+x25519_ed25519 2,411 / 2,582 / 2,556 / 2,608 rps / 2,588 -- network (804b): 
+x25519_dilithium 2,230 / 2,342 / 2,359 / 2,371 / 2,358 rps -- network (5,134b): 
+kyber_dilithium 2,252 / 2,321 / 2,276 / 2,351 / 2,334 rps  -- network (5,557b): 
 
 

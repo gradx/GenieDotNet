@@ -1,0 +1,47 @@
+67 / 53
+
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 37                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 39                 |
+| Build Time (ms)         | 1,498              |
+| Start Time (ms)         | 1,477              |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 113                |
+| Requests                | 444,491            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 60.87              |
+| Latency 75th (ms)       | 69.92              |
+| Latency 90th (ms)       | 80.05              |
+| Latency 95th (ms)       | 93.82              |
+| Latency 99th (ms)       | 135.05             |
+| Mean latency (ms)       | 64.74              |
+| Max latency (ms)        | 272.89             |
+| Requests/sec            | 529                |
+| Requests/sec (max)      | 5,434              |
+| Read throughput (MB/s)  | 0.08               |
+
+[5:00:36 PM] Overall 454 Period: 455
+[5:01:26 PM] Overall 474 Period: 497
+[5:02:17 PM] Overall 481 Period: 494
+[5:03:07 PM] Overall 483 Period: 493
+[5:03:58 PM] Overall 485 Period: 492
+[5:04:49 PM] Overall 485 Period: 488
+[5:05:40 PM] Overall 487 Period: 495
+[5:06:31 PM] Overall 487 Period: 492
+[5:07:22 PM] Overall 488 Period: 494
+[5:08:12 PM] Overall 488 Period: 493
+[5:09:03 PM] Overall 489 Period: 491
+[5:09:54 PM] Overall 489 Period: 492
+[5:10:46 PM] Overall 489 Period: 488
+[5:11:36 PM] Overall 489 Period: 498
+[5:12:26 PM] Overall 490 Period: 495
+[5:13:17 PM] Overall 490 Period: 492
+[5:14:08 PM] Overall 490 Period: 496
+

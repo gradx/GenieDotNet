@@ -9,12 +9,20 @@ public record GeoCryptoKey
     {
         X25519 = 0,
         Ed25519 = 1,
-        Rsa = 2,
-        Secp256k1 = 3,
-        Secp521r1Signing = 4,
-        Secp521r1Agreement = 5,
-        Kyber = 6,
-        Dilithium = 7
+        Rsa_2048 = 2,
+        Rsa_3072 = 3,
+        Rsa_4096 = 4,
+
+        Secp256k1 = 10,
+        Secp256r1 = 11,
+        Secp384r1 = 12,
+        Secp521r1 = 13,
+        Kyber512 = 14,
+        Kyber768 = 15,
+        Kyber1024 = 16,
+        Dilithium2 = 17,
+        Dilithium3 = 18,
+        Dilithium5 = 19
     }
     public CryptoKeyType KeyType { get; set; }
     public enum Usage

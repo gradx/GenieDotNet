@@ -1,13 +1,19 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using GameLicenseExample;
 using Genie.Common.Crypto.Adapters;
+using Genie.Common.Crypto.Adapters.Pqc;
+using Genie.Grpc;
+using Org.BouncyCastle.Pqc.Crypto.Crystals.Dilithium;
 using System.Diagnostics;
 
 Console.WriteLine("Hello, World!");
 
 // true true works
 // false false
-var game = new Game(100, false, true);
+
+
+
+var game = new Game(100, KeyType.Dilithium3, KeyType.Kyber512);
 
 var stopwatch = new Stopwatch();
 

@@ -3,7 +3,7 @@ using Genie.Common.Performance;
 using Microsoft.Extensions.ObjectPool;
 using NetTopologySuite.Features;
 using NetTopologySuite.Geometries;
-using System.Data.HashFunction.CityHash;
+using System.IO.Hashing;
 
 
 namespace Genie.Common.Adapters
@@ -11,7 +11,7 @@ namespace Genie.Common.Adapters
 
     public class MapAdapter
     {
-        private readonly static ICityHash hasher = CityHashFactory.Instance.Create(new CityHashConfig { HashSizeInBits = 64 });
+        private readonly static XxHash64 hasher = new XxHash64();
 
         public static AttributesTable ReverseGeoCode<T>(ObjectPool<T> pool, Geometry geo, AttributesTable attrs) where T : class
         {
@@ -61,7 +61,8 @@ namespace Genie.Common.Adapters
                 //mapMutex.WaitOne();
                 //var mapConn = DuckDbSupport.InstanceSpatial;
 
-                var hashKey = hasher.ComputeHash(geo.AsBinary()).AsHexString();
+                hasher.Append(geo.AsBinary());
+
 
                 //ObjectCache cache = MemoryCache.Default;
                 //var cached = cache[hashKey];

@@ -1,0 +1,94 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 14                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 38                 |
+| Build Time (ms)         | 2,925              |
+| Start Time (ms)         | 266                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 144                |
+| Requests                | 1,660,827          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 13.79              |
+| Latency 75th (ms)       | 24.03              |
+| Latency 90th (ms)       | 28.53              |
+| Latency 95th (ms)       | 30.31              |
+| Latency 99th (ms)       | 33.80              |
+| Mean latency (ms)       | 17.31              |
+| Max latency (ms)        | 163.96             |
+| Requests/sec            | 1,941              |
+| Requests/sec (max)      | 6,532              |
+| Read throughput (MB/s)  | 0.28               |
+
+[5:34:28 PM] Overall 1388 Period: 1389
+[5:34:41 PM] Overall 1589 Period: 1859
+[5:34:55 PM] Overall 1675 Period: 1878
+[5:35:08 PM] Overall 1715 Period: 1849
+[5:35:22 PM] Overall 1742 Period: 1855
+[5:35:36 PM] Overall 1752 Period: 1804
+[5:35:50 PM] Overall 1757 Period: 1791
+[5:36:03 PM] Overall 1764 Period: 1817
+[5:36:17 PM] Overall 1772 Period: 1839
+[5:36:31 PM] Overall 1777 Period: 1823
+[5:36:44 PM] Overall 1782 Period: 1835
+[5:36:58 PM] Overall 1788 Period: 1858
+[5:37:11 PM] Overall 1793 Period: 1855
+[5:37:25 PM] Overall 1797 Period: 1843
+[5:37:38 PM] Overall 1800 Period: 1853
+[5:37:52 PM] Overall 1801 Period: 1815
+[5:38:06 PM] Overall 1802 Period: 1821
+[5:38:19 PM] Overall 1805 Period: 1848
+[5:38:33 PM] Overall 1808 Period: 1863
+[5:38:46 PM] Overall 1811 Period: 1870
+[5:38:59 PM] Overall 1814 Period: 1874
+[5:39:13 PM] Overall 1815 Period: 1855
+[5:39:27 PM] Overall 1815 Period: 1809
+[5:39:40 PM] Overall 1816 Period: 1824
+[5:39:54 PM] Overall 1817 Period: 1852
+[5:40:08 PM] Overall 1818 Period: 1839
+[5:40:21 PM] Overall 1819 Period: 1863
+[5:40:34 PM] Overall 1821 Period: 1858
+[5:40:48 PM] Overall 1822 Period: 1865
+[5:41:01 PM] Overall 1823 Period: 1838
+[5:41:15 PM] Overall 1822 Period: 1813
+[5:41:29 PM] Overall 1822 Period: 1812
+[5:41:43 PM] Overall 1823 Period: 1855
+[5:41:56 PM] Overall 1823 Period: 1807
+[5:42:10 PM] Overall 1824 Period: 1862
+[5:42:23 PM] Overall 1825 Period: 1887
+[5:42:36 PM] Overall 1827 Period: 1872
+[5:42:50 PM] Overall 1826 Period: 1817
+[5:43:04 PM] Overall 1827 Period: 1835
+[5:43:17 PM] Overall 1827 Period: 1839
+[5:43:31 PM] Overall 1827 Period: 1836
+[5:43:44 PM] Overall 1828 Period: 1868
+[5:43:58 PM] Overall 1829 Period: 1874
+[5:44:11 PM] Overall 1829 Period: 1844
+[5:44:25 PM] Overall 1829 Period: 1816
+[5:44:39 PM] Overall 1829 Period: 1826
+[5:44:52 PM] Overall 1829 Period: 1845
+[5:45:06 PM] Overall 1830 Period: 1856
+[5:45:19 PM] Overall 1830 Period: 1851
+[5:45:33 PM] Overall 1831 Period: 1871
+[5:45:46 PM] Overall 1832 Period: 1873
+[5:46:00 PM] Overall 1832 Period: 1836
+[5:46:13 PM] Overall 1832 Period: 1829
+[5:46:27 PM] Overall 1832 Period: 1820
+[5:46:41 PM] Overall 1832 Period: 1836
+[5:46:55 PM] Overall 1831 Period: 1796
+[5:47:08 PM] Overall 1832 Period: 1867
+[5:47:21 PM] Overall 1832 Period: 1873
+[5:47:35 PM] Overall 1833 Period: 1876
+[5:47:48 PM] Overall 1833 Period: 1845
+[5:48:02 PM] Overall 1833 Period: 1833
+[5:48:15 PM] Overall 1834 Period: 1854
+[5:48:29 PM] Overall 1834 Period: 1846
+[5:48:42 PM] Overall 1834 Period: 1866
+[5:48:56 PM] Overall 1835 Period: 1874
+[5:49:09 PM] Overall 1835 Period: 1864
+[5:49:23 PM] Overall 1835 Period: 1816

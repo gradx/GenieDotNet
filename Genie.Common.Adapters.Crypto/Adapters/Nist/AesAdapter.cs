@@ -1,5 +1,6 @@
 ﻿using System.Security.Cryptography;
 using Genie.Common.Crypto.Adapters.Interfaces;
+using Org.BouncyCastle.Crypto.Paddings;
 
 namespace Genie.Common.Crypto.Adapters.Nist;
 public class AesAdapter : ISymmetricBase
@@ -40,29 +41,25 @@ public class AesAdapter : ISymmetricBase
         fsIn.Close();
     }
 
-    public static void CbcDecryptStream(string inputFile, string outputFile, byte[] key, byte[] iv)
+
+    public static (byte[] Result, byte[] Tag) CcmEncryptData(Span<byte> data, Span<byte> key, Span<byte> nonce)
     {
-        FileStream fsCrypt = new(inputFile, FileMode.Open);
-        FileStream fsOut = new(outputFile, FileMode.Create, FileAccess.Write);
+        byte[] ciphertext = new byte[data.Length];
+        byte[] tag = new byte[16];
+        var aes = new AesCcm(key);
 
-        Aes c = Aes.Create();
-        c.Mode = CipherMode.CBC;
-        c.KeySize = 256;
-        c.BlockSize = 128;
-        c.Padding = PaddingMode.PKCS7;
+        aes.Encrypt(nonce, data, ciphertext, tag);
 
-        var decryptor = c.CreateDecryptor(key, iv);
+        return (ciphertext, tag);
+    }
 
-        byte[] buffer = new byte[4096];
-        int read;
+    public static Span<byte> CcmDecryptData(byte[] data, byte[] key, byte[] nonce, byte[] tag)
+    {
+        byte[] plaintext = new byte[data.Length];
+        var aes = new AesCcm(key);
+        aes.Decrypt(nonce, data, tag, plaintext);
 
-        var cs = new CryptoStream(fsCrypt, decryptor, CryptoStreamMode.Read);
-        while ((read = cs.Read(buffer, 0, buffer.Length)) > 0)
-            fsOut.Write(buffer, 0, read);
-
-        cs.Close();
-        fsCrypt.Close();
-        fsOut.Close();
+        return plaintext;
     }
 
     public static (byte[] Result, byte[] Tag) GcmEncryptData(Span<byte> data, Span<byte> key, Span<byte> nonce)
@@ -71,7 +68,9 @@ public class AesAdapter : ISymmetricBase
         byte[] result = new byte[data.Length];
         var spanned = result.AsSpan();
         var tag = new byte[16];
+        
         c.Encrypt(nonce, data, spanned, tag.AsSpan());
+        
         return (result, tag);
     }
 
@@ -80,7 +79,9 @@ public class AesAdapter : ISymmetricBase
         AesGcm c = new(key, 16);
         var result = new byte[data.Length];
         var spanned = result.AsSpan();
+        
         c.Decrypt(nonce, data, tag, spanned);
+
         return spanned;
     }
 }

@@ -41,48 +41,132 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Keys", "Keys", "{2DA4BF80-6AD9-4214-A568-E63CF8BAD745}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Alice", "Alice", "{0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}"
-	ProjectSection(SolutionItems) = preProject
-		..\SharedFiles\Keys\Alice\AliceDilithium2.cer = ..\SharedFiles\Keys\Alice\AliceDilithium2.cer
-		..\SharedFiles\Keys\Alice\AliceDilithium2.key = ..\SharedFiles\Keys\Alice\AliceDilithium2.key
-		..\SharedFiles\Keys\Alice\AliceDilithium5.cer = ..\SharedFiles\Keys\Alice\AliceDilithium5.cer
-		..\SharedFiles\Keys\Alice\AliceDilithium5.key = ..\SharedFiles\Keys\Alice\AliceDilithium5.key
-		..\SharedFiles\Keys\Alice\AliceEd448.cer = ..\SharedFiles\Keys\Alice\AliceEd448.cer
-		..\SharedFiles\Keys\Alice\AliceEd448.key = ..\SharedFiles\Keys\Alice\AliceEd448.key
-		..\SharedFiles\Keys\Alice\AliceX448.cer = ..\SharedFiles\Keys\Alice\AliceX448.cer
-		..\SharedFiles\Keys\Alice\AliceX448.key = ..\SharedFiles\Keys\Alice\AliceX448.key
-		..\SharedFiles\Keys\Alice\DilithiumAdapter.cer = ..\SharedFiles\Keys\Alice\DilithiumAdapter.cer
-		..\SharedFiles\Keys\Alice\DilithiumAdapter.key = ..\SharedFiles\Keys\Alice\DilithiumAdapter.key
-		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer
-		..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key
-		..\SharedFiles\Keys\Alice\KyberAdapter.cer = ..\SharedFiles\Keys\Alice\KyberAdapter.cer
-		..\SharedFiles\Keys\Alice\KyberAdapter.key = ..\SharedFiles\Keys\Alice\KyberAdapter.key
-		..\SharedFiles\Keys\Alice\X25519Adapter.cer = ..\SharedFiles\Keys\Alice\X25519Adapter.cer
-		..\SharedFiles\Keys\Alice\X25519Adapter.key = ..\SharedFiles\Keys\Alice\X25519Adapter.key
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bob", "Bob", "{BEB6C52B-344C-4410-B2D6-8FD1F622F14D}"
-	ProjectSection(SolutionItems) = preProject
-		..\SharedFiles\Keys\Bob\BobDilithium2.cer = ..\SharedFiles\Keys\Bob\BobDilithium2.cer
-		..\SharedFiles\Keys\Bob\BobDilithium2.key = ..\SharedFiles\Keys\Bob\BobDilithium2.key
-		..\SharedFiles\Keys\Bob\BobDilithium5.cer = ..\SharedFiles\Keys\Bob\BobDilithium5.cer
-		..\SharedFiles\Keys\Bob\BobDilithium5.key = ..\SharedFiles\Keys\Bob\BobDilithium5.key
-		..\SharedFiles\Keys\Bob\BobEd448.cer = ..\SharedFiles\Keys\Bob\BobEd448.cer
-		..\SharedFiles\Keys\Bob\BobEd448.key = ..\SharedFiles\Keys\Bob\BobEd448.key
-		..\SharedFiles\Keys\Bob\BobX448.cer = ..\SharedFiles\Keys\Bob\BobX448.cer
-		..\SharedFiles\Keys\Bob\BobX448.key = ..\SharedFiles\Keys\Bob\BobX448.key
-		..\SharedFiles\Keys\Bob\DilithiumAdapter.cer = ..\SharedFiles\Keys\Bob\DilithiumAdapter.cer
-		..\SharedFiles\Keys\Bob\DilithiumAdapter.key = ..\SharedFiles\Keys\Bob\DilithiumAdapter.key
-		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer
-		..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.key
-		..\SharedFiles\Keys\Bob\KyberAdapter.cer = ..\SharedFiles\Keys\Bob\KyberAdapter.cer
-		..\SharedFiles\Keys\Bob\KyberAdapter.key = ..\SharedFiles\Keys\Bob\KyberAdapter.key
-		..\SharedFiles\Keys\Bob\X25519Adapter.cer = ..\SharedFiles\Keys\Bob\X25519Adapter.cer
-		..\SharedFiles\Keys\Bob\X25519Adapter.key = ..\SharedFiles\Keys\Bob\X25519Adapter.key
-	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Utils", "..\Genie.Utils\Genie.Utils.csproj", "{73072F3E-59C2-4045-8BC3-ED47543182D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genie.Common.Crypto.Nist", "..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj", "{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Common.Crypto.Nist", "..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj", "{F9B395A5-79CD-4AC5-8140-37F7C3F0655A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Secp", "Secp", "{DDEC9E89-87D3-4AD3-8606-E375C956E89E}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\BobSecp256k1Adapter.cer = ..\SharedFiles\Keys\Bob\BobSecp256k1Adapter.cer
+		..\SharedFiles\Keys\Bob\BobSecp256k1Adapter.key = ..\SharedFiles\Keys\Bob\BobSecp256k1Adapter.key
+		..\SharedFiles\Keys\Bob\BobSecp256r1SigningAdapter.cer = ..\SharedFiles\Keys\Bob\BobSecp256r1SigningAdapter.cer
+		..\SharedFiles\Keys\Bob\BobSecp256r1SigningAdapter.key = ..\SharedFiles\Keys\Bob\BobSecp256r1SigningAdapter.key
+		..\SharedFiles\Keys\Bob\BobSecp384r1SigningAdapter.cer = ..\SharedFiles\Keys\Bob\BobSecp384r1SigningAdapter.cer
+		..\SharedFiles\Keys\Bob\BobSecp384r1SigningAdapter.key = ..\SharedFiles\Keys\Bob\BobSecp384r1SigningAdapter.key
+		..\SharedFiles\Keys\Bob\BobSecp521r1SigningAdapter.cer = ..\SharedFiles\Keys\Bob\BobSecp521r1SigningAdapter.cer
+		..\SharedFiles\Keys\Bob\BobSecp521r1SigningAdapter.key = ..\SharedFiles\Keys\Bob\BobSecp521r1SigningAdapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Secp", "Secp", "{BE50BBEF-A370-4086-85A0-C3A2FEC21F29}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\AliceSecp256k1Adapter.cer = ..\SharedFiles\Keys\Alice\AliceSecp256k1Adapter.cer
+		..\SharedFiles\Keys\Alice\AliceSecp256k1Adapter.key = ..\SharedFiles\Keys\Alice\AliceSecp256k1Adapter.key
+		..\SharedFiles\Keys\Alice\AliceSecp256r1SigningAdapter.cer = ..\SharedFiles\Keys\Alice\AliceSecp256r1SigningAdapter.cer
+		..\SharedFiles\Keys\Alice\AliceSecp256r1SigningAdapter.key = ..\SharedFiles\Keys\Alice\AliceSecp256r1SigningAdapter.key
+		..\SharedFiles\Keys\Alice\AliceSecp384r1SigningAdapter.cer = ..\SharedFiles\Keys\Alice\AliceSecp384r1SigningAdapter.cer
+		..\SharedFiles\Keys\Alice\AliceSecp384r1SigningAdapter.key = ..\SharedFiles\Keys\Alice\AliceSecp384r1SigningAdapter.key
+		..\SharedFiles\Keys\Alice\AliceSecp521r1SigningAdapter.cer = ..\SharedFiles\Keys\Alice\AliceSecp521r1SigningAdapter.cer
+		..\SharedFiles\Keys\Alice\AliceSecp521r1SigningAdapter.key = ..\SharedFiles\Keys\Alice\AliceSecp521r1SigningAdapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rsa", "Rsa", "{9CA98DC8-871C-4A0B-943E-34049F3D36AB}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\Rsa\AliceRsa1024Adapter.cer = ..\SharedFiles\Keys\Alice\Rsa\AliceRsa1024Adapter.cer
+		..\SharedFiles\Keys\Alice\Rsa\AliceRsa1024Adapter.key = ..\SharedFiles\Keys\Alice\Rsa\AliceRsa1024Adapter.key
+		..\SharedFiles\Keys\Alice\Rsa\AliceRsa2048Adapter.cer = ..\SharedFiles\Keys\Alice\Rsa\AliceRsa2048Adapter.cer
+		..\SharedFiles\Keys\Alice\Rsa\AliceRsa2048Adapter.key = ..\SharedFiles\Keys\Alice\Rsa\AliceRsa2048Adapter.key
+		..\SharedFiles\Keys\Alice\Rsa\AliceRsa4096Adapter.cer = ..\SharedFiles\Keys\Alice\Rsa\AliceRsa4096Adapter.cer
+		..\SharedFiles\Keys\Alice\Rsa\AliceRsa4096Adapter.key = ..\SharedFiles\Keys\Alice\Rsa\AliceRsa4096Adapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Rsa", "Rsa", "{AEAE982E-C5E5-43F4-AFFD-3694D008DF46}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\Rsa\BobRsa1024Adapter.cer = ..\SharedFiles\Keys\Bob\Rsa\BobRsa1024Adapter.cer
+		..\SharedFiles\Keys\Bob\Rsa\BobRsa1024Adapter.key = ..\SharedFiles\Keys\Bob\Rsa\BobRsa1024Adapter.key
+		..\SharedFiles\Keys\Bob\Rsa\BobRsa2048Adapter.cer = ..\SharedFiles\Keys\Bob\Rsa\BobRsa2048Adapter.cer
+		..\SharedFiles\Keys\Bob\Rsa\BobRsa2048Adapter.key = ..\SharedFiles\Keys\Bob\Rsa\BobRsa2048Adapter.key
+		..\SharedFiles\Keys\Bob\Rsa\BobRsa4096Adapter.cer = ..\SharedFiles\Keys\Bob\Rsa\BobRsa4096Adapter.cer
+		..\SharedFiles\Keys\Bob\Rsa\BobRsa4096Adapter.key = ..\SharedFiles\Keys\Bob\Rsa\BobRsa4096Adapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Curve25519", "Curve25519", "{A20E66C9-8436-4484-BB0A-4BFDBE098F34}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\Curve25519\BobEd448.cer = ..\SharedFiles\Keys\Bob\Curve25519\BobEd448.cer
+		..\SharedFiles\Keys\Bob\Curve25519\BobEd448.key = ..\SharedFiles\Keys\Bob\Curve25519\BobEd448.key
+		..\SharedFiles\Keys\Bob\Curve25519\BobX448.cer = ..\SharedFiles\Keys\Bob\Curve25519\BobX448.cer
+		..\SharedFiles\Keys\Bob\Curve25519\BobX448.key = ..\SharedFiles\Keys\Bob\Curve25519\BobX448.key
+		..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.cer
+		..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.key
+		..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.cer = ..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.cer
+		..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.key = ..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModuleLattice", "ModuleLattice", "{60AEF05E-5646-487F-B24A-51525E62913B}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium2.cer = ..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium2.cer
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium2.key = ..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium2.key
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium3.cer = ..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium3.cer
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium3.key = ..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium3.key
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium5.cer = ..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium5.cer
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium5.key = ..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium5.key
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber1024.cer = ..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber1024.cer
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber1024.key = ..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber1024.key
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber512.cer = ..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber512.cer
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber512.key = ..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber512.key
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber768.cer = ..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber768.cer
+		..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber768.key = ..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber768.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Curve25519", "Curve25519", "{90FB84C3-8F67-4DCD-AE0D-BE4313234BE5}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.cer = ..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.cer
+		..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.key = ..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.key
+		..\SharedFiles\Keys\Alice\Curve25519\AliceX448.cer = ..\SharedFiles\Keys\Alice\Curve25519\AliceX448.cer
+		..\SharedFiles\Keys\Alice\Curve25519\AliceX448.key = ..\SharedFiles\Keys\Alice\Curve25519\AliceX448.key
+		..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.cer = ..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.cer
+		..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.key = ..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.key
+		..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.cer = ..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.cer
+		..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.key = ..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModuleLattice", "ModuleLattice", "{F802A7A2-D1F6-4A2C-BD5F-FCE2E137DF9F}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.cer = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.cer
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.key = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.key
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.cer = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.cer
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.key = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.key
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.cer = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.cer
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.key = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.key
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.cer = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.cer
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.key = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.key
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.cer = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.cer
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.key = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.key
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.cer = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.cer
+		..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.key = ..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bouncy", "Bouncy", "{3B124940-E98A-4B51-AFF2-B44DECD1A087}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp256R1.cer = ..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp256R1.cer
+		..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp256R1.key = ..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp256R1.key
+		..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp384R1.cer = ..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp384R1.cer
+		..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp384R1.key = ..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp384R1.key
+		..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp521R1.cer = ..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp521R1.cer
+		..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp521R1.key = ..\SharedFiles\Keys\Alice\Secp\Bouncy\AliceSecp521R1.key
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bouncy", "Bouncy", "{062C4C6E-CAB6-4D8B-A4A9-094602D4173E}"
+	ProjectSection(SolutionItems) = preProject
+		..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp256R1.cer = ..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp256R1.cer
+		..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp256R1.key = ..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp256R1.key
+		..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp384R1.cer = ..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp384R1.cer
+		..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp384R1.key = ..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp384R1.key
+		..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp521R1.cer = ..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp521R1.cer
+		..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp521R1.key = ..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp521R1.key
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -143,6 +227,16 @@ Global
 		{2DA4BF80-6AD9-4214-A568-E63CF8BAD745} = {6BE6890F-D8A6-49D6-9D18-F82D88EB0953}
 		{0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5} = {2DA4BF80-6AD9-4214-A568-E63CF8BAD745}
 		{BEB6C52B-344C-4410-B2D6-8FD1F622F14D} = {2DA4BF80-6AD9-4214-A568-E63CF8BAD745}
+		{DDEC9E89-87D3-4AD3-8606-E375C956E89E} = {BEB6C52B-344C-4410-B2D6-8FD1F622F14D}
+		{BE50BBEF-A370-4086-85A0-C3A2FEC21F29} = {0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}
+		{9CA98DC8-871C-4A0B-943E-34049F3D36AB} = {0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}
+		{AEAE982E-C5E5-43F4-AFFD-3694D008DF46} = {BEB6C52B-344C-4410-B2D6-8FD1F622F14D}
+		{A20E66C9-8436-4484-BB0A-4BFDBE098F34} = {BEB6C52B-344C-4410-B2D6-8FD1F622F14D}
+		{60AEF05E-5646-487F-B24A-51525E62913B} = {BEB6C52B-344C-4410-B2D6-8FD1F622F14D}
+		{90FB84C3-8F67-4DCD-AE0D-BE4313234BE5} = {0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}
+		{F802A7A2-D1F6-4A2C-BD5F-FCE2E137DF9F} = {0B9BA3B0-805D-40FE-BD71-DA3EA9870ED5}
+		{3B124940-E98A-4B51-AFF2-B44DECD1A087} = {BE50BBEF-A370-4086-85A0-C3A2FEC21F29}
+		{062C4C6E-CAB6-4D8B-A4A9-094602D4173E} = {DDEC9E89-87D3-4AD3-8606-E375C956E89E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E145E9C1-1C32-4C32-B9E5-527B3264C841}

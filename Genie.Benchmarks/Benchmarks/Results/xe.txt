@@ -1,232 +1,6 @@
+56 / 50
 
-
-32 conn 
-
-| load                    |                    |
-| ----------------------- | ------------------ |
-| Max CPU Usage (%)       | 0                  |
-| Max Cores usage (%)     | 15                 |
-| Max Working Set (MB)    | 36                 |
-| Max Private Memory (MB) | 37                 |
-| Build Time (ms)         | 2,998              |
-| Start Time (ms)         | 898                |
-| Published Size (KB)     | 72,368             |
-| Symbols Size (KB)       | 0                  |
-| .NET Core SDK Version   | 8.0.401            |
-| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
-| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 608                |
-| Requests                | 2,052,093          |
-| Bad responses           | 0                  |
-| Latency 50th (ms)       | 9.83               |
-| Latency 75th (ms)       | 21.46              |
-| Latency 90th (ms)       | 25.65              |
-| Latency 95th (ms)       | 27.62              |
-| Latency 99th (ms)       | 32.16              |
-| Mean latency (ms)       | 14.01              |
-| Max latency (ms)        | 138.80             |
-| Requests/sec            | 2,411              |
-| Requests/sec (max)      | 7,483              |
-| Read throughput (MB/s)  | 0.35               |
-
-[8:57:48 AM] Overall 1467 Period: 1471
-[8:58:00 AM] Overall 1687 Period: 1986
-[8:58:12 AM] Overall 1820 Period: 2162
-[8:58:23 AM] Overall 1899 Period: 2187
-[8:58:35 AM] Overall 1947 Period: 2171
-[8:58:46 AM] Overall 1989 Period: 2228
-[8:58:57 AM] Overall 2021 Period: 2244
-[8:59:08 AM] Overall 2047 Period: 2244
-[8:59:19 AM] Overall 2072 Period: 2304
-[8:59:30 AM] Overall 2090 Period: 2272
-[8:59:42 AM] Overall 2096 Period: 2159
-[8:59:53 AM] Overall 2114 Period: 2339
-[9:00:03 AM] Overall 2131 Period: 2357
-[9:00:14 AM] Overall 2147 Period: 2378
-[9:00:24 AM] Overall 2159 Period: 2353
-[9:00:35 AM] Overall 2172 Period: 2379
-[9:00:45 AM] Overall 2184 Period: 2403
-[9:00:56 AM] Overall 2191 Period: 2329
-[9:01:07 AM] Overall 2197 Period: 2295
-[9:01:18 AM] Overall 2202 Period: 2324
-[9:01:28 AM] Overall 2208 Period: 2323
-[9:01:39 AM] Overall 2213 Period: 2331
-[9:01:50 AM] Overall 2218 Period: 2346
-[9:02:01 AM] Overall 2224 Period: 2357
-[9:02:11 AM] Overall 2230 Period: 2388
-[9:02:22 AM] Overall 2234 Period: 2351
-[9:02:33 AM] Overall 2235 Period: 2245
-[9:02:44 AM] Overall 2232 Period: 2165
-[9:02:55 AM] Overall 2235 Period: 2314
-[9:03:06 AM] Overall 2237 Period: 2300
-[9:03:17 AM] Overall 2240 Period: 2351
-[9:03:27 AM] Overall 2245 Period: 2407
-[9:03:38 AM] Overall 2248 Period: 2337
-[9:03:48 AM] Overall 2251 Period: 2364
-[9:03:59 AM] Overall 2255 Period: 2394
-[9:04:09 AM] Overall 2259 Period: 2423
-[9:04:20 AM] Overall 2261 Period: 2335
-[9:04:31 AM] Overall 2262 Period: 2321
-[9:04:42 AM] Overall 2260 Period: 2168
-[9:04:54 AM] Overall 2255 Period: 2101
-[9:05:06 AM] Overall 2252 Period: 2130
-[9:05:17 AM] Overall 2250 Period: 2170
-[9:05:28 AM] Overall 2252 Period: 2327
-[9:05:39 AM] Overall 2254 Period: 2353
-[9:05:49 AM] Overall 2257 Period: 2431
-[9:06:00 AM] Overall 2258 Period: 2293
-[9:06:11 AM] Overall 2259 Period: 2291
-[9:06:22 AM] Overall 2260 Period: 2327
-[9:06:32 AM] Overall 2261 Period: 2320
-[9:06:43 AM] Overall 2261 Period: 2271
-[9:06:54 AM] Overall 2263 Period: 2344
-[9:07:05 AM] Overall 2265 Period: 2368
-[9:07:15 AM] Overall 2267 Period: 2394
-[9:07:26 AM] Overall 2269 Period: 2390
-[9:07:36 AM] Overall 2270 Period: 2330
-[9:07:47 AM] Overall 2270 Period: 2291
-[9:07:58 AM] Overall 2271 Period: 2321
-[9:08:09 AM] Overall 2272 Period: 2309
-[9:08:19 AM] Overall 2274 Period: 2378
-[9:08:30 AM] Overall 2275 Period: 2388
-[9:08:40 AM] Overall 2277 Period: 2376
-[9:08:51 AM] Overall 2278 Period: 2330
-[9:09:02 AM] Overall 2280 Period: 2428
-[9:09:12 AM] Overall 2282 Period: 2467
-[9:09:23 AM] Overall 2283 Period: 2287
-[9:09:33 AM] Overall 2283 Period: 2326
-[9:09:44 AM] Overall 2283 Period: 2301
-[9:09:55 AM] Overall 2284 Period: 2307
-[9:10:06 AM] Overall 2284 Period: 2346
-[9:10:19 AM] Overall 2277 Period: 1878
-[9:10:34 AM] Overall 2267 Period: 1719
-[9:10:46 AM] Overall 2263 Period: 2001
-[9:10:57 AM] Overall 2263 Period: 2312
-[9:11:08 AM] Overall 2264 Period: 2307
-[9:11:19 AM] Overall 2264 Period: 2273
-[9:11:30 AM] Overall 2264 Period: 2241
-[9:11:41 AM] Overall 2263 Period: 2203
-[9:11:52 AM] Overall 2263 Period: 2298
-[9:12:03 AM] Overall 2263 Period: 2236
-[9:12:14 AM] Overall 2263 Period: 2299
-[9:12:25 AM] Overall 2264 Period: 2358
-[9:12:37 AM] Overall 2263 Period: 2159
-
-| load                    |                    |
-| ----------------------- | ------------------ |
-| Max CPU Usage (%)       | 1                  |
-| Max Cores usage (%)     | 18                 |
-| Max Working Set (MB)    | 36                 |
-| Max Private Memory (MB) | 36                 |
-| Build Time (ms)         | 2,174              |
-| Start Time (ms)         | 56                 |
-| Published Size (KB)     | 72,368             |
-| Symbols Size (KB)       | 0                  |
-| .NET Core SDK Version   | 8.0.401            |
-| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
-| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 276                |
-| Requests                | 2,195,724          |
-| Bad responses           | 0                  |
-| Latency 50th (ms)       | 8.92               |
-| Latency 75th (ms)       | 20.75              |
-| Latency 90th (ms)       | 24.87              |
-| Latency 95th (ms)       | 26.56              |
-| Latency 99th (ms)       | 29.82              |
-| Mean latency (ms)       | 13.10              |
-| Max latency (ms)        | 137.40             |
-| Requests/sec            | 2,582              |
-| Requests/sec (max)      | 7,052              |
-| Read throughput (MB/s)  | 0.37               |
-
-[6:21:43 PM] Overall 1826 Period: 1832
-[6:21:55 PM] Overall 1926 Period: 2043
-[6:22:07 PM] Overall 1999 Period: 2164
-[6:22:18 PM] Overall 2054 Period: 2245
-[6:22:29 PM] Overall 2098 Period: 2294
-[6:22:40 PM] Overall 2117 Period: 2220
-[6:22:51 PM] Overall 2147 Period: 2353
-[6:23:02 PM] Overall 2169 Period: 2336
-[6:23:12 PM] Overall 2189 Period: 2368
-[6:23:23 PM] Overall 2208 Period: 2400
-[6:23:33 PM] Overall 2223 Period: 2391
-[6:23:43 PM] Overall 2238 Period: 2414
-[6:23:54 PM] Overall 2250 Period: 2409
-[6:24:04 PM] Overall 2262 Period: 2442
-[6:24:14 PM] Overall 2274 Period: 2455
-[6:24:24 PM] Overall 2286 Period: 2491
-[6:24:34 PM] Overall 2298 Period: 2505
-[6:24:44 PM] Overall 2308 Period: 2499
-[6:24:54 PM] Overall 2316 Period: 2476
-[6:25:05 PM] Overall 2319 Period: 2370
-[6:25:16 PM] Overall 2320 Period: 2340
-[6:25:26 PM] Overall 2325 Period: 2444
-[6:25:36 PM] Overall 2331 Period: 2487
-[6:25:46 PM] Overall 2337 Period: 2479
-[6:25:56 PM] Overall 2344 Period: 2529
-[6:26:06 PM] Overall 2350 Period: 2497
-[6:26:16 PM] Overall 2357 Period: 2562
-[6:26:26 PM] Overall 2363 Period: 2530
-[6:26:36 PM] Overall 2364 Period: 2411
-[6:26:46 PM] Overall 2366 Period: 2439
-[6:26:57 PM] Overall 2368 Period: 2428
-[6:27:07 PM] Overall 2368 Period: 2367
-[6:27:18 PM] Overall 2368 Period: 2378
-[6:27:28 PM] Overall 2371 Period: 2477
-[6:27:38 PM] Overall 2374 Period: 2496
-[6:27:48 PM] Overall 2379 Period: 2547
-[6:27:58 PM] Overall 2383 Period: 2539
-[6:28:08 PM] Overall 2386 Period: 2526
-[6:28:18 PM] Overall 2388 Period: 2456
-[6:28:28 PM] Overall 2388 Period: 2409
-[6:28:38 PM] Overall 2390 Period: 2450
-[6:28:48 PM] Overall 2391 Period: 2467
-[6:28:59 PM] Overall 2394 Period: 2491
-[6:29:09 PM] Overall 2396 Period: 2484
-[6:29:19 PM] Overall 2398 Period: 2495
-[6:29:29 PM] Overall 2399 Period: 2459
-[6:29:39 PM] Overall 2401 Period: 2481
-[6:29:49 PM] Overall 2403 Period: 2532
-[6:29:59 PM] Overall 2404 Period: 2466
-[6:30:10 PM] Overall 2403 Period: 2339
-[6:30:20 PM] Overall 2403 Period: 2432
-[6:30:30 PM] Overall 2404 Period: 2462
-[6:30:40 PM] Overall 2406 Period: 2490
-[6:30:50 PM] Overall 2407 Period: 2493
-[6:31:00 PM] Overall 2409 Period: 2487
-[6:31:10 PM] Overall 2411 Period: 2522
-[6:31:20 PM] Overall 2413 Period: 2544
-[6:31:30 PM] Overall 2415 Period: 2526
-[6:31:41 PM] Overall 2413 Period: 2307
-[6:31:51 PM] Overall 2413 Period: 2397
-[6:32:01 PM] Overall 2413 Period: 2430
-[6:32:12 PM] Overall 2413 Period: 2453
-[6:32:22 PM] Overall 2414 Period: 2459
-[6:32:32 PM] Overall 2413 Period: 2364
-[6:32:44 PM] Overall 2411 Period: 2266
-[6:32:53 PM] Overall 2412 Period: 2524
-[6:33:03 PM] Overall 2414 Period: 2503
-[6:33:13 PM] Overall 2415 Period: 2545
-[6:33:24 PM] Overall 2415 Period: 2407
-[6:33:34 PM] Overall 2414 Period: 2316
-[6:33:45 PM] Overall 2414 Period: 2473
-[6:33:55 PM] Overall 2415 Period: 2475
-[6:34:05 PM] Overall 2416 Period: 2486
-[6:34:15 PM] Overall 2417 Period: 2462
-[6:34:25 PM] Overall 2418 Period: 2508
-[6:34:35 PM] Overall 2419 Period: 2497
-[6:34:45 PM] Overall 2420 Period: 2521
-[6:34:55 PM] Overall 2421 Period: 2517
-[6:35:05 PM] Overall 2421 Period: 2384
-[6:35:16 PM] Overall 2421 Period: 2441
-[6:35:26 PM] Overall 2421 Period: 2447
-[6:35:36 PM] Overall 2421 Period: 2454
-[6:35:46 PM] Overall 2421 Period: 2409
-[6:35:57 PM] Overall 2422 Period: 2471
-[6:36:07 PM] Overall 2423 Period: 2508
-[6:36:16 PM] Overall 2424 Period: 2530
-[6:36:26 PM] Overall 2425 Period: 2535
-[6:36:37 PM] Overall 2424 Period: 2355
+54 / 48
 
 | load                    |                    |
 | ----------------------- | ------------------ |
@@ -234,347 +8,247 @@
 | Max Cores usage (%)     | 17                 |
 | Max Working Set (MB)    | 23                 |
 | Max Private Memory (MB) | 38                 |
-| Build Time (ms)         | 2,704              |
-| Start Time (ms)         | 58                 |
+| Build Time (ms)         | 2,285              |
+| Start Time (ms)         | 581                |
 | Published Size (KB)     | 72,368             |
 | Symbols Size (KB)       | 0                  |
 | .NET Core SDK Version   | 8.0.401            |
 | ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
 | .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 277                |
-| Requests                | 2,169,200          |
+| First Request (ms)      | 289                |
+| Requests                | 2,357,424          |
 | Bad responses           | 0                  |
-| Latency 50th (ms)       | 9.07               |
-| Latency 75th (ms)       | 20.82              |
-| Latency 90th (ms)       | 24.82              |
-| Latency 95th (ms)       | 26.48              |
-| Latency 99th (ms)       | 29.57              |
-| Mean latency (ms)       | 13.26              |
-| Max latency (ms)        | 154.37             |
-| Requests/sec            | 2,556              |
-| Requests/sec (max)      | 9,006              |
-| Read throughput (MB/s)  | 0.37               |
+| Latency 50th (ms)       | 8.03               |
+| Latency 75th (ms)       | 19.76              |
+| Latency 90th (ms)       | 23.50              |
+| Latency 95th (ms)       | 24.99              |
+| Latency 99th (ms)       | 27.96              |
+| Mean latency (ms)       | 12.19              |
+| Max latency (ms)        | 127.64             |
+| Requests/sec            | 2,789              |
+| Requests/sec (max)      | 8,244              |
+| Read throughput (MB/s)  | 0.40               |
 
-[10:22:02 PM] Overall 1605 Period: 1610
-[10:22:14 PM] Overall 1821 Period: 2107
-[10:22:26 PM] Overall 1912 Period: 2128
-[10:22:38 PM] Overall 1956 Period: 2108
-[10:22:49 PM] Overall 2001 Period: 2207
-[10:23:00 PM] Overall 2040 Period: 2261
-[10:23:11 PM] Overall 2073 Period: 2298
-[10:23:22 PM] Overall 2100 Period: 2318
-[10:23:33 PM] Overall 2122 Period: 2316
-[10:23:43 PM] Overall 2141 Period: 2342
-[10:23:54 PM] Overall 2157 Period: 2334
-[10:24:05 PM] Overall 2172 Period: 2358
-[10:24:15 PM] Overall 2187 Period: 2376
-[10:24:25 PM] Overall 2201 Period: 2413
-[10:24:36 PM] Overall 2214 Period: 2411
-[10:24:46 PM] Overall 2227 Period: 2450
-[10:24:56 PM] Overall 2238 Period: 2438
-[10:25:06 PM] Overall 2250 Period: 2470
-[10:25:17 PM] Overall 2257 Period: 2391
-[10:25:27 PM] Overall 2262 Period: 2371
-[10:25:38 PM] Overall 2267 Period: 2382
-[10:25:49 PM] Overall 2271 Period: 2359
-[10:25:59 PM] Overall 2276 Period: 2395
-[10:26:09 PM] Overall 2283 Period: 2462
-[10:26:20 PM] Overall 2289 Period: 2435
-[10:26:30 PM] Overall 2294 Period: 2449
-[10:26:40 PM] Overall 2301 Period: 2489
-[10:26:50 PM] Overall 2304 Period: 2401
-[10:27:01 PM] Overall 2305 Period: 2329
-[10:27:12 PM] Overall 2303 Period: 2266
-[10:27:22 PM] Overall 2307 Period: 2414
-[10:27:33 PM] Overall 2310 Period: 2429
-[10:27:43 PM] Overall 2314 Period: 2443
-[10:27:53 PM] Overall 2318 Period: 2459
-[10:28:03 PM] Overall 2322 Period: 2460
-[10:28:13 PM] Overall 2326 Period: 2502
-[10:28:23 PM] Overall 2330 Period: 2487
-[10:28:34 PM] Overall 2332 Period: 2403
-[10:28:44 PM] Overall 2333 Period: 2389
-[10:28:55 PM] Overall 2335 Period: 2405
-[10:29:05 PM] Overall 2337 Period: 2402
-[10:29:15 PM] Overall 2339 Period: 2429
-[10:29:26 PM] Overall 2341 Period: 2449
-[10:29:36 PM] Overall 2344 Period: 2466
-[10:29:46 PM] Overall 2347 Period: 2497
-[10:29:56 PM] Overall 2349 Period: 2463
-[10:30:06 PM] Overall 2352 Period: 2511
-[10:30:16 PM] Overall 2353 Period: 2382
-[10:30:27 PM] Overall 2354 Period: 2417
-[10:30:37 PM] Overall 2355 Period: 2417
-[10:30:47 PM] Overall 2357 Period: 2441
-[10:30:58 PM] Overall 2358 Period: 2421
-[10:31:08 PM] Overall 2359 Period: 2426
-[10:31:18 PM] Overall 2361 Period: 2480
-[10:31:28 PM] Overall 2364 Period: 2525
-[10:31:38 PM] Overall 2366 Period: 2511
-[10:31:48 PM] Overall 2368 Period: 2474
-[10:31:59 PM] Overall 2367 Period: 2302
-[10:32:10 PM] Overall 2367 Period: 2385
-[10:32:20 PM] Overall 2367 Period: 2396
-[10:32:30 PM] Overall 2368 Period: 2426
-[10:32:41 PM] Overall 2368 Period: 2338
-[10:32:51 PM] Overall 2369 Period: 2470
-[10:33:01 PM] Overall 2371 Period: 2489
-[10:33:11 PM] Overall 2372 Period: 2471
-[10:33:21 PM] Overall 2375 Period: 2531
-[10:33:31 PM] Overall 2376 Period: 2495
-[10:33:42 PM] Overall 2376 Period: 2378
-[10:33:52 PM] Overall 2377 Period: 2398
-[10:34:03 PM] Overall 2376 Period: 2333
-[10:34:13 PM] Overall 2377 Period: 2437
-[10:34:24 PM] Overall 2378 Period: 2454
-[10:34:34 PM] Overall 2378 Period: 2450
-[10:34:44 PM] Overall 2380 Period: 2526
-[10:34:54 PM] Overall 2382 Period: 2497
-[10:35:04 PM] Overall 2383 Period: 2512
-[10:35:14 PM] Overall 2384 Period: 2476
-[10:35:24 PM] Overall 2385 Period: 2393
-[10:35:35 PM] Overall 2385 Period: 2405
-[10:35:45 PM] Overall 2385 Period: 2428
-[10:35:55 PM] Overall 2386 Period: 2427
-[10:36:05 PM] Overall 2387 Period: 2472
-[10:36:16 PM] Overall 2388 Period: 2476
-[10:36:26 PM] Overall 2389 Period: 2501
-[10:36:36 PM] Overall 2390 Period: 2481
-[10:36:46 PM] Overall 2391 Period: 2478
-[10:36:56 PM] Overall 2390 Period: 2366
+[7:40:27 PM] Overall 1767 Period: 1773
+[7:40:38 PM] Overall 1977 Period: 2249
+[7:40:49 PM] Overall 2082 Period: 2334
+[7:40:59 PM] Overall 2158 Period: 2427
+[7:41:10 PM] Overall 2209 Period: 2450
+[7:41:20 PM] Overall 2245 Period: 2453
+[7:41:30 PM] Overall 2275 Period: 2480
+[7:41:40 PM] Overall 2301 Period: 2502
+[7:41:50 PM] Overall 2323 Period: 2528
+[7:42:00 PM] Overall 2342 Period: 2531
+[7:42:09 PM] Overall 2360 Period: 2564
+[7:42:20 PM] Overall 2369 Period: 2469
+[7:42:29 PM] Overall 2383 Period: 2573
+[7:42:39 PM] Overall 2395 Period: 2571
+[7:42:49 PM] Overall 2405 Period: 2561
+[7:42:59 PM] Overall 2416 Period: 2600
+[7:43:08 PM] Overall 2425 Period: 2584
+[7:43:18 PM] Overall 2433 Period: 2577
+[7:43:27 PM] Overall 2443 Period: 2654
+[7:43:37 PM] Overall 2452 Period: 2636
+[7:43:46 PM] Overall 2460 Period: 2625
+[7:43:56 PM] Overall 2468 Period: 2669
+[7:44:05 PM] Overall 2476 Period: 2672
+[7:44:14 PM] Overall 2486 Period: 2725
+[7:44:24 PM] Overall 2490 Period: 2608
+[7:44:34 PM] Overall 2493 Period: 2578
+[7:44:43 PM] Overall 2497 Period: 2603
+[7:44:53 PM] Overall 2502 Period: 2644
+[7:45:02 PM] Overall 2506 Period: 2628
+[7:45:12 PM] Overall 2510 Period: 2632
+[7:45:21 PM] Overall 2512 Period: 2595
+[7:45:31 PM] Overall 2517 Period: 2678
+[7:45:40 PM] Overall 2520 Period: 2608
+[7:45:50 PM] Overall 2522 Period: 2620
+[7:45:59 PM] Overall 2528 Period: 2741
+[7:46:09 PM] Overall 2528 Period: 2534
+[7:46:20 PM] Overall 2521 Period: 2291
+[7:46:31 PM] Overall 2515 Period: 2323
+[7:46:40 PM] Overall 2517 Period: 2616
+[7:46:50 PM] Overall 2520 Period: 2635
+[7:46:59 PM] Overall 2524 Period: 2691
+[7:47:09 PM] Overall 2527 Period: 2660
+[7:47:18 PM] Overall 2530 Period: 2687
+[7:47:27 PM] Overall 2534 Period: 2690
+[7:47:36 PM] Overall 2538 Period: 2762
+[7:47:46 PM] Overall 2540 Period: 2603
+[7:47:56 PM] Overall 2540 Period: 2570
+[7:48:05 PM] Overall 2542 Period: 2620
+[7:48:15 PM] Overall 2543 Period: 2635
+[7:48:24 PM] Overall 2545 Period: 2644
+[7:48:33 PM] Overall 2548 Period: 2693
+[7:48:43 PM] Overall 2550 Period: 2688
+[7:48:52 PM] Overall 2553 Period: 2705
+[7:49:01 PM] Overall 2556 Period: 2715
+[7:49:11 PM] Overall 2558 Period: 2681
+[7:49:20 PM] Overall 2561 Period: 2736
+[7:49:29 PM] Overall 2561 Period: 2565
+[7:49:39 PM] Overall 2562 Period: 2632
+[7:49:48 PM] Overall 2563 Period: 2654
+[7:49:58 PM] Overall 2565 Period: 2665
+[7:50:07 PM] Overall 2567 Period: 2707
+[7:50:17 PM] Overall 2567 Period: 2553
+[7:50:26 PM] Overall 2568 Period: 2659
+[7:50:35 PM] Overall 2570 Period: 2718
+[7:50:45 PM] Overall 2573 Period: 2729
+[7:50:54 PM] Overall 2575 Period: 2778
+[7:51:03 PM] Overall 2577 Period: 2660
+[7:51:13 PM] Overall 2577 Period: 2601
+[7:51:22 PM] Overall 2577 Period: 2571
+[7:51:32 PM] Overall 2578 Period: 2665
+[7:51:41 PM] Overall 2579 Period: 2680
+[7:51:51 PM] Overall 2578 Period: 2512
+[7:52:01 PM] Overall 2579 Period: 2679
+[7:52:10 PM] Overall 2581 Period: 2697
+[7:52:19 PM] Overall 2583 Period: 2718
+[7:52:28 PM] Overall 2584 Period: 2691
+[7:52:38 PM] Overall 2585 Period: 2683
+[7:52:47 PM] Overall 2585 Period: 2616
+[7:52:57 PM] Overall 2586 Period: 2625
+[7:53:06 PM] Overall 2586 Period: 2628
+[7:53:16 PM] Overall 2587 Period: 2630
+[7:53:25 PM] Overall 2587 Period: 2640
+[7:53:35 PM] Overall 2588 Period: 2667
+[7:53:44 PM] Overall 2589 Period: 2671
+[7:53:53 PM] Overall 2591 Period: 2721
+[7:54:02 PM] Overall 2592 Period: 2712
+[7:54:12 PM] Overall 2593 Period: 2739
+[7:54:21 PM] Overall 2595 Period: 2694
+[7:54:31 PM] Overall 2594 Period: 2549
+[7:54:40 PM] Overall 2594 Period: 2583
+[7:54:50 PM] Overall 2594 Period: 2636
+[7:54:59 PM] Overall 2595 Period: 2681
+[7:55:09 PM] Overall 2596 Period: 2654
+[7:55:18 PM] Overall 2596 Period: 2647
+[7:55:27 PM] Overall 2597 Period: 2713
+
+
 
 | load                    |                    |
 | ----------------------- | ------------------ |
-| Max CPU Usage (%)       | 1                  |
-| Max Cores usage (%)     | 17                 |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 14                 |
 | Max Working Set (MB)    | 36                 |
-| Max Private Memory (MB) | 38                 |
-| Build Time (ms)         | 1,379              |
-| Start Time (ms)         | 57                 |
+| Max Private Memory (MB) | 40                 |
+| Build Time (ms)         | 2,652              |
+| Start Time (ms)         | 793                |
 | Published Size (KB)     | 72,368             |
 | Symbols Size (KB)       | 0                  |
 | .NET Core SDK Version   | 8.0.401            |
 | ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
 | .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 271                |
-| Requests                | 2,210,975          |
+| First Request (ms)      | 322                |
+| Requests                | 2,348,668          |
 | Bad responses           | 0                  |
-| Latency 50th (ms)       | 8.78               |
-| Latency 75th (ms)       | 20.72              |
-| Latency 90th (ms)       | 24.53              |
-| Latency 95th (ms)       | 26.15              |
-| Latency 99th (ms)       | 29.29              |
-| Mean latency (ms)       | 13.01              |
-| Max latency (ms)        | 152.25             |
-| Requests/sec            | 2,608              |
-| Requests/sec (max)      | 8,912              |
-| Read throughput (MB/s)  | 0.38               |
+| Latency 50th (ms)       | 8.10               |
+| Latency 75th (ms)       | 19.62              |
+| Latency 90th (ms)       | 23.60              |
+| Latency 95th (ms)       | 25.19              |
+| Latency 99th (ms)       | 28.23              |
+| Mean latency (ms)       | 12.24              |
+| Max latency (ms)        | 140.59             |
+| Requests/sec            | 2,775              |
+| Requests/sec (max)      | 22,508             |
+| Read throughput (MB/s)  | 0.40               |
 
-[11:21:42 PM] Overall 2274 Period: 2280
-[11:21:55 PM] Overall 2152 Period: 2046
-[11:22:06 PM] Overall 2156 Period: 2168
-[11:22:17 PM] Overall 2180 Period: 2259
-[11:22:28 PM] Overall 2198 Period: 2278
-[11:22:39 PM] Overall 2202 Period: 2228
-[11:22:50 PM] Overall 2217 Period: 2320
-[11:23:01 PM] Overall 2234 Period: 2365
-[11:23:11 PM] Overall 2246 Period: 2350
-[11:23:22 PM] Overall 2258 Period: 2378
-[11:23:32 PM] Overall 2271 Period: 2409
-[11:23:43 PM] Overall 2284 Period: 2446
-[11:23:53 PM] Overall 2296 Period: 2453
-[11:24:03 PM] Overall 2306 Period: 2451
-[11:24:13 PM] Overall 2316 Period: 2463
-[11:24:23 PM] Overall 2324 Period: 2462
-[11:24:34 PM] Overall 2328 Period: 2392
-[11:24:44 PM] Overall 2333 Period: 2434
-[11:24:54 PM] Overall 2338 Period: 2435
-[11:25:05 PM] Overall 2344 Period: 2463
-[11:25:15 PM] Overall 2351 Period: 2505
-[11:25:25 PM] Overall 2357 Period: 2490
-[11:25:35 PM] Overall 2361 Period: 2457
-[11:25:45 PM] Overall 2368 Period: 2552
-[11:25:54 PM] Overall 2376 Period: 2562
-[11:26:04 PM] Overall 2379 Period: 2474
-[11:26:15 PM] Overall 2381 Period: 2429
-[11:26:25 PM] Overall 2383 Period: 2464
-[11:26:35 PM] Overall 2384 Period: 2397
-[11:26:45 PM] Overall 2387 Period: 2497
-[11:26:56 PM] Overall 2390 Period: 2470
-[11:27:05 PM] Overall 2394 Period: 2550
-[11:27:16 PM] Overall 2394[11:27:16 PM] Overall 2394 Period: 2389
- Period: 2389
-[11:27:26 PM] Overall 2398 Period: 2554
-[11:27:36 PM] Overall 2402 Period: 2548
-[11:27:46 PM] Overall 2404 Period: 2472
-[11:27:56 PM] Overall 2405 Period: 2446
-[11:28:06 PM] Overall 2406 Period: 2459
-[11:28:16 PM] Overall 2408 Period: 2468
-[11:28:26 PM] Overall 2410 Period: 2496
-[11:28:36 PM] Overall 2412 Period: 2484
-[11:28:46 PM] Overall 2414 Period: 2508
-[11:28:56 PM] Overall 2416 Period: 2513
-[11:29:06 PM] Overall 2418 Period: 2492
-[11:29:16 PM] Overall 2420 Period: 2557
-[11:29:26 PM] Overall 2421 Period: 2434
-[11:29:37 PM] Overall 2421 Period: 2443
-[11:29:47 PM] Overall 2422 Period: 2450
-[11:29:57 PM] Overall 2422 Period: 2454
-[11:30:07 PM] Overall 2423 Period: 2490
-[11:30:17 PM] Overall 2425 Period: 2510
-[11:30:27 PM] Overall 2427 Period: 2542
-[11:30:37 PM] Overall 2429 Period: 2514
-[11:30:47 PM] Overall 2431 Period: 2552
-[11:30:56 PM] Overall 2433 Period: 2555
-[11:31:07 PM] Overall 2433 Period: 2461
-[11:31:17 PM] Overall 2433 Period: 2448
-[11:31:27 PM] Overall 2434 Period: 2449
-[11:31:38 PM] Overall 2432 Period: 2356
-[11:31:48 PM] Overall 2433 Period: 2484
-[11:31:58 PM] Overall 2434 Period: 2470
-[11:32:08 PM] Overall 2435 Period: 2502
-[11:32:18 PM] Overall 2437 Period: 2571
-[11:32:27 PM] Overall 2438 Period: 2544
-[11:32:38 PM] Overall 2439 Period: 2494
-[11:32:48 PM] Overall 2438 Period: 2356
-[11:32:58 PM] Overall 2438 Period: 2443
-[11:33:09 PM] Overall 2437 Period: 2424
-[11:33:19 PM] Overall 2438 Period: 2480
-[11:33:29 PM] Overall 2438 Period: 2479
-[11:33:39 PM] Overall 2440 Period: 2520
-[11:33:49 PM] Overall 2441 Period: 2515
-[11:33:59 PM] Overall 2442 Period: 2526
-[11:34:09 PM] Overall 2442 Period: 2473
-[11:34:19 PM] Overall 2444 Period: 2566
-[11:34:29 PM] Overall 2442 Period: 2323
-[11:34:40 PM] Overall 2442 Period: 2422
-[11:34:50 PM] Overall 2442 Period: 2469
-[11:35:00 PM] Overall 2442 Period: 2445
-[11:35:10 PM] Overall 2443 Period: 2520
-[11:35:20 PM] Overall 2443 Period: 2469
-[11:35:30 PM] Overall 2444 Period: 2544
-[11:35:40 PM] Overall 2445 Period: 2519
-[11:35:50 PM] Overall 2446 Period: 2555
-[11:35:59 PM] Overall 2448 Period: 2565
-[11:36:10 PM] Overall 2447 Period: 2400
-[11:36:20 PM] Overall 2447 Period: 2414
-[11:36:31 PM] Overall 2446 Period: 2437
-[11:36:41 PM] Overall 2445 Period: 2349
-
-| load                    |                    |
-| ----------------------- | ------------------ |
-| Max CPU Usage (%)       | 1                  |
-| Max Cores usage (%)     | 17                 |
-| Max Working Set (MB)    | 24                 |
-| Max Private Memory (MB) | 37                 |
-| Build Time (ms)         | 1,516              |
-| Start Time (ms)         | 55                 |
-| Published Size (KB)     | 72,368             |
-| Symbols Size (KB)       | 0                  |
-| .NET Core SDK Version   | 8.0.401            |
-| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
-| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 268                |
-| Requests                | 2,200,458          |
-| Bad responses           | 0                  |
-| Latency 50th (ms)       | 8.91               |
-| Latency 75th (ms)       | 20.74              |
-| Latency 90th (ms)       | 24.77              |
-| Latency 95th (ms)       | 26.39              |
-| Latency 99th (ms)       | 29.43              |
-| Mean latency (ms)       | 13.07              |
-| Max latency (ms)        | 160.14             |
-| Requests/sec            | 2,588              |
-| Requests/sec (max)      | 7,233              |
-| Read throughput (MB/s)  | 0.38               |
-
-[12:46:20 AM] Overall 1669 Period: 1673
-[12:46:32 AM] Overall 1843 Period: 2061
-[12:46:43 AM] Overall 1951 Period: 2215
-[12:46:54 AM] Overall 2015 Period: 2238
-[12:47:05 AM] Overall 2060 Period: 2262
-[12:47:17 AM] Overall 2077 Period: 2171
-[12:47:28 AM] Overall 2108 Period: 2319
-[12:47:39 AM] Overall 2133 Period: 2334
-[12:47:49 AM] Overall 2155 Period: 2345
-[12:48:00 AM] Overall 2175 Period: 2375
-[12:48:10 AM] Overall 2192 Period: 2385
-[12:48:21 AM] Overall 2210 Period: 2436
-[12:48:31 AM] Overall 2226 Period: 2438
-[12:48:41 AM] Overall 2241 Period: 2455
-[12:48:51 AM] Overall 2256 Period: 2486
-[12:49:01 AM] Overall 2268 Period: 2476
-[12:49:11 AM] Overall 2281 Period: 2511
-[12:49:21 AM] Overall 2293 Period: 2511
-[12:49:31 AM] Overall 2302 Period: 2481
-[12:49:42 AM] Overall 2305 Period: 2363
-[12:49:52 AM] Overall 2309 Period: 2410
-[12:50:02 AM] Overall 2314 Period: 2422
-[12:50:13 AM] Overall 2320 Period: 2456
-[12:50:23 AM] Overall 2326 Period: 2472
-[12:50:33 AM] Overall 2332 Period: 2488
-[12:50:43 AM] Overall 2338 Period: 2519
-[12:50:53 AM] Overall 2344 Period: 2499
-[12:51:03 AM] Overall 2350 Period: 2522
-[12:51:13 AM] Overall 2351 Period: 2394
-[12:51:24 AM] Overall 2350 Period: 2310
-[12:51:34 AM] Overall 2352 Period: 2436
-[12:51:44 AM] Overall 2355 Period: 2448
-[12:51:55 AM] Overall 2357 Period: 2407
-[12:52:05 AM] Overall 2359 Period: 2458
-[12:52:15 AM] Overall 2364 Period: 2524
-[12:52:25 AM] Overall 2367 Period: 2514
-[12:52:35 AM] Overall 2371 Period: 2494
-[12:52:45 AM] Overall 2373 Period: 2471
-[12:52:55 AM] Overall 2374 Period: 2413
-[12:53:06 AM] Overall 2374 Period: 2376
-[12:53:16 AM] Overall 2376 Period: 2470
-[12:53:26 AM] Overall 2377 Period: 2427
-[12:53:37 AM] Overall 2380 Period: 2477
-[12:53:47 AM] Overall 2381 Period: 2447
-[12:53:57 AM] Overall 2383 Period: 2491
-[12:54:07 AM] Overall 2386 Period: 2505
-[12:54:17 AM] Overall 2388 Period: 2506
-[12:54:27 AM] Overall 2391 Period: 2558
-[12:54:37 AM] Overall 2391 Period: 2379
-[12:54:47 AM] Overall 2391 Period: 2410
-[12:54:58 AM] Overall 2393 Period: 2455
-[12:55:08 AM] Overall 2394 Period: 2451
-[12:55:18 AM] Overall 2395 Period: 2493
-[12:55:28 AM] Overall 2397 Period: 2467
-[12:55:38 AM] Overall 2399 Period: 2511
-[12:55:48 AM] Overall 2401 Period: 2537
-[12:55:58 AM] Overall 2403 Period: 2505
-[12:56:08 AM] Overall 2403 Period: 2452
-[12:56:19 AM] Overall 2402 Period: 2357
-[12:56:29 AM] Overall 2403 Period: 2443
-[12:56:39 AM] Overall 2404 Period: 2464
-[12:56:49 AM] Overall 2405 Period: 2496
-[12:56:59 AM] Overall 2407 Period: 2482
-[12:57:09 AM] Overall 2408 Period: 2489
-[12:57:19 AM] Overall 2409 Period: 2498
-[12:57:29 AM] Overall 2411 Period: 2513
-[12:57:39 AM] Overall 2412 Period: 2536
-[12:57:49 AM] Overall 2414 Period: 2524
-[12:58:00 AM] Overall 2414 Period: 2402
-[12:58:10 AM] Overall 2414 Period: 2450
-[12:58:20 AM] Overall 2415 Period: 2453
-[12:58:30 AM] Overall 2416 Period: 2494
-[12:58:40 AM] Overall 2417 Period: 2484
-[12:58:50 AM] Overall 2416 Period: 2418
-[12:59:00 AM] Overall 2418 Period: 2499
-[12:59:10 AM] Overall 2419 Period: 2543
-[12:59:20 AM] Overall 2421 Period: 2534
-[12:59:30 AM] Overall 2421 Period: 2496
-[12:59:40 AM] Overall 2421 Period: 2423
-[12:59:51 AM] Overall 2422 Period: 2460
-[1:00:01 AM] Overall 2422 Period: 2462
-[1:00:11 AM] Overall 2423 Period: 2481
-[1:00:21 AM] Overall 2424 Period: 2494
-[1:00:31 AM] Overall 2424 Period: 2473
-[1:00:41 AM] Overall 2425 Period: 2482
-[1:00:51 AM] Overall 2426 Period: 2492
-[1:01:01 AM] Overall 2426 Period: 2450
-[1:01:12 AM] Overall 2426 Period: 2413
+[6:30:14 PM] Overall 1680 Period: 1685
+[6:30:25 PM] Overall 1886 Period: 2156
+[6:30:37 PM] Overall 1951 Period: 2098
+[6:30:48 PM] Overall 2034 Period: 2339
+[6:30:58 PM] Overall 2103 Period: 2430
+[6:31:08 PM] Overall 2157 Period: 2482
+[6:31:18 PM] Overall 2201 Period: 2510
+[6:31:28 PM] Overall 2237 Period: 2534
+[6:31:38 PM] Overall 2265 Period: 2520
+[6:31:48 PM] Overall 2290 Period: 2539
+[6:31:58 PM] Overall 2311 Period: 2551
+[6:32:08 PM] Overall 2328 Period: 2529
+[6:32:17 PM] Overall 2346 Period: 2592
+[6:32:27 PM] Overall 2363 Period: 2605
+[6:32:36 PM] Overall 2378 Period: 2625
+[6:32:46 PM] Overall 2391 Period: 2599
+[6:32:56 PM] Overall 2404 Period: 2642
+[6:33:05 PM] Overall 2412 Period: 2557
+[6:33:15 PM] Overall 2420 Period: 2574
+[6:33:25 PM] Overall 2428 Period: 2588
+[6:33:34 PM] Overall 2434[6:33:34 PM] Overall 2434 Period: 2584
+ Period: 2584
+[6:33:44 PM] Overall 2440 Period: 2573
+[6:33:54 PM] Overall 2448 Period: 2636
+[6:34:03 PM] Overall 2456 Period: 2659
+[6:34:12 PM] Overall 2464 Period: 2670
+[6:34:22 PM] Overall 2472 Period: 2693
+[6:34:31 PM] Overall 2480 Period: 2706
+[6:34:40 PM] Overall 2486[6:34:40 PM] Overall 2486 Period: 2655
+ Period: 2655
+[6:34:50 PM] Overall 2488 Period: 2556
+[6:35:00 PM] Overall 2488 Period: 2489
+[6:35:10 PM] Overall 2491 Period: 2607
+[6:35:19 PM] Overall 2496 Period: 2637
+[6:35:29 PM] Overall 2499 Period: 2615
+[6:35:38 PM] Overall 2504 Period: 2675
+[6:35:48 PM] Overall 2508 Period: 2665
+[6:35:57 PM] Overall 2512 Period: 2671
+[6:36:06 PM] Overall 2517 Period: 2691
+[6:36:16 PM] Overall 2521 Period: 2704
+[6:36:25 PM] Overall 2523 Period: 2576
+[6:36:35 PM] Overall 2523 Period: 2525
+[6:36:45 PM] Overall 2524 Period: 2564
+[6:36:54 PM] Overall 2526 Period: 2625
+[6:37:04 PM] Overall 2528 Period: 2614
+[6:37:13 PM] Overall 2530 Period: 2652
+[6:37:23 PM] Overall 2533 Period: 2639
+[6:37:32 PM] Overall 2536 Period: 2692
+[6:37:41 PM] Overall 2540 Period: 2747
+[6:37:50 PM] Overall 2544 Period: 2742
+[6:38:00 PM] Overall 2547 Period: 2684
+[6:38:10 PM] Overall 2546 Period: 2520
+[6:38:20 PM] Overall 2546 Period: 2542
+[6:38:29 PM] Overall 2547 Period: 2587
+[6:38:39 PM] Overall 2548 Period: 2600
+[6:38:48 PM] Overall 2549 Period: 2648
+[6:38:58 PM] Overall 2552 Period: 2676
+[6:39:07 PM] Overall 2553 Period: 2658
+[6:39:16 PM] Overall 2556 Period: 2720
+[6:39:25 PM] Overall 2559 Period: 2708
+[6:39:35 PM] Overall 2561 Period: 2726
+[6:39:44 PM] Overall 2561 Period: 2559
+[6:39:54 PM] Overall 2561 Period: 2569
+[6:40:04 PM] Overall 2561 Period: 2530
+[6:40:14 PM] Overall 2562 Period: 2642
+[6:40:23 PM] Overall 2563 Period: 2653
+[6:40:32 PM] Overall 2565 Period: 2670
+[6:40:42 PM] Overall 2566 Period: 2660
+[6:40:51 PM] Overall 2568 Period: 2696
+[6:41:00 PM] Overall 2570 Period: 2715
+[6:41:09 PM] Overall 2572 Period: 2740
+[6:41:19 PM] Overall 2574 Period: 2699
+[6:41:29 PM] Overall 2573 Period: 2532
+[6:41:38 PM] Overall 2574 Period: 2592
+[6:41:48 PM] Overall 2574 Period: 2613
+[6:41:57 PM] Overall 2575 Period: 2631
+[6:42:07 PM] Overall 2576 Period: 2640
+[6:42:16 PM] Overall 2576 Period: 2635
+[6:42:26 PM] Overall 2577 Period: 2649
+[6:42:35 PM] Overall 2579 Period: 2712
+[6:42:44 PM] Overall 2581 Period: 2730
+[6:42:53 PM] Overall 2583 Period: 2737
+[6:43:03 PM] Overall 2583 Period: 2641
+[6:43:12 PM] Overall 2583 Period: 2591
+[6:43:22 PM] Overall 2583 Period: 2559
+[6:43:32 PM] Overall 2582 Period: 2517
+[6:43:42 PM] Overall 2582 Period: 2613
+[6:43:51 PM] Overall 2583 Period: 2654
+[6:44:00 PM] Overall 2584 Period: 2677
+[6:44:10 PM] Overall 2585 Period: 2658
+[6:44:19 PM] Overall 2586 Period: 2685
+[6:44:28 PM] Overall 2587 Period: 2712
+[6:44:38 PM] Overall 2589 Period: 2723
+[6:44:47 PM] Overall 2588 Period: 2557
+[6:44:57 PM] Overall 2588 Period: 2598
+[6:45:07 PM] Overall 2588 Period: 2541
 
 

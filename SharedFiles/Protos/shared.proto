@@ -173,13 +173,24 @@ message Coordinate {
 
 enum KeyType {
 	X_25519 = 0; // Agreement Oid: 1.3.101.110 id-X25519 
-	ED_25519 = 1; // Signing Oid: 1.3.101.112 id-EdDSA25519
-	RSA = 2; // All
-	SECP_256K1 = 3; // Signing Oid: 1.3.132.0.10 ansip256k1 (bitcoin)
-	SECP_521R1_SIGNING = 4; // Oid:  1.3.132.0.35 ansip521r1
-	SECP_521R1_AGREEMENT = 5; // Oid: 1.2.840.10045.4.3.4
-	KYBER = 6;
-	DILITHIUM = 7;
+	X_448 = 1;
+	ED_25519 = 2; // Signing Oid: 1.3.101.112 id-EdDSA25519
+	ED_448 = 3;
+	RSA_2048 = 4; // All
+	RSA_3072 = 5; // All
+	RSA_4096 = 6; // All
+	// RESERVED FOR RSA_2048
+	SECP_256K1 = 15; // Signing Oid: 1.3.132.0.10 ansip256k1 (bitcoin)
+	SECP_256R1 = 16; // Oid:  1.3.132.0.35 ansip521r1
+	SECP_384R1 = 17; // Oid:  1.3.132.0.35 ansip521r1
+	SECP_521R1 = 18; // Oid: 1.2.840.10045.4.3.4
+	KYBER_512 = 19;
+	KYBER_768 = 20;
+	KYBER_1024 = 21;
+	DILITHIUM_2 = 22;
+	DILITHIUM_3 = 23;
+	DILITHIUM_5 = 24;
+
 }
 
 enum KeyUsage {
@@ -201,7 +212,7 @@ message SealedEnvelope {
 	enum SealedEnvelopeType {
 		None = 0;
 		AES = 1;
-		ChaChaPoly = 2; // v2
+		ChaCha20Poly = 2; // v2
 	}
 	SealedEnvelopeType cipher = 2;
 	// inputs

@@ -121,7 +121,7 @@ public class X448Adapter : IAsymmetricBase, IAsymmetricCipher<HkdfParameters>
         return new X509Certificate2(genX509.Generate(sigFac).GetEncoded());
     }
 
-    public static X448PublicKeyParameters GetX25519PublicKeyParameters(X509Certificate2 c)
+    public static X448PublicKeyParameters GetX448ublicKeyParameters(X509Certificate2 c)
     {
         return new X448PublicKeyParameters(c.PublicKey.EncodedKeyValue.RawData, 0);
     }

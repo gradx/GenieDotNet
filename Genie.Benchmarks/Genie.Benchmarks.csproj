@@ -25,60 +25,154 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium2.cer" Link="Keys\Alice\AliceDilithium2.cer">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.cer" Link="Keys\Alice\Curve25519\AliceEd448.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium2.key" Link="Keys\Alice\AliceDilithium2.key">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.key" Link="Keys\Alice\Curve25519\AliceEd448.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium5.cer" Link="Keys\Alice\AliceDilithium5.cer">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceX448.cer" Link="Keys\Alice\Curve25519\AliceX448.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\AliceDilithium5.key" Link="Keys\Alice\AliceDilithium5.key">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceX448.key" Link="Keys\Alice\Curve25519\AliceX448.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\AliceEd448.cer" Link="Keys\Alice\AliceEd448.cer">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.cer" Link="Keys\Alice\Curve25519\Ed25519SigningAdapter.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\AliceEd448.key" Link="Keys\Alice\AliceEd448.key">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.key" Link="Keys\Alice\Curve25519\Ed25519SigningAdapter.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.cer" Link="Keys\Alice\DilithiumAdapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.cer" Link="Keys\Alice\Curve25519\X25519Adapter.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\DilithiumAdapter.key" Link="Keys\Alice\DilithiumAdapter.key">
+    <None Include="..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.key" Link="Keys\Alice\Curve25519\X25519Adapter.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer" Link="Keys\Alice\Ed25519SigningAdapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.cer" Link="Keys\Alice\ModuleLattice\AliceDilithium2.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key" Link="Keys\Alice\Ed25519SigningAdapter.key">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.key" Link="Keys\Alice\ModuleLattice\AliceDilithium2.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\KyberAdapter.cer" Link="Keys\Alice\KyberAdapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.cer" Link="Keys\Alice\ModuleLattice\AliceDilithium3.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\KyberAdapter.key" Link="Keys\Alice\KyberAdapter.key">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.key" Link="Keys\Alice\ModuleLattice\AliceDilithium3.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.cer" Link="Keys\Alice\X25519Adapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.cer" Link="Keys\Alice\ModuleLattice\AliceDilithium5.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.key" Link="Keys\Alice\X25519Adapter.key">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.key" Link="Keys\Alice\ModuleLattice\AliceDilithium5.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Bob\BobDilithium2.cer" Link="Keys\Bob\BobDilithium2.cer" />
-    <None Include="..\SharedFiles\Keys\Bob\BobDilithium5.cer" Link="Keys\Bob\BobDilithium5.cer" />
-    <None Include="..\SharedFiles\Keys\Bob\DilithiumAdapter.cer" Link="Keys\Bob\DilithiumAdapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.cer" Link="Keys\Alice\ModuleLattice\AliceKyber1024.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer" Link="Keys\Bob\Ed25519SigningAdapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.key" Link="Keys\Alice\ModuleLattice\AliceKyber1024.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Bob\KyberAdapter.cer" Link="Keys\Bob\KyberAdapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.cer" Link="Keys\Alice\ModuleLattice\AliceKyber512.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="..\SharedFiles\Keys\Bob\X25519Adapter.cer" Link="Keys\Bob\X25519Adapter.cer">
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.key" Link="Keys\Alice\ModuleLattice\AliceKyber512.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.cer" Link="Keys\Alice\ModuleLattice\AliceKyber768.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.key" Link="Keys\Alice\ModuleLattice\AliceKyber768.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Rsa\AliceRsa1024Adapter.key" Link="Keys\Alice\Rsa\AliceRsa1024Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Rsa\AliceRsa2048Adapter.key" Link="Keys\Alice\Rsa\AliceRsa2048Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Rsa\AliceRsa4096Adapter.key" Link="Keys\Alice\Rsa\AliceRsa4096Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256k1Adapter.cer" Link="Keys\Alice\Secp\AliceSecp256k1Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256k1Adapter.key" Link="Keys\Alice\Secp\AliceSecp256k1Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256r1SigningAdapter.cer" Link="Keys\Alice\Secp\AliceSecp256r1SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256r1SigningAdapter.key" Link="Keys\Alice\Secp\AliceSecp256r1SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp384r1SigningAdapter.cer" Link="Keys\Alice\Secp\AliceSecp384r1SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp384r1SigningAdapter.key" Link="Keys\Alice\Secp\AliceSecp384r1SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp521r1SigningAdapter.cer" Link="Keys\Alice\Secp\AliceSecp521r1SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp521r1SigningAdapter.key" Link="Keys\Alice\Secp\AliceSecp521r1SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Curve25519\BobEd448.cer" Link="Keys\Bob\Curve25519\BobEd448.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Curve25519\BobX448.cer" Link="Keys\Bob\Curve25519\BobX448.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.cer" Link="Keys\Bob\Curve25519\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.cer" Link="Keys\Bob\Curve25519\X25519Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium2.cer" Link="Keys\Bob\ModuleLattice\BobDilithium2.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium5.cer" Link="Keys\Bob\ModuleLattice\BobDilithium5.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber1024.cer" Link="Keys\Bob\ModuleLattice\BobKyber1024.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber512.cer" Link="Keys\Bob\ModuleLattice\BobKyber512.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber768.cer" Link="Keys\Bob\ModuleLattice\BobKyber768.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Rsa\BobRsa1024Adapter.key" Link="Keys\Bob\Rsa\BobRsa1024Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Rsa\BobRsa2048Adapter.key" Link="Keys\Bob\Rsa\BobRsa2048Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Rsa\BobRsa4096Adapter.key" Link="Keys\Bob\Rsa\BobRsa4096Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp256k1Adapter.cer" Link="Keys\Bob\Secp\BobSecp256k1Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp256r1SigningAdapter.cer" Link="Keys\Bob\Secp\BobSecp256r1SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp384r1SigningAdapter.cer" Link="Keys\Bob\Secp\BobSecp384r1SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp521r1SigningAdapter.cer" Link="Keys\Bob\Secp\BobSecp521r1SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp256R1.cer" Link="Keys\Bob\Secp\Bouncy\BobSecp256R1.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp384R1.cer" Link="Keys\Bob\Secp\Bouncy\BobSecp384R1.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp521R1.cer" Link="Keys\Bob\Secp\Bouncy\BobSecp521R1.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="..\SharedFiles\luxePod.pfx" Link="luxePod.pfx">
@@ -95,11 +189,17 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="System.IO.Hashing" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Keys\Alice\" />
-    <Folder Include="Keys\Bob\" />
+    <Folder Include="Keys\Alice\Curve25519\" />
+    <Folder Include="Keys\Alice\ModuleLattice\" />
+    <Folder Include="Keys\Alice\Rsa\" />
+    <Folder Include="Keys\Alice\Secp\" />
+    <Folder Include="Keys\Bob\Curve25519\" />
+    <Folder Include="Keys\Bob\Rsa\" />
+    <Folder Include="Keys\Bob\Secp\Bouncy\" />
     <Folder Include="Protos\" />
   </ItemGroup>
 
@@ -115,10 +215,25 @@
     <None Update="EncryptionRequests\kyber_ed25519.req">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="EncryptionRequests\Secp256K1_Secp256K1.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Secp256R1_Secp256R1.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Secp384R1_Secp384R1.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Secp521R1_Secp521R1.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="EncryptionRequests\x25519_dilithium.req">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="EncryptionRequests\x25519_ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Keys\Bob\ModuleLattice\BobDilithium3.cer">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
