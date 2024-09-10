@@ -1,0 +1,92 @@
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 20                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 37                 |
+| Build Time (ms)         | 3,072              |
+| Start Time (ms)         | 4,962              |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 164                |
+| Requests                | 1,622,018          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 13.05              |
+| Latency 75th (ms)       | 25.91              |
+| Latency 90th (ms)       | 30.78              |
+| Latency 95th (ms)       | 32.76              |
+| Latency 99th (ms)       | 36.60              |
+| Mean latency (ms)       | 17.73              |
+| Max latency (ms)        | 200.17             |
+| Requests/sec            | 1,907              |
+| Requests/sec (max)      | 7,060              |
+| Read throughput (MB/s)  | 0.28               |
+
+[10:16:34 AM] Overall 1443 Period: 1448
+[10:16:47 AM] Overall 1630 Period: 1874
+[10:17:00 AM] Overall 1708 Period: 1891
+[10:17:14 AM] Overall 1746 Period: 1874
+[10:17:27 AM] Overall 1768 Period: 1864
+[10:17:41 AM] Overall 1778 Period: 1836
+[10:17:54 AM] Overall 1785 Period: 1834
+[10:18:08 AM] Overall 1790 Period: 1822
+[10:18:22 AM] Overall 1792 Period: 1813
+[10:18:36 AM] Overall 1792 Period: 1796
+[10:18:50 AM] Overall 1790 Period: 1773
+[10:19:04 AM] Overall 1787 Period: 1762
+[10:19:19 AM] Overall 1784 Period: 1750
+[10:19:32 AM] Overall 1786 Period: 1813
+[10:19:46 AM] Overall 1787 Period: 1804
+[10:20:00 AM] Overall 1788 Period: 1817
+[10:20:14 AM] Overall 1788 Period: 1791
+[10:20:28 AM] Overall 1788 Period: 1791
+[10:20:42 AM] Overall 1787 Period: 1766
+[10:20:57 AM] Overall 1785 Period: 1761
+[10:21:11 AM] Overall 1781 Period: 1707
+[10:21:26 AM] Overall 1778 Period: 1717
+[10:21:40 AM] Overall 1779 Period: 1800
+[10:21:53 AM] Overall 1780 Period: 1820
+[10:22:07 AM] Overall 1781 Period: 1797
+[10:22:21 AM] Overall 1781 Period: 1780
+[10:22:36 AM] Overall 1781 Period: 1776
+[10:22:50 AM] Overall 1780 Period: 1757
+[10:23:04 AM] Overall 1780 Period: 1793
+[10:23:17 AM] Overall 1781 Period: 1835
+[10:23:31 AM] Overall 1782 Period: 1815
+[10:23:45 AM] Overall 1783 Period: 1805
+[10:23:59 AM] Overall 1783 Period: 1790
+[10:24:13 AM] Overall 1783 Period: 1774
+[10:24:27 AM] Overall 1782 Period: 1758
+[10:24:41 AM] Overall 1782 Period: 1804
+[10:24:55 AM] Overall 1783 Period: 1803
+[10:25:09 AM] Overall 1784 Period: 1814
+[10:25:23 AM] Overall 1784 Period: 1805
+[10:25:37 AM] Overall 1784 Period: 1794
+[10:25:51 AM] Overall 1784 Period: 1781
+[10:26:05 AM] Overall 1784 Period: 1767
+[10:26:19 AM] Overall 1784 Period: 1802
+[10:26:33 AM] Overall 1785 Period: 1845
+[10:26:46 AM] Overall 1786 Period: 1812
+[10:27:00 AM] Overall 1786 Period: 1814
+[10:27:14 AM] Overall 1786 Period: 1791
+[10:27:28 AM] Overall 1786 Period: 1781
+[10:27:42 AM] Overall 1786 Period: 1760
+[10:27:56 AM] Overall 1787 Period: 1839
+[10:28:10 AM] Overall 1788 Period: 1839
+[10:28:23 AM] Overall 1788 Period: 1828
+[10:28:37 AM] Overall 1789 Period: 1805
+[10:28:51 AM] Overall 1789 Period: 1803
+[10:29:05 AM] Overall 1788 Period: 1764
+[10:29:19 AM] Overall 1788 Period: 1790
+[10:29:33 AM] Overall 1788 Period: 1794
+[10:29:47 AM] Overall 1789 Period: 1823
+[10:30:01 AM] Overall 1789 Period: 1831
+[10:30:15 AM] Overall 1790 Period: 1819
+[10:30:28 AM] Overall 1790 Period: 1805
+[10:30:42 AM] Overall 1790 Period: 1783
+[10:30:57 AM] Overall 1790 Period: 1781
+[10:31:11 AM] Overall 1789 Period: 1761
+[10:31:25 AM] Overall 1789 Period: 1787

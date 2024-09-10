@@ -128,7 +128,7 @@ public class Game(int credits, KeyType signing, KeyType agreement)
             {
                 ProcessDilithium(signing, req, cityhash);
             }
-            else if (signing == KeyType.Ed25519)
+            else if (signing == KeyType.Ed25519 || signing == KeyType.Ed448)
             {
                 ProcessCurve25519(signing, req, cityhash);
             }
@@ -159,17 +159,36 @@ public class Game(int credits, KeyType signing, KeyType agreement)
 
             static void ProcessCurve25519(KeyType signing, GeniusEventRequest req, XxHash64 hash)
             {
-                var channelKey = Ed25519Adapter.Import(new Genie.Common.Types.GeoCryptoKey
+                if (signing == KeyType.Ed25519)
                 {
-                    X509 = File.ReadAllBytes(@"C:\Users\gradx\repos\GenieDotNet\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.key"),
-                    IsPrivate = true
-                });
+                    var channelKey = Ed25519Adapter.Import(new Genie.Common.Types.GeoCryptoKey
+                    {
+                        X509 = File.ReadAllBytes($@"C:\Users\gradx\repos\GenieDotNet\SharedFiles\Keys\Alice\Curve25519\Alice{signing}.key"),
+                        IsPrivate = true
+                    });
 
-                req.SignedParty = new SignedParty { GeoCryptoKeyId = $@"{signing}" };
+                    req.SignedParty = new SignedParty { GeoCryptoKeyId = $@"{signing}" };
 
-                // Sign the hash then add the SignedParty to the request
-                var sign = Convert.ToBase64String(Ed25519Adapter.Instance.Sign(hash.GetCurrentHash(), channelKey));
-                req.SignedParty.Signature = sign;
+                    // Sign the hash then add the SignedParty to the request
+                    var sign = Convert.ToBase64String(Ed25519Adapter.Instance.Sign(hash.GetCurrentHash(), channelKey));
+                    req.SignedParty.Signature = sign;
+                }
+                else
+                {
+                    var channelKey = Ed448Adapter.Import(new Genie.Common.Types.GeoCryptoKey
+                    {
+                        X509 = File.ReadAllBytes($@"C:\Users\gradx\repos\GenieDotNet\SharedFiles\Keys\Alice\Curve25519\Alice{signing}.key"),
+                        IsPrivate = true
+                    });
+
+                    req.SignedParty = new SignedParty { GeoCryptoKeyId = $@"{signing}" };
+
+                    // Sign the hash then add the SignedParty to the request
+                    var sign = Convert.ToBase64String(Ed448Adapter.Instance.Sign(hash.GetCurrentHash(), channelKey));
+                    req.SignedParty.Signature = sign;
+                }
+
+                
             }
 
             static void ProcessKoblitz(KeyType signing, GeniusEventRequest req, XxHash64 hash)
@@ -311,11 +330,11 @@ public class Game(int credits, KeyType signing, KeyType agreement)
             };
 
             // Read Bob's public key
-            var bob_certificate = new X509Certificate2(File.ReadAllBytes(@"C:\Users\gradx\repos\GenieDotNet\SharedFiles\Keys\Bob\Curve25519\X448Adapter.cer"));
+            var bob_certificate = new X509Certificate2(File.ReadAllBytes(@"C:\Users\gradx\repos\GenieDotNet\SharedFiles\Keys\Bob\Curve25519\BobX448.cer"));
             var bob_public_key = new X448PublicKeyParameters(bob_certificate.GetPublicKey(), 0);
 
             // Create a secret with Alice's private key and Bob's public Key
-            byte[] secret = new byte[32];
+            byte[] secret = new byte[64];
             alice_private_key.GenerateSecret(bob_public_key, secret, 0);
 
             ProcessSecret(pool, message, out hkdfKey, out envelope, key, secret);

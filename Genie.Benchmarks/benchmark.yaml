@@ -83,7 +83,7 @@ scenarios:
         duration: 900
         #requests: 1
         connections: 32
-        bodyFile: C:\Users\gradx\repos\GenieDotNet\Genie.Benchmarks\EncryptionRequests\Kyber512_Dilithium2.req
+        bodyFile: C:\Users\gradx\repos\GenieDotNet\Genie.Benchmarks\EncryptionRequests\X448_Ed448.req
         verb: POST
         stream: true
 

@@ -209,6 +209,21 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="EncryptionRequests\Kyber1024_Dilithium5.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Kyber512_Dilithium2.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Kyber512_Dilithium3.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Kyber512_Ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\Kyber768_Dilithium3.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="EncryptionRequests\kyber_dilithium.req">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -231,6 +246,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="EncryptionRequests\x25519_ed25519.req">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="EncryptionRequests\X448_Ed448.req">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Keys\Bob\ModuleLattice\BobDilithium3.cer">

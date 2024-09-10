@@ -45,7 +45,8 @@ using Genie.Benchmarks.Benchmarks;
 
 //Test256BouncyIntegration();
 
-
+var test = new PqcNetworkBenchmarks();
+test.Ed448();
 
 //var symm = BenchmarkRunner.Run<SymmetricalBenchmarks>();
 

@@ -67,6 +67,9 @@
     <None Include="..\SharedFiles\Keys\Bob\Curve25519\BobX448.key" Link="Keys\Bob\BobX448.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.key" Link="Keys\Bob\Ed25519SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.key" Link="Keys\Bob\X25519Adapter.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

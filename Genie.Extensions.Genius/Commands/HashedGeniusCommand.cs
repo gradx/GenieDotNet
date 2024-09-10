@@ -626,7 +626,7 @@ public class BenchmarkGeniusCommandHandler(GenieContext genieContext) : BaseComm
                     });
 
                     // Recreate the secret generated from Alice's private key and Bob's public Key
-                    var secret = new byte[32];
+                    var secret = new byte[64];
                     bob_private_key.GenerateSecret(alice_public_key, secret, 0);
 
                     // Extract the HKDF key
