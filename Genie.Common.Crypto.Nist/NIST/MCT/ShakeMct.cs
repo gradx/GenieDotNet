@@ -7,13 +7,16 @@ using NIST.CVP.ACVTS.Libraries.Math;
 using NIST.CVP.ACVTS.Libraries.Math.Domain;
 using NLog;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class ShakeMct : IShaMct
     {
         private readonly ISha _sha;
         private int NUM_OF_RESPONSES = 100;
 
+#pragma warning disable IDE0290 // Use primary constructor
         public ShakeMct(ISha sha)
         {
             _sha = sha;
@@ -46,6 +49,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
          */
         #endregion MonteCarloAlgorithm Pseudocode
 
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public MctResult<AlgoArrayResponse> MctHash(BitString message, bool isSample = false, MathDomain domain = null)
         {
             if (isSample)
@@ -58,8 +62,12 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
             var j = 0;
             var min = domain.GetDomainMinMax().Minimum;
             var max = domain.GetDomainMinMax().Maximum;
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             var minBytes = min / 8;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             var maxBytes = max / 8;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
 
             var outputLen = (int)System.Math.Floor((double)max / 8) * 8;
             var range = (max - min) + 8;
@@ -76,7 +84,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
                 for (i = 0; i < NUM_OF_RESPONSES; i++)
                 {
                     var innerDigest = new BitString(0);
+#pragma warning disable IDE0017 // Simplify object initialization
                     var iterationResponse = new AlgoArrayResponse() { };
+#pragma warning restore IDE0017 // Simplify object initialization
                     iterationResponse.Message = innerMessage;
 
                     for (j = 0; j < 1000; j++)
@@ -112,7 +122,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
 
         private static Logger ThisLogger => LogManager.GetCurrentClassLogger();
 
+#pragma warning disable CA1822 // Mark members as static
         private int GetIntFromBits(BitArray bits)
+#pragma warning restore CA1822 // Mark members as static
         {
             var value = 0;
             for (var i = 0; i < bits.Length; i++)

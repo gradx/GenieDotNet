@@ -1,8 +1,8 @@
 ﻿using Chr.Avro.Confluent;
 using Chr.Avro.Serialization;
 using Confluent.SchemaRegistry;
+using Genie.Adapters.Brokers.ZeroMQ;
 using Genie.Common;
-using Genie.Common.Adapters.ActiveMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
@@ -34,9 +34,11 @@ public class ZeroMQService
 
 
 
-        var service = new ZeroMQService();
-        service.Logger = logger;
-        service.Context = context;
+        var service = new ZeroMQService
+        {
+            Logger = logger,
+            Context = context
+        };
         await service.Run();
 
         Console.WriteLine($@"ZeroMQ exited");
@@ -106,7 +108,7 @@ public class ZeroMQService
                                     dict.Add(eventChannel, producer);
                                 }
 
-                                producer.SendFrame(ms.GetReadOnlySequence().ToArray());
+                                producer?.SendFrame(ms.GetReadOnlySequence().ToArray());
                             },
                             maxDegreeOfParallelism: 32,
                             cts.Token);

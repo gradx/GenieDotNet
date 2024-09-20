@@ -1,0 +1,360 @@
+8: Redis, Aero, Couchbase, Cassandra, Mongo, Scylla, Marten, Crate, Raven, Cockroach, Elastic, Couch, Neo4j, Arango*
+16: Redis, Aero, Couchbase, Mongo, Cassandra, Scylla, Marten, Raven, Elastic, Crate, Cockroach, Couch, Neo4j, Arango*
+32: Mongo, Couchbase, Cassandra, Scylla, Redis, Marten, Raven, Elastic, Aero, Crate, Cockroach, Neo4j, Couch, Arango*
+64: Mongo, Couchbase, Cassandra, Redis, Raven, Marten, Aero, Elastic, Cockroach, Neo4j, Couch, Arango, Scylla*, Crate*
+
+######
+## 16k
+######
+
+Redis .41 / .25
+| Method | Mean     | Error     | StdDev    |
+|------- |---------:|----------:|----------:|
+| Write  | 4.705 ms | 0.3091 ms | 0.8460 ms |
+| Read   | 4.964 ms | 0.2839 ms | 0.7529 ms |
+
+Aerospike 115 / 70
+| Method | Mean     | Error     | StdDev    |
+|------- |---------:|----------:|----------:|
+| Write  | 8.265 ms | 0.1930 ms | 0.5662 ms |
+| Read   | 6.740 ms | 0.1346 ms | 0.3011 ms |
+
+Couchbase 618 / 42
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 13.130 ms | 0.3639 ms | 1.0730 ms |
+| Read   |  6.260 ms | 0.1804 ms | 0.5058 ms |
+
+Mongo
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 13.755 ms | 0.2012 ms | 0.1882 ms |
+| Read   |  6.501 ms | 0.1398 ms | 0.4079 ms |
+
+Cassandra 417 / 513
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 12.108 ms | 0.3306 ms | 0.9695 ms |
+| Read   |  8.632 ms | 0.1639 ms | 0.1369 ms |
+
+Scylla 221 / 541
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 18.163 ms | 0.4440 ms | 1.2882 ms |
+| Read   |  9.063 ms | 0.1888 ms | 0.5448 ms |
+
+Martin 421 / 292
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 21.35 ms | 0.427 ms | 0.981 ms |
+| Read   | 11.38 ms | 0.227 ms | 0.410 ms |
+
+Raven 27 / 74
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 60.252 ms | 1.0612 ms | 0.9926 ms |
+| Read   |  5.669 ms | 0.1126 ms | 0.2143 ms |
+
+Elastic 250 / 780
+|------- |---------:|---------:|---------:|---------:|
+| Write  | 68.37 ms | 1.789 ms | 4.987 ms | 67.03 ms |
+| Read   | 16.34 ms | 1.328 ms | 3.917 ms | 14.81 ms |
+
+Crate 328 / 577
+| Method | Mean       | Error     | StdDev   |
+|------- |-----------:|----------:|---------:|
+| Write  | 120.130 ms | 2.3643 ms | 6.228 ms |
+| Read   |   9.113 ms | 0.4032 ms | 1.097 ms |
+
+Cockroach / 1158
+| Method | Mean      | Error    | StdDev   |
+|------- |----------:|---------:|---------:|
+| Write  | 121.68 ms | 2.003 ms | 2.143 ms |
+| Read   |  19.34 ms | 0.386 ms | 0.960 ms |
+
+Couch 489 / 634
+| Method | Mean      | Error    | StdDev   |
+|------- |----------:|---------:|---------:|
+| Write  | 206.52 ms | 4.076 ms | 5.846 ms |
+| Read   |  49.32 ms | 0.981 ms | 2.534 ms |
+
+Neo4j 266 / 71
+| Method | Mean     | Error   | StdDev   |
+|------- |---------:|--------:|---------:|
+| Write  | 140.9 ms | 5.64 ms | 16.54 ms |
+| Read   | 128.1 ms | 4.94 ms | 14.42 ms |
+
+Arango 455
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 51.90 ms | 1.035 ms | 1.729 ms |
+| Read   |       NA |       NA |       NA |
+
+
+
+#####
+## 8k
+#####
+
+Redis
+| Method | Mean     | Error     | StdDev    |
+|------- |---------:|----------:|----------:|
+| Write  | 4.458 ms | 0.4102 ms | 1.1089 ms |
+| Read   | 4.605 ms | 0.2537 ms | 0.7071 ms |
+
+Aero
+| Method | Mean     | Error     | StdDev    | Median   |
+|------- |---------:|----------:|----------:|---------:|
+| Write  | 7.096 ms | 0.2075 ms | 0.5921 ms | 6.907 ms |
+| Read   | 5.924 ms | 0.1184 ms | 0.2418 ms | 5.922 ms |
+
+Couchbase 
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 10.139 ms | 0.4021 ms | 1.1856 ms |
+| Read   |  4.812 ms | 0.1073 ms | 0.3061 ms |
+
+Cassandra
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 12.047 ms | 1.3251 ms | 3.6937 ms |
+| Read   |  5.224 ms | 0.3071 ms | 0.8198 ms |
+
+Mongo
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 10.439 ms | 0.1550 ms | 0.1374 ms |
+| Read   |  6.895 ms | 0.1892 ms | 0.5548 ms |
+
+Scylla
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 11.776 ms | 0.2720 ms | 0.7583 ms |
+| Read   |  7.201 ms | 0.2465 ms | 0.6952 ms |
+
+Marten
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 16.569 ms | 0.3675 ms | 1.0835 ms |
+| Read   |  9.882 ms | 0.1959 ms | 0.4732 ms |
+
+Crate
+| Method | Mean      | Error     | StdDev   |
+|------- |----------:|----------:|---------:|
+| Write  | 33.922 ms | 2.5549 ms | 6.864 ms |
+| Read   |  8.392 ms | 0.3944 ms | 1.086 ms |
+
+Raven
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 59.097 ms | 1.1588 ms | 2.0296 ms |
+| Read   |  5.580 ms | 0.1111 ms | 0.2529 ms |
+
+Cockroach
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 47.86 ms | 2.457 ms | 7.207 ms |
+| Read   | 20.16 ms | 0.765 ms | 2.231 ms |
+
+Elastic
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 74.55 ms | 1.612 ms | 4.547 ms |
+| Read   | 12.78 ms | 0.496 ms | 1.391 ms |
+
+Couch
+| Method | Mean      | Error    | StdDev   |
+|------- |----------:|---------:|---------:|
+| Write  | 210.97 ms | 4.214 ms | 8.416 ms |
+| Read   |  49.95 ms | 0.993 ms | 2.719 ms |
+
+Neo4j
+| Method | Mean     | Error   | StdDev   |
+|------- |---------:|--------:|---------:|
+| Write  | 124.2 ms | 7.16 ms | 20.99 ms |
+| Read   | 122.2 ms | 3.77 ms | 11.04 ms |
+
+Arango
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 51.84 ms | 1.036 ms | 1.760 ms |
+| Read   |       NA |       NA |       NA |
+
+######
+## 32k
+######
+
+Mongo
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 18.968 ms | 0.3682 ms | 0.4657 ms |
+| Read   |  6.681 ms | 0.1720 ms | 0.5043 ms |
+
+Couchbase
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 17.226 ms | 1.0137 ms | 2.9891 ms |
+| Read   |  8.644 ms | 0.3141 ms | 0.8757 ms |
+
+Cassandra
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 19.32 ms | 0.535 ms | 1.510 ms |
+| Read   | 11.28 ms | 0.589 ms | 1.641 ms |
+
+Scylla
+| Method | Mean     | Error    | StdDev   | Median   |
+|------- |---------:|---------:|---------:|---------:|
+| Write  | 31.16 ms | 0.850 ms | 2.452 ms | 30.39 ms |
+| Read   | 12.91 ms | 0.257 ms | 0.547 ms | 12.82 ms |
+
+Redis
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 53.701 ms | 2.1355 ms | 5.8459 ms |
+| Read   |  5.879 ms | 0.3394 ms | 0.9118 ms |
+
+
+Marten
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 51.51 ms | 1.976 ms | 5.827 ms |
+| Read   | 13.40 ms | 0.262 ms | 0.291 ms |
+
+Raven
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 62.030 ms | 1.1273 ms | 1.0545 ms |
+| Read   |  6.019 ms | 0.1186 ms | 0.2368 ms |
+
+Elastic
+| Method | Mean     | Error    | StdDev   | Median   |
+|------- |---------:|---------:|---------:|---------:|
+| Write  | 67.10 ms | 1.310 ms | 2.001 ms | 66.78 ms |
+| Read   | 18.09 ms | 0.871 ms | 2.568 ms | 17.24 ms |
+
+Aero
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 99.097 ms | 1.9701 ms | 2.0231 ms |
+| Read   |  7.741 ms | 0.1543 ms | 0.2262 ms |
+
+Crate
+| Method | Mean      | Error    | StdDev    |
+|------- |----------:|---------:|----------:|
+| Write  | 124.62 ms | 5.152 ms | 14.699 ms |
+| Read   |  10.89 ms | 0.410 ms |  1.157 ms |
+
+Cockroach
+| Method | Mean      | Error    | StdDev   |
+|------- |----------:|---------:|---------:|
+| Write  | 122.75 ms | 2.374 ms | 3.169 ms |
+| Read   |  22.33 ms | 0.917 ms | 2.617 ms |
+
+Neo4j
+| Method | Mean     | Error   | StdDev   | Median   |
+|------- |---------:|--------:|---------:|---------:|
+| Write  | 122.0 ms | 4.85 ms | 14.23 ms | 119.4 ms |
+| Read   | 123.3 ms | 5.42 ms | 15.97 ms | 119.1 ms |
+
+Couch
+| Method | Mean      | Error    | StdDev   |
+|------- |----------:|---------:|---------:|
+| Write  | 204.91 ms | 3.983 ms | 6.545 ms |
+| Read   |  49.74 ms | 1.040 ms | 3.032 ms |
+
+Arango
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 58.45 ms | 1.151 ms | 2.428 ms |
+| Read   |       NA |       NA |       NA |
+
+######
+## 64k
+######
+
+Mongo
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 31.740 ms | 0.5831 ms | 1.0515 ms |
+| Read   |  6.538 ms | 0.1305 ms | 0.2781 ms |
+
+Couchbase
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 29.90 ms | 1.527 ms | 4.502 ms |
+| Read   | 14.67 ms | 0.330 ms | 0.956 ms |
+
+Cassandra
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 40.91 ms | 2.438 ms | 6.916 ms |
+| Read   | 20.63 ms | 1.714 ms | 4.891 ms |
+
+Redis
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 56.591 ms | 1.3547 ms | 3.9086 ms |
+| Read   |  8.638 ms | 0.3017 ms | 0.8460 ms |
+
+Raven
+| Method | Mean      | Error     | StdDev    |
+|------- |----------:|----------:|----------:|
+| Write  | 68.694 ms | 1.3190 ms | 1.2338 ms |
+| Read   |  8.444 ms | 0.1664 ms | 0.3856 ms |
+
+Marten
+| Method | Mean     | Error    | StdDev   | Median   |
+|------- |---------:|---------:|---------:|---------:|
+| Write  | 55.40 ms | 1.444 ms | 4.188 ms | 55.95 ms |
+| Read   | 22.99 ms | 1.007 ms | 2.938 ms | 22.07 ms |
+
+Aero
+| Method | Mean     | Error    | StdDev    | Median   |
+|------- |---------:|---------:|----------:|---------:|
+| Write  | 71.21 ms | 5.613 ms | 16.549 ms | 61.65 ms |
+| Read   | 13.42 ms | 0.398 ms |  1.161 ms | 13.33 ms |
+
+Elastic
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  | 74.01 ms | 2.803 ms | 7.861 ms |
+| Read   | 21.57 ms | 0.563 ms | 1.587 ms |
+
+Cockroach
+| Method | Mean     | Error    | StdDev    |
+|------- |---------:|---------:|----------:|
+| Write  | 96.40 ms | 5.787 ms | 15.744 ms |
+| Read   | 30.84 ms | 1.853 ms |  5.433 ms |
+
+Neo4j
+| Method | Mean     | Error   | StdDev   | Median   |
+|------- |---------:|--------:|---------:|---------:|
+| Write  | 132.2 ms | 5.06 ms | 14.59 ms | 129.7 ms |
+| Read   | 107.1 ms | 4.17 ms | 11.97 ms | 103.4 ms |
+
+Couch
+| Method | Mean      | Error    | StdDev    |
+|------- |----------:|---------:|----------:|
+| Write  | 200.01 ms | 4.981 ms | 14.687 ms |
+| Read   |  49.65 ms | 0.983 ms |  2.608 ms |
+
+Arango
+| Method | Mean        | Error      | StdDev     |
+|------- |------------:|-----------:|-----------:|
+| Write  |    65.23 ms |   1.275 ms |   1.658 ms |
+| Read   | 4,359.63 ms | 186.202 ms | 528.225 ms |
+
+Scylla
+| Method | Mean     | Error    | StdDev   |
+|------- |---------:|---------:|---------:|
+| Write  |       NA |       NA |       NA |
+| Read   | 23.06 ms | 0.455 ms | 1.091 ms |
+
+Crate **max length 32766**
+| Method | Mean     | Error     | StdDev    |
+|------- |---------:|----------:|----------:|
+| Write  |       NA |        NA |        NA |
+| Read   | 7.602 ms | 0.3616 ms | 0.9714 ms |
+
+

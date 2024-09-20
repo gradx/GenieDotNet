@@ -5,7 +5,9 @@ using System.Reflection;
 using System.Runtime.Serialization;
 using NLog;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public static class EnumHelpers
     {
@@ -19,17 +21,23 @@ namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
         {
             try
             {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 FieldInfo fi = enumToGetDescriptionFrom.GetType().GetField(enumToGetDescriptionFrom.ToString());
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 EnumMemberAttribute[] attributes =
                     (EnumMemberAttribute[])fi.GetCustomAttributes(
                         typeof(EnumMemberAttribute),
                         false);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
 
                 if (attributes != null &&
                     attributes.Length > 0)
                 {
+#pragma warning disable CS8603 // Possible null reference return.
                     return attributes[0].Value;
+#pragma warning restore CS8603 // Possible null reference return.
                 }
 
                 return enumToGetDescriptionFrom.ToString();
@@ -40,7 +48,9 @@ namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
                 ThisLogger.Debug(ex);
             }
 
+#pragma warning disable CS8603 // Possible null reference return.
             return null;
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         /// <summary>
@@ -60,6 +70,7 @@ namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
 
             try
             {
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                 return (T)typeof(T)
                     .GetFields()
                     .First(
@@ -67,6 +78,7 @@ namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
                             .Any(a => a.Value.Equals(enumDescription, StringComparison.OrdinalIgnoreCase))
                     )
                     .GetValue(null);
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
             }
             catch (Exception)
             {
@@ -76,7 +88,9 @@ namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
                     throw;
                 }
 
+#pragma warning disable IDE0034 // Simplify 'default' expression
                 return default(T);
+#pragma warning restore IDE0034 // Simplify 'default' expression
             }
         }
 
@@ -97,7 +111,7 @@ namespace NIST.CVP.ACVTS.Libraries.Common.Helpers
                 throw new ArgumentException("Only Enum types allowed");
             }
 
-            List<string> descriptions = new List<string>();
+            List<string> descriptions = [];
             foreach (var value in Enum.GetValues(type).Cast<Enum>())
             {
                 descriptions.Add(GetEnumDescriptionFromEnum(value));

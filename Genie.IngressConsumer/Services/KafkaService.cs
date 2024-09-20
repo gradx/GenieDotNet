@@ -1,11 +1,9 @@
 ﻿using Chr.Avro.Confluent;
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
-using Consul;
 using Cysharp.IO;
+using Genie.Adapters.Brokers.Kafka;
 using Genie.Common;
-using Genie.Common.Adapters;
-using Genie.Common.Adapters.Kafka;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;

@@ -6,8 +6,8 @@ using Adaptive.Cluster.Codecs;
 using Adaptive.Cluster.Service;
 using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
+using Genie.Adapters.Brokers.Aeron;
 using Genie.Common;
-using Genie.Common.Adapters.ActiveMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
@@ -23,8 +23,8 @@ namespace Genie.IngressConsumer.Services
     public class EchoService : IClusteredService
     {
         private ICluster _cluster;
-        private CounterConsoleLogger timer = new();
-        private SchemaBuilder schemaBuilder = AvroSupport.GetSchemaBuilder();
+        private readonly CounterConsoleLogger timer = new();
+        private readonly SchemaBuilder schemaBuilder = AvroSupport.GetSchemaBuilder();
         private BinarySerializer<EventTaskJob> serializer;
         private GenieContext context;
         private DefaultObjectPool<PostGisPooledObject> pool;
@@ -198,7 +198,7 @@ namespace Genie.IngressConsumer.Services
                             var data = ms.GetReadOnlySequence().ToArray();
                             buffer.PutBytes(0, data);
 
-                            while (!producer.IsConnected)
+                            while (!producer!.IsConnected)
                                 await Task.Delay(500);
 
                             var result = producer.Offer(buffer, 0, data.Length);

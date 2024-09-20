@@ -5,7 +5,9 @@ using Newtonsoft.Json;
 using NIST.CVP.ACVTS.Libraries.Common.ExtensionMethods;
 using NIST.CVP.ACVTS.Libraries.Math.JsonConverters;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Domain
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// A domain of values - literal values and/or a range of values.
@@ -74,7 +76,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.Domain
         /// <returns></returns>
         public RangeMinMax GetDomainMinMax()
         {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
             RangeMinMax minMax = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
 
             foreach (var segment in DomainSegments)
             {
@@ -103,7 +107,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.Domain
                 }
             }
 
+#pragma warning disable CS8603 // Possible null reference return.
             return minMax;
+#pragma warning restore CS8603 // Possible null reference return.
         }
 
         /// <summary>

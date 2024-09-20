@@ -5,7 +5,9 @@ using NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper;
 using NIST.CVP.ACVTS.Libraries.Math;
 using NIST.CVP.ACVTS.Libraries.Math.LargeBitString;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Heavily borrowed from BouncyCastle via https://github.com/bcgit/bc-csharp 
@@ -18,7 +20,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
         private uint[] X = new uint[64];
         private int xOffset;
 
+#pragma warning disable IDE0300 // Simplify collection initialization
         private static readonly uint[] K = {
+#pragma warning restore IDE0300 // Simplify collection initialization
             0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5,
             0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
             0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3,

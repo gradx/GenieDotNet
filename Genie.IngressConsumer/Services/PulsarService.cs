@@ -1,5 +1,5 @@
-﻿using Genie.Common;
-using Genie.Common.Adapters.Pulsar;
+﻿using Genie.Adapters.Brokers.Pulsar;
+using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;

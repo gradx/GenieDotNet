@@ -4,12 +4,15 @@ using NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper;
 using NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT;
 using NIST.CVP.ACVTS.Libraries.Math.Domain;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class NativeShaFactory : IShaFactory
     {
         public ISha GetShaInstance(HashFunction hashFunction)
         {
+#pragma warning disable IDE0066 // Convert switch statement to expression
             switch (hashFunction.Mode)
             {
                 case ModeValues.SHA1:
@@ -48,6 +51,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
                 default:
                     throw new ArgumentException($"{nameof(hashFunction)}");
             }
+#pragma warning restore IDE0066 // Convert switch statement to expression
         }
 
         public IShaMct GetShaMctInstance(HashFunction hashFunction, bool isAlternate = false)

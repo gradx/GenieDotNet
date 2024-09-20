@@ -4,7 +4,9 @@ using System.Runtime.Serialization;
 using Newtonsoft.Json;
 using NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper.Helpers;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class HashFunction
     {
@@ -55,7 +57,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper
             OID = attributes.OID; 
         }
 
+#pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         public override bool Equals(object other)
+#pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         {
             if (other is HashFunction obj)
             {

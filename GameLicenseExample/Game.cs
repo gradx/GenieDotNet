@@ -284,8 +284,8 @@ public class Game(int credits, KeyType signing, KeyType agreement)
 
     private static SealedEnvelope CreateSealedEnvelope(KeyType agreementKey, ObjectPool<StringBuilder> pool, string message, out byte[] hkdfKey)
     {
-        SealedEnvelope envelope = new SealedEnvelope();
-        hkdfKey = null;
+        SealedEnvelope envelope = new();
+        
 
         if (agreementKey == KeyType.X25519)
         {

@@ -19,21 +19,6 @@ public class ElasticGeo
 
 }
 
-public class ElasticSearchPooledObject
-{
-    public ElasticsearchClient Client { get; init; }
 
-    public ElasticSearchPooledObject()
-    {
-        var settings = new ElasticsearchClientSettings(new Uri("https://localhost:9200"))
-            .Authentication(new BasicAuthentication("elastic", "7PMxQyEb+=aNDV2fVlw="))
-            .CertificateFingerprint("d96300dd6d8a14c4df76f57127362d772380e3fdcbfe0a72505a1cdc240fbdb7");
-
-        settings.DisableDirectStreaming(true);
-        settings.DefaultIndex("testindex3");
-
-        Client = new ElasticsearchClient(settings);
-    }
-}
 
 

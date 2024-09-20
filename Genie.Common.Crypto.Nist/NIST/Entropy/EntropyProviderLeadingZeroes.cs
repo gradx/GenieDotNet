@@ -1,12 +1,16 @@
 ﻿using System;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class EntropyProviderLeadingZeroes : EntropyProvider
     {
         private readonly int _minimumLeadingZeroes;
 
+#pragma warning disable IDE0290 // Use primary constructor
         public EntropyProviderLeadingZeroes(IRandom800_90 random, int minimumLeadingZeroes) : base(random)
+#pragma warning restore IDE0290 // Use primary constructor
         {
             _minimumLeadingZeroes = minimumLeadingZeroes;
         }

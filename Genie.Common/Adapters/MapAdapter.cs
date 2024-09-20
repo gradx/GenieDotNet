@@ -1,5 +1,7 @@
 ﻿using Elastic.Clients.Elasticsearch;
+using Genie.Adapters.Persistence.Elasticsearch;
 using Genie.Common.Performance;
+using Genie.Utils;
 using Microsoft.Extensions.ObjectPool;
 using NetTopologySuite.Features;
 using NetTopologySuite.Geometries;
@@ -11,16 +13,16 @@ namespace Genie.Common.Adapters
 
     public class MapAdapter
     {
-        private readonly static XxHash64 hasher = new XxHash64();
+        private readonly static XxHash64 hasher = new();
 
         public static AttributesTable ReverseGeoCode<T>(ObjectPool<T> pool, Geometry geo, AttributesTable attrs) where T : class
         {
             var pooled = pool.Get();
 
-            if(pooled is ElasticSearchPooledObject e)
+            if(pooled is ElasticsearchPooledObject e)
             {
                 
-                var respose = e.Client.SearchAsync<ElasticGeo>(s => s.Index("testindex3").From(0).Size(10).Query(q =>
+                var respose = e.Client.SearchAsync<ElasticGeo>(s => s.Index("elastic_geo").From(0).Size(10).Query(q =>
                 {
                     q.GeoShape(new Elastic.Clients.Elasticsearch.QueryDsl.GeoShapeQuery
                     {

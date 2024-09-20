@@ -1,6 +1,4 @@
-﻿using Apache.NMS.ActiveMQ.Commands;
-using DuckDB.NET.Data;
-using Genie.Common.Web;
+﻿using DuckDB.NET.Data;
 using System.Data.Common;
 
 namespace Genie.Common.Utils;

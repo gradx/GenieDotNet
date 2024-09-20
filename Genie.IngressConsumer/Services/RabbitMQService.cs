@@ -1,9 +1,5 @@
-﻿using Chr.Avro.Confluent;
-using Chr.Avro.Serialization;
-using Confluent.SchemaRegistry;
+﻿using Genie.Adapters.Brokers.RabbitMQ;
 using Genie.Common;
-using Genie.Common.Adapters;
-using Genie.Common.Adapters.RabbitMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
@@ -11,12 +7,10 @@ using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.IO;
-using Microsoft.Win32;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Buffers;
 using ZLogger;
-using static Genie.Common.Adapters.CosmosAdapter;
 
 
 namespace Genie.IngressConsumer.Services;
@@ -39,8 +33,10 @@ public class RabbitMQService
 
     public static async Task<(IChannel IngressChannel, IChannel EventChannel)> Channels()
     {
-        var args = new Dictionary<string, object>();
-        args.Add("x-max-length", 10000);
+        var args = new Dictionary<string, object>
+        {
+            { "x-max-length", 10000 }
+        };
 
         var context = GenieContext.Build().GenieContext;
 

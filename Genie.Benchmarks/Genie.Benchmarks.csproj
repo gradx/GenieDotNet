@@ -13,6 +13,18 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\amd64\KernelTraceControl.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\amd64\msdia140.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\arm64\KernelTraceControl.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\arm64\msdia140.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\x86\KernelTraceControl.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\x86\KernelTraceControl.Win61.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\x86\msdia140.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\lib\netstandard2.0\Dia2Lib.dll" />
+    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\lib\netstandard2.0\TraceReloggerLib.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="..\SharedFiles\appsettings.Development.json" Link="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -183,8 +195,8 @@
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
     <PackageReference Include="DotPulsar" Version="3.3.2" />
-    <PackageReference Include="Google.Protobuf" Version="3.28.0" />
-    <PackageReference Include="Grpc.Net.Client" Version="2.65.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.28.2" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.66.0" />
     <PackageReference Include="Grpc.Tools" Version="2.66.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -200,10 +212,25 @@
     <Folder Include="Keys\Bob\Curve25519\" />
     <Folder Include="Keys\Bob\Rsa\" />
     <Folder Include="Keys\Bob\Secp\Bouncy\" />
-    <Folder Include="Protos\" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistencce.CouchDB\Genie.Adapters.Persistence.CouchDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Aerospike\Genie.Adapters.Persistence.Aerospike.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ArangoDB\Genie.Adapters.Persistence.ArangoDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Cassandra\Genie.Adapters.Persistence.Cassandra.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CockroachDB\Genie.Adapters.Persistence.CockroachDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Couchbase\Genie.Adapters.Persistence.Couchbase.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CrateDB\Genie.Adapters.Persistence.CrateDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Marten\Genie.Adapters.Persistence.Marten.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MongoDB\Genie.Adapters.Persistence.MongoDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Neo4j\Genie.Adapters.Persistence.Neo4j.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.RavenDB\Genie.Adapters.Persistence.RavenDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Redis\Genie.Adapters.Persistence.Redis.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ScyllaDB\Genie.Adapters.Persistence.ScyllaDB.csproj" />
     <ProjectReference Include="..\Genie.Common.Adapters.Crypto\Genie.Common.Crypto.csproj" />
     <ProjectReference Include="..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj" />
   </ItemGroup>

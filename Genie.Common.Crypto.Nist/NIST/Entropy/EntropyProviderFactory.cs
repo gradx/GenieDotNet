@@ -1,6 +1,8 @@
 ﻿using System;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Used for retrieving an instance of an <see cref="IEntropyProvider"/>
@@ -15,6 +17,7 @@ namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
         /// <returns></returns>
         public IEntropyProvider GetEntropyProvider(EntropyProviderTypes providerType)
         {
+#pragma warning disable IDE0066 // Convert switch statement to expression
             switch (providerType)
             {
                 case EntropyProviderTypes.Testable:
@@ -24,6 +27,7 @@ namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
                 default:
                     throw new ArgumentException($"Invalid {providerType} supplied.");
             }
+#pragma warning restore IDE0066 // Convert switch statement to expression
         }
     }
 }

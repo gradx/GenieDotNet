@@ -1,9 +1,10 @@
 ﻿using Genie.Common.Crypto.Adapters.Interfaces;
 using Genie.Common.Types;
 using System.Security.Cryptography;
-using System.Security.Cryptography.X509Certificates;
+
 
 namespace Genie.Common.Crypto.Adapters.Nist;
+
 public class Secp384r1SigningAdapter : SecpBaseSigningAdapter, IAsymmetricBase, IAsymmetricSignature<ECDsa>
 {
     private static readonly Lazy<Secp384r1SigningAdapter> _instance = new(() => new());
@@ -26,9 +27,5 @@ public class Secp384r1SigningAdapter : SecpBaseSigningAdapter, IAsymmetricBase, 
         return Instance.ImportX509<T>(x509);
     }
 
-    public static ECDsa? ImportX509(byte[] x509)
-    {
-        var cert = new X509Certificate2(x509);
-        return cert.GetECDsaPublicKey();
-    }
+
 }

@@ -4,12 +4,9 @@ using Genie.Common.Utils.ChangeFeed;
 using Microsoft.Extensions.Logging;
 using ZLogger;
 using Confluent.SchemaRegistry;
-using Genie.Common.Adapters;
 using Google.Protobuf;
-using Genie.Common.Adapters.Kafka;
 using Microsoft.Extensions.ObjectPool;
-using Genie.Common.Web;
-
+using Genie.Common.Adapters;
 
 namespace Genie.Common.Utils;
 
@@ -198,7 +195,7 @@ public class EventTask
             switch (e)
             {
                 case DeepEqual.BasicDifference b:
-                    differences.Add(new ChangeFeed.BasicDifference
+                    differences.Add(new Utils.ChangeFeed.BasicDifference
                     {
                         Breadcrumb = b.Breadcrumb,
                         Value1 = SpanJson.JsonSerializer.Generic.Utf16.Serialize(b.Value1),
@@ -213,7 +210,7 @@ public class EventTask
                     differences.Add(GetMissingDifference(m));
                     break;
                 case DeepEqual.Difference d:
-                    differences.Add(new ChangeFeed.Difference { Breadcrumb = d.Breadcrumb });
+                    differences.Add(new Utils.ChangeFeed.Difference { Breadcrumb = d.Breadcrumb });
                     break;
             }
         });
@@ -221,9 +218,9 @@ public class EventTask
         return differences;
     }
 
-    private static ChangeFeed.SetDifference GetSetDifference(DeepEqual.SetDifference diff)
+    private static Utils.ChangeFeed.SetDifference GetSetDifference(DeepEqual.SetDifference diff)
     {
-        var result = new ChangeFeed.SetDifference
+        var result = new Utils.ChangeFeed.SetDifference
         {
             Breadcrumb =
             diff.Breadcrumb
@@ -235,10 +232,10 @@ public class EventTask
         return result;
     }
 
-    private static ChangeFeed.MissingEntryDifference GetMissingDifference(DeepEqual.MissingEntryDifference diff)
+    private static Utils.ChangeFeed.MissingEntryDifference GetMissingDifference(DeepEqual.MissingEntryDifference diff)
     {
-        return new ChangeFeed.MissingEntryDifference { Breadcrumb = diff.Breadcrumb,
-            Side = diff.Side == DeepEqual.MissingSide.Actual ? ChangeFeed.MissingSide.Actual : ChangeFeed.MissingSide.Expected,
+        return new Utils.ChangeFeed.MissingEntryDifference { Breadcrumb = diff.Breadcrumb,
+            Side = diff.Side == DeepEqual.MissingSide.Actual ? Utils.ChangeFeed.MissingSide.Actual : Utils.ChangeFeed.MissingSide.Expected,
             Key = SpanJson.JsonSerializer.Generic.Utf16.Serialize(diff.Key),
             Value = SpanJson.JsonSerializer.Generic.Utf16.Serialize(diff.Value)
         };

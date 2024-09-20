@@ -6,11 +6,6 @@ using Genie.Common.Utils;
 using Genie.Common.Adapters;
 using Microsoft.Extensions.ObjectPool;
 using Genie.Common.Performance;
-using Adaptive.Aeron.Samples.SimpleSubscriber;
-using Adaptive.Aeron.Samples.SimplePublisher;
-using Genie.Scratch.NATS;
-using NATS.Client.Core;
-using Genie.Scratch.MQTTNet;
 using Genie.Scratch.Quantum;
 
 
@@ -29,7 +24,7 @@ Console.ReadLine();
 var geo = GeometryCalculator.Polygon(38.89781822004474, -77.03655126065402, 10, 4);
 
 var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
-MapAdapter.ReverseGeoCode(pool, geo, new());
+MapAdapter.ReverseGeoCode(pool, geo, []);
 
 //await LoadPostgis.Start();
 

@@ -5,7 +5,6 @@ using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Common.Utils.Cosmos;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;

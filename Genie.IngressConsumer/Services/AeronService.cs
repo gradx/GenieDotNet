@@ -1,8 +1,8 @@
 ﻿using Adaptive.Aeron;
 using Adaptive.Agrona;
 using Adaptive.Agrona.Concurrent;
+using Genie.Adapters.Brokers.Aeron;
 using Genie.Common;
-using Genie.Common.Adapters.ActiveMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
@@ -87,7 +87,7 @@ public class AeronService
                         var data = ms.GetReadOnlySequence().ToArray();
                         buffer.PutBytes(0, data);
 
-                        while(!producer.IsConnected)
+                        while(!producer!.IsConnected)
                             await Task.Delay(500);
 
                         var result = producer.Offer(buffer, 0, data.Length);

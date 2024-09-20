@@ -27,7 +27,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Genie.Actors\Genie.Actors.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ActiveMQ\Genie.Adapters.Brokers.ActiveMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Aeron\Genie.Adapters.Brokers.Aeron.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Kafka\Genie.Adapters.Brokers.Kafka.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.MQTT\Genie.Adapters.Brokers.MQTT.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.NATS\Genie.Adapters.Brokers.NATS.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Pulsar\Genie.Adapters.Brokers.Pulsar.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.RabbitMQ\Genie.Adapters.Brokers.RabbitMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ZeroMQ\Genie.Adapters.Brokers.ZeroMQ.csproj" />
     <ProjectReference Include="..\Genie.Extensions.Genius\Genie.Extensions.Genius.csproj" />
+    <ProjectReference Include="..\Genie.Web.Api\Genie.Web.Api.csproj" />
   </ItemGroup>
 
 </Project>

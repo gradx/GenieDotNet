@@ -51,7 +51,6 @@ public abstract class SecpBaseSigningAdapter(string oid, int keySize)
         return cert.GetECDsaPublicKey();
     }
 
-
     public byte[] Export(ECDsa key, bool isPrivate)
     {
         return isPrivate ? key.ExportPkcs8PrivateKey() : key.ExportSubjectPublicKeyInfo();

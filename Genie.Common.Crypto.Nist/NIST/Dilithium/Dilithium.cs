@@ -8,7 +8,9 @@ using NIST.CVP.ACVTS.Libraries.Crypto.Common.PQC.Helpers;
 using NIST.CVP.ACVTS.Libraries.Math.Entropy;
 using NIST.CVP.ACVTS.Libraries.Math.Helpers;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.Dilithium;
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 
 public class Dilithium : IMLDSA
 {
@@ -21,7 +23,9 @@ public class Dilithium : IMLDSA
     /// Precomputed zeta array with bitrev(k) already applied
     /// </summary>
     private readonly int[] _zeta = 
+#pragma warning disable IDE0300 // Simplify collection initialization
     {
+#pragma warning restore IDE0300 // Simplify collection initialization
         0, -3572223, 3765607, 3761513, -3201494, -2883726, -3145678, -3201430, -601683, 3542485, 2682288, 2129892, 
         3764867, -1005239, 557458, -1221177, -3370349, -4063053, 2663378, -1674615, -3524442, -434125, 676590, -1335936,
         -3227876, 1714295, 2453983, 1460718, -642628, -3585098, 2815639, 2283733, 3602218, 3182878, 2740543, -3586446, 
@@ -46,6 +50,7 @@ public class Dilithium : IMLDSA
         -3974485, -3773731, 1900052, -781875, 1054478, -731434
     };
     
+#pragma warning disable IDE0290 // Use primary constructor
     public Dilithium(DilithiumParameters param, IShaFactory shaFactory, IEntropyProvider entropyProvider)
     {
         _param = param;
@@ -237,8 +242,12 @@ public class Dilithium : IMLDSA
             
             if (InfinityNorm(z) >= _param.Gamma1 - _param.Beta || InfinityNorm(r0) >= _param.Gamma2 - _param.Beta)
             {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 z = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                 h = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                 // Console.WriteLine("Need new candidate round. ||z|| too large or ||r0|| too large.");
                 // Console.WriteLine();
             }
@@ -278,8 +287,12 @@ public class Dilithium : IMLDSA
                 
                 if (InfinityNorm(ct0) >= _param.Gamma2 || sumH > _param.Omega)
                 {
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     z = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
+#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
                     h = null;
+#pragma warning restore CS8600 // Converting null literal or possible null value to non-nullable type.
                     // Console.WriteLine("Need new candidate round. ||ct0|| too large, or too many hints required.");
                     // Console.WriteLine();
                 }
@@ -290,7 +303,9 @@ public class Dilithium : IMLDSA
         } while (z == null && h == null);
 
         // z plus/minus mod Q is performed within SigEncode because it is easier to apply as the elements are iterated
+#pragma warning disable CS8604 // Possible null reference argument.
         var sig = SigEncode(BytesToBits(cTilde), z, h);
+#pragma warning restore CS8604 // Possible null reference argument.
         // Console.WriteLine("signature: " + IntermediateValueHelper.Print(sig));
         // Console.WriteLine();
         return sig;
@@ -423,7 +438,9 @@ public class Dilithium : IMLDSA
     /// <param name="x">Integer value</param>
     /// <param name="alpha">Number of bits to use to express x</param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public BitArray IntegerToBits(int x, int alpha)
+#pragma warning restore CA1822 // Mark members as static
     {
         var y = new BitArray(alpha);
         for (int i = 0; i < alpha; i++)
@@ -441,7 +458,9 @@ public class Dilithium : IMLDSA
     /// <param name="y">Array of bits</param>
     /// <param name="alpha">Number of bits in y</param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public int BitsToInteger(BitArray y, int alpha)
+#pragma warning restore CA1822 // Mark members as static
     {
         int x = 0;
         for (var i = 1; i <= alpha; i++)
@@ -458,7 +477,9 @@ public class Dilithium : IMLDSA
     /// <param name="x">Nonnegative integer</param>
     /// <param name="alpha">Number of bytes in x</param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public byte[] IntegerToBytes(int x, int alpha)
+#pragma warning restore CA1822 // Mark members as static
     {
         var y = new byte[alpha];
         for (var i = 0; i < alpha; i++)
@@ -475,7 +496,9 @@ public class Dilithium : IMLDSA
     /// </summary>
     /// <param name="y"></param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public byte[] BitsToBytes(BitArray y)
+#pragma warning restore CA1822 // Mark members as static
     {
         var c = y.Length;
         var z = new byte[c.CeilingDivide(8)];
@@ -492,7 +515,9 @@ public class Dilithium : IMLDSA
     /// </summary>
     /// <param name="z"></param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public BitArray BytesToBits(byte[] z)
+#pragma warning restore CA1822 // Mark members as static
     {
         var d = z.Length;
         var y = new BitArray(d * 8);
@@ -665,7 +690,9 @@ public class Dilithium : IMLDSA
             h[i] = new int[256];
             if (y[_param.Omega + i] < index || y[_param.Omega + i] > _param.Omega)
             {
+#pragma warning disable CS8603 // Possible null reference return.
                 return null;
+#pragma warning restore CS8603 // Possible null reference return.
             }
 
             var first = index;
@@ -673,7 +700,9 @@ public class Dilithium : IMLDSA
             {
                 if (index > first && y[index - 1] >= y[index])
                 {
+#pragma warning disable CS8603 // Possible null reference return.
                     return null;
+#pragma warning restore CS8603 // Possible null reference return.
                 }
                 
                 h[i][y[index]] = 1;
@@ -686,7 +715,9 @@ public class Dilithium : IMLDSA
         {
             if (y[index] != 0)
             {
+#pragma warning disable CS8603 // Possible null reference return.
                 return null;
+#pragma warning restore CS8603 // Possible null reference return.
             }
 
             index++;
@@ -1356,6 +1387,8 @@ public class Dilithium : IMLDSA
 
     private int InfinityNorm(int[][] a)
     {
+#pragma warning disable CS9236 // Compiling requires binding the lambda expression many times. Consider declaring the lambda expression with explicit parameter types, or if the containing method call is generic, consider using explicit type arguments.
         return a.Max(polynomial => polynomial.Max(value => System.Math.Abs(value.PlusMinusMod(_param.Q))));
+#pragma warning restore CS9236 // Compiling requires binding the lambda expression many times. Consider declaring the lambda expression with explicit parameter types, or if the containing method call is generic, consider using explicit type arguments.
     }
 }

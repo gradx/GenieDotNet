@@ -7,7 +7,9 @@ using NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper.Helpers;
 using NIST.CVP.ACVTS.Libraries.Math;
 using NIST.CVP.ACVTS.Libraries.Math.LargeBitString;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class NativeFastSha3 : NativeFastKeccakBase, ISha
     {
@@ -15,8 +17,10 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
         {
             get
             {
+#pragma warning disable IDE0042 // Deconstruct variable declaration
                 var hashFunction = ShaAttributes.GetShaAttributes()
                     .FirstOrDefault(sha => sha.mode == ModeValues.SHA3 && sha.outputLen == _bitLength);
+#pragma warning restore IDE0042 // Deconstruct variable declaration
 
                 return new HashFunction(hashFunction.mode, hashFunction.digestSize);
             }
@@ -26,7 +30,11 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
         private BitString _cachedBits;
         private readonly BitString _endBits = new BitString("02", 2, false);
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
+#pragma warning disable IDE0290 // Use primary constructor
         public NativeFastSha3(int bitLength)
+#pragma warning restore IDE0290 // Use primary constructor
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
             _bitLength = CheckBitLength(bitLength);
         }
@@ -146,6 +154,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
 
         private static int CheckBitLength(int bitLength)
         {
+#pragma warning disable IDE0066 // Convert switch statement to expression
             switch (bitLength)
             {
                 case 224:
@@ -156,6 +165,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
                 default:
                     throw new ArgumentException(bitLength + " not supported for SHA-3", nameof(bitLength));
             }
+#pragma warning restore IDE0066 // Convert switch statement to expression
         }
     }
 }

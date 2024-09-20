@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using NIST.CVP.ACVTS.Libraries.Common.ExtensionMethods;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Domain
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Domain segment that represents a single value
@@ -22,7 +24,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.Domain
         /// Constructor - takes in the value for the domain segment
         /// </summary>
         /// <param name="value">The single value belonging to the domain segment</param>
+#pragma warning disable IDE0290 // Use primary constructor
         public ValueDomainSegment(int value)
+#pragma warning restore IDE0290 // Use primary constructor
         {
             _value = value;
         }

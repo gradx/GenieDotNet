@@ -5,10 +5,8 @@ using Chr.Avro.Serialization;
 using Confluent.SchemaRegistry;
 using Genie.Common.Types;
 using Genie.Common.Utils.ChangeFeed;
-using Genie.Common.Utils.Cosmos;
 using Google.Protobuf;
 using Microsoft.IO;
-using System.Text;
 using Utf8StringInterpolation;
 using ZstdSharp;
 using ZstdSharp.Unsafe;
@@ -92,7 +90,7 @@ public class AvroSupport
         return GenerateAvroContainer(channels, null);
     }
 
-    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
+    private static readonly RecyclableMemoryStreamManager manager = new();
 
     public static byte[] GenerateAvroContainer<T>(List<T> channels, int? zStandardLevel = null)
     {

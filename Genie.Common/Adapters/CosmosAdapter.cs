@@ -1,6 +1,4 @@
-﻿using Apache.NMS.ActiveMQ;
-using CommunityToolkit.HighPerformance;
-using Elastic.Clients.Elasticsearch.Ingest;
+﻿using CommunityToolkit.HighPerformance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
 using Google.Protobuf;
@@ -597,7 +595,7 @@ public partial class CosmosAdapter
 
     public static T ToCosmos<T>(Grpc.GeoCryptoKey k) where T : GeoCryptoKey, new()
     {
-        return new T { X509 = [.. k.X509], KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id, PqcE = k.PqcE.ToArray() };
+        return new T { X509 = [.. k.X509], KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id, PqcE = [.. k.PqcE] };
     }
 
 

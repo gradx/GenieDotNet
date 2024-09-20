@@ -1,13 +1,8 @@
-﻿using Avro.Generic;
-using Azure.Storage.Blobs;
-using Confluent.Kafka;
-using Genie.Common.Settings;
-using MaxMind.Db;
+﻿using Genie.Common.Settings;
 using Microsoft.Azure.Cosmos;
 using Microsoft.Azure.Cosmos.Fluent;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using System.Net;
 
 namespace Genie.Common
 {

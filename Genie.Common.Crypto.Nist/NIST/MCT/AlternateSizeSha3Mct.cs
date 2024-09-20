@@ -6,13 +6,16 @@ using NIST.CVP.ACVTS.Libraries.Math;
 using NIST.CVP.ACVTS.Libraries.Math.Domain;
 using NLog;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class AlternateSizeSha3Mct : IShaMct
     {
         private readonly ISha _sha;
         private int NUM_OF_RESPONSES = 100;
         
+#pragma warning disable IDE0290 // Use primary constructor
         public AlternateSizeSha3Mct(ISha sha)
         {
             _sha = sha;
@@ -37,6 +40,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.MCT
 
         #endregion AlternateMonteCarloAlgorithm Pseudocode
 
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
         public MctResult<AlgoArrayResponse> MctHash(BitString message, bool isSample = false, MathDomain domain = null)
         {
             if (isSample)

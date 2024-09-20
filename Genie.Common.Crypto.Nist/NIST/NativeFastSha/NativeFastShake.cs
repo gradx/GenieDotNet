@@ -8,7 +8,9 @@ using NIST.CVP.ACVTS.Libraries.Math;
 using NIST.CVP.ACVTS.Libraries.Math.Helpers;
 using NIST.CVP.ACVTS.Libraries.Math.LargeBitString;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class NativeFastShake : NativeFastKeccakBase, IShake
     {
@@ -16,8 +18,10 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
         {
             get
             {
+#pragma warning disable IDE0042 // Deconstruct variable declaration
                 var hashFunction = ShaAttributes.GetShaAttributes()
                     .FirstOrDefault(sha => sha.mode == ModeValues.SHAKE && sha.outputLen == _bitLength);
+#pragma warning restore IDE0042 // Deconstruct variable declaration
 
                 return new HashFunction(hashFunction.mode, hashFunction.digestSize);
             }
@@ -27,7 +31,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
         private BitString _cachedBits;
         private readonly BitString _endBits = new BitString("0F", 4, false);
 
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         public NativeFastShake(int bitLength)
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         {
             _bitLength = CheckBitLength(bitLength);
         }
@@ -177,6 +183,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
 
         private static int CheckBitLength(int bitLength)
         {
+#pragma warning disable IDE0066 // Convert switch statement to expression
             switch (bitLength)
             {
                 case 128:
@@ -185,6 +192,7 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
                 default:
                     throw new ArgumentException(bitLength + " not supported for SHAKE", nameof(bitLength));
             }
+#pragma warning restore IDE0066 // Convert switch statement to expression
         }
 
         // Use this method when you need a Little Endian substring that is not a multiple of 8 bits in length

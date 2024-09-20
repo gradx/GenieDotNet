@@ -5,17 +5,23 @@ using System.Security.Cryptography;
 using System.Text;
 using NLog;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class Random800_90 : IRandom800_90
     {
         private static readonly RNGCryptoServiceProvider Global =
             new();
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         [ThreadStatic] private static Random _local;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
 
         private static readonly ILogger Logger = LogManager.GetCurrentClassLogger();
 
+#pragma warning disable CA1822 // Mark members as static
         private Random Randy
+#pragma warning restore CA1822 // Mark members as static
         {
             get
             {
@@ -46,7 +52,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
             var randomBytes = new byte[numBytes];
             Randy.NextBytes(randomBytes);
 
+#pragma warning disable IDE0017 // Simplify object initialization
             var bitArray = new BitArray(randomBytes);
+#pragma warning restore IDE0017 // Simplify object initialization
             bitArray.Length = length;//@@@not sure I like this because it kills the right most values
 
             return new BitString(bitArray);
@@ -56,7 +64,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
         {
             if (current == null || current.BitLength == 0)
             {
+#pragma warning disable CS8603 // Possible null reference return.
                 return null;
+#pragma warning restore CS8603 // Possible null reference return.
             }
             BitString newBitString = GetRandomBitString(current.BitLength);
             while (current.Equals(newBitString))

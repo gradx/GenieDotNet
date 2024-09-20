@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Domain
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Domain segment that represents a range of values (a min and max and values in between based on step)

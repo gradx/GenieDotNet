@@ -1,8 +1,8 @@
 ﻿using Chr.Avro.Confluent;
 using Chr.Avro.Serialization;
 using Confluent.SchemaRegistry;
+using Genie.Adapters.Brokers.MQTT;
 using Genie.Common;
-using Genie.Common.Adapters.ActiveMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
@@ -37,9 +37,11 @@ public class MQTTService
 
 
 
-        var service = new MQTTService();
-        service.Logger = logger;
-        service.Context = context;
+        var service = new MQTTService
+        {
+            Logger = logger,
+            Context = context
+        };
         await service.Run();
 
         Console.WriteLine($@"MQTTService exited");

@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Numerics;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     public class TestableEntropyProvider : IEntropyProvider
     {

@@ -1,6 +1,8 @@
 ﻿using System;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Adapted from https://github.com/bcgit/bc-csharp
@@ -88,7 +90,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
             }
 
             // Process all completed words by grabbing segments of 32-bits until no more 32-bit segments remain
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             uint nextWord = 0;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
             int nextByte;
             while (inputByteOff * 8 + inputBitOff <= bitLength - 32)
             {

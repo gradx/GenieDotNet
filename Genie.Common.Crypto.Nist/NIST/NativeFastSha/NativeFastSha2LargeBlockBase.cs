@@ -1,13 +1,17 @@
 ﻿using System;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     ///  Adapted from https://github.com/bcgit/bc-csharp
     /// </summary>
     public abstract class NativeFastSha2LargeBlockBase
     {
+#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         private byte[] xBuf;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider adding the 'required' modifier or declaring as nullable.
         private int xBufOff;
         private int xBitOff;
 
@@ -28,7 +32,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
         private static ulong Sigma1(ulong x) => ((x << 45) | (x >> 19)) ^ ((x << 3) | (x >> 61)) ^ (x >> 6);
 
         private static readonly ulong[] K =
+#pragma warning disable IDE0300 // Simplify collection initialization
         {
+#pragma warning restore IDE0300 // Simplify collection initialization
             0x428a2f98d728ae22, 0x7137449123ef65cd, 0xb5c0fbcfec4d3b2f, 0xe9b5dba58189dbbc,
             0x3956c25bf348b538, 0x59f111f1b605d019, 0x923f82a4af194f9b, 0xab1c5ed5da6d8118,
             0xd807aa98a3030242, 0x12835b0145706fbe, 0x243185be4ee4b28c, 0x550c7dc3d5ffb4e2,
@@ -108,7 +114,9 @@ namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
             }
 
             // Process all completed words by grabbing segments of 64-bits until no more 64-bit segments remain
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             ulong nextWord = 0;
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
             int nextByte;
             while (inputByteOff * 8 + inputBitOff <= bitLength - 64)
             {

@@ -1,0 +1,513 @@
+
+64: Redis, Aero, Couchbase, Cassandra, Scylla, Mongo, Marten, Crate, Cockroach, Raven, Elastic, Neo4j, Couch, Arango
+
+Aerospike (5,902) Redis (5,471) Mongo (3,733) Cassandra (3,642) Scylla (3,120) Marten (2,310) Crate (1,953) 
+Couchbase (1,230) Raven (1,212) Elastic (1,146) Cockroach (955) Couch (361) Milvus (224) Arango (153) Neo4j (153) Maria (18)
+
+### MariaDB
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 5                  |
+| Max Working Set (MB)    | 23                 |
+| Max Private Memory (MB) | 39                 |
+| Build Time (ms)         | 1,459              |
+| Start Time (ms)         | 149                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 635                |
+| Requests                | 15,872             |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 3,622.97           |
+| Latency 75th (ms)       | 4,522.73           |
+| Latency 90th (ms)       | 5,237.36           |
+| Latency 95th (ms)       | 5,490.77           |
+| Latency 99th (ms)       | 5,742.78           |
+| Mean latency (ms)       | 3,642.65           |
+| Max latency (ms)        | 6,173.44           |
+| Requests/sec            | 18                 |
+| Requests/sec (max)      | 10,232             |
+| Read throughput (MB/s)  | 0.00               |
+
+
+### Milvus
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 11                 |
+| Max Working Set (MB)    | 29                 |
+| Max Private Memory (MB) | 39                 |
+| Build Time (ms)         | 1,686              |
+| Start Time (ms)         | 261                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 1,931              |
+| Requests                | 156,085            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 398.68             |
+| Latency 75th (ms)       | 402.63             |
+| Latency 90th (ms)       | 408.43             |
+| Latency 95th (ms)       | 594.64             |
+| Latency 99th (ms)       | 603.60             |
+| Mean latency (ms)       | 369.17             |
+| Max latency (ms)        | 1,014.97           |
+| Requests/sec            | 229                |
+| Requests/sec (max)      | 35,216             |
+| Read throughput (MB/s)  | 0.03               |
+
+
+### Arango
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 14                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 48                 |
+| Build Time (ms)         | 1,413              |
+| Start Time (ms)         | 180                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 181                |
+| Requests                | 132,719            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 451.05             |
+| Latency 75th (ms)       | 610.47             |
+| Latency 90th (ms)       | 701.93             |
+| Latency 95th (ms)       | 755.82             |
+| Latency 99th (ms)       | 818.94             |
+| Mean latency (ms)       | 434.14             |
+| Max latency (ms)        | 1,292.07           |
+| Requests/sec            | 153                |
+| Requests/sec (max)      | 3,348              |
+| Read throughput (MB/s)  | 0.02               |
+
+### Couch
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 8                  |
+| Max Working Set (MB)    | 29                 |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 1,932              |
+| Start Time (ms)         | 249                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 626                |
+| Requests                | 317,434            |
+| Bad responses           | 295                |
+| Latency 50th (ms)       | 176.85             |
+| Latency 75th (ms)       | 206.41             |
+| Latency 90th (ms)       | 238.43             |
+| Latency 95th (ms)       | 261.09             |
+| Latency 99th (ms)       | 307.45             |
+| Mean latency (ms)       | 181.46             |
+| Max latency (ms)        | 484.43             |
+| Requests/sec            | 361                |
+| Requests/sec (max)      | 2,783              |
+| Read throughput (MB/s)  | 0.05               |
+
+### Neo4j
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 29                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 1,418              |
+| Start Time (ms)         | 181                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 251                |
+| Requests                | 131,031            |
+| Bad responses           | 1                  |
+| Latency 50th (ms)       | 423.64             |
+| Latency 75th (ms)       | 594.14             |
+| Latency 90th (ms)       | 731.14             |
+| Latency 95th (ms)       | 810.02             |
+| Latency 99th (ms)       | 950.25             |
+| Mean latency (ms)       | 439.70             |
+| Max latency (ms)        | 1,807.51           |
+| Requests/sec            | 153                |
+| Requests/sec (max)      | 2,238              |
+| Read throughput (MB/s)  | 0.02               |
+
+### Elastic
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 38                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 41                 |
+| Build Time (ms)         | 2,455              |
+| Start Time (ms)         | 235                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 519                |
+| Requests                | 992,542            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 57.40              |
+| Latency 75th (ms)       | 61.91              |
+| Latency 90th (ms)       | 67.98              |
+| Latency 95th (ms)       | 71.49              |
+| Latency 99th (ms)       | 83.37              |
+| Mean latency (ms)       | 58.01              |
+| Max latency (ms)        | 1,805.83           |
+| Requests/sec            | 1,146              |
+| Requests/sec (max)      | 8,614              |
+| Read throughput (MB/s)  | 0.17               |
+
+### Raven
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 29                 |
+| Max Working Set (MB)    | 25                 |
+| Max Private Memory (MB) | 41                 |
+| Build Time (ms)         | 1,444              |
+| Start Time (ms)         | 170                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 683                |
+| Requests                | 1,029,835          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 51.40              |
+| Latency 75th (ms)       | 59.20              |
+| Latency 90th (ms)       | 62.89              |
+| Latency 95th (ms)       | 67.94              |
+| Latency 99th (ms)       | 97.46              |
+| Mean latency (ms)       | 55.90              |
+| Max latency (ms)        | 1,937.37           |
+| Requests/sec            | 1,212              |
+| Requests/sec (max)      | 9,472              |
+| Read throughput (MB/s)  | 0.18               |
+
+### Cockroach
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 37                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 45                 |
+| Build Time (ms)         | 1,399              |
+| Start Time (ms)         | 166                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 298                |
+| Requests                | 841,669            |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 64.02              |
+| Latency 75th (ms)       | 77.25              |
+| Latency 90th (ms)       | 92.67              |
+| Latency 95th (ms)       | 104.76             |
+| Latency 99th (ms)       | 169.87             |
+| Mean latency (ms)       | 68.42              |
+| Max latency (ms)        | 722.96             |
+| Requests/sec            | 955                |
+| Requests/sec (max)      | 6,823              |
+| Read throughput (MB/s)  | 0.14               |
+
+### Crate
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 20                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 44                 |
+| Build Time (ms)         | 1,416              |
+| Start Time (ms)         | 161                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 387                |
+| Requests                | 1,725,276          |
+| Bad responses           | 9                  |
+| Latency 50th (ms)       | 26.48              |
+| Latency 75th (ms)       | 32.77              |
+| Latency 90th (ms)       | 44.65              |
+| Latency 95th (ms)       | 54.37              |
+| Latency 99th (ms)       | 118.30             |
+| Mean latency (ms)       | 33.41              |
+| Max latency (ms)        | 25,055.12          |
+| Requests/sec            | 1,953              |
+| Requests/sec (max)      | 7,536              |
+| Read throughput (MB/s)  | 0.29               |
+
+### Marten
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 9                  |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 1,471              |
+| Start Time (ms)         | 160                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 6,971              |
+| Requests                | 2,051,070          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 26.78              |
+| Latency 75th (ms)       | 30.92              |
+| Latency 90th (ms)       | 35.83              |
+| Latency 95th (ms)       | 39.66              |
+| Latency 99th (ms)       | 51.56              |
+| Mean latency (ms)       | 28.06              |
+| Max latency (ms)        | 474.17             |
+| Requests/sec            | 2,310              |
+| Requests/sec (max)      | 10,135             |
+| Read throughput (MB/s)  | 0.35               |
+
+### Cassandra
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 2                  |
+| Max Cores usage (%)     | 73                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 42                 |
+| Build Time (ms)         | 1,465              |
+| Start Time (ms)         | 212                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 363                |
+| Requests                | 3,268,568          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 16.62              |
+| Latency 75th (ms)       | 19.59              |
+| Latency 90th (ms)       | 23.17              |
+| Latency 95th (ms)       | 26.13              |
+| Latency 99th (ms)       | 36.79              |
+| Mean latency (ms)       | 17.60              |
+| Max latency (ms)        | 275.23             |
+| Requests/sec            | 3,642              |
+| Requests/sec (max)      | 6,544              |
+| Read throughput (MB/s)  | 0.56               |
+
+### Scylla
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 2                  |
+| Max Cores usage (%)     | 76                 |
+| Max Working Set (MB)    | 36                 |
+| Max Private Memory (MB) | 44                 |
+| Build Time (ms)         | 1,943              |
+| Start Time (ms)         | 201                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 428                |
+| Requests                | 2,800,229          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 17.09              |
+| Latency 75th (ms)       | 24.75              |
+| Latency 90th (ms)       | 34.96              |
+| Latency 95th (ms)       | 42.48              |
+| Latency 99th (ms)       | 62.37              |
+| Mean latency (ms)       | 20.56              |
+| Max latency (ms)        | 583.01             |
+| Requests/sec            | 3,120              |
+| Requests/sec (max)      | 7,633              |
+| Read throughput (MB/s)  | 0.48               |
+
+
+### Mongo
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 14                 |
+| Max Working Set (MB)    | 26                 |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 1,499              |
+| Start Time (ms)         | 207                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 652                |
+| Requests                | 3,347,443          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 16.51              |
+| Latency 75th (ms)       | 19.12              |
+| Latency 90th (ms)       | 22.28              |
+| Latency 95th (ms)       | 24.89              |
+| Latency 99th (ms)       | 31.24              |
+| Mean latency (ms)       | 17.19              |
+| Max latency (ms)        | 308.98             |
+| Requests/sec            | 3,733              |
+| Requests/sec (max)      | 8,436              |
+| Read throughput (MB/s)  | 0.57               |
+
+### Couchbase
+
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 12                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 38                 |
+| Build Time (ms)         | 1,513              |
+| Start Time (ms)         | 195                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 1,227              |
+| Requests                | 1,105,118          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 51.38              |
+| Latency 75th (ms)       | 58.61              |
+| Latency 90th (ms)       | 65.74              |
+| Latency 95th (ms)       | 70.33              |
+| Latency 99th (ms)       | 79.93              |
+| Mean latency (ms)       | 52.10              |
+| Max latency (ms)        | 260.69             |
+| Requests/sec            | 1,230              |
+| Requests/sec (max)      | 2,296              |
+| Read throughput (MB/s)  | 0.19               |
+
+### Aerospike
+### MAX_100000
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 14                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 40                 |
+| Build Time (ms)         | 1,388              |
+| Start Time (ms)         | 245                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 2,206              |
+| Requests                | 5,298,682          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 10.30              |
+| Latency 75th (ms)       | 12.69              |
+| Latency 90th (ms)       | 15.38              |
+| Latency 95th (ms)       | 17.30              |
+| Latency 99th (ms)       | 21.73              |
+| Mean latency (ms)       | 10.85              |
+| Max latency (ms)        | 862.87             |
+| Requests/sec            | 5,902              |
+| Requests/sec (max)      | 9,909              |
+| Read throughput (MB/s)  | 0.90               |
+
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 9                  |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 40                 |
+| Build Time (ms)         | 1,933              |
+| Start Time (ms)         | 227                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 2,279              |
+| Requests                | 264,478            |
+| Bad responses           | 77,161             |
+| Latency 50th (ms)       | 15.54              |
+| Latency 75th (ms)       | 172.98             |
+| Latency 90th (ms)       | 527.48             |
+| Latency 95th (ms)       | 1,449.46           |
+| Latency 99th (ms)       | 2,103.69           |
+| Mean latency (ms)       | 217.79             |
+| Max latency (ms)        | 4,385.49           |
+| Requests/sec            | 301                |
+| Requests/sec (max)      | 10,428             |
+| Read throughput (MB/s)  | 0.04               |
+
+### Redis crashed
+## MAX_100000
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 1                  |
+| Max Cores usage (%)     | 17                 |
+| Max Working Set (MB)    | 31                 |
+| Max Private Memory (MB) | 42                 |
+| Build Time (ms)         | 1,732              |
+| Start Time (ms)         | 173                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 268                |
+| Requests                | 4,915,066          |
+| Bad responses           | 0                  |
+| Latency 50th (ms)       | 11.17              |
+| Latency 75th (ms)       | 13.72              |
+| Latency 90th (ms)       | 16.56              |
+| Latency 95th (ms)       | 18.56              |
+| Latency 99th (ms)       | 23.13              |
+| Mean latency (ms)       | 11.70              |
+| Max latency (ms)        | 148.13             |
+| Requests/sec            | 5,471              |
+| Requests/sec (max)      | 20,986             |
+| Read throughput (MB/s)  | 0.84               |
+
+| load                    |                    |
+| ----------------------- | ------------------ |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 11                 |
+| Max Working Set (MB)    | 35                 |
+| Max Private Memory (MB) | 41                 |
+| Build Time (ms)         | 1,555              |
+| Start Time (ms)         | 217                |
+| Published Size (KB)     | 72,368             |
+| Symbols Size (KB)       | 0                  |
+| .NET Core SDK Version   | 8.0.401            |
+| ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
+| .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
+| First Request (ms)      | 343                |
+| Requests                | 4,076,145          |
+| Bad responses           | 64                 |
+| Latency 50th (ms)       | 13.53              |
+| Latency 75th (ms)       | 16.36              |
+| Latency 90th (ms)       | 19.44              |
+| Latency 95th (ms)       | 21.59              |
+| Latency 99th (ms)       | 26.48              |
+| Mean latency (ms)       | 14.26              |
+| Max latency (ms)        | 25,049.54          |
+| Requests/sec            | 4,538              |
+| Requests/sec (max)      | 9,183              |
+| Read throughput (MB/s)  | 0.68               |

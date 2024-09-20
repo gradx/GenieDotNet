@@ -1,7 +1,7 @@
 ﻿using Apache.NMS;
 using Apache.NMS.Util;
+using Genie.Adapters.Brokers.ActiveMQ;
 using Genie.Common;
-using Genie.Common.Adapters.ActiveMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;

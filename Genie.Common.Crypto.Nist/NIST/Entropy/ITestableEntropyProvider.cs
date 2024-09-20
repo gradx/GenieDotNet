@@ -4,7 +4,9 @@ using System.Linq;
 using System.Numerics;
 using System.Threading.Tasks;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Allows for adding specific entropy to a provider

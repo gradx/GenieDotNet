@@ -1,6 +1,8 @@
 ﻿using System.Numerics;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Entropy
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Provides an interface for getting entropy as <see cref="BitString"/> with a specified number of bits

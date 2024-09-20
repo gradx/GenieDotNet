@@ -5,7 +5,9 @@ using System.Net.NetworkInformation;
 using System.Numerics;
 using System.Threading.Tasks;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.Helpers
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// bigInteger is little endian when dealing with byte-arrays, CAVS code thinks about byte array representations as big endian
@@ -173,10 +175,12 @@ namespace NIST.CVP.ACVTS.Libraries.Math.Helpers
         /// <returns>The length in bits of the byte array (returned value always mod 8)</returns>
         public static int BitLength(this byte[] byteArray)
         {
+#pragma warning disable CA1510 // Use ArgumentNullException throw helper
             if (byteArray == null)
             {
                 throw new ArgumentNullException(nameof(byteArray));
             }
+#pragma warning restore CA1510 // Use ArgumentNullException throw helper
 
             return byteArray.Length * BitString.BITSINBYTE;
         }

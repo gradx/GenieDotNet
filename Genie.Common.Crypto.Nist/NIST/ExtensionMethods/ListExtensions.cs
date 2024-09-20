@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Common.ExtensionMethods
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Extension methods for <see cref="List{T}"/>

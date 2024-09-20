@@ -8,7 +8,9 @@ using NIST.CVP.ACVTS.Libraries.Math.Exceptions;
 using NIST.CVP.ACVTS.Libraries.Math.Helpers;
 using Helper = NIST.CVP.ACVTS.Libraries.Math.Helpers.MsbLsbConversionHelpers;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Bit and Byte functions manipulation functions.
@@ -188,7 +190,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
         {
             if (Bits.Length == 0)
             {
+#pragma warning disable IDE0300 // Simplify collection initialization
                 return new byte[0];
+#pragma warning restore IDE0300 // Simplify collection initialization
             }
 
             byte[] bytes = new byte[(Bits.Length - 1) / BITSINBYTE + 1];
@@ -255,7 +259,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
 
         public static BitString To8BitString(byte value)
         {
+#pragma warning disable IDE0300 // Simplify collection initialization
             return new BitString(new byte[] { value });
+#pragma warning restore IDE0300 // Simplify collection initialization
         }
 
         public static BitString To16BitString(short value)
@@ -313,7 +319,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
                 return "";
             }
 
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             var bytes = new byte[] { };
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
 
             // Make a padded BitString if the length isn't % 8
             if (BitLength % 8 != 0)
@@ -353,7 +361,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
                 return "00";
             }
 
+#pragma warning disable IDE0059 // Unnecessary assignment of a value
             var bytes = new byte[] { };
+#pragma warning restore IDE0059 // Unnecessary assignment of a value
 
             // Make a padded BitString if the length isn't % 8
             if (BitLength % BITSINBYTE != 0)
@@ -687,7 +697,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
             set
             {
                 // Put the single byte in a byte array
+#pragma warning disable IDE0300 // Simplify collection initialization
                 byte[] byteArray = new byte[1] { value };
+#pragma warning restore IDE0300 // Simplify collection initialization
                 // convert that byte array to a bit array
                 BitArray bits = new BitArray(byteArray);
 
@@ -877,7 +889,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math
         }
         #endregion Padding
 
+#pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         public override bool Equals(object obj)
+#pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         {
             var otherBitString = obj as BitString;
             if (otherBitString == null)

@@ -30,6 +30,30 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Genie.Actors\Genie.Actors.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ActiveMQ\Genie.Adapters.Brokers.ActiveMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Aeron\Genie.Adapters.Brokers.Aeron.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Kafka\Genie.Adapters.Brokers.Kafka.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.MQTT\Genie.Adapters.Brokers.MQTT.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.NATS\Genie.Adapters.Brokers.NATS.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Pulsar\Genie.Adapters.Brokers.Pulsar.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.RabbitMQ\Genie.Adapters.Brokers.RabbitMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ZeroMQ\Genie.Adapters.Brokers.ZeroMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistencce.CouchDB\Genie.Adapters.Persistence.CouchDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Aerospike\Genie.Adapters.Persistence.Aerospike.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ArangoDB\Genie.Adapters.Persistence.ArangoDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Cassandra\Genie.Adapters.Persistence.Cassandra.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CockroachDB\Genie.Adapters.Persistence.CockroachDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Couchbase\Genie.Adapters.Persistence.Couchbase.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CrateDB\Genie.Adapters.Persistence.CrateDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Marten\Genie.Adapters.Persistence.Marten.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MongoDB\Genie.Adapters.Persistence.MongoDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Neo4j\Genie.Adapters.Persistence.Neo4j.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.RavenDB\Genie.Adapters.Persistence.RavenDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Redis\Genie.Adapters.Persistence.Redis.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ScyllaDB\Genie.Adapters.Persistence.ScyllaDB.csproj" />
     <ProjectReference Include="..\Genie.Extensions.Genius\Genie.Extensions.Genius.csproj" />
   </ItemGroup>
 

@@ -1,7 +1,5 @@
-﻿using Confluent.SchemaRegistry.Serdes;
+﻿using Genie.Adapters.Brokers.NATS;
 using Genie.Common;
-using Genie.Common.Adapters.ActiveMQ;
-using Genie.Common.Adapters.RabbitMQ;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
@@ -10,14 +8,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.IO;
 using NATS.Client.Core;
-using RabbitMQ.Client;
-using RabbitMQ.Client.Events;
-using System;
 using System.Buffers;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ZLogger;
 
 namespace Genie.IngressConsumer.Services;

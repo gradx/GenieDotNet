@@ -2,15 +2,36 @@
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Genie.Actors;
+using Genie.Adapters.Brokers.ActiveMQ;
+using Genie.Adapters.Brokers.Aeron;
+using Genie.Adapters.Brokers.Kafka;
+using Genie.Adapters.Brokers.MQTT;
+using Genie.Adapters.Brokers.NATS;
+using Genie.Adapters.Brokers.Pulsar;
+using Genie.Adapters.Brokers.RabbitMQ;
+using Genie.Adapters.Brokers.ZeroMQ;
+using Genie.Adapters.Persistence.Aerospike;
+using Genie.Adapters.Persistence.ArangoDB;
+using Genie.Adapters.Persistence.Cassandra;
+using Genie.Adapters.Persistence.CockroachDB;
+using Genie.Adapters.Persistence.Couchbase;
+using Genie.Adapters.Persistence.CouchDB;
+using Genie.Adapters.Persistence.CrateDB;
+using Genie.Adapters.Persistence.Elasticsearch;
+using Genie.Adapters.Persistence.MariaDB;
+using Genie.Adapters.Persistence.Marten;
+using Genie.Adapters.Persistence.Milvus;
+using Genie.Adapters.Persistence.MongoDB;
+using Genie.Adapters.Persistence.Neo4j;
+using Genie.Adapters.Persistence.RavenDB;
+using Genie.Adapters.Persistence.Redis;
+using Genie.Adapters.Persistence.Scylla;
 using Genie.Common.Performance;
+using Genie.Common.Utils;
 using Genie.Extensions.Genius.Commands;
 using Genie.Grpc;
-using Genie.Web.Api.Common;
-using Genie.Web.Api.Mediator.Commands;
-using Google.Protobuf;
 using Mediator;
 using Microsoft.Extensions.ObjectPool;
-using Org.BouncyCastle.Crypto.Paddings;
 using Proto;
 using System.Net;
 
@@ -22,11 +43,213 @@ namespace Genie.Web.Api.Rest
         private static readonly byte[] kyber_ed25519 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\kyber_ed25519.req");
         private static readonly byte[] x25519_dilithium = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\x25519_dilithium.req");
         private static readonly byte[] x25519_ed25519 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\x25519_ed25519.req");
+        private static Random rnd = new Random();
+        private static CounterConsoleLogger timer = new();
+        private const int payload = 4000;
+        private const int maxItemCount = int.MaxValue;
 
         public static void Map(WebApplication app)
         {
             app.MapGet("test", async () =>
             {
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("aero", async (ObjectPool<AerospikePooledObject> geniePool) =>
+            {
+                timer.Process();
+
+                var test = new AerospikeTest(payload, geniePool);
+
+                var rando = rnd.Next(100000);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("arango", async (ObjectPool<ArangoPooledObject> geniePool) =>
+            {
+                timer.Process();
+
+                var test = new ArangoTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("cassandra", async (ObjectPool<CassandraPooledObject> geniePool) =>
+            {
+                timer.Process();
+
+                var test = new CassandraTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("cockroach", async (ObjectPool<CockroackPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new CockroachTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("couchbase", async (ObjectPool<CouchbasePooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new CouchbaseTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("couch", async (ObjectPool<CouchPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new CouchTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("crate", async (ObjectPool<CratePooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new CrateTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("elastic", async (ObjectPool<ElasticsearchPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new ElasticTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("maria", async (ObjectPool<MariaPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new MariaTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("marten", async (ObjectPool<MartenPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new MartenTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+
+            app.MapGet("milvus", async (ObjectPool<MilvusPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new MilvusTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+
+            app.MapGet("mongo", async (ObjectPool<MongoPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new MongoTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+
+            app.MapGet("neo4j", async (ObjectPool<Neo4jPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new Neo4jTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("raven", async (ObjectPool<RavenPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new RavenTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("redis", async (ObjectPool<RedisPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new RedisTest(payload, geniePool);
+
+                var rando = rnd.Next(100000);
+                test.Write(rando);
+                test.Read(rando);
+
+                return await Task.FromResult(HttpStatusCode.OK);
+            });
+
+            app.MapGet("scylla", async (ObjectPool<ScyllaPooledObject> geniePool) =>
+            {
+                timer.Process();
+                var test = new ScyllaTest(payload, geniePool);
+
+                var rando = rnd.Next(maxItemCount);
+                test.Write(rando);
+                test.Read(rando);
+
                 return await Task.FromResult(HttpStatusCode.OK);
             });
 

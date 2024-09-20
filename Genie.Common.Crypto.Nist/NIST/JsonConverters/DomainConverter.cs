@@ -3,7 +3,9 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using NIST.CVP.ACVTS.Libraries.Math.Domain;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Math.JsonConverters
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Used to properly serialize/deserialize the <see cref="MathDomain"/> object.
@@ -12,7 +14,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.JsonConverters
     {
         private readonly IRandom800_90 _random = new Random800_90();
 
+#pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+#pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         {
             MathDomain md = (MathDomain)value;
 
@@ -44,7 +48,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.JsonConverters
             writer.WriteEndArray();
         }
 
+#pragma warning disable CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+#pragma warning restore CS8765 // Nullability of type of parameter doesn't match overridden member (possibly because of nullability attributes).
         {
             JArray jArray;
             try
@@ -53,7 +59,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.JsonConverters
             }
             catch (Exception)
             {
+#pragma warning disable CS8603 // Possible null reference return.
                 return null;
+#pragma warning restore CS8603 // Possible null reference return.
             }
 
             // Create target object based on JObject
@@ -91,7 +99,9 @@ namespace NIST.CVP.ACVTS.Libraries.Math.JsonConverters
                         new JsonSerializerSettings() { NullValueHandling = NullValueHandling.Ignore }
                     );
 
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
                     domain.AddSegment(new RangeDomainSegment(_random, model.Min, model.Max, model.Increment));
+#pragma warning restore CS8602 // Dereference of a possibly null reference.
                 }
             }
 

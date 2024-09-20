@@ -7,7 +7,9 @@ using NIST.CVP.ACVTS.Libraries.Crypto.Common.PQC.Helpers;
 using NIST.CVP.ACVTS.Libraries.Crypto.Common.PQC.Kyber;
 using NIST.CVP.ACVTS.Libraries.Math.Helpers;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.Kyber;
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 
 public class Kyber : IMLKEM
 {
@@ -18,7 +20,9 @@ public class Kyber : IMLKEM
     private readonly ISha _sha3_256;
 
     private readonly int[] _zeta =
+#pragma warning disable IDE0300 // Simplify collection initialization
     {
+#pragma warning restore IDE0300 // Simplify collection initialization
         1, 17, 289, 1584, 296, 1703, 2319, 2804, 1062, 1409, 
         650, 1063, 1426, 939, 2647, 1722, 2642, 1637, 1197, 
         375, 3046, 1847, 1438, 1143, 2786, 756, 2865, 2099, 
@@ -47,7 +51,9 @@ public class Kyber : IMLKEM
         1583, 279, 1414, 735, 2508, 2688, 2419, 1175
     };
     
+#pragma warning disable IDE0290 // Use primary constructor
     public Kyber(KyberParameters param, IShaFactory shaFactory)
+#pragma warning restore IDE0290 // Use primary constructor
     {
         _param = param;
         _shake128 = shaFactory.GetShakeInstance(new HashFunction(ModeValues.SHAKE, DigestSizes.d128));
@@ -175,7 +181,9 @@ public class Kyber : IMLKEM
         
         _shake256.Init();
         _shake256.Update(s, s.Length * 8);
+#pragma warning disable IDE0300 // Simplify collection initialization
         _shake256.Update(new [] { b }, 8);
+#pragma warning restore IDE0300 // Simplify collection initialization
         _shake256.Final(result, result.Length * 8);
 
         return result;
@@ -196,7 +204,9 @@ public class Kyber : IMLKEM
 
         _shake128.Init();
         _shake128.Update(rho, rho.Length * 8);
+#pragma warning disable IDE0300 // Simplify collection initialization
         _shake128.Update(new [] { i, j }, 16);
+#pragma warning restore IDE0300 // Simplify collection initialization
         _shake128.Final(result, result.Length * 8);
 
         return result;
@@ -255,7 +265,9 @@ public class Kyber : IMLKEM
     /// </summary>
     /// <param name="y"></param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public byte[] BitsToBytes(BitArray y)
+#pragma warning restore CA1822 // Mark members as static
     {
         var c = y.Length;
         var z = new byte[c.CeilingDivide(8)];
@@ -273,7 +285,9 @@ public class Kyber : IMLKEM
     /// <param name="x">Integer value</param>
     /// <param name="alpha">Number of bits to use to express x</param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public BitArray IntegerToBits(int x, int alpha)
+#pragma warning restore CA1822 // Mark members as static
     {
         var y = new BitArray(alpha);
         for (int i = 0; i < alpha; i++)
@@ -291,7 +305,9 @@ public class Kyber : IMLKEM
     /// <param name="y">Array of bits</param>
     /// <param name="alpha">Number of bits in y</param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public int BitsToInteger(BitArray y, int alpha)
+#pragma warning restore CA1822 // Mark members as static
     {
         int x = 0;
         for (var i = 1; i <= alpha; i++)
@@ -308,7 +324,9 @@ public class Kyber : IMLKEM
     /// <param name="x">Nonnegative integer</param>
     /// <param name="alpha">Number of bytes in x</param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public byte[] IntegerToBytes(int x, int alpha)
+#pragma warning restore CA1822 // Mark members as static
     {
         var y = new byte[alpha];
         for (var i = 0; i < alpha; i++)
@@ -325,7 +343,9 @@ public class Kyber : IMLKEM
     /// </summary>
     /// <param name="z"></param>
     /// <returns></returns>
+#pragma warning disable CA1822 // Mark members as static
     public BitArray BytesToBits(byte[] z)
+#pragma warning restore CA1822 // Mark members as static
     {
         var d = z.Length;
         var y = new BitArray(d * 8);
@@ -416,7 +436,9 @@ public class Kyber : IMLKEM
         
         _shake128.Init();
         _shake128.Absorb(seed, 256);
+#pragma warning disable IDE0300 // Simplify collection initialization
         _shake128.Absorb(new [] { l, k }, 16);
+#pragma warning restore IDE0300 // Simplify collection initialization
         _shake128.Squeeze(B, 168 * 8);
         
         while (j < 256)
@@ -870,7 +892,9 @@ public class Kyber : IMLKEM
         return sum;
     }
 
+#pragma warning disable CA1822 // Mark members as static
     private int[][][] MatrixTranspose(int[][][] a)
+#pragma warning restore CA1822 // Mark members as static
     {
         var rows = a.Length;
         var cols = a[0].Length;

@@ -5,7 +5,9 @@ using NIST.CVP.ACVTS.Libraries.Crypto.Common.Hash.ShaWrapper;
 using NIST.CVP.ACVTS.Libraries.Math;
 using NIST.CVP.ACVTS.Libraries.Math.LargeBitString;
 
+#pragma warning disable IDE0130 // Namespace does not match folder structure
 namespace NIST.CVP.ACVTS.Libraries.Crypto.SHA.NativeFastSha
+#pragma warning restore IDE0130 // Namespace does not match folder structure
 {
     /// <summary>
     /// Heavily borrowed from BouncyCastle via https://github.com/bcgit/bc-csharp
