@@ -67,8 +67,8 @@ namespace Genie.Web.Api.Rest
                 var test = new AerospikeTest(payload, geniePool);
 
                 var rando = rnd.Next(100000);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -80,8 +80,8 @@ namespace Genie.Web.Api.Rest
                 var test = new ArangoTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -93,8 +93,8 @@ namespace Genie.Web.Api.Rest
                 var test = new CassandraTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -107,8 +107,8 @@ namespace Genie.Web.Api.Rest
                 var test = new ClickHouseTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -119,8 +119,8 @@ namespace Genie.Web.Api.Rest
                 var test = new CockroachTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -131,8 +131,8 @@ namespace Genie.Web.Api.Rest
                 var test = new CouchbaseTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -143,8 +143,8 @@ namespace Genie.Web.Api.Rest
                 var test = new CouchTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -155,8 +155,8 @@ namespace Genie.Web.Api.Rest
                 var test = new CrateTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -167,8 +167,8 @@ namespace Genie.Web.Api.Rest
                 var test = new DB2Test(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -179,8 +179,8 @@ namespace Genie.Web.Api.Rest
                 var test = new ElasticTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -191,8 +191,8 @@ namespace Genie.Web.Api.Rest
                 var test = new MariaTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -203,35 +203,35 @@ namespace Genie.Web.Api.Rest
                 var test = new MartenTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
 
 
-            app.MapGet("milvus", async (ObjectPool<MilvusPooledObject> geniePool) =>
+            app.MapGet("milvus", async (ObjectPool<MilvusPooledObject> geniePool, ObjectPool<MilvusPooledObject2> geniePool2) =>
             {
                 timer.Process();
-                var test = new MilvusTest(payload, geniePool);
+                var test = new MilvusTest(payload, geniePool, geniePool2);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
 
 
-            app.MapGet("mongo", async (ObjectPool<MongoPooledObject<PersistenceTest>> geniePool) =>
+            app.MapGet("mongo", async (ObjectPool<MongoPooledObject<PersistenceTestModel>> geniePool, ObjectPool<MongoPooledObject<CountryPostalCode>> geniePool2) =>
             {
                 timer.Process();
-                var test = new MongoTest(payload, geniePool);
+                var test = new MongoTest(payload, geniePool, geniePool2);
 
                 var rando = rnd.Next(maxItemCount);
 
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -242,8 +242,8 @@ namespace Genie.Web.Api.Rest
                 var test = new MariaTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -254,8 +254,8 @@ namespace Genie.Web.Api.Rest
                 var test = new Neo4jTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -266,8 +266,8 @@ namespace Genie.Web.Api.Rest
                 var test = new OracleTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -279,8 +279,8 @@ namespace Genie.Web.Api.Rest
                 var test = new PostgresTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -291,8 +291,8 @@ namespace Genie.Web.Api.Rest
                 var test = new RavenTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -303,8 +303,8 @@ namespace Genie.Web.Api.Rest
                 var test = new RedisTest(payload, geniePool);
 
                 var rando = rnd.Next(100000);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -315,8 +315,8 @@ namespace Genie.Web.Api.Rest
                 var test = new ScyllaTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -328,8 +328,8 @@ namespace Genie.Web.Api.Rest
                 var test = new SingleStoreTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });
@@ -341,8 +341,8 @@ namespace Genie.Web.Api.Rest
                 var test = new SqlServerTest(payload, geniePool);
 
                 var rando = rnd.Next(maxItemCount);
-                test.Write(rando);
-                test.Read(rando);
+                test.WriteJson(rando);
+                test.ReadJson(rando);
 
                 return await Task.FromResult(HttpStatusCode.OK);
             });

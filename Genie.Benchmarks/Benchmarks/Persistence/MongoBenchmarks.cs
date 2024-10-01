@@ -8,6 +8,9 @@ public class MongoBenchmarks : PersistenceBase
 {
     public MongoBenchmarks()
     {
-        persistenceTest = new MongoTest(payload, new DefaultObjectPool<MongoPooledObject<PersistenceTest>>(new DefaultPooledObjectPolicy<MongoPooledObject<PersistenceTest>>()));
+        persistenceTest = new MongoTest(payload, 
+            new DefaultObjectPool<MongoPooledObject<PersistenceTestModel>>(new DefaultPooledObjectPolicy<MongoPooledObject<PersistenceTestModel>>()),
+            new DefaultObjectPool<MongoPooledObject<CountryPostalCode>>(new DefaultPooledObjectPolicy<MongoPooledObject<CountryPostalCode>>())
+            );
     }
 }

@@ -5,12 +5,12 @@ using System.Text.Json;
 
 namespace Genie.Adapters.Persistence.Redis;
 
-public class RedisTest(int payload, ObjectPool<RedisPooledObject> pool) : IPersistenceTest
+public class RedisTest(int payload, ObjectPool<RedisPooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
     readonly ObjectPool<RedisPooledObject> Pool = pool;
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
         var lease = Pool.Get();
@@ -18,7 +18,7 @@ public class RedisTest(int payload, ObjectPool<RedisPooledObject> pool) : IPersi
         try
         {
             string id = $@"new{i}";
-            var test = new PersistenceTest
+            var test = new PersistenceTestModel
             {
                 Id = id,
                 Info = new('-', Payload)
@@ -36,21 +36,12 @@ public class RedisTest(int payload, ObjectPool<RedisPooledObject> pool) : IPersi
         return success;
     }
 
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-        string id = $@"new{i}";
-
-        var lease = Pool.Get();
-        var json = lease.Database.StringGet(id);
-        var result = JsonSerializer.Deserialize<PersistenceTest>(json!);
-
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -70,7 +61,7 @@ public class RedisTest(int payload, ObjectPool<RedisPooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -91,14 +82,14 @@ public class RedisTest(int payload, ObjectPool<RedisPooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
 
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
 

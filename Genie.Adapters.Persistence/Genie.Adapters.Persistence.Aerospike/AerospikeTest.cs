@@ -7,7 +7,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Genie.Adapters.Persistence.Aerospike;
 
-public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) : IPersistenceTest
+public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
     public ObjectPool<AerospikePooledObject> Pool => pool;
@@ -25,14 +25,14 @@ public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) 
 
     }
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
         var lease = Pool.Get();
 
         try
         {
-            var test = new PersistenceTest
+            var test = new PersistenceTestModel
             {
                 Id = $@"new{i}",
                 Info = new('-', Payload)
@@ -54,17 +54,11 @@ public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) 
         return success;
     }
 
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-        var key = new Key("test", "set", $@"new{i}");
-
-        var lease = Pool.Get();
-        var result = lease.Client.Operate(WritePolicy, key, Operation.Get());
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
+
 
     public void Write<T>(string ns, string set, string table, string key, T data)
     {
@@ -90,7 +84,7 @@ public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) 
     }
 
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool success = true;
         var lease = pool.Get();
@@ -113,7 +107,7 @@ public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) 
         return success;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool success = true;
         var lease = pool.Get();
@@ -135,12 +129,12 @@ public class AerospikeTest(int payload, ObjectPool<AerospikePooledObject> pool) 
         return success;
     }
 
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         return true;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         return true;
     }

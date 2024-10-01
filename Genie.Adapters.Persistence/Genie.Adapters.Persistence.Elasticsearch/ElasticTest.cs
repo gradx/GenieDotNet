@@ -6,7 +6,7 @@ using Microsoft.Extensions.ObjectPool;
 
 namespace Genie.Adapters.Persistence.Elasticsearch;
 
-public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool) : IPersistenceTest
+public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
     readonly ObjectPool<ElasticsearchPooledObject> Pool = pool;
@@ -17,14 +17,19 @@ public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool
 
     }
 
-    public bool Write(long i)
+    public void CreateIndex()
+    {
+
+    }
+
+    public override bool WriteJson(long i)
     {
         bool success = true;
         var lease = Pool.Get();
 
         try
         {
-            var test = new PersistenceTest
+            var test = new PersistenceTestModel
             {
                 Id = $@"new{i}",
                 Info = new('-', Payload)
@@ -40,21 +45,13 @@ public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool
         Pool.Return(lease);
         return success;
     }
-
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-
-        var lease = Pool.Get();
-
-        var result = lease.Client.GetAsync<PersistenceTest>("genie", $@"new{i}").GetAwaiter().GetResult();
-
-        Pool.Return(lease);
-
-        return success;
+        return true;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -72,7 +69,7 @@ public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -90,7 +87,7 @@ public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool
         Pool.Return(lease);
         return result;
     }
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -113,7 +110,7 @@ public class ElasticTest(int payload, ObjectPool<ElasticsearchPooledObject> pool
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();

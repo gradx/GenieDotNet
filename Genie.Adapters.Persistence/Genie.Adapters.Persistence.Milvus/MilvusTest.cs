@@ -6,18 +6,21 @@ using System.Text.Json;
 
 namespace Genie.Adapters.Persistence.Milvus;
 
-public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool) : IPersistenceTest
+public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool, ObjectPool<MilvusPooledObject2> pool2) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
-    DefaultObjectPool<MilvusPooledObject2> CountryPool = new(new DefaultPooledObjectPolicy<MilvusPooledObject2>());
 
 
+    public override bool ReadJson(long i)
+    {
+        throw new NotImplementedException();
+    }
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
         string id = $@"new{i}";
-        var test = new PersistenceTest
+        var test = new PersistenceTestModel
         {
             Id = id,
             Info = new('-', Payload)
@@ -40,29 +43,10 @@ public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool) : IPer
         return success;
     }
 
-    public bool Read(long i)
-    {
-        bool success = true;
-        string id = $@"new{i}";
-
-        string expr = $@"test_id in ['{id}']";
-
-        QueryParameters queryParameters = new();
-        queryParameters.OutputFields.Add("test_id");
-        queryParameters.OutputFields.Add("json");
-
-        IReadOnlyList<FieldData> queryResult = MilvusPooledObject.Collection!.QueryAsync(
-            expr,
-            queryParameters).GetAwaiter().GetResult();
-
-
-        return success;
-    }
-
-    public async Task<bool> WritePostal(CountryPostalCode message)
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
-        var lease = CountryPool.Get();
+        var lease = pool2.Get();
 
         try
         {
@@ -84,14 +68,14 @@ public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool) : IPer
         }
 
 
-        CountryPool.Return(lease);
+        pool2.Return(lease);
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
-        var lease = CountryPool.Get();
+        var lease = pool2.Get();
 
         try
         {
@@ -132,13 +116,13 @@ public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool) : IPer
             result = false;
         }
 
-        CountryPool.Return(lease);
+        pool2.Return(lease);
         return result;
     }
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
-        var lease = CountryPool.Get();
+        var lease = pool2.Get();
 
         try
         {
@@ -179,14 +163,14 @@ public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool) : IPer
             result = false;
         }
 
-        CountryPool.Return(lease);
+        pool2.Return(lease);
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
-        var lease = CountryPool.Get();
+        var lease = pool2.Get();
 
         try
         {
@@ -264,7 +248,7 @@ public class MilvusTest(int payload, ObjectPool<MilvusPooledObject> pool) : IPer
             result = false;
         }
 
-        CountryPool.Return(lease);
+        pool2.Return(lease);
         return result;
     }
 }

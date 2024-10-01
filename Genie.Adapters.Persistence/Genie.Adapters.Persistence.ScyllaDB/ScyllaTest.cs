@@ -7,7 +7,7 @@ using Cassandra;
 
 namespace Genie.Adapters.Persistence.Scylla;
 
-public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPersistenceTest
+public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
     readonly ObjectPool<ScyllaPooledObject> Pool = pool;
@@ -27,10 +27,10 @@ public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPer
 
         Pool.Return(lease);
     }
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
-        var test = new PersistenceTest
+        var test = new PersistenceTestModel
         {
             Id = $@"new{i}",
             Info = new('-', Payload)
@@ -43,17 +43,11 @@ public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPer
         return success;
     }
 
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-        var lease = Pool.Get();
-        var result = lease.Session.Execute($@"SELECT json FROM genie.test WHERE id = '{i}'");
-        var first = result.FirstOrDefault();
-        _ = JsonSerializer.Deserialize<PersistenceTest>(Encoding.UTF8.GetBytes((string)first!["json"]));
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
+
 
     public async Task<bool> CreatePostalDB()
     {
@@ -83,7 +77,7 @@ public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -104,7 +98,7 @@ public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -136,7 +130,7 @@ public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -168,7 +162,7 @@ public class ScyllaTest(int payload, ObjectPool<ScyllaPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();

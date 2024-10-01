@@ -5,10 +5,11 @@ using Genie.Utils;
 using ArangoDBNetStandard.CollectionApi.Models;
 using Microsoft.Extensions.ObjectPool;
 using static System.Net.Mime.MediaTypeNames;
+using Elastic.Clients.Elasticsearch;
 
 namespace Genie.Adapters.Persistence.ArangoDB;
 
-public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPersistenceTest
+public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
 
     public int Payload { get; set; } = payload;
@@ -41,6 +42,11 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
         //        });
         //}
 
+
+    }
+
+    public static async Task CreateCollection(string name)
+    {
         var test = new ArangoTest(4000, new DefaultObjectPool<ArangoPooledObject>(new DefaultPooledObjectPolicy<ArangoPooledObject>()));
 
         var lease = test.Pool.Get();
@@ -55,7 +61,7 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
             });
 
         test.Pool.Return(lease);
-    }
+    } 
 
     public async Task<bool> CreateIndex(string collectionName, string field, bool unique)
     {
@@ -78,11 +84,11 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
 
     }
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
 
-        var test = new PersistenceTest
+        var test = new PersistenceTestModel
         {
             Id = $@"new{i}",
             Info = new('-', Payload)
@@ -103,31 +109,13 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
         return success;
     }
 
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        var success = true;
-        var lease = Pool.Get();
-
-        try
-        {
-            var response = lease.Client.Cursor.PostCursorAsync<PersistenceTest>(
-                $@"FOR doc IN Benchmarks 
-              FILTER doc.Id == 'new{i}'
-              RETURN doc").GetAwaiter().GetResult();
-
-            var item = response.Result.First();
-        }
-        catch (Exception ex)
-        {
-            success = false;
-        }
-
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -145,7 +133,7 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -167,7 +155,7 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
         Pool.Return(lease);
         return result;
     }
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -191,7 +179,7 @@ public class ArangoTest(int payload, ObjectPool<ArangoPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();

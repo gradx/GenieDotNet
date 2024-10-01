@@ -6,7 +6,7 @@ namespace Genie.Adapters.Persistence.RavenDB
 {
 
 
-    public class RavenTest(int payload, ObjectPool<RavenPooledObject> pool) : IPersistenceTest
+    public class RavenTest(int payload, ObjectPool<RavenPooledObject> pool) : PersistenceTestBase, IPersistenceTest
     {
         readonly ObjectPool<RavenPooledObject> Pool = pool;
         public int Payload { get; set; } = payload;
@@ -20,10 +20,15 @@ namespace Genie.Adapters.Persistence.RavenDB
             Pool.Return(lease);
         }
 
-        public bool Write(long i)
+        public void CreateIndex()
+        {
+
+        }
+
+        public override bool WriteJson(long i)
         {
             bool success = true;
-            var test = new PersistenceTest
+            var test = new PersistenceTestModel
             {
                 Id = $@"new{i}",
                 Info = new('-', Payload)
@@ -40,18 +45,13 @@ namespace Genie.Adapters.Persistence.RavenDB
         }
 
 
-        public bool Read(long i)
+        public override bool ReadJson(long i)
         {
-            bool success = true;
-            var lease = Pool.Get();
-            using var session = lease.Store.OpenSession();
-            var help = session.Load<PersistenceTest>($@"new{i}");
-
-            Pool.Return(lease);
-            return success;
+            return true;
         }
 
-        public async Task<bool> WritePostal(CountryPostalCode message)
+
+        public override async Task<bool> WritePostal(CountryPostalCode message)
         {
             bool result = true;
             var lease = Pool.Get();
@@ -79,7 +79,7 @@ namespace Genie.Adapters.Persistence.RavenDB
             return result;
         }
 
-        public async Task<bool> ReadPostal(CountryPostalCode message)
+        public override async Task<bool> ReadPostal(CountryPostalCode message)
         {
             bool result = true;
             var lease = Pool.Get();
@@ -101,7 +101,7 @@ namespace Genie.Adapters.Persistence.RavenDB
             return result;
         }
 
-        public async Task<bool> QueryPostal(CountryPostalCode message)
+        public override async Task<bool> QueryPostal(CountryPostalCode message)
         {
             bool result = true;
             var lease = Pool.Get();
@@ -123,7 +123,7 @@ namespace Genie.Adapters.Persistence.RavenDB
             return result;
         }
 
-        public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+        public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
         {
             bool result = true;
             var lease = Pool.Get();

@@ -6,7 +6,7 @@ using System.Text.Json;
 namespace Genie.Adapters.Persistence.Couchbase;
 
 
-public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) : IPersistenceTest
+public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
 
@@ -19,14 +19,14 @@ public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) 
 
     }
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
         var lease = Pool.Get();
 
         try
         {
-            var test = new PersistenceTest
+            var test = new PersistenceTestModel
             {
                 Id = $@"new{i}",
                 Info = new('-', Payload)
@@ -45,19 +45,14 @@ public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) 
         return success;
     }
 
-
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-        var lease = Pool.Get();
-        var getResult = lease.Collection.GetAsync($@"new{i}").GetAwaiter().GetResult();
-        _ = getResult.ContentAs<PersistenceTest>();
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+
+
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -75,7 +70,7 @@ public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) 
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -93,7 +88,7 @@ public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) 
         Pool.Return(lease);
         return result;
     }
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -117,7 +112,7 @@ public class CouchbaseTest(int payload, ObjectPool<CouchbasePooledObject> pool) 
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();

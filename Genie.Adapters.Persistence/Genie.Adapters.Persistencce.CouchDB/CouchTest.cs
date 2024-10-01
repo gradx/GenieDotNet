@@ -12,14 +12,14 @@ public class CouchPersistenceTest : CouchDocument
 }
 
 
-public class CouchTest(int payload, ObjectPool<CouchPooledObject> pool) : IPersistenceTest
+public class CouchTest(int payload, ObjectPool<CouchPooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
 
     public ObjectPool<CouchPooledObject> Pool = pool;
 
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         var success = true;
         var lease = Pool.Get();
@@ -37,17 +37,13 @@ public class CouchTest(int payload, ObjectPool<CouchPooledObject> pool) : IPersi
         return success;
     }
 
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        var success = true;
-
-
-        var result = CouchPooledObject.Database.FindAsync($@"new{i}").GetAwaiter().GetResult();
-
-        return success;
+        return true;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         
@@ -71,7 +67,7 @@ public class CouchTest(int payload, ObjectPool<CouchPooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
 
@@ -88,7 +84,7 @@ public class CouchTest(int payload, ObjectPool<CouchPooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
 
@@ -110,7 +106,7 @@ public class CouchTest(int payload, ObjectPool<CouchPooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
 

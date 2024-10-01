@@ -11,7 +11,7 @@ using System.Text.Json;
 
 namespace Genie.Adapters.Persistence.CrateDB;
 
-public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersistenceTest
+public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
 
@@ -31,14 +31,14 @@ public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersi
         Pool.Return(lease);
     }
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
         var lease = Pool.Get();
 
         try
         {
-            var test = new PersistenceTest
+            var test = new PersistenceTestModel
             {
                 Id = $@"new{i}",
                 Info = new('-', Payload)
@@ -58,20 +58,9 @@ public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersi
         return success;
     }
 
-
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-        var lease = Pool.Get();
-
-        using var cmd = new NpgsqlCommand("SELECT json FROM bench WHERE id = @id", lease.Connection);
-        cmd.Parameters.AddWithValue("id", $@"new{i}");
-
-        var json = (string)cmd.ExecuteScalar();
-        var result = JsonSerializer.Deserialize<PersistenceTest>(Encoding.UTF8.GetBytes(json));
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
 
     public async Task<bool> CreatePostalDB()
@@ -105,7 +94,7 @@ public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -134,7 +123,7 @@ public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -168,7 +157,7 @@ public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersi
         Pool.Return(lease);
         return result;
     }
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -206,7 +195,7 @@ public class CrateTest(int payload, ObjectPool<CratePooledObject> pool) : IPersi
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();

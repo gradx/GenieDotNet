@@ -247,7 +247,7 @@ static WebApplication Build(string[] args)
         builder.Services.TryAddSingleton(serviceProvider =>
         {
             var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<MongoPooledObject<PersistenceTest>>();
+            var policy = new DefaultPooledObjectPolicy<MongoPooledObject<PersistenceTestModel>>();
             return provider.Create(policy);
         });
 

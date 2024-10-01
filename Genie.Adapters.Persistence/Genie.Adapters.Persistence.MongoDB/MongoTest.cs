@@ -4,15 +4,16 @@ using MongoDB.Driver;
 
 namespace Genie.Adapters.Persistence.MongoDB;
 
-public class MongoTest(int payload, ObjectPool<MongoPooledObject<PersistenceTest>> pool) : IPersistenceTest
+public class MongoTest(int payload, ObjectPool<MongoPooledObject<PersistenceTestModel>> pool, ObjectPool<MongoPooledObject<CountryPostalCode>> pool2) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
-    readonly ObjectPool<MongoPooledObject<PersistenceTest>> Pool = pool;
+    readonly ObjectPool<MongoPooledObject<PersistenceTestModel>> Pool = pool;
+    readonly ObjectPool<MongoPooledObject<CountryPostalCode>> Pool2 = pool2;
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
-        var test = new PersistenceTest
+        var test = new PersistenceTestModel
         {
             Id = $@"new{i}",
             Info = new('-', Payload)
@@ -23,52 +24,34 @@ public class MongoTest(int payload, ObjectPool<MongoPooledObject<PersistenceTest
         if (lease.Collection == null)
             lease.Configure("PersistenceTest");
 
-        var result = lease.Collection!.ReplaceOne(Builders<PersistenceTest>.Filter.Eq(r => r.Id, $@"new{i}"), test, new ReplaceOptions { IsUpsert = true });
+        var result = lease.Collection!.ReplaceOne(Builders<PersistenceTestModel>.Filter.Eq(r => r.Id, $@"new{i}"), test, new ReplaceOptions { IsUpsert = true });
 
         Pool.Return(lease);
         return success;
     }
 
-
-    public bool Read(long i)
-    {
-        bool success = true;
-        var lease = Pool.Get();
-
-        try
-        {
-            if (lease.Collection == null)
-                lease.Configure("PersistenceTest");
-
-            var results = lease.Collection.Find(Builders<PersistenceTest>.Filter.Eq(r => r.Id, $@"new{i}")).ToList();
-
-            Pool.Return(lease);
-        }
-        catch (Exception ex)
-        {
-            success = false;
-        }
-
-        return success;
-    }
-
-    public async Task<bool> WritePostal(CountryPostalCode message)
+    public override bool ReadJson(long i)
     {
         return true;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         return true;
     }
 
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
+    {
+        return true;
+    }
+
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         return true;
 
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         return true;
     }

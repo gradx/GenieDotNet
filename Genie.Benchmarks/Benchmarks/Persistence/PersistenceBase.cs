@@ -10,7 +10,7 @@ public abstract class PersistenceBase
     protected readonly int threads = 1;
     protected readonly int payload = 4000;
 
-    public IPersistenceTest persistenceTest;
+    public PersistenceTestBase persistenceTest;
 
     public PersistenceBase()
     {
@@ -22,7 +22,7 @@ public abstract class PersistenceBase
     {
         Parallel.For(0, threads, new ParallelOptions { MaxDegreeOfParallelism = -1 }, iter =>
         {
-            persistenceTest.Write(iter);
+            persistenceTest.WritePostal(iter).GetAwaiter().GetResult();
         });
     }
 
@@ -31,7 +31,7 @@ public abstract class PersistenceBase
     {
         Parallel.For(0, threads, new ParallelOptions { MaxDegreeOfParallelism = -1 }, iter =>
         {
-            persistenceTest.Read(iter);
+            persistenceTest.ReadPostal(iter).GetAwaiter().GetResult();
         });
     }
 

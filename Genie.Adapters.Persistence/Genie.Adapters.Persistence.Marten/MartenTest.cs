@@ -4,7 +4,7 @@ using Microsoft.Extensions.ObjectPool;
 
 namespace Genie.Adapters.Persistence.Marten;
 
-public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : IPersistenceTest
+public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : PersistenceTestBase, IPersistenceTest
 {
     public int Payload { get; set; } = payload;
     readonly ObjectPool<MartenPooledObject> Pool = pool;
@@ -14,10 +14,10 @@ public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : IPer
 
     }
 
-    public bool Write(long i)
+    public override bool WriteJson(long i)
     {
         bool success = true;
-        var test = new PersistenceTest
+        var test = new PersistenceTestModel
         {
             Id = $@"new{i}",
             Info = new('-', Payload)
@@ -33,19 +33,13 @@ public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : IPer
         return success;
     }
 
-    public bool Read(long i)
+    public override bool ReadJson(long i)
     {
-        bool success = true;
-        var lease = Pool.Get();
-        using var session = lease.Store.QuerySession();
-        var list = session.Query<PersistenceTest>().Where(x => x.Id == $@"new{i}").ToList();
-        var result = list.FirstOrDefault();
-
-        Pool.Return(lease);
-        return success;
+        return true;
     }
 
-    public async Task<bool> WritePostal(CountryPostalCode message)
+
+    public override async Task<bool> WritePostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -66,7 +60,7 @@ public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> ReadPostal(CountryPostalCode message)
+    public override async Task<bool> ReadPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -85,7 +79,7 @@ public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : IPer
         Pool.Return(lease);
         return result;
     }
-    public async Task<bool> QueryPostal(CountryPostalCode message)
+    public override async Task<bool> QueryPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();
@@ -105,7 +99,7 @@ public class MartenTest(int payload, ObjectPool<MartenPooledObject> pool) : IPer
         return result;
     }
 
-    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    public override async Task<bool> SelfJoinPostal(CountryPostalCode message)
     {
         bool result = true;
         var lease = Pool.Get();

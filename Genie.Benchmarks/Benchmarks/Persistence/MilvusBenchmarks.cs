@@ -7,6 +7,8 @@ public class MilvusBenchmarks : PersistenceBase
 {
     public MilvusBenchmarks()
     {
-        persistenceTest = new MilvusTest(payload, new DefaultObjectPool<MilvusPooledObject>(new DefaultPooledObjectPolicy<MilvusPooledObject>()));
+        persistenceTest = new MilvusTest(payload, new DefaultObjectPool<MilvusPooledObject>(new DefaultPooledObjectPolicy<MilvusPooledObject>()),
+            new DefaultObjectPool<MilvusPooledObject2>(new DefaultPooledObjectPolicy<MilvusPooledObject2>())
+            );
     }
 }
