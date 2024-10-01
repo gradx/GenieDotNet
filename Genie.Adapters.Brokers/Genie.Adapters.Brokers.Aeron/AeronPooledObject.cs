@@ -3,12 +3,12 @@ using Adaptive.Agrona.Concurrent;
 using Adaptive.Agrona;
 using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
-using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
 using System.Net.Sockets;
 using System.Net;
 using Genie.Common;
+using Genie.Utils;
 
 namespace Genie.Adapters.Brokers.Aeron;
 

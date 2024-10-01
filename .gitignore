@@ -78,3 +78,16 @@ Genie.Adapters.Brokers/Genie.Adapters.Brokers.ActiveMQ/obj/
 Genie.Adapters.Brokers/Genie.Adapters.Brokers.ActiveMQ/bin/
 docker/persistence/volumes/
 Genie.Adapters.Brokers/Genie.Adapters.Brokers.ActiveMQ/.vs/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.Clickhouse/bin/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.Clickhouse/obj/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.DB2/bin/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.DB2/obj/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.Oracle/bin/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.Oracle/obj/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.Postgres/obj/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.Postgres/bin/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.SingleStore/bin/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.SingleStore/obj/
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.SqlServer/bin/
+*.cs
+Genie.Adapters.Persistence/Genie.Adapters.Persistence.SqlServer/obj/

@@ -11,4 +11,8 @@
     <PackageReference Include="NLog" Version="5.3.4" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Genie.Extensions.Genius\Genie.Extensions.Genius.csproj" />
+  </ItemGroup>
+
 </Project>

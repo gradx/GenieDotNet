@@ -1,0 +1,9 @@
+[1:32:49 PM] Overall Avg 79 Period Avg: 79 Total: 23791 CPU: 0 Memory: 69.90662 Disk: [60709.953/4044818.5]
+Latency (Median, Mean, Min, Max, 99): [455, 628, 158, 3126, 3076]
+Completed at 9/29/2024 5:32:49 PM in 302266 seconds
+
+Started: 9/29/2024 5:33:29 PM
+[1:37:20 PM] Overall Avg 111 Period Avg: 111 CPU: 28.588156 Memory: 69.3512 Disk: [40410.812/195748.06]
+[1:38:35 PM] Overall Avg 112 Period Avg: 116 Total: 33692 CPU: 28.540413 Memory: 69.65637 Disk: [54.820084/116498.92]
+Latency (Median, Mean, Min, Max, 99): [348, 457, 100, 2044, 2022]
+Completed at 9/29/2024 5:38:35 PM in 301060 seconds

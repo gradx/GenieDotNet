@@ -1,35 +1,36 @@
 128: Aero, Couchbase, Scylla, Mongo, Cassandra, Marten, Raven, Cockroach, Couch, Redis, Neo4j, Arrango, Crate*, Elastic*
 
-Aero (6,141) Redis (4,145) Cassandra (3,563) Mongo (3,439) Scylla (3,193) Marten (2,300)Raven (1,905)  
-Crate (1,876) Couchbase (1,456) Cockroach (989)  Elastic (879) Couch (372) Milvus (189) Maria (125) Neo4j (81) Arango (81)
+Aerospike+ (6,141) Redis (4,415) Cassandra (3,563) Mongo (3,439) Scylla (3,193) Marten (2,300) Raven+ (1,905) Crate (1,876)   
+Couchbase+ (1,456)  Maria (1,195) Cockroach (989)  Elastic (879) Couch (372) Milvus (189) Neo4j (81) Arango (81)
+
 
 ## Maria
 | load                    |                    |
 | ----------------------- | ------------------ |
-| Max CPU Usage (%)       | 1                  |
-| Max Cores usage (%)     | 26                 |
+| Max CPU Usage (%)       | 0                  |
+| Max Cores usage (%)     | 12                 |
 | Max Working Set (MB)    | 36                 |
-| Max Private Memory (MB) | 44                 |
-| Build Time (ms)         | 1,538              |
-| Start Time (ms)         | 199                |
+| Max Private Memory (MB) | 43                 |
+| Build Time (ms)         | 3,514              |
+| Start Time (ms)         | 414                |
 | Published Size (KB)     | 72,368             |
 | Symbols Size (KB)       | 0                  |
 | .NET Core SDK Version   | 8.0.401            |
 | ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
 | .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 320                |
-| Requests                | 6,779              |
+| First Request (ms)      | 514                |
+| Requests                | 67,191             |
 | Bad responses           | 0                  |
-| Latency 50th (ms)       | 487.74             |
-| Latency 75th (ms)       | 1,721.05           |
-| Latency 90th (ms)       | 2,784.75           |
-| Latency 95th (ms)       | 3,805.26           |
-| Latency 99th (ms)       | 5,464.09           |
-| Mean latency (ms)       | 1,136.69           |
-| Max latency (ms)        | 7,985.63           |
-| Requests/sec            | 125                |
-| Requests/sec (max)      | 12,632             |
-| Read throughput (MB/s)  | 0.02               |
+| Latency 50th (ms)       | 78.35              |
+| Latency 75th (ms)       | 130.19             |
+| Latency 90th (ms)       | 247.69             |
+| Latency 95th (ms)       | 323.03             |
+| Latency 99th (ms)       | 459.56             |
+| Mean latency (ms)       | 114.32             |
+| Max latency (ms)        | 920.07             |
+| Requests/sec            | 1,195              |
+| Requests/sec (max)      | 15,925             |
+| Read throughput (MB/s)  | 0.17               |
 
 ## Milvus
 | load                    |                    |
@@ -291,29 +292,29 @@ Crate (1,876) Couchbase (1,456) Cockroach (989)  Elastic (879) Couch (372) Milvu
 | load                    |                    |
 | ----------------------- | ------------------ |
 | Max CPU Usage (%)       | 0                  |
-| Max Cores usage (%)     | 15                 |
+| Max Cores usage (%)     | 9                  |
 | Max Working Set (MB)    | 36                 |
-| Max Private Memory (MB) | 45                 |
-| Build Time (ms)         | 2,690              |
-| Start Time (ms)         | 348                |
+| Max Private Memory (MB) | 46                 |
+| Build Time (ms)         | 4,515              |
+| Start Time (ms)         | 334                |
 | Published Size (KB)     | 72,368             |
 | Symbols Size (KB)       | 0                  |
 | .NET Core SDK Version   | 8.0.401            |
 | ASP.NET Core Version    | 8.0.8+954f61dd38b3 |
 | .NET Runtime Version    | 8.0.8+08338fcaa5c9 |
-| First Request (ms)      | 365                |
-| Requests                | 247,466            |
-| Bad responses           | 48                 |
-| Latency 50th (ms)       | 19.26              |
-| Latency 75th (ms)       | 24.25              |
-| Latency 90th (ms)       | 29.45              |
-| Latency 95th (ms)       | 33.22              |
-| Latency 99th (ms)       | 48.87              |
-| Mean latency (ms)       | 31.82              |
-| Max latency (ms)        | 15,075.03          |
-| Requests/sec            | 4,145              |
-| Requests/sec (max)      | 23,758             |
-| Read throughput (MB/s)  | 0.53               |
+| First Request (ms)      | 427                |
+| Requests                | 262,699            |
+| Bad responses           | 73                 |
+| Latency 50th (ms)       | 19.41              |
+| Latency 75th (ms)       | 24.73              |
+| Latency 90th (ms)       | 30.20              |
+| Latency 95th (ms)       | 34.09              |
+| Latency 99th (ms)       | 47.59              |
+| Mean latency (ms)       | 30.88              |
+| Max latency (ms)        | 15,098.56          |
+| Requests/sec            | 4,415              |
+| Requests/sec (max)      | 25,062             |
+| Read throughput (MB/s)  | 0.56               |
 
 
 ## Neo4j 55%

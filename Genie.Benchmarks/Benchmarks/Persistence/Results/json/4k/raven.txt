@@ -1,0 +1,24 @@
+Started: 9/29/2024 6:05:02 PM
+[2:06:10 PM] Overall Avg 386 Period Avg: 387 CPU: 22.068548 Memory: 96.258545 Disk: [392972.22/8077812.5]
+[2:06:58 PM] Overall Avg 445 Period Avg: 525 CPU: 28.642082 Memory: 96.80481 Disk: [62950.03/13647621]
+[2:07:45 PM] Overall Avg 468 Period Avg: 525 CPU: 28.404074 Memory: 97.08252 Disk: [1793267/12441651]
+[2:08:33 PM] Overall Avg 481 Period Avg: 525 CPU: 28.543993 Memory: 97.12219 Disk: [69164.87/12825406]
+[2:09:21 PM] Overall Avg 489 Period Avg: 523 CPU: 28.65241 Memory: 96.450806 Disk: [18344.818/13079824]
+[2:10:06 PM] Overall Avg 492 Period Avg: 512 Total: 147893 CPU: 29.850746 Memory: 90.60974 Disk: [1084491.4/23784984]
+Latency (Median, Mean, Min, Max, 99): [249, 543, 7, 3013, 2023]
+Completed at 9/29/2024 6:10:06 PM in 302465 seconds
+
+Started: 9/29/2024 6:12:53 PM
+[2:13:26 PM] Overall Avg 782 Period Avg: 782 CPU: 29.336258 Memory: 89.92615 Disk: [126057.34/965428.6]
+[2:13:56 PM] Overall Avg 809 Period Avg: 837 CPU: 27.477568 Memory: 89.95972 Disk: [161024.86/919366.94]
+[2:14:26 PM] Overall Avg 812 Period Avg: 818 CPU: 27.338026 Memory: 90.0116 Disk: [29365.602/930156.5]
+[2:14:59 PM] Overall Avg 801 Period Avg: 770 CPU: 29.642384 Memory: 80.892944 Disk: [299135.53/801299.1]
+[2:15:29 PM] Overall Avg 805 Period Avg: 823 CPU: 27.241665 Memory: 80.83496 Disk: [68649.164/852027.7]
+[2:16:00 PM] Overall Avg 807 Period Avg: 814 CPU: 27.851133 Memory: 80.83496 Disk: [64951.18/849249.06]
+[2:16:26 PM] Overall Avg 823 Period Avg: 936 CPU: 27.575151 Memory: 80.859375 Disk: [613.32965/890422.44]
+[2:16:53 PM] Overall Avg 835 Period Avg: 930 CPU: 27.641695 Memory: 81.04248 Disk: [14012.416/950902.4]
+[2:17:21 PM] Overall Avg 842 Period Avg: 907 CPU: 28.435173 Memory: 81.17981 Disk: [650973.3/987434.8]
+[2:17:49 PM] Overall Avg 848 Period Avg: 906 CPU: 28.899916 Memory: 81.28357 Disk: [25672.098/957954.5]
+[2:17:56 PM] Overall Avg 850 Period Avg: 904 Total: 256488 CPU: 28.849077 Memory: 81.18286 Disk: [0/869429.8]
+Latency (Median, Mean, Min, Max, 99): [10, 45, 0, 701, 27]
+Completed at 9/29/2024 6:17:56 PM in 301972 seconds

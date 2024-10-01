@@ -77,11 +77,11 @@ scenarios:
       job: bombardier
       variables:
         serverPort: 80
-        path: /redis
-        timeout: 5
-        duration: 60
+        path: /aero
+        timeout: 30
+        duration: 900
         #requests: 1
-        connections: 32
+        connections: 64
         #bodyFile: C:\Users\gradx\repos\GenieDotNet\Genie.Benchmarks\EncryptionRequests\X448_Ed448.req
         #verb: POST
         #stream: true

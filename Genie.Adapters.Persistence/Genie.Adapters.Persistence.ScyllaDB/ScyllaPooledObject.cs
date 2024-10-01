@@ -1,6 +1,6 @@
 ﻿using Cassandra;
 
-namespace Genie.Adapters.Persistence.Redis;
+namespace Genie.Adapters.Persistence.Scylla;
 
 public class ScyllaPooledObject
 {

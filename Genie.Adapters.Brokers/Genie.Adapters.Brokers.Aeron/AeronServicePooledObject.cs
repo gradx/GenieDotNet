@@ -11,6 +11,7 @@ using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 
 namespace Genie.Adapters.Brokers.Aeron;
 internal class MessageListener : IEgressListener

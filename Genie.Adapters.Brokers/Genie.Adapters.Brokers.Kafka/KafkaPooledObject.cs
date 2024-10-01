@@ -2,9 +2,9 @@
 using Chr.Avro.Confluent;
 using Confluent.Kafka;
 using Genie.Common;
-using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 
 namespace Genie.Adapters.Brokers.Kafka;
 

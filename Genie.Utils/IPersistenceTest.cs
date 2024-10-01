@@ -9,8 +9,14 @@ namespace Genie.Utils
     public interface IPersistenceTest
     {
         public int Payload { get; set; }
-        public void Write(int i);
+        public bool Write(long i);
 
-        public void Read(int i);
+        public bool Read(long i);
+
+        public Task<bool> WritePostal(CountryPostalCode message);
+        public Task<bool> ReadPostal(CountryPostalCode message);
+
+        public Task<bool> QueryPostal(CountryPostalCode message);
+        public Task<bool> SelfJoinPostal(CountryPostalCode message);
     }
 }

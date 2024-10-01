@@ -1,9 +1,9 @@
 ﻿using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
 using Genie.Common;
-using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using NATS.Client.Core;
 
 namespace Genie.Adapters.Brokers.NATS;

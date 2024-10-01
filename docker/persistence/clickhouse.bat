@@ -1,0 +1,1 @@
+docker run -d --name some-clickhouse-server -e CLICKHOUSE_DB=genie -e CLICKHOUSE_USER=genie -e CLICKHOUSE_DEFAULT_ACCESS_MANAGEMENT=1 -e CLICKHOUSE_PASSWORD=password -p 8123:8123 -p 8443:8443 -p 9000:9000/tcp clickhouse/clickhouse-server

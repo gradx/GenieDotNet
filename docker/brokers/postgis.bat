@@ -1,1 +1,1 @@
-docker run --name some-postgis -p 5432:5432 -e POSTGRES_PASSWORD=genie_in_a_bottle -d postgis/postgis
+docker run --name some-postgis -p 5432:5432 -e POSTGRES_PASSWORD=genie_in_a_bottle -d postgis/postgis:17-3.4

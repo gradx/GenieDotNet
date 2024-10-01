@@ -3,10 +3,12 @@ using Confluent.Kafka;
 using Confluent.SchemaRegistry;
 using Cysharp.IO;
 using Genie.Adapters.Brokers.Kafka;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.IO;
@@ -67,7 +69,7 @@ namespace Genie.IngressConsumer.Services
             using var producer = producerBuilder.Build();
 
             var deserializer = new AsyncSchemaRegistryDeserializer<PartyRequest>(registry, deserializerBuilder);
-            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+            var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
 
             var timer = new CounterConsoleLogger();
 

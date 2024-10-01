@@ -1,10 +1,12 @@
 ﻿using Apache.NMS;
 using Apache.NMS.Util;
 using Genie.Adapters.Brokers.ActiveMQ;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -48,7 +50,7 @@ public class ActiveMQService
         ISession egressSession = egressConn.CreateSession();
 
         var timer = new CounterConsoleLogger();
-        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
 
         while (true)
         {

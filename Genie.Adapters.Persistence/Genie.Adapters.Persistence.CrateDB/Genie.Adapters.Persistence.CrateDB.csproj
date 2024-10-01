@@ -8,11 +8,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.8" />
-    <PackageReference Include="Npgsql" Version="8.0.4" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\..\Genie.Utils\Genie.Utils.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj" />
   </ItemGroup>
 
 </Project>

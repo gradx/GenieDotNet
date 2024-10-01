@@ -2,10 +2,12 @@
 using Adaptive.Agrona;
 using Adaptive.Agrona.Concurrent;
 using Genie.Adapters.Brokers.Aeron;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -44,7 +46,7 @@ public class AeronService
         var consumer = AeronUtils.SetupSubscriber(aeron, "aeron:udp?endpoint=localhost:40123", 10);
 
         var timer = new CounterConsoleLogger();
-        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
 
         while (true)
         {

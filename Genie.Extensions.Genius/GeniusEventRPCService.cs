@@ -1,6 +1,6 @@
-﻿using Genie.Common.Performance;
-using Genie.Extensions.Genius.Commands;
+﻿using Genie.Extensions.Genius.Commands;
 using Genie.Grpc;
+using Genie.Utils;
 using Grpc.Core;
 using Mediator;
 using Microsoft.Extensions.ObjectPool;

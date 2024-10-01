@@ -1,0 +1,26 @@
+Started: 9/30/2024 12:16:25 AM
+[8:19:57 PM] Overall Avg 120 Period Avg: 120 CPU: 7.3389916 Memory: 97.07031 Disk: [9315251/45456388]
+[8:21:29 PM] Overall Avg 117 Period Avg: 112 Total: 35313 CPU: 6.5189104 Memory: 97.32666 Disk: [8451857/40565784]
+Latency (Median, Mean, Min, Max, 99): [745, 776, 5, 3141, 2115]
+Completed at 9/30/2024 12:21:29 AM in 303329 seconds
+
+Started: 9/30/2024 12:22:16 AM
+[8:22:37 PM] Overall Avg 1248 Period Avg: 1251 CPU: 61.61595 Memory: 80.496216 Disk: [82246500/516255.3]
+[8:22:55 PM] Overall Avg 1321 Period Avg: 1405 CPU: 63.267876 Memory: 77.11792 Disk: [91116296/381417.1]
+[8:23:13 PM] Overall Avg 1350 Period Avg: 1416 CPU: 63.57619 Memory: 73.95935 Disk: [91727910/125156.6]
+[8:23:31 PM] Overall Avg 1365 Period Avg: 1414 CPU: 63.64673 Memory: 71.014404 Disk: [91842210/95509.28]
+[8:23:49 PM] Overall Avg 1371 Period Avg: 1396 CPU: 63.11347 Memory: 70.59021 Disk: [90691064/192838.4]
+[8:24:06 PM] Overall Avg 1379 Period Avg: 1427 CPU: 62.347523 Memory: 70.52612 Disk: [92425320/178327.7]
+[8:24:24 PM] Overall Avg 1382 Period Avg: 1404 CPU: 62.174465 Memory: 70.55054 Disk: [91218664/117482.82]
+[8:24:41 PM] Overall Avg 1389 Period Avg: 1437 CPU: 62.194725 Memory: 70.50781 Disk: [92985096/76274.94]
+[8:24:59 PM] Overall Avg 1392 Period Avg: 1424 CPU: 62.448097 Memory: 70.477295 Disk: [92204680/152193.75]
+[8:25:17 PM] Overall Avg 1396 Period Avg: 1431 CPU: 61.99517 Memory: 70.42847 Disk: [92544536/114927.67]
+[8:25:34 PM] Overall Avg 1399 Period Avg: 1435 CPU: 62.168636 Memory: 70.50476 Disk: [92927610/69755.21]
+[8:25:52 PM] Overall Avg 1401 Period Avg: 1430 CPU: 62.199776 Memory: 70.7428 Disk: [94803370/139814.16]
+[8:26:09 PM] Overall Avg 1402 Period Avg: 1419 CPU: 62.339466 Memory: 70.63599 Disk: [91935624/84589.34]
+[8:26:27 PM] Overall Avg 1405 Period Avg: 1436 CPU: 62.186214 Memory: 70.6543 Disk: [93012560/123427.414]
+[8:26:44 PM] Overall Avg 1406 Period Avg: 1432 CPU: 62.034184 Memory: 70.773315 Disk: [92766744/138186.84]
+[8:27:02 PM] Overall Avg 1407 Period Avg: 1424 CPU: 62.461567 Memory: 70.895386 Disk: [92195350/87845.914]
+[8:27:17 PM] Overall Avg 1407 Period Avg: 1411 Total: 422190 CPU: 62.980515 Memory: 70.9198 Disk: [92673920/183680.75]
+Latency (Median, Mean, Min, Max, 99): [71, 383, 7, 1549, 1531]
+Completed at 9/30/2024 12:27:17 AM in 300106 seconds

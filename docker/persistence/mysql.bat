@@ -1,0 +1,1 @@
+docker run -p 3306:3306 --detach --name some-mysql  --env MYSQL_ALLOW_EMPTY_PASSWORD=1  mysql:latest

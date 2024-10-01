@@ -7,10 +7,12 @@ using Adaptive.Cluster.Service;
 using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
 using Genie.Adapters.Brokers.Aeron;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -27,7 +29,7 @@ namespace Genie.IngressConsumer.Services
         private readonly SchemaBuilder schemaBuilder = AvroSupport.GetSchemaBuilder();
         private BinarySerializer<EventTaskJob> serializer;
         private GenieContext context;
-        private DefaultObjectPool<PostGisPooledObject> pool;
+        private DefaultObjectPool<PostgresPooledObject> pool;
         private static readonly RecyclableMemoryStreamManager manager = new();
         private ILogger logger;
 
@@ -37,7 +39,7 @@ namespace Genie.IngressConsumer.Services
             _cluster = cluster;
             serializer = AvroSupport.GetSerializerBuilder().BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());
             context = GenieContext.Build().GenieContext;
-            pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+            pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
             using var factory = ZloggerFactory.GetFactory(context.Zlogger.Path);
             logger = factory.CreateLogger("Program");
         }
@@ -156,7 +158,7 @@ namespace Genie.IngressConsumer.Services
 
 
             var timer = new CounterConsoleLogger();
-            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+            var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
 
             while (true)
             {

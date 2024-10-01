@@ -218,7 +218,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Milvus", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj", "{D88975A3-AB72-4C4B-B087-0E6B34E97A9E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genie.Adapters.Persistence.MariaDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj", "{2D1108AE-03FE-4770-AE54-CFA82D37D87B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.MariaDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj", "{2D1108AE-03FE-4770-AE54-CFA82D37D87B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.SqlServer", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.SqlServer\Genie.Adapters.Persistence.SqlServer.csproj", "{834C5AD1-ABCB-4580-A2A2-732020F286AD}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Oracle", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Oracle\Genie.Adapters.Persistence.Oracle.csproj", "{D924B705-A914-4725-95C1-633409A56E2B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.DB2", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.DB2\Genie.Adapters.Persistence.DB2.csproj", "{6B1540AA-F7EB-4D34-9F1C-C90AC6109D4F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.SingleStore", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.SingleStore\Genie.Adapters.Persistence.SingleStore.csproj", "{ABD0B133-58DD-4392-979F-9A41FD153EC4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ClickHouse", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Clickhouse\Genie.Adapters.Persistence.ClickHouse.csproj", "{0EBC4883-E3E4-44A8-8244-5E8032AA8B1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Genie.Adapters.Persistence.Postgres", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj", "{77368F64-B427-4831-BBC3-CF02D648900E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -366,6 +378,30 @@ Global
 		{2D1108AE-03FE-4770-AE54-CFA82D37D87B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2D1108AE-03FE-4770-AE54-CFA82D37D87B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2D1108AE-03FE-4770-AE54-CFA82D37D87B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{834C5AD1-ABCB-4580-A2A2-732020F286AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{834C5AD1-ABCB-4580-A2A2-732020F286AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{834C5AD1-ABCB-4580-A2A2-732020F286AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{834C5AD1-ABCB-4580-A2A2-732020F286AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D924B705-A914-4725-95C1-633409A56E2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D924B705-A914-4725-95C1-633409A56E2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D924B705-A914-4725-95C1-633409A56E2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D924B705-A914-4725-95C1-633409A56E2B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B1540AA-F7EB-4D34-9F1C-C90AC6109D4F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B1540AA-F7EB-4D34-9F1C-C90AC6109D4F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B1540AA-F7EB-4D34-9F1C-C90AC6109D4F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B1540AA-F7EB-4D34-9F1C-C90AC6109D4F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ABD0B133-58DD-4392-979F-9A41FD153EC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABD0B133-58DD-4392-979F-9A41FD153EC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABD0B133-58DD-4392-979F-9A41FD153EC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABD0B133-58DD-4392-979F-9A41FD153EC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EBC4883-E3E4-44A8-8244-5E8032AA8B1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EBC4883-E3E4-44A8-8244-5E8032AA8B1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EBC4883-E3E4-44A8-8244-5E8032AA8B1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EBC4883-E3E4-44A8-8244-5E8032AA8B1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77368F64-B427-4831-BBC3-CF02D648900E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77368F64-B427-4831-BBC3-CF02D648900E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77368F64-B427-4831-BBC3-CF02D648900E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77368F64-B427-4831-BBC3-CF02D648900E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -409,6 +445,12 @@ Global
 		{A160F831-56EA-4E95-89D9-F3D6D4DAD468} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
 		{D88975A3-AB72-4C4B-B087-0E6B34E97A9E} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
 		{2D1108AE-03FE-4770-AE54-CFA82D37D87B} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
+		{834C5AD1-ABCB-4580-A2A2-732020F286AD} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
+		{D924B705-A914-4725-95C1-633409A56E2B} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
+		{6B1540AA-F7EB-4D34-9F1C-C90AC6109D4F} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
+		{ABD0B133-58DD-4392-979F-9A41FD153EC4} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
+		{0EBC4883-E3E4-44A8-8244-5E8032AA8B1E} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
+		{77368F64-B427-4831-BBC3-CF02D648900E} = {305D42BB-1422-46BC-BD08-CD647F77AA5B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E145E9C1-1C32-4C32-B9E5-527B3264C841}

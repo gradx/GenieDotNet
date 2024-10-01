@@ -2,35 +2,74 @@
 using Microsoft.Extensions.ObjectPool;
 using MongoDB.Driver;
 
-namespace Genie.Adapters.Persistence.MongoDB
+namespace Genie.Adapters.Persistence.MongoDB;
+
+public class MongoTest(int payload, ObjectPool<MongoPooledObject<PersistenceTest>> pool) : IPersistenceTest
 {
-    public class MongoTest(int payload, ObjectPool<MongoPooledObject> pool) : IPersistenceTest
+    public int Payload { get; set; } = payload;
+    readonly ObjectPool<MongoPooledObject<PersistenceTest>> Pool = pool;
+
+    public bool Write(long i)
     {
-        public int Payload { get; set; } = payload;
-        readonly ObjectPool<MongoPooledObject> Pool = pool;
-
-
-        public void Write(int i)
+        bool success = true;
+        var test = new PersistenceTest
         {
-            var test = new PersistenceTest
-            {
-                Id = $@"new{i}",
-                Info = new('-', Payload)
-            };
+            Id = $@"new{i}",
+            Info = new('-', Payload)
+        };
 
-            var lease = Pool.Get();
-            lease.Collection.ReplaceOne(Builders<PersistenceTest>.Filter.Eq("id", $@"new{i}"), test);
+        var lease = Pool.Get();
+
+        if (lease.Collection == null)
+            lease.Configure("PersistenceTest");
+
+        var result = lease.Collection!.ReplaceOne(Builders<PersistenceTest>.Filter.Eq(r => r.Id, $@"new{i}"), test, new ReplaceOptions { IsUpsert = true });
+
+        Pool.Return(lease);
+        return success;
+    }
+
+
+    public bool Read(long i)
+    {
+        bool success = true;
+        var lease = Pool.Get();
+
+        try
+        {
+            if (lease.Collection == null)
+                lease.Configure("PersistenceTest");
+
+            var results = lease.Collection.Find(Builders<PersistenceTest>.Filter.Eq(r => r.Id, $@"new{i}")).ToList();
 
             Pool.Return(lease);
         }
-
-        public void Read(int i)
+        catch (Exception ex)
         {
-            var lease = Pool.Get();
-
-            var results = lease.Collection.Find(t => t.Id == $@"new{i}").ToList();
-
-            Pool.Return(lease);
+            success = false;
         }
+
+        return success;
+    }
+
+    public async Task<bool> WritePostal(CountryPostalCode message)
+    {
+        return true;
+    }
+
+    public async Task<bool> ReadPostal(CountryPostalCode message)
+    {
+        return true;
+    }
+
+    public async Task<bool> QueryPostal(CountryPostalCode message)
+    {
+        return true;
+
+    }
+
+    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    {
+        return true;
     }
 }

@@ -21,6 +21,5 @@ public class CouchbasePooledObject
 
         Scope = Bucket.Scope("genie_scope");
         Collection = Scope.Collection("genie_bench");
-
     }
 }

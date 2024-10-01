@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj" />
     <ProjectReference Include="..\Genie.Common\Genie.Common.csproj" />
   </ItemGroup>
 

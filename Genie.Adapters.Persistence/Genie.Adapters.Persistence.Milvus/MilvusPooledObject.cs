@@ -22,7 +22,6 @@ public class MilvusPooledObject
 
         CreateDB(true);
     }
-
     static void CreateDB(bool dropExisting)
     {
         MilvusCollection collection = Client.GetCollection(CollectionName);
@@ -52,5 +51,26 @@ public class MilvusPooledObject
             SimilarityMetricType.L2).GetAwaiter().GetResult();
 
         Collection.LoadAsync().GetAwaiter().GetResult();
+    }
+}
+
+public class MilvusPooledObject2
+{
+    public const string CollectionName = "book";
+    public MilvusClient Client { get; }
+    public MilvusCollection Collection { get; set; }
+
+    public MilvusPooledObject2()
+    {
+        string Host = "localhost";
+        int Port = 19530; // This is Milvus's default port
+        bool UseSsl = false; // Default value is false
+        string Database = "my_database"; // Defaults to the default Milvus database
+
+        // See documentation for other constructor paramters
+        Client = new MilvusClient(Host, Port, UseSsl);
+        MilvusHealthState result = Client.HealthAsync().GetAwaiter().GetResult();
+
+        Collection = Client.GetCollection("CountryCodes");
     }
 }

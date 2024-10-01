@@ -15,8 +15,9 @@ public class Neo4jTest(int payload, ObjectPool<Neo4jPooledObject> pool) : IPersi
 
     }
 
-    public void Write(int i)
+    public bool Write(long i)
     {
+        bool success = true;
         string id = $@"new{i}";
 
         var test = new PersistenceTest
@@ -35,15 +36,16 @@ public class Neo4jTest(int payload, ObjectPool<Neo4jPooledObject> pool) : IPersi
                @"MERGE (genie:Benchmark:Result {id: $id, value: $json}) RETURN genie:Benchmark:Result",
                new { id, json });
 
-            var record = await result.SingleAsync();
         }).GetAwaiter().GetResult();
 
         Pool.Return(lease);
+        return success;
     }
 
 
-    public void Read(int i)
+    public bool Read(long i)
     {
+        bool success = true;
         string id = $@"new{i}";
 
         var lease = Pool.Get();
@@ -52,6 +54,106 @@ public class Neo4jTest(int payload, ObjectPool<Neo4jPooledObject> pool) : IPersi
         var matches = result.ToListAsync().GetAwaiter().GetResult();
 
         Pool.Return(lease);
+        return success;
 
+    }
+
+    public async Task<bool> WritePostal(CountryPostalCode message)
+    {
+        bool result = true;
+        var lease = Pool.Get();
+
+        try
+        {
+            await lease.Session.ExecuteWriteAsync(async tx =>
+            {
+                message.CountryCode ??= "";
+                message.PostalCode ??= "";
+                message.PlaceName ??= "";
+                message.Latitude ??= 0;
+                message.Longitude ??= 0;
+
+                var result = await tx.RunAsync(
+                   @"MERGE (genie:Benchmark:CountryCode {id: $Id, country_code: $CountryCode, postal_code: $PostalCode, 
+                                place_name: $PlaceName, latitude: $Latitude, longitude: $Longitude}) RETURN genie:Benchmark:CountryCode",
+                   new { message.Id, message.CountryCode, message.PostalCode, message.PlaceName, message.Latitude, message.Longitude });
+            });
+        }
+        catch (Exception ex)
+        {
+            result = false;
+        }
+
+        Pool.Return(lease);
+        return result;
+    }
+
+    public async Task<bool> ReadPostal(CountryPostalCode message)
+    {
+        bool result = true;
+        var lease = Pool.Get();
+
+        try
+        {
+            await lease.Session.ExecuteWriteAsync(async tx =>
+            {
+                var result = await tx.RunAsync("MATCH (genie:Benchmark:CountryCode { id: $id}) RETURN genie.value", new { message.Id });
+                var matches = await result.ToListAsync();
+
+            });
+        }
+        catch (Exception ex)
+        {
+            result = false;
+        }
+
+        Pool.Return(lease);
+        return result;
+    }
+
+    public async Task<bool> QueryPostal(CountryPostalCode message)
+    {
+        bool result = true;
+        var lease = Pool.Get();
+
+        try
+        {
+            await lease.Session.ExecuteWriteAsync(async tx =>
+            {
+                var result = await tx.RunAsync("MATCH (genie:Benchmark:CountryCode { id: $id}) RETURN genie.value", new { message.Id });
+                var matches = await result.ToListAsync();
+            });
+        }
+        catch (Exception ex)
+        {
+            result = false;
+        }
+
+        Pool.Return(lease);
+        return result;
+
+    }
+
+    public async Task<bool> SelfJoinPostal(CountryPostalCode message)
+    {
+        bool result = true;
+        var lease = Pool.Get();
+
+        try
+        {
+            await lease.Session.ExecuteWriteAsync(async tx =>
+            {
+                var result = await tx.RunAsync("MATCH (genie:Benchmark:CountryCode { id: $id}) RETURN genie.value", new { message.Id });
+                var matches = await result.ToListAsync();
+
+            });
+        }
+        catch (Exception ex)
+        {
+            result = false;
+        }
+
+        Pool.Return(lease);
+        return result;
     }
 }

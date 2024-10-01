@@ -1,8 +1,10 @@
 ﻿using Genie.Adapters.Brokers.RabbitMQ;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -67,7 +69,7 @@ public class RabbitMQService
 
             var consumer = new AsyncEventingBasicConsumer(channels.IngressChannel);
 
-            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+            var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
             var timerService = new CounterConsoleLogger();
 
 

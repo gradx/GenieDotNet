@@ -1,0 +1,33 @@
+Started: 9/30/2024 12:31:27 AM
+[8:32:08 PM] Overall Avg 625 Period Avg: 639 CPU: 39.189213 Memory: 69.44275 Disk: [162000.08/117030160]
+[8:32:43 PM] Overall Avg 667 Period Avg: 727 CPU: 53.23987 Memory: 74.9939 Disk: [496802.62/115773250]
+[8:33:16 PM] Overall Avg 698 Period Avg: 774 CPU: 52.205322 Memory: 70.72449 Disk: [28481.371/124318010]
+[8:33:56 PM] Overall Avg 677 Period Avg: 629 CPU: 39.09985 Memory: 70.34302 Disk: [11695.918/103544760]
+[8:34:39 PM] Overall Avg 657 Period Avg: 592 CPU: 39.120564 Memory: 72.38464 Disk: [9514.086/95812696]
+[8:35:14 PM] Overall Avg 665 Period Avg: 714[8:35:14 PM] Overall Avg 665 Period Avg: 714 CPU: 45.99076 Memory: 74.07532 Disk: [18464.361/112373040]
+ CPU: 78.8933 Memory: 74.07532 Disk: [0/0]
+[8:35:48 PM] Overall Avg 675 Period Avg: 745 CPU: 55.578556 Memory: 77.88696 Disk: [162856.38/119939224]
+[8:36:29 PM] Overall Avg 630 Period Avg: 347 Total: 189089 CPU: 20.83775 Memory: 74.22485 Disk: [47589.766/52539410]
+Latency (Median, Mean, Min, Max, 99): [323, 378, 4, 853, 824]
+Completed at 9/30/2024 12:36:29 AM in 300902 seconds
+
+Started: 9/30/2024 12:37:05 AM
+[8:37:29 PM] Overall Avg 1235 Period Avg: 1236 CPU: 63.93306 Memory: 75.720215 Disk: [143559.75/2922781.8]
+[8:37:47 PM] Overall Avg 1308 Period Avg: 1391 CPU: 61.336266 Memory: 75.72327 Disk: [17317.678/260334.67]
+[8:38:05 PM] Overall Avg 1337 Period Avg: 1399 CPU: 60.86705 Memory: 75.909424 Disk: [34363.133/300331.3]
+[8:38:23 PM] Overall Avg 1348 Period Avg: 1382 CPU: 61.080093 Memory: 75.88501 Disk: [16757.062/317681.75]
+[8:38:41 PM] Overall Avg 1362 Period Avg: 1424 CPU: 60.71915 Memory: 74.51172 Disk: [35678.38/687051]
+[8:38:58 PM] Overall Avg 1375 Period Avg: 1440 CPU: 59.56879 Memory: 73.93799 Disk: [45523.094/392956.56]
+[8:39:16 PM] Overall Avg 1381 Period Avg: 1423 CPU: 59.3507 Memory: 73.968506 Disk: [28958.938/2819216]
+[8:39:33 PM] Overall Avg 1388 Period Avg: 1439 CPU: 59.491413 Memory: 73.7854 Disk: [21416.438/296556.94]
+[8:39:50 PM] Overall Avg 1396 Period Avg: 1463 CPU: 58.93599 Memory: 73.7793 Disk: [74271.27/231313.67]
+[8:40:08 PM] Overall Avg 1398 Period Avg: 1415 CPU: 60.516644 Memory: 74.3042 Disk: [390852.6/298966.1]
+[8:40:25 PM] Overall Avg 1401 Period Avg: 1430 CPU: 59.413197 Memory: 74.46594 Disk: [21312.193/261130.6]
+[8:40:42 PM] Overall Avg 1405 Period Avg: 1453 CPU: 59.212963 Memory: 74.331665 Disk: [32505.691/264020.97]
+[8:41:00 PM] Overall Avg 1409 Period Avg: 1457 CPU: 59.265774 Memory: 74.17908 Disk: [3817.1304/241449.12]
+[8:41:17 PM] Overall Avg 1412 Period Avg: 1450 CPU: 58.88103 Memory: 74.16382 Disk: [9504.297/228042.61]
+[8:41:35 PM] Overall Avg 1412 Period Avg: 1411 CPU: 60.700317 Memory: 74.26758 Disk: [33324.004/628719.4]
+[8:41:52 PM] Overall Avg 1414 Period Avg: 1459 CPU: 59.17238 Memory: 74.124146 Disk: [997718.25/338654.94]
+[8:42:09 PM] Overall Avg 1416 Period Avg: 1444 Total: 424799 CPU: 59.526417 Memory: 74.13635 Disk: [38146.293/347457.88]
+Latency (Median, Mean, Min, Max, 99): [45, 173, 3, 993, 992]
+Completed at 9/30/2024 12:42:09 AM in 300098 seconds

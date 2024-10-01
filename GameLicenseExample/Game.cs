@@ -3,6 +3,7 @@ using Genie.Common.Crypto.Adapters.Curve25519;
 using Genie.Common.Crypto.Adapters.Nist;
 using Genie.Common.Crypto.Adapters.Pqc;
 using Genie.Grpc;
+using Genie.Utils;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
@@ -241,8 +242,8 @@ public class Game(int credits, KeyType signing, KeyType agreement)
         };
 
         // Create the AesGcm salt and nonce
-        var hkdf_salt = Utf8String.Format($"{RandomString(pool, 16)}");
-        var nonce = Utf8String.Format($"{RandomString(pool, 12)}");
+        var hkdf_salt = Utf8String.Format($"{StringUtils.RandomString(pool, 16)}");
+        var nonce = Utf8String.Format($"{StringUtils.RandomString(pool, 12)}");
 
         // Create an HDKF key
         var extract = HKDF.Extract(HashAlgorithmName.SHA256, secret, Utf8String.Format($"{key.Id}"));
@@ -260,25 +261,6 @@ public class Game(int credits, KeyType signing, KeyType agreement)
             Nonce = ByteString.CopyFrom(nonce),
             Tag = ByteString.CopyFrom(Tag)
         };
-
-        static string RandomString(ObjectPool<StringBuilder> pool, int length)
-        {
-            const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@";
-            var res = pool.Get();
-
-            //res.Length = length + 1;
-
-            while (length-- > 0)
-            {
-                var rng = RandomNumberGenerator.GetBytes(sizeof(uint));
-                uint num = BitConverter.ToUInt32(rng, 0);
-                res.Append(valid[(int)(num % (uint)valid.Length)]);
-            }
-
-            var result = res.ToString();
-            pool.Return(res);
-            return result;
-        }
     }
 
 

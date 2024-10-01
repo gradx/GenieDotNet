@@ -2,9 +2,9 @@
 using Chr.Avro.Serialization;
 using Confluent.Kafka;
 using Genie.Common;
-using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Microsoft.IO;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;

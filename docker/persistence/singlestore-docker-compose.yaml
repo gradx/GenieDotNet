@@ -1,0 +1,12 @@
+version: '2'
+
+services:
+  memsql:
+    image: 'memsql/cluster-in-a-box'
+    ports:
+      - 3306:3306
+      - 8080:8080
+    environment:
+      LICENSE_KEY: BDA1ZjIzOWQwNjY0ZDRlYzA5NWYxMWVhMDkxN2M0MmZjAAAAAAAAAAAEAAAAAAAAACgwNQIYA9/YnW+OY60VokH0amPUCp5YOjWvAs+jAhkA+tt9j4LZcrUGUKfEn0bsSiVgJCliwigdAA==
+      ROOT_PASSWORD: 'password'
+      START_AFTER_INIT: 'Y'

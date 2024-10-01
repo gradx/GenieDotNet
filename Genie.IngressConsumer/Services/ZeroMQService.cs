@@ -2,10 +2,12 @@
 using Chr.Avro.Serialization;
 using Confluent.SchemaRegistry;
 using Genie.Adapters.Brokers.ZeroMQ;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Utils;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -56,7 +58,7 @@ public class ZeroMQService
 
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
         var deserializer = new AsyncSchemaRegistryDeserializer<PartyRequest>(registry, deserializerBuilder);
-        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
 
         var timer = new CounterConsoleLogger();
 

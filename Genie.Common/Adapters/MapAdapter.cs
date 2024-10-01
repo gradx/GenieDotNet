@@ -1,5 +1,6 @@
 ﻿using Elastic.Clients.Elasticsearch;
 using Genie.Adapters.Persistence.Elasticsearch;
+using Genie.Adapters.Persistence.Postgres;
 using Genie.Common.Performance;
 using Genie.Utils;
 using Microsoft.Extensions.ObjectPool;
@@ -44,7 +45,7 @@ namespace Genie.Common.Adapters
                 }
 
             }
-            else if (pooled is PostGisPooledObject p)
+            else if (pooled is PostgresPooledObject p)
             {
                 var geoquery = @"SELECT * FROM zcta5 WHERE ST_Intersects(geoshape,$1)";
                 using var cmd = p.DataSource.CreateCommand(geoquery);

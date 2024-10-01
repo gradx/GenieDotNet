@@ -11,7 +11,7 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Azure.Storage.Blobs" Version="12.22.0" />
+    <PackageReference Include="Azure.Storage.Blobs" Version="12.22.1" />
     <PackageReference Include="Azure.Storage.Common" Version="12.21.0" />
     <PackageReference Include="bertt.geoparquet" Version="1.0.1" />
     <PackageReference Include="Chr.Avro" Version="10.4.0" />
@@ -20,8 +20,8 @@
     <PackageReference Include="CommunityToolkit.HighPerformance" Version="8.3.2" />
     <PackageReference Include="Confluent.SchemaRegistry.Serdes.Protobuf" Version="2.5.3" />
     <PackageReference Include="DeepEqual" Version="5.1.0" />
-    <PackageReference Include="DuckDB.NET.Data.Full" Version="1.1.0.1" />
-    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.15.6" />
+    <PackageReference Include="DuckDB.NET.Data.Full" Version="1.1.1" />
+    <PackageReference Include="Elastic.Clients.Elasticsearch" Version="8.15.7" />
     <PackageReference Include="Geodesy" Version="4.1.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.66.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
@@ -33,9 +33,8 @@
     <PackageReference Include="NetTopologySuite" Version="2.5.0" />
     <PackageReference Include="NetTopologySuite.IO.GeoJSON" Version="4.0.0" />
     <PackageReference Include="NetTopologySuite.IO.GeoJSON4STJ" Version="4.0.0" />
-    <PackageReference Include="Npgsql" Version="8.0.4" />
-    <PackageReference Include="Npgsql.NetTopologySuite" Version="8.0.4" />
     <PackageReference Include="SpanJson" Version="4.2.0" />
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="8.0.0" />
     <PackageReference Include="System.Runtime.Caching" Version="8.0.0" />
     <PackageReference Include="System.Text.Json" Version="8.0.4" />
     <PackageReference Include="Utf8StreamReader" Version="1.3.2" />
@@ -49,6 +48,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj" />
     <ProjectReference Include="..\Genie.Utils\Genie.Utils.csproj" />
   </ItemGroup>
 

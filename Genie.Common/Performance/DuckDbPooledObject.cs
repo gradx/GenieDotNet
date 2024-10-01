@@ -1,5 +1,6 @@
 ﻿using DuckDB.NET.Data;
 using Genie.Common.Utils;
+using Genie.Utils;
 
 namespace Genie.Common.Performance;
 

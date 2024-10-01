@@ -1,0 +1,27 @@
+Started: 9/30/2024 5:48:41 AM
+[1:48:55 AM] Overall Avg 2394 Period Avg: 2394 CPU: 27.747164 Memory: 60.391235 Disk: [6739277/80171770]
+[1:49:08 AM] Overall Avg 2164 Period Avg: 1974 CPU: 34.410347 Memory: 63.67798 Disk: [6948979.5/99104300]
+[1:49:27 AM] Overall Avg 1763 Period Avg: 1285 CPU: 15.638909 Memory: 64.74304 Disk: [707954.9/70609500]
+[1:49:57 AM] Overall Avg 1387 Period Avg: 846 CPU: 9.8094845 Memory: 65.20386 Disk: [1717239.5/47418220]
+[1:50:24 AM] Overall Avg 1258 Period Avg: 916 CPU: 9.654665 Memory: 66.14685 Disk: [72254.2/42550544]
+[1:50:38 AM] Overall Avg 1317 Period Avg: 1723 CPU: 18.492561 Memory: 69.50073 Disk: [25395.588/182939120]
+[1:50:54 AM] Overall Avg 1354 Period Avg: 1635 CPU: 15.904515 Memory: 70.10193 Disk: [163680.78/59979700]
+[1:51:19 AM] Overall Avg 1296 Period Avg: 996 CPU: 10.277244 Memory: 70.840454 Disk: [22170.48/37293700]
+[1:51:52 AM] Overall Avg 1200 Period Avg: 754 CPU: 8.926185 Memory: 74.22485 Disk: [28186.77/71645870]
+[1:52:01 AM] Overall Avg 1270 Period Avg: 2640 CPU: 28.802525 Memory: 75.16174 Disk: [3284882.8/97156740]
+[1:52:20 AM] Overall Avg 1278 Period Avg: 1371 CPU: 14.491936 Memory: 76.25122 Disk: [257510.7/72166660]
+[1:52:46 AM] Overall Avg 1245 Period Avg: 968 CPU: 12.785624 Memory: 77.6001 Disk: [3313151.2/36200330]
+[1:53:11 AM] Overall Avg 1220 Period Avg: 985 CPU: 10.323695 Memory: 77.92053 Disk: [31094.81/32428260]
+[1:53:31 AM] Overall Avg 1220 Period Avg: 1215 CPU: 13.345015 Memory: 81.64673 Disk: [43377.734/119619700]
+[1:53:45 AM] Overall Avg 1231 Period Avg: 1482 Total: 369399 CPU: 14.552661 Memory: 82.37305 Disk: [876322.44/49325190]
+Latency (Median, Mean, Min, Max, 99): [248, 667, 1, 9301, 5593]
+Completed at 9/30/2024 5:53:45 AM in 300885 seconds
+
+Started: 9/30/2024 6:00:20 AM
+[2:00:40 AM] Overall Avg 1307 Period Avg: 1307 CPU: 23.936073 Memory: 89.44092 Disk: [94377.21/318417.28]
+[2:01:21 AM] Overall Avg 841 Period Avg: 619 CPU: 17.195858 Memory: 89.22119 Disk: [221759.34/287938.25]
+[2:02:24 AM] Overall Avg 609 Period Avg: 392 CPU: 17.145676 Memory: 88.98926 Disk: [1500271.1/374199.2]
+[2:03:48 AM] Overall Avg 483 Period Avg: 298 CPU: 15.386278 Memory: 81.832886 Disk: [38995.062/884670.1]
+[2:05:22 AM] Overall Avg 408 Period Avg: 244 Total: 122841 CPU: 14.3910055 Memory: 81.866455 Disk: [5374.6836/144871.02]
+Latency (Median, Mean, Min, Max, 99): [668, 465, 1, 917, 887]
+Completed at 9/30/2024 6:05:22 AM in 300814 seconds

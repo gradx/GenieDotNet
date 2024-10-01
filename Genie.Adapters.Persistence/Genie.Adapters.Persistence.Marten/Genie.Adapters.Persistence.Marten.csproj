@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Marten" Version="7.28.0" />
+    <PackageReference Include="Marten" Version="7.29.0" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" Version="8.0.8" />
   </ItemGroup>
 
