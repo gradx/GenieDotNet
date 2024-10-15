@@ -1,4 +1,5 @@
-﻿using Genie.Common.Types;
+﻿
+using Genie.Core;
 
 namespace Genie.Common.Crypto.Adapters.Interfaces;
 

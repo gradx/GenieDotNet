@@ -8,22 +8,36 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Keys\**" />
-    <EmbeddedResource Remove="Keys\**" />
-    <None Remove="Keys\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Program.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Keys\Alice\" />
+    <Folder Include="Keys\Bob\" />
     <Folder Include="Protos\" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.cer" Link="Keys\Alice\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\Ed25519SigningAdapter.key" Link="Keys\Alice\Ed25519SigningAdapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.cer" Link="Keys\Alice\X25519Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Alice\X25519Adapter.key" Link="Keys\Alice\X25519Adapter.key">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\Ed25519SigningAdapter.cer" Link="Keys\Bob\Ed25519SigningAdapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="..\SharedFiles\Keys\Bob\X25519Adapter.cer" Link="Keys\Bob\X25519Adapter.cer">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="..\SharedFiles\luxePod.pfx" Link="luxePod.pfx">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -37,7 +51,7 @@
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.28.2" />
     <PackageReference Include="Grpc.Net.Client" Version="2.66.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.66.0">
+    <PackageReference Include="Grpc.Tools" Version="2.67.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

@@ -2,12 +2,12 @@
 using Chr.Avro.Serialization;
 using Confluent.SchemaRegistry;
 using Genie.Adapters.Brokers.MQTT;
-using Genie.Adapters.Persistence.Postgres;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -39,11 +39,9 @@ public class MQTTService
 
 
 
-        var service = new MQTTService
-        {
-            Logger = logger,
-            Context = context
-        };
+        var service = new MQTTService();
+        service.Logger = logger;
+        service.Context = context;
         await service.Run();
 
         Console.WriteLine($@"MQTTService exited");
@@ -67,7 +65,7 @@ public class MQTTService
 
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
         var deserializer = new AsyncSchemaRegistryDeserializer<PartyRequest>(registry, deserializerBuilder);
-        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         var timer = new CounterConsoleLogger();
 

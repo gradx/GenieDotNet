@@ -1,12 +1,10 @@
 ﻿using Elastic.Clients.Elasticsearch;
-using Genie.Adapters.Persistence.Elasticsearch;
-using Genie.Adapters.Persistence.Postgres;
 using Genie.Common.Performance;
-using Genie.Utils;
+using Genie.Core;
 using Microsoft.Extensions.ObjectPool;
 using NetTopologySuite.Features;
 using NetTopologySuite.Geometries;
-using System.IO.Hashing;
+using System.Data.HashFunction.CityHash;
 
 
 namespace Genie.Common.Adapters
@@ -14,16 +12,16 @@ namespace Genie.Common.Adapters
 
     public class MapAdapter
     {
-        private readonly static XxHash64 hasher = new();
+        private readonly static ICityHash hasher = CityHashFactory.Instance.Create(new CityHashConfig { HashSizeInBits = 64 });
 
         public static AttributesTable ReverseGeoCode<T>(ObjectPool<T> pool, Geometry geo, AttributesTable attrs) where T : class
         {
             var pooled = pool.Get();
 
-            if(pooled is ElasticsearchPooledObject e)
+            if(pooled is ElasticSearchPooledObject e)
             {
                 
-                var respose = e.Client.SearchAsync<ElasticGeo>(s => s.Index("elastic_geo").From(0).Size(10).Query(q =>
+                var respose = e.Client.SearchAsync<ElasticGeo>(s => s.Index("testindex3").From(0).Size(10).Query(q =>
                 {
                     q.GeoShape(new Elastic.Clients.Elasticsearch.QueryDsl.GeoShapeQuery
                     {
@@ -45,7 +43,7 @@ namespace Genie.Common.Adapters
                 }
 
             }
-            else if (pooled is PostgresPooledObject p)
+            else if (pooled is PostGisPooledObject p)
             {
                 var geoquery = @"SELECT * FROM zcta5 WHERE ST_Intersects(geoshape,$1)";
                 using var cmd = p.DataSource.CreateCommand(geoquery);
@@ -64,8 +62,7 @@ namespace Genie.Common.Adapters
                 //mapMutex.WaitOne();
                 //var mapConn = DuckDbSupport.InstanceSpatial;
 
-                hasher.Append(geo.AsBinary());
-
+                var hashKey = hasher.ComputeHash(geo.AsBinary()).AsHexString();
 
                 //ObjectCache cache = MemoryCache.Default;
                 //var cached = cache[hashKey];

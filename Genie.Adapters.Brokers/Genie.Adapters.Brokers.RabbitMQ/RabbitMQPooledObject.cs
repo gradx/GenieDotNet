@@ -1,27 +1,25 @@
 ﻿using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
 using Confluent.Kafka;
-using Genie.Common;
-using Genie.Common.Types;
-using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Adapters.Serializers.Avro;
+using Genie.Core;
 using Microsoft.IO;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
-using static Genie.Common.Adapters.CosmosAdapter;
+
 
 namespace Genie.Adapters.Brokers.RabbitMQ;
-public class RabbitMQPooledObject : GeniePooledObject
+public class RabbitMQPooledObject<T,K> : GeniePooledObject
 {
     public static IConnection? Connect { get; set; }
     public IChannel? Ingress { get; set; }
     public IChannel? Events { get; set; }
     public AutoResetEvent ReceiveSignal = new(false);
     //private EventingBasicConsumer? Consumer;
-    public EventTaskJob? Result { get; set; }
+    public T? Result { get; set; }
     private static readonly RecyclableMemoryStreamManager manager = new();
-    private ISerializer<PartyBenchmarkRequest> Serializer { get; set; }
-    private BinaryDeserializer<EventTaskJob> Deserializer { get; set; }
+    private ISerializer<K> Serializer { get; set; }
+    private BinaryDeserializer<T> Deserializer { get; set; }
     private AsyncEventingBasicConsumer AsyncHandler { get; set; }
 
     public void Reset()
@@ -46,10 +44,10 @@ public class RabbitMQPooledObject : GeniePooledObject
             { "x-max-length", 10000 }
         };
 
-        RabbitMQPooledObject.Connect = RabbitUtils.Instance;
+        RabbitMQPooledObject<T,K>.Connect = RabbitUtils.Instance;
 
-        this.Ingress = await RabbitMQPooledObject.Connect.CreateChannelAsync(cancellationToken: cancellationToken);
-        this.Events =  await RabbitMQPooledObject.Connect.CreateChannelAsync(cancellationToken: cancellationToken);
+        this.Ingress = await RabbitMQPooledObject<T, K>.Connect.CreateChannelAsync(cancellationToken: cancellationToken);
+        this.Events =  await RabbitMQPooledObject<T, K>.Connect.CreateChannelAsync(cancellationToken: cancellationToken);
 
         await Events.ExchangeDeclareAsync(this.EventChannel, ExchangeType.Direct, cancellationToken: cancellationToken);
         await Events.QueueDeclareAsync(this.EventChannel, false, false, false, args, cancellationToken: cancellationToken);
@@ -57,9 +55,9 @@ public class RabbitMQPooledObject : GeniePooledObject
 
         AsyncHandler = new AsyncEventingBasicConsumer(this.Events);
         var result = await this.Events.BasicConsumeAsync(this.EventChannel, true, AsyncHandler, cancellationToken);
-        var schema = schemaBuilder.BuildSchema<EventTaskJob>();
+        var schema = schemaBuilder.BuildSchema<T>();
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
-        Deserializer = deserializerBuilder.BuildDelegate<EventTaskJob>(schema);
+        Deserializer = deserializerBuilder.BuildDelegate<T>(schema);
 
         AsyncHandler.Received += EventReceived;
     }

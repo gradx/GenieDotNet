@@ -1,0 +1,11 @@
+Drop collection json_data
+Drop collection country_postal
+Started: 10/10/2024 4:14:26 PM
+[4:19:29 PM] Overall 55 Period: 55 Errors: 87 CPU: 13 Memory: 67 Disk: [0/0]
+Completed 10/10/2024 4:19:29 PM Requests: 16306 Errors: 87
+Latency (Median, Mean, Min, Max, 95, 99): [399, 570.96, 53, 19627, 456, 9802]
+
+
+
+
+

@@ -78,11 +78,9 @@ namespace Genie.Scratch
             var result = await client.Cluster.HealthAsync();
 
 
-            var indexReq = new Elastic.Clients.Elasticsearch.IndexManagement.CreateIndexRequest(c_Index)
-            {
-                Mappings = new TypeMapping()
-            };
-            indexReq.Mappings.Properties = [];
+            var indexReq = new Elastic.Clients.Elasticsearch.IndexManagement.CreateIndexRequest(c_Index);
+            indexReq.Mappings = new TypeMapping();
+            indexReq.Mappings.Properties = new Properties();
             indexReq!.Mappings!.Properties!.Add(new PropertyName("testshape"), new GeoShapeProperty());
             await client.Indices.CreateAsync(indexReq);
 
@@ -102,7 +100,7 @@ namespace Genie.Scratch
             var zcta5_type = rowGroupReader.Column(9).LogicalReader<string>().ToList();
             var zcta5_name_long = rowGroupReader.Column(10).LogicalReader<int?>().ToList();
 
-            NetTopologySuite.IO.WKBReader r = new();
+            NetTopologySuite.IO.WKBReader r = new NetTopologySuite.IO.WKBReader();
             for (int i = 0; i < file1.FileMetaData.NumRows; i++)
             {
                 Console.WriteLine($@"Inserting {i} of {file1.FileMetaData.NumRows}");

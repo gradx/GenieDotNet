@@ -1,5 +1,5 @@
-﻿using Genie.Common;
-using Genie.Utils;
+﻿
+using Genie.Core;
 using Pulsar.Client.Api;
 
 namespace Genie.Adapters.Brokers.Pulsar;

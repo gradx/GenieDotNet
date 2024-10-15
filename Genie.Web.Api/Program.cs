@@ -10,40 +10,18 @@ using Genie.Adapters.Brokers.NATS;
 using Genie.Adapters.Brokers.Pulsar;
 using Genie.Adapters.Brokers.RabbitMQ;
 using Genie.Adapters.Brokers.ZeroMQ;
-using Genie.Adapters.Persistence.Aerospike;
-using Genie.Adapters.Persistence.ArangoDB;
-using Genie.Adapters.Persistence.Cassandra;
-using Genie.Adapters.Persistence.ClickHouse;
-using Genie.Adapters.Persistence.CockroachDB;
-using Genie.Adapters.Persistence.Couchbase;
-using Genie.Adapters.Persistence.CouchDB;
-using Genie.Adapters.Persistence.CrateDB;
-using Genie.Adapters.Persistence.DB2;
-using Genie.Adapters.Persistence.Elasticsearch;
-using Genie.Adapters.Persistence.MariaDB;
-using Genie.Adapters.Persistence.Marten;
-using Genie.Adapters.Persistence.Milvus;
-using Genie.Adapters.Persistence.MongoDB;
-using Genie.Adapters.Persistence.Neo4j;
-using Genie.Adapters.Persistence.Oracle;
-using Genie.Adapters.Persistence.Postgres;
-using Genie.Adapters.Persistence.RavenDB;
-using Genie.Adapters.Persistence.Redis;
-using Genie.Adapters.Persistence.Scylla;
-using Genie.Adapters.Persistence.SqlServer;
-using Genie.Common;
-using Genie.Common.Performance;
-using Genie.Common.Utils;
+using Genie.Adapters.Serializers.Avro;
+using Genie.Common.Types;
+using Genie.Core;
 using Genie.Extensions.Genius;
-using Genie.Utils;
 using Genie.Web.Api.Actor;
+using Genie.Web.Api.Commands;
 using Genie.Web.Api.Rest;
-using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.ObjectPool;
-using System.Globalization;
 using ZLogger;
 using ZLogger.Providers;
+using static Genie.Common.Adapters.CosmosAdapter;
 
 
 var app = Build(args);
@@ -80,18 +58,76 @@ static WebApplication Build(string[] args)
         return provider.Create(policy);
     });
 
-    ConfigureMessageQueuePools(builder);
-    ConfigureDatabasePools(builder);
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<PulsarPooledObject>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<RabbitMQPooledObject<EventTaskJob, PartyBenchmarkRequest>>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<ActiveMQPooledObject>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<KafkaPooledObject<EventTaskJob>> ();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<ZeroMQPooledObject<EventTaskJob>>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<AeronPooledObject<EventTaskJob>>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<AeronServicePooledObject<EventTaskJob>>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<NatsPooledObject<EventTaskJob>>();
+        return provider.Create(policy);
+    });
+
+    builder.Services.TryAddSingleton(serviceProvider =>
+    {
+        var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
+        var policy = new DefaultPooledObjectPolicy<MQTTPooledObject<Genie.Common.Types.EventTaskJob>>();
+        return provider.Create(policy);
+    });
 
     // Kafka
     var adminClient = new AdminClientBuilder(new AdminClientConfig { BootstrapServers = genieContext.Kafka.Host }).Build();
     builder.Services.AddSingleton(adminClient);
 
     // Avro
-    var producerBuilder = new ProducerBuilder<string, Genie.Common.Types.PartyRequest>(new ProducerConfig
-    {
-        BootstrapServers = genieContext.Kafka.Host
-    });
+    var producerBuilder = new ProducerBuilder<string, Genie.Common.Types.PartyRequest>(new ProducerConfig { 
+        BootstrapServers = genieContext.Kafka.Host });
     producerBuilder.SetAvroKeySerializer(schemaRegistry,
         $"{typeof(Genie.Common.Types.PartyRequest).FullName}-Key", registerAutomatically: AutomaticRegistrationBehavior.Always).GetAwaiter().GetResult(); ;
     producerBuilder.SetAvroValueSerializer(AvroSupport.GetSerializerBuilder(config, schemaBuilder),
@@ -107,7 +143,7 @@ static WebApplication Build(string[] args)
     });
 
     builder.Services.AddHostedService<ActorSystemClusterHostedService>();
-
+    
 
     // Mediator
     builder.Services.AddMediator(options =>
@@ -118,8 +154,7 @@ static WebApplication Build(string[] args)
 
 
     builder.Logging
-        .AddZLoggerRollingFile(options =>
-        {
+        .AddZLoggerRollingFile(options => {
 
             // File name determined by parameters to be rotated
             options.FilePathSelector = (timestamp, sequenceNumber) => $"c:\\temp\\web\\{timestamp.ToLocalTime():yyyy-MM-dd}_{sequenceNumber:000}.log";
@@ -131,9 +166,9 @@ static WebApplication Build(string[] args)
             options.RollingSizeKB = 1024;
         })
         .AddZLoggerConsole(options =>
-        {
-            options.UseJsonFormatter();
-        })
+         {
+             options.UseJsonFormatter();
+         })
         // Format as json and configure output
         .AddZLoggerConsole(options =>
         {
@@ -150,229 +185,6 @@ static WebApplication Build(string[] args)
         });
 
     return builder.Build();
-
-    static void ConfigureDatabasePools(WebApplicationBuilder builder)
-    {
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new LimitedPooledObjectPolicy<AerospikePooledObject>(100);
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<ArangoPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<CassandraPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<ClickHousePooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<CockroachPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<CouchbasePooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<CouchPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<CratePooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<DB2PooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<ElasticsearchPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<MariaPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<MartenPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<MilvusPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<MongoPooledObject<PersistenceTestModel>>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<Neo4jPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<OraclePooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<PostgresPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<RavenPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<RedisPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<ScyllaPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<SingleStorePooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<SqlServerPooledObject>();
-            return provider.Create(policy);
-        });
-    }
-
-    static void ConfigureMessageQueuePools(WebApplicationBuilder builder)
-    {
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<PulsarPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<RabbitMQPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<ActiveMQPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<KafkaPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<ZeroMQPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<AeronPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<AeronServicePooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<NatsPooledObject>();
-            return provider.Create(policy);
-        });
-
-        builder.Services.TryAddSingleton(serviceProvider =>
-        {
-            var provider = serviceProvider.GetRequiredService<ObjectPoolProvider>();
-            var policy = new DefaultPooledObjectPolicy<MQTTPooledObject>();
-            return provider.Create(policy);
-        });
-    }
 }
 
 static void Configure(WebApplication app)

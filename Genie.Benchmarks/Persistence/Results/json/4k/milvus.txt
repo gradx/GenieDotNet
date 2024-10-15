@@ -1,0 +1,31 @@
+Drop collection json_data
+Drop collection country_postal
+Started: 10/8/2024 10:10:40 PM
+[10:14:08 PM] Overall 123 Period: 123 CPU: 19 Memory: 70 Disk: [0/0]
+[10:20:40 PM] Overall 84 Period: 64 CPU: 31 Memory: 72 Disk: [11267/8422]
+[10:25:04 PM] Overall 87 Period: 94 CPU: 35 Memory: 66 Disk: [7708/18967]
+[10:29:09 PM] Overall 91 Period: 102 CPU: 30 Memory: 66 Disk: [5869/62397]
+[10:33:28 PM] Overall 92 Period: 97 CPU: 32 Memory: 67 Disk: [3955/26669]
+[10:37:35 PM] Overall 93 Period: 101 CPU: 30 Memory: 69 Disk: [23376/13547]
+[10:41:57 PM] Overall 94 Period: 95 CPU: 29 Memory: 69 Disk: [5602/25399]
+[10:46:12 PM] Overall 94 Period: 98 CPU: 34 Memory: 69 Disk: [5142/12158]
+[10:50:20 PM] Overall 95 Period: 100 CPU: 30 Memory: 70 Disk: [7351/12708]
+[10:54:38 PM] Overall 95 Period: 97 CPU: 12 Memory: 70 Disk: [40465/34632]
+Completed 10/8/2024 10:54:38 PM Requests: 249941 Errors: 0
+Latency (Median, Mean, Min, Max, 95, 99): [62, 167.76, 3, 41176, 85, 6619]
+
+
+Started: 10/8/2024 11:00:33 PM
+[11:01:55 PM] Overall 308 Period: 308 CPU: 34 Memory: 78 Disk: [0/0]
+[11:03:24 PM] Overall 295 Period: 282 CPU: 37 Memory: 77 Disk: [6900/4109]
+[11:04:57 PM] Overall 285 Period: 268 CPU: 29 Memory: 80 Disk: [4069/5016]
+[11:06:33 PM] Overall 279 Period: 261 CPU: 29 Memory: 78 Disk: [3089/5076]
+[11:08:10 PM] Overall 274 Period: 258 CPU: 30 Memory: 76 Disk: [1459/5171]
+[11:09:43 PM] Overall 274 Period: 270 CPU: 35 Memory: 76 Disk: [9959/5177]
+[11:11:16 PM] Overall 273 Period: 268 CPU: 30 Memory: 74 Disk: [6371/4790]
+[11:12:48 PM] Overall 272 Period: 271 CPU: 29 Memory: 74 Disk: [6044/5505]
+[11:14:21 PM] Overall 272 Period: 270 CPU: 30 Memory: 74 Disk: [8079/5143]
+[11:15:53 PM] Overall 272 Period: 270 CPU: 9 Memory: 71 Disk: [14673/4958]
+Completed 10/8/2024 11:15:53 PM Requests: 249903 Errors: 0
+Latency (Median, Mean, Min, Max, 95, 99): [14, 14.06, 4, 598, 18, 21]
+

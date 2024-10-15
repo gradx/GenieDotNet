@@ -1,16 +1,24 @@
-﻿using Genie.Adapters.Brokers.NATS;
-using Genie.Adapters.Persistence.Postgres;
+﻿using Confluent.SchemaRegistry.Serdes;
+using Genie.Adapters.Brokers.NATS;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.IO;
 using NATS.Client.Core;
+using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
+using System;
 using System.Buffers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ZLogger;
 
 namespace Genie.IngressConsumer.Services;
@@ -39,7 +47,7 @@ public class NatsService
 
         var connection = new NatsConnection();
         var timer = new CounterConsoleLogger();
-        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         while (true)
         {

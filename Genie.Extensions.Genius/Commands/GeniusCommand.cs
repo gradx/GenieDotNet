@@ -5,13 +5,15 @@ using Genie.Actors;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.ObjectPool;
 using Genie.Common.Web;
+using Genie.Extensions.Genius;
 using Proto.Cluster;
 using Genie.Grpc;
 using Grpc.Core;
 using Microsoft.Azure.Cosmos.Serialization.HybridRow;
-using Genie.Utils;
+using Genie.Common.Performance;
+using Genie.Core;
 
-namespace Genie.Extensions.Genius.Commands;
+namespace Genie.Extensions.Commands;
 
 public record GeniusCommand(IAsyncStreamReader<GeniusEventPollRequest>? Request, IServerStreamWriter<GeniusEventPollResponse>? Response, ServerCallContext? Context, ObjectPool<GeniePooledObject> GeniePool, ActorSystem ActorSystem, bool FireAndForget) : IRequest;
 

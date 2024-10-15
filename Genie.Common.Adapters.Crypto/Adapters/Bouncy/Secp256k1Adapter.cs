@@ -1,5 +1,5 @@
 ﻿using Genie.Common.Crypto.Adapters.Interfaces;
-using Genie.Common.Types;
+using Genie.Core;
 using Org.BouncyCastle.Asn1.Pkcs;
 using Org.BouncyCastle.Asn1.Sec;
 using Org.BouncyCastle.Asn1.X509;

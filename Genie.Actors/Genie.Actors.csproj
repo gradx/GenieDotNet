@@ -8,11 +8,10 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.66.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.66.0">
+    <PackageReference Include="Grpc.Tools" Version="2.67.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
     <PackageReference Include="Proto.Actor" Version="1.7.0" />
     <PackageReference Include="Proto.Cluster" Version="1.7.0" />
     <PackageReference Include="Proto.Cluster.CodeGen" Version="1.7.0" />
@@ -22,8 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Kafka\Genie.Adapters.Brokers.Kafka.csproj" />
     <ProjectReference Include="..\Genie.Common\Genie.Common.csproj" />
+    <ProjectReference Include="..\Genie.Core\Genie.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>

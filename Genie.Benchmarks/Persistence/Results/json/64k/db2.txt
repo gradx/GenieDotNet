@@ -1,0 +1,28 @@
+Started: 10/9/2024 3:32:31 PM
+[3:35:20 PM] Overall 153 Period: 157 Errors: 37 CPU: 19 Memory: 77 Disk: [0/15488]
+[3:38:05 PM] Overall 152 Period: 155 Errors: 37 CPU: 15 Memory: 83 Disk: [19546/12921]
+[3:41:24 PM] Overall 142 Period: 130 Errors: 37 CPU: 17 Memory: 67 Disk: [18570/15899]
+[3:44:13 PM] Overall 144 Period: 151 Errors: 37 CPU: 18 Memory: 71 Disk: [19508/16817]
+[3:47:38 PM] Overall 139 Period: 126 Errors: 37 CPU: 22 Memory: 73 Disk: [19581/20202]
+[3:50:28 PM] Overall 140 Period: 152 Errors: 37 CPU: 22 Memory: 78 Disk: [19636/17433]
+[3:53:46 PM] Overall 138 Period: 130 Errors: 37 CPU: 13 Memory: 84 Disk: [19604/15340]
+[3:56:35 PM] Overall 139 Period: 152 Errors: 37 CPU: 14 Memory: 89 Disk: [19313/16755]
+[3:59:55 PM] Overall 137 Period: 129 Errors: 38 CPU: 21 Memory: 92 Disk: [19476/24136]
+[4:01:33 PM] Overall 137 Period: 127 Errors: 38 CPU: 10 Memory: 93 Disk: [19422/6014]
+Completed 10/9/2024 4:01:33 PM Requests: 237112 Errors: 38
+Latency (Median, Mean, Min, Max, 95, 99): [194, 215.27, 3, 42807, 499, 735]
+
+
+Started: 10/9/2024 4:01:33 PM
+[4:01:50 PM] Overall 1509 Period: 1547 Errors: 37 CPU: 67 Memory: 94 Disk: [32768/0]
+[4:02:08 PM] Overall 1459 Period: 1450 Errors: 37 CPU: 66 Memory: 91 Disk: [32768/3255]
+[4:02:25 PM] Overall 1452 Period: 1475 Errors: 37 CPU: 67 Memory: 91 Disk: [32768/1458]
+[4:02:42 PM] Overall 1454 Period: 1497 Errors: 37 CPU: 65 Memory: 91 Disk: [32494/3729]
+[4:02:59 PM] Overall 1450 Period: 1470 Errors: 37 CPU: 64 Memory: 91 Disk: [32397/1747]
+[4:03:18 PM] Overall 1430 Period: 1377 Errors: 37 CPU: 61 Memory: 91 Disk: [32599/5317]
+[4:03:37 PM] Overall 1418 Period: 1381 Errors: 37 CPU: 61 Memory: 91 Disk: [32032/7251]
+[4:03:55 PM] Overall 1408 Period: 1377 Errors: 37 CPU: 68 Memory: 92 Disk: [32593/3329]
+[4:04:14 PM] Overall 1403 Period: 1404 Errors: 38 CPU: 61 Memory: 92 Disk: [31294/2102]
+[4:04:25 PM] Overall 1401 Period: 1397 Errors: 38 CPU: 36 Memory: 92 Disk: [6450/1926]
+Completed 10/9/2024 4:04:25 PM Requests: 240429 Errors: 38
+Latency (Median, Mean, Min, Max, 95, 99): [21, 21.27, 3, 773, 30, 36]

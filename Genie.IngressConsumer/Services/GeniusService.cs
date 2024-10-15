@@ -1,5 +1,6 @@
 ﻿using Genie.Actors;
 using Genie.Common;
+using Genie.Core;
 using Genie.Extensions.Genius;
 using Proto.Cluster;
 

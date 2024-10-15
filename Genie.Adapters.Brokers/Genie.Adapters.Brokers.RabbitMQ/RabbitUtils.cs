@@ -1,4 +1,5 @@
-﻿using Genie.Common;
+﻿
+using Genie.Core;
 using RabbitMQ.Client;
 
 namespace Genie.Adapters.Brokers.RabbitMQ;

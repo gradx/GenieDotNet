@@ -9,9 +9,10 @@ using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
 using System.Security.Cryptography.X509Certificates;
 using Org.BouncyCastle.Math;
-using Genie.Common.Types;
+using Genie.Core;
 using System.Security.Cryptography;
 using Org.BouncyCastle.Asn1.Pkcs;
+using Genie.Core;
 
 namespace Genie.Common.Crypto.Adapters.Bouncy;
 

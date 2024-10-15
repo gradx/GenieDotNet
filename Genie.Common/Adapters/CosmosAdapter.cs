@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.HighPerformance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Core;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
@@ -11,7 +12,7 @@ namespace Genie.Common.Adapters;
 
 public partial class CosmosAdapter
 {
-    private static readonly RecyclableMemoryStreamManager manager = new();
+    private static readonly RecyclableMemoryStreamManager manager = new RecyclableMemoryStreamManager();
 
     public static PartyRequest ToCosmos(Grpc.PartyRequest req)
     {
@@ -578,7 +579,7 @@ public partial class CosmosAdapter
 
     public static Grpc.GeoCryptoKey FromCosmos(GeoCryptoKey k)
     {
-        return new Grpc.GeoCryptoKey { X509 = ByteString.CopyFrom(k.X509), KeyType = (Grpc.KeyType)k.KeyType, KeyUsage = (Grpc.KeyUsage)k.KeyUsage, IsPrivate = k.IsPrivate, Id = k.Id ?? "" };
+        return new Grpc.GeoCryptoKey { Key = k.Key ?? "", KeyType = (Grpc.KeyType)k.KeyType, KeyUsage = (Grpc.KeyUsage)k.KeyUsage, IsPrivate = k.IsPrivate, Id = k.Id ?? "" };
     }
 
     public static Certificate? ToCosmos(Grpc.Certificate c)
@@ -595,7 +596,7 @@ public partial class CosmosAdapter
 
     public static T ToCosmos<T>(Grpc.GeoCryptoKey k) where T : GeoCryptoKey, new()
     {
-        return new T { X509 = [.. k.X509], KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id, PqcE = [.. k.PqcE] };
+        return new T { Key = k.Key.Null(), KeyType = (GeoCryptoKey.CryptoKeyType)k.KeyType, IsPrivate = k.IsPrivate, Id = k.Id };
     }
 
 
@@ -604,12 +605,11 @@ public partial class CosmosAdapter
         if (d == null) return null;
 
         var s = ToCosmos<SealedEnvelope>(d.Key);
-        s.Hkdf = [.. d.Hkdf];
-        s.Data = [.. d.Data];
-        s.Nonce = [.. d.Nonce];
-        s.Tag = [.. d.Tag];
+        s.Hkdf = d.Hkdf.Null();
+        s.Data = d.Data.Null();
+        s.Nonce = d.Nonce.Null();
+        s.Tag = d.Tag.Null();
         s.Cipher = (SealedEnvelope.CipherType)d.Cipher;
-        
         return s;
 
     }
@@ -621,10 +621,10 @@ public partial class CosmosAdapter
         return new Grpc.SealedEnvelope
         {
             Key = FromCosmos((GeoCryptoKey)d),
-            Hkdf = ByteString.CopyFrom(d.Hkdf),
-            Data = ByteString.CopyFrom(d.Data),
-            Nonce = ByteString.CopyFrom(d.Nonce),// d.Nonce ?? "",
-            Tag = ByteString.CopyFrom(d.Tag),
+            Hkdf = d.Hkdf ?? "",
+            Data = d.Data ?? "",
+            Nonce = d.Nonce ?? "",
+            Tag = d.Tag ?? "",
             Cipher = (Grpc.SealedEnvelope.Types.SealedEnvelopeType)d.Cipher
         };
     }

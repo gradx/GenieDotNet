@@ -35,8 +35,9 @@
     <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Pulsar\Genie.Adapters.Brokers.Pulsar.csproj" />
     <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.RabbitMQ\Genie.Adapters.Brokers.RabbitMQ.csproj" />
     <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ZeroMQ\Genie.Adapters.Brokers.ZeroMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Serializers\Genie.Adapters.Serializers.Avro\Genie.Adapters.Serializers.Avro.csproj" />
+    <ProjectReference Include="..\Genie.Core\Genie.Core.csproj" />
     <ProjectReference Include="..\Genie.Extensions.Genius\Genie.Extensions.Genius.csproj" />
-    <ProjectReference Include="..\Genie.Web.Api\Genie.Web.Api.csproj" />
   </ItemGroup>
 
 </Project>

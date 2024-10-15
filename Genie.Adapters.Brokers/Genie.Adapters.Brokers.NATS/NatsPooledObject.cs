@@ -1,20 +1,18 @@
 ﻿using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
-using Genie.Common;
-using Genie.Common.Types;
-using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Adapters.Serializers.Avro;
+using Genie.Core;
 using NATS.Client.Core;
 
 namespace Genie.Adapters.Brokers.NATS;
 
-public class NatsPooledObject : GeniePooledObject
+public class NatsPooledObject<T> : GeniePooledObject
 {
     public NatsConnection NatsConnection { get; set; }
 
-    public BinaryDeserializer<EventTaskJob> Deserializer { get; set; }
+    public BinaryDeserializer<T> Deserializer { get; set; }
 
-    public EventTaskJob? Result { get; set; }
+    public T? Result { get; set; }
     public AutoResetEvent ReceiveSignal = new(false);
 
 
@@ -30,12 +28,12 @@ public class NatsPooledObject : GeniePooledObject
             }
         });
 
-        var schema = schemaBuilder.BuildSchema<EventTaskJob>();
+        var schema = schemaBuilder.BuildSchema<T>();
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
-        Deserializer = deserializerBuilder.BuildDelegate<EventTaskJob>(schema);
+        Deserializer = deserializerBuilder.BuildDelegate<T>(schema);
     }
 
-    public EventTaskJob Deserialize(byte[] help)
+    public T Deserialize(byte[] help)
     {
         var reader = new Chr.Avro.Serialization.BinaryReader(help);
         return Deserializer(ref reader);

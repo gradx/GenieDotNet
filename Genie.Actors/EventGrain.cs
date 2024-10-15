@@ -1,7 +1,10 @@
-﻿using Genie.Adapters.Persistence.Postgres;
+﻿using Confluent.Kafka;
+using Elastic.Clients.Elasticsearch.Nodes;
 using Genie.Common;
+using Genie.Common.Performance;
+using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Configuration;
@@ -23,7 +26,7 @@ public class EventGrain : GrainServiceBase
     private int processCount = 0;
     private readonly Dictionary<int, GrainResponse> offsets = [];
     private readonly GenieContext genieContext;
-    private readonly DefaultObjectPool<PostgresPooledObject> pool;
+    private readonly DefaultObjectPool<PostGisPooledObject> pool;
     private readonly CounterConsoleLogger counterLogger = new();
 
 
@@ -39,7 +42,7 @@ public class EventGrain : GrainServiceBase
 
         genieContext = GenieContext.Build().GenieContext;
 
-        pool = new(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        pool = new(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
 
         //this.Cluster.System.EventStream.Subscribe(e =>

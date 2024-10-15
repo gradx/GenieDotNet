@@ -1,20 +1,18 @@
 ﻿using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
-using Genie.Common;
-using Genie.Common.Types;
-using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Adapters.Serializers.Avro;
+using Genie.Core;
 using MQTTnet;
 using MQTTnet.Client;
 
 namespace Genie.Adapters.Brokers.MQTT;
 
-public class MQTTPooledObject : GeniePooledObject
+public class MQTTPooledObject<T> : GeniePooledObject
 {
-    public EventTaskJob? Result { get; set; }
+    public T? Result { get; set; }
     public AutoResetEvent ReceiveSignal = new(false);
     private IMqttClient? MQTTClient { get; set; }
-    private BinaryDeserializer<EventTaskJob>? Deserializer { get; set; }
+    private BinaryDeserializer<T>? Deserializer { get; set; }
 
     public void Configure(SchemaBuilder schemaBuilder, GenieContext genieContext)
     {
@@ -44,9 +42,9 @@ public class MQTTPooledObject : GeniePooledObject
 
 
 
-        var schema = schemaBuilder.BuildSchema<EventTaskJob>();
+        var schema = schemaBuilder.BuildSchema<T>();
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
-        Deserializer = deserializerBuilder.BuildDelegate<EventTaskJob>(schema);
+        Deserializer = deserializerBuilder.BuildDelegate<T>(schema);
     }
 
     public void Send(byte[] data)
@@ -59,7 +57,7 @@ public class MQTTPooledObject : GeniePooledObject
         MQTTClient?.PublishAsync(message, CancellationToken.None).GetAwaiter().GetResult();
     }
 
-    public EventTaskJob Deserialize(byte[] data)
+    public T Deserialize(byte[] data)
     {
         var reader = new Chr.Avro.Serialization.BinaryReader(data);
         return Deserializer!(ref reader);

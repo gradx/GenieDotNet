@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Serialization;
+﻿using Genie.Core;
+using System.Text.Json.Serialization;
 
 namespace Genie.Common.Types;
 

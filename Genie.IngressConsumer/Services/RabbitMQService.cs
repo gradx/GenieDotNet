@@ -1,18 +1,23 @@
-﻿using Genie.Adapters.Brokers.RabbitMQ;
-using Genie.Adapters.Persistence.Postgres;
+﻿using Chr.Avro.Confluent;
+using Chr.Avro.Serialization;
+using Confluent.SchemaRegistry;
+using Genie.Adapters.Brokers.RabbitMQ;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
 using Microsoft.IO;
+using Microsoft.Win32;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Buffers;
 using ZLogger;
+using static Genie.Common.Adapters.CosmosAdapter;
 
 
 namespace Genie.IngressConsumer.Services;
@@ -35,10 +40,8 @@ public class RabbitMQService
 
     public static async Task<(IChannel IngressChannel, IChannel EventChannel)> Channels()
     {
-        var args = new Dictionary<string, object>
-        {
-            { "x-max-length", 10000 }
-        };
+        var args = new Dictionary<string, object>();
+        args.Add("x-max-length", 10000);
 
         var context = GenieContext.Build().GenieContext;
 
@@ -48,7 +51,7 @@ public class RabbitMQService
 
         await ingressChannel.ExchangeDeclareAsync(context.RabbitMQ.Exchange, ExchangeType.Direct);
         await ingressChannel.QueueDeclareAsync(context.RabbitMQ.Queue, false, false, false, args);
-        await ingressChannel.QueueBindAsync(context.RabbitMQ.Queue, context.RabbitMQ.Exchange, context.RabbitMQ.RoutingKey);
+        await ingressChannel.QueueBindAsync(context.RabbitMQ.Queue, context.RabbitMQ.Exchange, context.RabbitMQ.RoutingKey, null);
 
         var eventChannel = await conn.CreateChannelAsync();
         return (ingressChannel, eventChannel);
@@ -69,7 +72,7 @@ public class RabbitMQService
 
             var consumer = new AsyncEventingBasicConsumer(channels.IngressChannel);
 
-            var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
             var timerService = new CounterConsoleLogger();
 
 

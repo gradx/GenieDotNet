@@ -7,6 +7,9 @@ using Confluent.SchemaRegistry;
 using Google.Protobuf;
 using Microsoft.Extensions.ObjectPool;
 using Genie.Common.Adapters;
+using Genie.Core;
+using Genie.Adapters.Brokers.Kafka;
+using Genie.Adapters.Serializers.Avro;
 
 namespace Genie.Common.Utils;
 

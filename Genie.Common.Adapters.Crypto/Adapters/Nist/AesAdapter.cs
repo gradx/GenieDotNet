@@ -1,6 +1,5 @@
 ﻿using System.Security.Cryptography;
 using Genie.Common.Crypto.Adapters.Interfaces;
-using Org.BouncyCastle.Crypto.Paddings;
 
 namespace Genie.Common.Crypto.Adapters.Nist;
 public class AesAdapter : ISymmetricBase
@@ -12,7 +11,7 @@ public class AesAdapter : ISymmetricBase
     }
 
     // Aes ISymmetricBase is GCM 
-    public Span<byte> Decrypt(Span<byte> data, Span<byte> key, Span<byte> nonce, Span<byte> tag)
+    public byte[] Decrypt(Span<byte> data, Span<byte> key, Span<byte> nonce, Span<byte> tag)
     {
         return GcmDecryptData(data, key, nonce, tag).ToArray();
     }
@@ -74,7 +73,7 @@ public class AesAdapter : ISymmetricBase
         return (result, tag);
     }
 
-    public static Span<byte> GcmDecryptData(Span<byte> data, Span<byte> key, Span<byte> nonce, Span<byte> tag)
+    public static byte[] GcmDecryptData(Span<byte> data, Span<byte> key, Span<byte> nonce, Span<byte> tag)
     {
         AesGcm c = new(key, 16);
         var result = new byte[data.Length];
@@ -82,6 +81,6 @@ public class AesAdapter : ISymmetricBase
         
         c.Decrypt(nonce, data, tag, spanned);
 
-        return spanned;
+        return result;
     }
 }

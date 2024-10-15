@@ -1,5 +1,5 @@
 ﻿using Genie.Common.Crypto.Adapters.Interfaces;
-using Genie.Common.Types;
+using Genie.Core;
 using System.Security.Cryptography;
 
 namespace Genie.Common.Crypto.Adapters.Nist;

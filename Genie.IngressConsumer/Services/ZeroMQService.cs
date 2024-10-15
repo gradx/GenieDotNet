@@ -2,12 +2,12 @@
 using Chr.Avro.Serialization;
 using Confluent.SchemaRegistry;
 using Genie.Adapters.Brokers.ZeroMQ;
-using Genie.Adapters.Persistence.Postgres;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -36,11 +36,9 @@ public class ZeroMQService
 
 
 
-        var service = new ZeroMQService
-        {
-            Logger = logger,
-            Context = context
-        };
+        var service = new ZeroMQService();
+        service.Logger = logger;
+        service.Context = context;
         await service.Run();
 
         Console.WriteLine($@"ZeroMQ exited");
@@ -58,7 +56,7 @@ public class ZeroMQService
 
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
         var deserializer = new AsyncSchemaRegistryDeserializer<PartyRequest>(registry, deserializerBuilder);
-        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         var timer = new CounterConsoleLogger();
 
@@ -110,7 +108,7 @@ public class ZeroMQService
                                     dict.Add(eventChannel, producer);
                                 }
 
-                                producer?.SendFrame(ms.GetReadOnlySequence().ToArray());
+                                producer.SendFrame(ms.GetReadOnlySequence().ToArray());
                             },
                             maxDegreeOfParallelism: 32,
                             cts.Token);

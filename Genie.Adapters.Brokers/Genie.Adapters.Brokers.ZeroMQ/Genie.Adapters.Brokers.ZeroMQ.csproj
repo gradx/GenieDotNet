@@ -7,7 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Genie.Common\Genie.Common.csproj" />
+    <PackageReference Include="NetMQ" Version="4.0.1.13" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Genie.Adapters.Serializers\Genie.Adapters.Serializers.Avro\Genie.Adapters.Serializers.Avro.csproj" />
+    <ProjectReference Include="..\..\Genie.Core\Genie.Core.csproj" />
   </ItemGroup>
 
 </Project>

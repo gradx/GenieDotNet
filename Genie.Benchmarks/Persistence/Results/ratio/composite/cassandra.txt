@@ -1,0 +1,6 @@
+Started: 10/13/2024 12:42:59 PM
+[12:47:55 PM] Overall 88 Period: 88 CPU: 37 Memory: 82 Disk: [0/0]
+[12:48:00 PM] Overall 88 Period: 99 CPU: 12 Memory: 82 Disk: [3550/2458]
+Completed 10/13/2024 12:48:00 PM Requests: 25488 Errors: 0
+Latency (Median, Mean, Min, Max, 95, 99): [719, 747.57, 489, 10807, 875, 978]
+Completed

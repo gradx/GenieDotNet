@@ -5,16 +5,13 @@ using Proto.Cluster;
 using Genie.Common.Utils;
 using Genie.Common.Adapters;
 using Microsoft.Extensions.ObjectPool;
-using Genie.Scratch.Benchmarks.Databases;
-using Genie.Adapters.Persistence.Postgres;
-
-//await LoadPostal.StartMongo();
-//var test = new MongoTest(4000, new DefaultObjectPool<MongoPooledObject<PersistenceTest>>(new DefaultPooledObjectPolicy<MongoPooledObject<PersistenceTest>>()));
+using Genie.Common.Performance;
+using Genie.Scratch.MQTTNet;
+using Genie.Core;
 
 
-await Read.Arango();
 
-//Pqc.DilithiumExample();
+await MQTTTest.Start();
 
 Console.WriteLine("Here");
 Console.ReadLine();
@@ -27,8 +24,8 @@ Console.ReadLine();
 
 var geo = GeometryCalculator.Polygon(38.89781822004474, -77.03655126065402, 10, 4);
 
-var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
-MapAdapter.ReverseGeoCode(pool, geo, []);
+var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
+MapAdapter.ReverseGeoCode(pool, geo, new());
 
 //await LoadPostgis.Start();
 

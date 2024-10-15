@@ -3,23 +3,22 @@ using Adaptive.Agrona.Concurrent;
 using Adaptive.Agrona;
 using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
-using Genie.Common.Types;
-using Genie.Common.Utils;
 using System.Net.Sockets;
 using System.Net;
-using Genie.Common;
-using Genie.Utils;
+using Genie.Adapters.Serializers.Avro;
+using Genie.Core;
+
 
 namespace Genie.Adapters.Brokers.Aeron;
 
-public class AeronPooledObject : GeniePooledObject
+public class AeronPooledObject<T> : GeniePooledObject
 {
     private static Publication? Publication { get; set; }
     public AeronSubscription? Subscription { get; set; }
 
-    public BinaryDeserializer<EventTaskJob> Deserializer { get; set; }
+    public BinaryDeserializer<T> Deserializer { get; set; }
 
-    public EventTaskJob? Result { get; set; }
+    public T? Result { get; set; }
 
     private Adaptive.Aeron.Aeron.Context AeronContext { get; set; }
     private Adaptive.Aeron.Aeron Aeron { get; set; }
@@ -46,9 +45,9 @@ public class AeronPooledObject : GeniePooledObject
         var port = GetRandomPort();
         Subscription = AeronUtils.SetupSubscriber(Aeron, $@"aeron:udp?endpoint=localhost:{port}", 10);
 
-        var schema = schemaBuilder.BuildSchema<EventTaskJob>();
+        var schema = schemaBuilder.BuildSchema<T>();
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
-        Deserializer = deserializerBuilder.BuildDelegate<EventTaskJob>(schema);
+        Deserializer = deserializerBuilder.BuildDelegate<T>(schema);
     }
 
     public static int GetRandomPort()
@@ -60,7 +59,7 @@ public class AeronPooledObject : GeniePooledObject
         return port;
     }
 
-    public EventTaskJob Deserialize(byte[] help)
+    public T Deserialize(byte[] help)
     {
         var reader = new Chr.Avro.Serialization.BinaryReader(help);
         return Deserializer(ref reader);

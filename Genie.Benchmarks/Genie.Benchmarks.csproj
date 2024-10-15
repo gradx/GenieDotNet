@@ -8,23 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="BrokerBenchmarks.cs" />
-    <Compile Remove="PqcBenchmarks.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\amd64\KernelTraceControl.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\amd64\msdia140.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\arm64\KernelTraceControl.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\arm64\msdia140.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\x86\KernelTraceControl.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\x86\KernelTraceControl.Win61.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\build\native\x86\msdia140.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\lib\netstandard2.0\Dia2Lib.dll" />
-    <None Remove="C:\Users\gradx\.nuget\packages\microsoft.diagnostics.tracing.traceevent\3.1.8\buildTransitive\..\lib\netstandard2.0\TraceReloggerLib.dll" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="..\SharedFiles\appsettings.Development.json" Link="appsettings.Development.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -37,255 +20,48 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.cer" Link="Keys\Alice\Curve25519\AliceEd448.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceEd448.key" Link="Keys\Alice\Curve25519\AliceEd448.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceX448.cer" Link="Keys\Alice\Curve25519\AliceX448.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\AliceX448.key" Link="Keys\Alice\Curve25519\AliceX448.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.cer" Link="Keys\Alice\Curve25519\Ed25519SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\Ed25519SigningAdapter.key" Link="Keys\Alice\Curve25519\Ed25519SigningAdapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.cer" Link="Keys\Alice\Curve25519\X25519Adapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Curve25519\X25519Adapter.key" Link="Keys\Alice\Curve25519\X25519Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.cer" Link="Keys\Alice\ModuleLattice\AliceDilithium2.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium2.key" Link="Keys\Alice\ModuleLattice\AliceDilithium2.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.cer" Link="Keys\Alice\ModuleLattice\AliceDilithium3.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium3.key" Link="Keys\Alice\ModuleLattice\AliceDilithium3.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.cer" Link="Keys\Alice\ModuleLattice\AliceDilithium5.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceDilithium5.key" Link="Keys\Alice\ModuleLattice\AliceDilithium5.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.cer" Link="Keys\Alice\ModuleLattice\AliceKyber1024.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber1024.key" Link="Keys\Alice\ModuleLattice\AliceKyber1024.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.cer" Link="Keys\Alice\ModuleLattice\AliceKyber512.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber512.key" Link="Keys\Alice\ModuleLattice\AliceKyber512.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.cer" Link="Keys\Alice\ModuleLattice\AliceKyber768.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\ModuleLattice\AliceKyber768.key" Link="Keys\Alice\ModuleLattice\AliceKyber768.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Rsa\AliceRsa1024Adapter.key" Link="Keys\Alice\Rsa\AliceRsa1024Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Rsa\AliceRsa2048Adapter.key" Link="Keys\Alice\Rsa\AliceRsa2048Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Rsa\AliceRsa4096Adapter.key" Link="Keys\Alice\Rsa\AliceRsa4096Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256k1Adapter.cer" Link="Keys\Alice\Secp\AliceSecp256k1Adapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256k1Adapter.key" Link="Keys\Alice\Secp\AliceSecp256k1Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256r1SigningAdapter.cer" Link="Keys\Alice\Secp\AliceSecp256r1SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp256r1SigningAdapter.key" Link="Keys\Alice\Secp\AliceSecp256r1SigningAdapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp384r1SigningAdapter.cer" Link="Keys\Alice\Secp\AliceSecp384r1SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp384r1SigningAdapter.key" Link="Keys\Alice\Secp\AliceSecp384r1SigningAdapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp521r1SigningAdapter.cer" Link="Keys\Alice\Secp\AliceSecp521r1SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Alice\Secp\AliceSecp521r1SigningAdapter.key" Link="Keys\Alice\Secp\AliceSecp521r1SigningAdapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Curve25519\BobEd448.cer" Link="Keys\Bob\Curve25519\BobEd448.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Curve25519\BobX448.cer" Link="Keys\Bob\Curve25519\BobX448.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Curve25519\Ed25519SigningAdapter.cer" Link="Keys\Bob\Curve25519\Ed25519SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Curve25519\X25519Adapter.cer" Link="Keys\Bob\Curve25519\X25519Adapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium2.cer" Link="Keys\Bob\ModuleLattice\BobDilithium2.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobDilithium5.cer" Link="Keys\Bob\ModuleLattice\BobDilithium5.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber1024.cer" Link="Keys\Bob\ModuleLattice\BobKyber1024.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber512.cer" Link="Keys\Bob\ModuleLattice\BobKyber512.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\ModuleLattice\BobKyber768.cer" Link="Keys\Bob\ModuleLattice\BobKyber768.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Rsa\BobRsa1024Adapter.key" Link="Keys\Bob\Rsa\BobRsa1024Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Rsa\BobRsa2048Adapter.key" Link="Keys\Bob\Rsa\BobRsa2048Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Rsa\BobRsa4096Adapter.key" Link="Keys\Bob\Rsa\BobRsa4096Adapter.key">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp256k1Adapter.cer" Link="Keys\Bob\Secp\BobSecp256k1Adapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp256r1SigningAdapter.cer" Link="Keys\Bob\Secp\BobSecp256r1SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp384r1SigningAdapter.cer" Link="Keys\Bob\Secp\BobSecp384r1SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\BobSecp521r1SigningAdapter.cer" Link="Keys\Bob\Secp\BobSecp521r1SigningAdapter.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp256R1.cer" Link="Keys\Bob\Secp\Bouncy\BobSecp256R1.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp384R1.cer" Link="Keys\Bob\Secp\Bouncy\BobSecp384R1.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\Keys\Bob\Secp\Bouncy\BobSecp521R1.cer" Link="Keys\Bob\Secp\Bouncy\BobSecp521R1.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="..\SharedFiles\luxePod.pfx" Link="luxePod.pfx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    <None Include="..\SharedFiles\luxePod.pfx" Link="luxePod.pfx" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" Version="0.14.0" />
     <PackageReference Include="DotPulsar" Version="3.3.2" />
-    <PackageReference Include="Google.Protobuf" Version="3.28.2" />
-    <PackageReference Include="Grpc.Net.Client" Version="2.66.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.66.0">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
-    <PackageReference Include="System.IO.Hashing" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Keys\Alice\Curve25519\" />
-    <Folder Include="Keys\Alice\ModuleLattice\" />
-    <Folder Include="Keys\Alice\Rsa\" />
-    <Folder Include="Keys\Alice\Secp\" />
-    <Folder Include="Keys\Bob\Curve25519\" />
-    <Folder Include="Keys\Bob\Rsa\" />
-    <Folder Include="Keys\Bob\Secp\Bouncy\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistencce.CouchDB\Genie.Adapters.Persistence.CouchDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Aerospike\Genie.Adapters.Persistence.Aerospike.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ArangoDB\Genie.Adapters.Persistence.ArangoDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Cassandra\Genie.Adapters.Persistence.Cassandra.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Clickhouse\Genie.Adapters.Persistence.ClickHouse.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CockroachDB\Genie.Adapters.Persistence.CockroachDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Couchbase\Genie.Adapters.Persistence.Couchbase.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CrateDB\Genie.Adapters.Persistence.CrateDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.DB2\Genie.Adapters.Persistence.DB2.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Marten\Genie.Adapters.Persistence.Marten.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MongoDB\Genie.Adapters.Persistence.MongoDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Neo4j\Genie.Adapters.Persistence.Neo4j.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Oracle\Genie.Adapters.Persistence.Oracle.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.RavenDB\Genie.Adapters.Persistence.RavenDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Redis\Genie.Adapters.Persistence.Redis.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ScyllaDB\Genie.Adapters.Persistence.ScyllaDB.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.SingleStore\Genie.Adapters.Persistence.SingleStore.csproj" />
-    <ProjectReference Include="..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.SqlServer\Genie.Adapters.Persistence.SqlServer.csproj" />
+    <ProjectReference Include="..\Genie.Actors\Genie.Actors.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ActiveMQ\Genie.Adapters.Brokers.ActiveMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Aeron\Genie.Adapters.Brokers.Aeron.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Kafka\Genie.Adapters.Brokers.Kafka.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.MQTT\Genie.Adapters.Brokers.MQTT.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.NATS\Genie.Adapters.Brokers.NATS.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.Pulsar\Genie.Adapters.Brokers.Pulsar.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.RabbitMQ\Genie.Adapters.Brokers.RabbitMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Brokers\Genie.Adapters.Brokers.ZeroMQ\Genie.Adapters.Brokers.ZeroMQ.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistencce.CouchDB\Genie.Adapters.Persistence.Couch.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Aerospike\Genie.Adapters.Persistence.Aerospike.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.ArangoDB\Genie.Adapters.Persistence.ArangoDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Cassandra\Genie.Adapters.Persistence.Cassandra.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Clickhouse\Genie.Adapters.Persistence.ClickHouse.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.CockroachDB\Genie.Adapters.Persistence.CockroachDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Couchbase\Genie.Adapters.Persistence.Couchbase.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.CrateDB\Genie.Adapters.Persistence.CrateDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.DB2\Genie.Adapters.Persistence.DB2.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Marten\Genie.Adapters.Persistence.Marten.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.MongoDB\Genie.Adapters.Persistence.MongoDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Neo4j\Genie.Adapters.Persistence.Neo4j.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Oracle\Genie.Adapters.Persistence.Oracle.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.RavenDB\Genie.Adapters.Persistence.RavenDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Redis\Genie.Adapters.Persistence.Redis.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.ScyllaDB\Genie.Adapters.Persistence.ScyllaDB.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.SingleStore\Genie.Adapters.Persistence.SingleStore.csproj" />
+    <ProjectReference Include="..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.SqlServer\Genie.Adapters.Persistence.SqlServer.csproj" />
     <ProjectReference Include="..\Genie.Common.Adapters.Crypto\Genie.Common.Crypto.csproj" />
     <ProjectReference Include="..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="EncryptionRequests\Kyber1024_Dilithium5.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Kyber512_Dilithium2.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Kyber512_Dilithium3.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Kyber512_Ed25519.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Kyber768_Dilithium3.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\kyber_dilithium.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\kyber_ed25519.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Secp256K1_Secp256K1.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Secp256R1_Secp256R1.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Secp384R1_Secp384R1.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\Secp521R1_Secp521R1.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\x25519_dilithium.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\x25519_ed25519.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="EncryptionRequests\X448_Ed448.req">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Keys\Bob\ModuleLattice\BobDilithium3.cer">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

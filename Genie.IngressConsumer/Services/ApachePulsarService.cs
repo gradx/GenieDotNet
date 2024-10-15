@@ -1,11 +1,11 @@
 ﻿using Chr.Avro.Serialization;
 using DotPulsar;
 using DotPulsar.Extensions;
-using Genie.Adapters.Persistence.Postgres;
-using Genie.Common;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -49,7 +49,7 @@ public class ApachePulsarService
 
         var serialize = serializerBuilder.BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());
 
-        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         while (true)
         {

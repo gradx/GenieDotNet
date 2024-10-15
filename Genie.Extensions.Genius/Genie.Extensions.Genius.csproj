@@ -27,11 +27,10 @@
 
 	<ItemGroup>
     <PackageReference Include="Grpc.Net.Client" Version="2.66.0" />
-    <PackageReference Include="Grpc.Tools" Version="2.66.0">
+    <PackageReference Include="Grpc.Tools" Version="2.67.0">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Mediator.Abstractions" Version="2.1.7" />
     <PackageReference Include="Proto.Actor" Version="1.7.0" />
     <PackageReference Include="Proto.Cluster" Version="1.7.0" />
     <PackageReference Include="Proto.Cluster.CodeGen" Version="1.7.0" />

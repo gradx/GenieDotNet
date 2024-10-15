@@ -7,12 +7,12 @@ using Adaptive.Cluster.Service;
 using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
 using Genie.Adapters.Brokers.Aeron;
-using Genie.Adapters.Persistence.Postgres;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -25,11 +25,11 @@ namespace Genie.IngressConsumer.Services
     public class EchoService : IClusteredService
     {
         private ICluster _cluster;
-        private readonly CounterConsoleLogger timer = new();
-        private readonly SchemaBuilder schemaBuilder = AvroSupport.GetSchemaBuilder();
+        private CounterConsoleLogger timer = new();
+        private SchemaBuilder schemaBuilder = AvroSupport.GetSchemaBuilder();
         private BinarySerializer<EventTaskJob> serializer;
         private GenieContext context;
-        private DefaultObjectPool<PostgresPooledObject> pool;
+        private DefaultObjectPool<PostGisPooledObject> pool;
         private static readonly RecyclableMemoryStreamManager manager = new();
         private ILogger logger;
 
@@ -39,7 +39,7 @@ namespace Genie.IngressConsumer.Services
             _cluster = cluster;
             serializer = AvroSupport.GetSerializerBuilder().BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());
             context = GenieContext.Build().GenieContext;
-            pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+            pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
             using var factory = ZloggerFactory.GetFactory(context.Zlogger.Path);
             logger = factory.CreateLogger("Program");
         }
@@ -158,7 +158,7 @@ namespace Genie.IngressConsumer.Services
 
 
             var timer = new CounterConsoleLogger();
-            var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
             while (true)
             {
@@ -200,7 +200,7 @@ namespace Genie.IngressConsumer.Services
                             var data = ms.GetReadOnlySequence().ToArray();
                             buffer.PutBytes(0, data);
 
-                            while (!producer!.IsConnected)
+                            while (!producer.IsConnected)
                                 await Task.Delay(500);
 
                             var result = producer.Offer(buffer, 0, data.Length);

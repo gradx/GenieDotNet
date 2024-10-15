@@ -1,17 +1,16 @@
 ﻿using Chr.Avro.Confluent;
 using Confluent.Kafka;
 using Confluent.SchemaRegistry;
-using Cysharp.IO;
+using Consul;
 using Genie.Adapters.Brokers.Kafka;
-using Genie.Adapters.Persistence.Postgres;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
-using Microsoft.IO;
 using System.Text;
 using ZLogger;
 using static Genie.Common.Adapters.CosmosAdapter;
@@ -20,8 +19,6 @@ namespace Genie.IngressConsumer.Services
 {
     public class KafkaService
     {
-        private static readonly RecyclableMemoryStreamManager manager = new();
-
         public static async Task Start()
         {
             var context = GenieContext.Build().GenieContext;
@@ -69,7 +66,7 @@ namespace Genie.IngressConsumer.Services
             using var producer = producerBuilder.Build();
 
             var deserializer = new AsyncSchemaRegistryDeserializer<PartyRequest>(registry, deserializerBuilder);
-            var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+            var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
             var timer = new CounterConsoleLogger();
 
@@ -106,13 +103,7 @@ namespace Genie.IngressConsumer.Services
 
                                     if (eventChannel != null)
                                     {
-                                        using var ms = manager.GetStream();
-                                        await ms.WriteAsync(eventChannel.GetValueBytes());
-                                        ms.Position = 0;
-                                        Utf8StreamReader reader = new Utf8StreamReader(ms);
-                                        var topic = reader.AsTextReader().ReadToEndAsync().Result;
-
-                                        //var topic = Encoding.UTF8.GetString(eventChannel.GetValueBytes());
+                                        var topic = Encoding.UTF8.GetString(eventChannel.GetValueBytes());
                                         await KafkaUtils.Post(producer, topic, new EventTaskJob { Id = req.Id, Job = "Report", Status = EventTaskJobStatus.Completed }, cts.Token);
                                     }
                                 },

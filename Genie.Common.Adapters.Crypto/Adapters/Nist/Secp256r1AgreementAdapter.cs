@@ -1,5 +1,5 @@
 ﻿using Genie.Common.Crypto.Adapters.Interfaces;
-using Genie.Common.Types;
+using Genie.Core;
 using Org.BouncyCastle.Crypto.Agreement;
 using Org.BouncyCastle.Crypto.Digests;
 using Org.BouncyCastle.Crypto.Engines;

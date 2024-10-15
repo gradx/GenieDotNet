@@ -1,5 +1,5 @@
 ﻿using Genie.Common.Crypto.Adapters.Interfaces;
-using Genie.Common.Types;
+using Genie.Core;
 using System.Security.Cryptography;
 
 
@@ -26,6 +26,4 @@ public class Secp384r1SigningAdapter : SecpBaseSigningAdapter, IAsymmetricBase, 
     {
         return Instance.ImportX509<T>(x509);
     }
-
-
 }

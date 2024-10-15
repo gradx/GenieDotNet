@@ -1,10 +1,9 @@
 ﻿using Genie.Adapters.Brokers.Pulsar;
-using Genie.Adapters.Persistence.Postgres;
-using Genie.Common;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -52,7 +51,7 @@ public class PulsarService
         Console.CancelKeyPress += (_, e) => { e.Cancel = true; cts.Cancel(); };
 
         var timer = new CounterConsoleLogger();
-        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         var schemaBuilder = AvroSupport.GetSchemaBuilder();
         var serializer = AvroSupport.GetSerializerBuilder().BuildDelegate<EventTaskJob>(schemaBuilder.BuildSchema<EventTaskJob>());

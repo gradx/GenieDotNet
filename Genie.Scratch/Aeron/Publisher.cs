@@ -20,7 +20,6 @@ using System.Threading;
 using Adaptive.Agrona;
 using Adaptive.Agrona.Concurrent;
 using Adaptive.Agrona.Util;
-using Utf8StringInterpolation;
 
 namespace Adaptive.Aeron.Samples.SimplePublisher
 {
@@ -59,7 +58,7 @@ namespace Adaptive.Aeron.Samples.SimplePublisher
                 Thread.Sleep(100);
 
                 const string message = "Hello World! ";
-                var messageBytes = Utf8String.Format($"{message}");
+                var messageBytes = Encoding.UTF8.GetBytes(message);
                 buffer.PutBytes(0, messageBytes);
 
                 // Try to publish the buffer. 'offer' is a non-blocking call.

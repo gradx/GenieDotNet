@@ -1,12 +1,12 @@
 ﻿using Apache.NMS;
 using Apache.NMS.Util;
 using Genie.Adapters.Brokers.ActiveMQ;
-using Genie.Adapters.Persistence.Postgres;
+using Genie.Adapters.Serializers.Avro;
 using Genie.Common;
 using Genie.Common.Performance;
 using Genie.Common.Types;
 using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Core;
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.ObjectPool;
@@ -50,7 +50,7 @@ public class ActiveMQService
         ISession egressSession = egressConn.CreateSession();
 
         var timer = new CounterConsoleLogger();
-        var pool = new DefaultObjectPool<PostgresPooledObject>(new DefaultPooledObjectPolicy<PostgresPooledObject>());
+        var pool = new DefaultObjectPool<PostGisPooledObject>(new DefaultPooledObjectPolicy<PostGisPooledObject>());
 
         while (true)
         {
@@ -58,7 +58,7 @@ public class ActiveMQService
             {
                 using CancellationTokenSource cts = new();
 
-                if (!egressConn.IsStarted)
+                if(!egressConn.IsStarted)
                     egressConn.Start();
 
                 Console.WriteLine("Starting ActiveMQ Pump: " + cts.Token);

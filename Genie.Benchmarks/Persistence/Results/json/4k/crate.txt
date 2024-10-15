@@ -1,0 +1,29 @@
+Started: 10/10/2024 8:35:47 PM
+[8:36:05 PM] Overall 1767 Period: 1799 CPU: 40 Memory: 66 Disk: [0/12273]
+[8:36:13 PM] Overall 2301 Period: 3329 CPU: 42 Memory: 66 Disk: [4278/16513]
+[8:36:20 PM] Overall 2585 Period: 3457 CPU: 35 Memory: 67 Disk: [6554/17510]
+[8:36:27 PM] Overall 2778 Period: 3607 CPU: 31 Memory: 67 Disk: [7987/12122]
+[8:36:34 PM] Overall 2904 Period: 3571 CPU: 30 Memory: 67 Disk: [0/11190]
+[8:36:41 PM] Overall 2985 Period: 3507 CPU: 34 Memory: 68 Disk: [1713/17949]
+[8:36:48 PM] Overall 3052 Period: 3549 CPU: 33 Memory: 68 Disk: [5851/17857]
+[8:36:55 PM] Overall 3103 Period: 3550 CPU: 32 Memory: 69 Disk: [6554/15221]
+[8:37:02 PM] Overall 3142 Period: 3514 CPU: 33 Memory: 70 Disk: [0/11937]
+[8:37:09 PM] Overall 3176 Period: 3585 CPU: 11 Memory: 70 Disk: [10103/3034]
+Completed 10/10/2024 8:37:09 PM Requests: 247207 Errors: 0
+Latency (Median, Mean, Min, Max, 95, 99): [8, 9.6, 3, 2162, 19, 31]
+
+
+Started: 10/8/2024 3:29:15 PM
+[3:29:24 PM] Overall 11092 Period: 11220 CPU: 92 Memory: 63 Disk: [0/0]
+[3:29:29 PM] Overall 6426 Period: 4525 CPU: 72 Memory: 63 Disk: [0/2483]
+[3:29:34 PM] Overall 5984 Period: 5417 CPU: 69 Memory: 63 Disk: [13107/2089]
+[3:29:39 PM] Overall 5808 Period: 5465 CPU: 63 Memory: 63 Disk: [0/2025]
+[3:29:43 PM] Overall 5721 Period: 5546 CPU: 72 Memory: 63 Disk: [0/106779]
+[3:29:48 PM] Overall 5642 Period: 5407 CPU: 72 Memory: 63 Disk: [10434/1415]
+[3:29:52 PM] Overall 5619 Period: 5606 CPU: 74 Memory: 62 Disk: [0/2038]
+[3:29:57 PM] Overall 5589 Period: 5523 CPU: 71 Memory: 63 Disk: [0/2686]
+[3:30:02 PM] Overall 5558 Period: 5465 CPU: 70 Memory: 63 Disk: [1638/2053]
+[3:30:05 PM] Overall 5530 Period: 5246 CPU: 24 Memory: 63 Disk: [0/1188]
+Completed 10/8/2024 3:30:05 PM Requests: 239413 Errors: 0
+Latency (Median, Mean, Min, Max, 95, 99): [4, 5.02, 1, 1311, 8, 18]
+

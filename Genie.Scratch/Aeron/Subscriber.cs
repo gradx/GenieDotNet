@@ -18,7 +18,6 @@ using System;
 using System.Text;
 using Adaptive.Aeron.LogBuffer;
 using Adaptive.Agrona.Concurrent;
-using Cysharp.IO;
 
 namespace Adaptive.Aeron.Samples.SimpleSubscriber
 {
@@ -54,10 +53,7 @@ namespace Adaptive.Aeron.Samples.SimpleSubscriber
                 var data = new byte[length];
                 buffer.GetBytes(offset, data);
 
-                using var sr = new Utf8StreamReader(new MemoryStream(data));
-                var reader = sr.AsTextReader();
-
-                Console.WriteLine($"Received message ({reader.ReadToEndAsync().Result}) to stream {streamId:D} from session {header.SessionId:x} term id {header.TermId:x} term offset {header.TermOffset:D} ({length:D}@{offset:D})");
+                Console.WriteLine($"Received message ({Encoding.UTF8.GetString(data)}) to stream {streamId:D} from session {header.SessionId:x} term id {header.TermId:x} term offset {header.TermOffset:D} ({length:D}@{offset:D})");
 
                 // Received the intended message, time to exit the program
                 running.Set(false);

@@ -1,4 +1,4 @@
-﻿using Genie.Common.Types;
+﻿using Genie.Core;
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
 

@@ -1,0 +1,7 @@
+Started: 10/10/2024 10:00:20 PM
+[10:01:18 PM] Overall 679 Period: 686 Errors: 9 CPU: 65 Memory: 85 Disk: [0/6454]
+[10:02:18 PM] Overall 516 Period: 420 Errors: 9 CPU: 61 Memory: 68 Disk: [1819/7058]
+[10:03:42 PM] Overall 414 Period: 298 Errors: 9 CPU: 61 Memory: 67 Disk: [9830/4211]
+[10:05:20 PM] Overall 349 Period: 231 Errors: 9 CPU: 20 Memory: 67 Disk: [18074/1518]
+Completed 10/10/2024 10:05:21 PM Requests: 97623 Errors: 9
+Latency (Median, Mean, Min, Max, 95, 99): [88, 94.85, 8, 16875, 150, 169]

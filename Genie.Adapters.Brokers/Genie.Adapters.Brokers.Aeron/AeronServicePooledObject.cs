@@ -7,11 +7,8 @@ using Adaptive.Cluster.Codecs;
 using Adaptive.Cluster.Service;
 using Chr.Avro.Abstract;
 using Chr.Avro.Serialization;
-using Genie.Common;
-using Genie.Common.Performance;
-using Genie.Common.Types;
-using Genie.Common.Utils;
-using Genie.Utils;
+using Genie.Adapters.Serializers.Avro;
+using Genie.Core;
 
 namespace Genie.Adapters.Brokers.Aeron;
 internal class MessageListener : IEgressListener
@@ -111,7 +108,7 @@ public class EchoService : IClusteredService
     }
 }
 
-public class AeronServicePooledObject : GeniePooledObject
+public class AeronServicePooledObject<T> : GeniePooledObject
 {
     private static Publication? Publication { get; set; }
     private AeronCluster.Context? ClientContext { get; set; }
@@ -119,9 +116,9 @@ public class AeronServicePooledObject : GeniePooledObject
     private ClusteredServiceContainer.Context? ServerContext { get; set; }
     private ClusteredServiceContainer? ServerContainer { get; set; }
 
-    public BinaryDeserializer<EventTaskJob>? Deserializer { get; set; }
+    public BinaryDeserializer<T>? Deserializer { get; set; }
 
-    public EventTaskJob? Result { get; set; }
+    public T? Result { get; set; }
     public AutoResetEvent ReceiveSignal = new(false);
 
 
@@ -139,13 +136,13 @@ public class AeronServicePooledObject : GeniePooledObject
 
 
 
-        var schema = schemaBuilder.BuildSchema<EventTaskJob>();
+        var schema = schemaBuilder.BuildSchema<T>();
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
-        Deserializer = deserializerBuilder.BuildDelegate<EventTaskJob>(schema);
+        Deserializer = deserializerBuilder.BuildDelegate<T>(schema);
     }
 
 
-    public EventTaskJob Deserialize(byte[] help)
+    public T Deserialize(byte[] help)
     {
         var reader = new Chr.Avro.Serialization.BinaryReader(help);
         return Deserializer!(ref reader);

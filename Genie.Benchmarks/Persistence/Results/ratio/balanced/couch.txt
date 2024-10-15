@@ -1,0 +1,7 @@
+Started: 10/10/2024 3:28:53 PM
+[3:31:02 PM] Overall 203 Period: 203 CPU: 39 Memory: 60 Disk: [0/7894]
+[3:33:04 PM] Overall 204 Period: 205 CPU: 38 Memory: 61 Disk: [3482/7844]
+[3:33:55 PM] Overall 204 Period: 206 CPU: 22 Memory: 61 Disk: [3879/1869]
+Completed 10/10/2024 3:33:55 PM Requests: 60595 Errors: 0
+Latency (Median, Mean, Min, Max, 95, 99): [155, 155.33, 35, 451, 189, 208]
+

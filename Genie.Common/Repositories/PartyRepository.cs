@@ -1,12 +1,7 @@
 ﻿using Genie.Common.Types;
 using Genie.Common.Utils;
+using Genie.Core;
 using Microsoft.Azure.Cosmos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Channels;
-using System.Threading.Tasks;
 
 namespace Genie.Common.Repositories
 {

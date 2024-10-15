@@ -10,49 +10,21 @@ using Genie.Adapters.Brokers.NATS;
 using Genie.Adapters.Brokers.Pulsar;
 using Genie.Adapters.Brokers.RabbitMQ;
 using Genie.Adapters.Brokers.ZeroMQ;
-using Genie.Adapters.Persistence.Aerospike;
-using Genie.Adapters.Persistence.ArangoDB;
-using Genie.Adapters.Persistence.Cassandra;
-using Genie.Adapters.Persistence.ClickHouse;
-using Genie.Adapters.Persistence.CockroachDB;
-using Genie.Adapters.Persistence.Couchbase;
-using Genie.Adapters.Persistence.CouchDB;
-using Genie.Adapters.Persistence.CrateDB;
-using Genie.Adapters.Persistence.DB2;
-using Genie.Adapters.Persistence.Elasticsearch;
-using Genie.Adapters.Persistence.MariaDB;
-using Genie.Adapters.Persistence.Marten;
-using Genie.Adapters.Persistence.Milvus;
-using Genie.Adapters.Persistence.MongoDB;
-using Genie.Adapters.Persistence.Neo4j;
-using Genie.Adapters.Persistence.Oracle;
-using Genie.Adapters.Persistence.Postgres;
-using Genie.Adapters.Persistence.RavenDB;
-using Genie.Adapters.Persistence.Redis;
-using Genie.Adapters.Persistence.Scylla;
-using Genie.Adapters.Persistence.SingleStore;
-using Genie.Adapters.Persistence.SqlServer;
-using Genie.Extensions.Genius.Commands;
-using Genie.Grpc;
-using Genie.Utils;
+using Genie.Common.Types;
+using Genie.Common.Utils;
+using Genie.Core;
+using Genie.Extensions.Commands;
+using Genie.Web.Api.Commands;
 using Mediator;
 using Microsoft.Extensions.ObjectPool;
 using Proto;
 using System.Net;
+using static Genie.Common.Adapters.CosmosAdapter;
 
 namespace Genie.Web.Api.Rest
 {
     public static class PartyEndpoints
     {
-        private static readonly byte[] kyber_dilithium = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\kyber_dilithium.req");
-        private static readonly byte[] kyber_ed25519 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\kyber_ed25519.req");
-        private static readonly byte[] x25519_dilithium = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\x25519_dilithium.req");
-        private static readonly byte[] x25519_ed25519 = File.ReadAllBytes(AppDomain.CurrentDomain.BaseDirectory + @"EncryptionRequests\x25519_ed25519.req");
-        private static Random rnd = new Random();
-        private static CounterConsoleLogger timer = new();
-        private const int payload = 4000;
-        private const int maxItemCount = int.MaxValue;
-
         public static void Map(WebApplication app)
         {
             app.MapGet("test", async () =>
@@ -60,350 +32,8 @@ namespace Genie.Web.Api.Rest
                 return await Task.FromResult(HttpStatusCode.OK);
             });
 
-            app.MapGet("aero", async (ObjectPool<AerospikePooledObject> geniePool) =>
-            {
-                timer.Process();
-
-                var test = new AerospikeTest(payload, geniePool);
-
-                var rando = rnd.Next(100000);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("arango", async (ObjectPool<ArangoPooledObject> geniePool) =>
-            {
-                timer.Process();
-
-                var test = new ArangoTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("cassandra", async (ObjectPool<CassandraPooledObject> geniePool) =>
-            {
-                timer.Process();
-
-                var test = new CassandraTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-
-            app.MapGet("clickhouse", async (ObjectPool<ClickHousePooledObject> geniePool) =>
-            {
-                timer.Process();
-
-                var test = new ClickHouseTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("cockroach", async (ObjectPool<CockroachPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new CockroachTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("couchbase", async (ObjectPool<CouchbasePooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new CouchbaseTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("couch", async (ObjectPool<CouchPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new CouchTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("crate", async (ObjectPool<CratePooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new CrateTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("db2", async (ObjectPool<DB2PooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new DB2Test(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("elastic", async (ObjectPool<ElasticsearchPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new ElasticTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("maria", async (ObjectPool<MariaPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new MariaTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("marten", async (ObjectPool<MartenPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new MartenTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-
-            app.MapGet("milvus", async (ObjectPool<MilvusPooledObject> geniePool, ObjectPool<MilvusPooledObject2> geniePool2) =>
-            {
-                timer.Process();
-                var test = new MilvusTest(payload, geniePool, geniePool2);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-
-            app.MapGet("mongo", async (ObjectPool<MongoPooledObject<PersistenceTestModel>> geniePool, ObjectPool<MongoPooledObject<CountryPostalCode>> geniePool2) =>
-            {
-                timer.Process();
-                var test = new MongoTest(payload, geniePool, geniePool2);
-
-                var rando = rnd.Next(maxItemCount);
-
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("mysql", async (ObjectPool<MariaPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new MariaTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("neo4j", async (ObjectPool<Neo4jPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new Neo4jTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("oracle", async (ObjectPool<OraclePooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new OracleTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-
-            app.MapGet("postgres", async (ObjectPool<PostgresPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new PostgresTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("raven", async (ObjectPool<RavenPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new RavenTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("redis", async (ObjectPool<RedisPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new RedisTest(payload, geniePool);
-
-                var rando = rnd.Next(100000);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapGet("scylla", async (ObjectPool<ScyllaPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new ScyllaTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-
-            app.MapGet("singlestore", async (ObjectPool<SingleStorePooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new SingleStoreTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            
-            app.MapGet("sqlserver", async (ObjectPool<SqlServerPooledObject> geniePool) =>
-            {
-                timer.Process();
-                var test = new SqlServerTest(payload, geniePool);
-
-                var rando = rnd.Next(maxItemCount);
-                test.WriteJson(rando);
-                test.ReadJson(rando);
-
-                return await Task.FromResult(HttpStatusCode.OK);
-            });
-
-            app.MapPost("encryption", async
-                (ObjectPool<GeniePooledObject> geniePool,
-                ActorSystem actorSystem,
-                HttpContext httpContext,
-                IMediator mediator) =>
-            {
-                var cmd = new NetworkBenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, httpContext, geniePool, actorSystem, false);
-                var result = await mediator.Send(cmd);
-                return HttpStatusCode.OK;
-            });
-
-            app.MapGet("kd", async
-                    (ObjectPool<GeniePooledObject> geniePool,
-                    ActorSystem actorSystem,
-                    HttpContext httpContext,
-                    IMediator mediator) =>
-            {
-                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, kyber_dilithium, httpContext, geniePool, actorSystem, false);
-                var result = await mediator.Send(cmd);
-                return HttpStatusCode.OK;
-            });
-
-            app.MapGet("ke", async
-                (ObjectPool<GeniePooledObject> geniePool,
-                ActorSystem actorSystem,
-                HttpContext httpContext,
-                IMediator mediator) =>
-            {
-                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, kyber_ed25519, httpContext, geniePool, actorSystem, false);
-                var result = await mediator.Send(cmd);
-                return HttpStatusCode.OK;
-            });
-
-            app.MapGet("xd", async
-                    (ObjectPool<GeniePooledObject> geniePool,
-                    ActorSystem actorSystem,
-                    HttpContext httpContext,
-                    IMediator mediator) =>
-            {
-                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, x25519_dilithium, httpContext, geniePool, actorSystem, false);
-                var result = await mediator.Send(cmd);
-                return HttpStatusCode.OK;
-            });
-
-            app.MapGet("xe", async
-                    (ObjectPool<GeniePooledObject> geniePool,
-                    ActorSystem actorSystem,
-                    HttpContext httpContext,
-                    IMediator mediator) =>
-            {
-                var cmd = new BenchmarkHashedGeniusCommand(GeniusEventRequest.Parser, x25519_ed25519, httpContext, geniePool, actorSystem, false);
-                var result = await mediator.Send(cmd);
-                return HttpStatusCode.OK;
-            });
-
             app.MapGet("mqtt", async
-                (ObjectPool<MQTTPooledObject> geniePool,
+                (ObjectPool<MQTTPooledObject<Common.Types.EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -414,7 +44,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("mqtt.fire", async
-                (ObjectPool<MQTTPooledObject> geniePool,
+                (ObjectPool<MQTTPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -425,7 +55,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("nats", async
-                (ObjectPool<NatsPooledObject> geniePool,
+                (ObjectPool<NatsPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -436,7 +66,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("nats.fire", async
-                (ObjectPool<NatsPooledObject> geniePool,
+                (ObjectPool<NatsPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -447,7 +77,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("aeron.service", async
-                (ObjectPool<AeronServicePooledObject> geniePool,
+                (ObjectPool<AeronServicePooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -458,7 +88,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("aeron", async
-                (ObjectPool<AeronPooledObject> geniePool,
+                (ObjectPool<AeronPooledObject<Common.Types.EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -469,7 +99,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("aeron.fire", async
-                (ObjectPool<AeronPooledObject> geniePool,
+                (ObjectPool<AeronPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -480,7 +110,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("zero", async
-                (ObjectPool<ZeroMQPooledObject> geniePool,
+                (ObjectPool<ZeroMQPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -491,7 +121,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("zero.fire", async
-                (ObjectPool<ZeroMQPooledObject> geniePool,
+                (ObjectPool<ZeroMQPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 ILogger<Exception> logger,
                 IMediator mediator) =>
@@ -501,7 +131,7 @@ namespace Genie.Web.Api.Rest
                 return HttpStatusCode.OK;
             });
 
-            app.MapGet("zlogger", async(IMediator mediator, ILogger<PartyRequest> logger) =>
+            app.MapGet("zlogger", async(IMediator mediator, ILogger<Grpc.PartyRequest> logger) =>
             {
                 var cmd = new ZloggerCommand(logger);
                 var result = await mediator.Send(cmd);
@@ -543,7 +173,7 @@ namespace Genie.Web.Api.Rest
 
 
             app.MapGet("kafka", async 
-                (ObjectPool<KafkaPooledObject> geniePool,
+                (ObjectPool<KafkaPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 IAdminClient adminClient, 
                 IProducer<string, Genie.Common.Types.PartyRequest> producer, 
@@ -556,7 +186,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("kafka.fire", async
-                (ObjectPool<KafkaPooledObject> geniePool,
+                (ObjectPool<KafkaPooledObject<EventTaskJob>> geniePool,
                 SchemaBuilder schemaBuilder,
                 IAdminClient adminClient,
                 IProducer<string, Genie.Common.Types.PartyRequest> producer,
@@ -589,7 +219,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("rabbit.fire", async
-                (ObjectPool<RabbitMQPooledObject> geniePool,
+                (ObjectPool<RabbitMQPooledObject<EventTaskJob, PartyBenchmarkRequest>> geniePool,
                 SchemaBuilder schemaBuilder, 
                 IMediator mediator) => 
             {
@@ -599,7 +229,7 @@ namespace Genie.Web.Api.Rest
             });
 
             app.MapGet("rabbit", async
-                (ObjectPool<RabbitMQPooledObject> geniePool,
+                (ObjectPool<RabbitMQPooledObject<EventTaskJob, PartyBenchmarkRequest>> geniePool,
                 SchemaBuilder schemaBuilder,
                 IMediator mediator) =>
             {

@@ -1,11 +1,16 @@
 ﻿
+using Confluent.Kafka;
 using Genie.Common;
+using Genie.Core;
 using Genie.Grpc;
 using Google.Protobuf;
 using Google.Protobuf.WellKnownTypes;
+using Microsoft.Extensions.Logging;
 using NetTopologySuite.Features;
 using Proto;
 using Proto.Cluster;
+using ZLogger;
+
 
 namespace Genie.Extensions.Genius;
 
@@ -46,6 +51,7 @@ public class GeniusGrain : GeniusServiceBase
 
         // Data is stored in DuckDB or QuestDB
 
+
         processCount++;
 
         if (request.Key == "Shutdown")
@@ -57,7 +63,9 @@ public class GeniusGrain : GeniusServiceBase
         if (request.Request.Offset + 1 < processCount)
             return Task.FromResult(new GeniusResponse { Level = GeniusResponse.Types.ResponseLevel.Errored, Exception = "Dupe" });
 
+
         var genieResp = request.Value.Unpack<GenieResponse>();
+
 
         IMessage message = genieResp.ResponseCase switch
         {
@@ -68,7 +76,6 @@ public class GeniusGrain : GeniusServiceBase
         var grainResp = new GeniusResponse { Message = "respMsg",
             Response = Any.Pack(message)
         };
-
         //Offsets.Add(request.Offset, grainResp);
 
         return Task.FromResult(grainResp);
@@ -78,7 +85,6 @@ public class GeniusGrain : GeniusServiceBase
     private GeniusEventResponse ProcessLicenseRequest(PartyResponse party)
     {
         var geojson = party.Party.Communications[0].CommunicationIdentity.GeographicLocation.GeoJsonLocation.GeoJson;
-
         var reality = GeoJsonCosmosSerializer.FromJson<Common.Types.GeoJsonLocation>(geojson);
 
         var attr = reality.Features.FirstOrDefault()?.Attributes;

@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="NATS.Client.Core" Version="2.4.0" />
+    <PackageReference Include="NATS.Client.Core" Version="2.5.0" />
+    <PackageReference Include="NATS.Net" Version="2.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Genie.Common\Genie.Common.csproj" />
+    <ProjectReference Include="..\..\Genie.Adapters.Serializers\Genie.Adapters.Serializers.Avro\Genie.Adapters.Serializers.Avro.csproj" />
+    <ProjectReference Include="..\..\Genie.Core\Genie.Core.csproj" />
   </ItemGroup>
 
 </Project>
