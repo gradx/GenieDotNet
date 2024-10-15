@@ -62,53 +62,53 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Serializers", "Serializers"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Serializers.Avro", "..\Genie.Adapters.Serializers\Genie.Adapters.Serializers.Avro\Genie.Adapters.Serializers.Avro.csproj", "{684C0DED-D458-4431-A10D-1F45EDDDFB9A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Aerospike", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Aerospike\Genie.Adapters.Persistence.Aerospike.csproj", "{C527F33B-B23F-402A-9C80-3379FE9A76AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Aerospike", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Aerospike\Genie.Adapters.Persistence.Aerospike.csproj", "{C527F33B-B23F-402A-9C80-3379FE9A76AC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ArangoDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.ArangoDB\Genie.Adapters.Persistence.ArangoDB.csproj", "{DF2B9D2E-A9A7-4D9A-8336-C3D6F0AEF0CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ArangoDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ArangoDB\Genie.Adapters.Persistence.ArangoDB.csproj", "{DF2B9D2E-A9A7-4D9A-8336-C3D6F0AEF0CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Couch", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistencce.CouchDB\Genie.Adapters.Persistence.Couch.csproj", "{242D0F44-2123-4812-B99C-CC6E5F9FE690}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Couch", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CouchDB\Genie.Adapters.Persistence.Couch.csproj", "{242D0F44-2123-4812-B99C-CC6E5F9FE690}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Cassandra", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Cassandra\Genie.Adapters.Persistence.Cassandra.csproj", "{F7AA8047-8930-412E-B8B0-B85C559E5602}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Cassandra", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Cassandra\Genie.Adapters.Persistence.Cassandra.csproj", "{F7AA8047-8930-412E-B8B0-B85C559E5602}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ClickHouse", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Clickhouse\Genie.Adapters.Persistence.ClickHouse.csproj", "{94170C97-517F-484E-9374-0D16B7586659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ClickHouse", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Clickhouse\Genie.Adapters.Persistence.ClickHouse.csproj", "{94170C97-517F-484E-9374-0D16B7586659}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.CockroachDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.CockroachDB\Genie.Adapters.Persistence.CockroachDB.csproj", "{C6B15C94-1DB2-45D2-9A6A-7FE4E0B9B16C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.CockroachDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CockroachDB\Genie.Adapters.Persistence.CockroachDB.csproj", "{C6B15C94-1DB2-45D2-9A6A-7FE4E0B9B16C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Postgres", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj", "{3FE377CB-8DFA-4418-A9DE-BDC875F94B5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Postgres", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Postgres\Genie.Adapters.Persistence.Postgres.csproj", "{3FE377CB-8DFA-4418-A9DE-BDC875F94B5D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.CrateDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.CrateDB\Genie.Adapters.Persistence.CrateDB.csproj", "{2FA39699-7A68-4B57-A9C9-07D4E6D14B51}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.CrateDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.CrateDB\Genie.Adapters.Persistence.CrateDB.csproj", "{2FA39699-7A68-4B57-A9C9-07D4E6D14B51}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.DB2", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.DB2\Genie.Adapters.Persistence.DB2.csproj", "{5E6C7B83-7449-413D-B1E5-5564173F15A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.DB2", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.DB2\Genie.Adapters.Persistence.DB2.csproj", "{5E6C7B83-7449-413D-B1E5-5564173F15A7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Elasticsearch", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj", "{D2E25DDF-8891-4246-A36E-5268C78B25A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Elasticsearch", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Elasticsearch\Genie.Adapters.Persistence.Elasticsearch.csproj", "{D2E25DDF-8891-4246-A36E-5268C78B25A9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.MariaDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj", "{FF4F8D29-3ED7-4B4A-886F-A8217353438A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.MariaDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MariaDB\Genie.Adapters.Persistence.MariaDB.csproj", "{FF4F8D29-3ED7-4B4A-886F-A8217353438A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Marten", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Marten\Genie.Adapters.Persistence.Marten.csproj", "{BCB6E576-38B2-4375-9FB1-6F4CDF03C811}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Marten", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Marten\Genie.Adapters.Persistence.Marten.csproj", "{BCB6E576-38B2-4375-9FB1-6F4CDF03C811}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Milvus", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj", "{3A6868B0-77C8-4E01-B079-AEBF1BF5F711}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Milvus", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Milvus\Genie.Adapters.Persistence.Milvus.csproj", "{3A6868B0-77C8-4E01-B079-AEBF1BF5F711}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.MongoDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.MongoDB\Genie.Adapters.Persistence.MongoDB.csproj", "{77213CF0-715D-4A7A-9BF9-EA425FAA7978}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.MongoDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.MongoDB\Genie.Adapters.Persistence.MongoDB.csproj", "{77213CF0-715D-4A7A-9BF9-EA425FAA7978}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Neo4j", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Neo4j\Genie.Adapters.Persistence.Neo4j.csproj", "{92502737-5398-464C-B316-13A948306BA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Neo4j", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Neo4j\Genie.Adapters.Persistence.Neo4j.csproj", "{92502737-5398-464C-B316-13A948306BA2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Oracle", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Oracle\Genie.Adapters.Persistence.Oracle.csproj", "{1E9CDB73-0091-466D-9880-CD70603868C6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Oracle", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Oracle\Genie.Adapters.Persistence.Oracle.csproj", "{1E9CDB73-0091-466D-9880-CD70603868C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Redis", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Redis\Genie.Adapters.Persistence.Redis.csproj", "{4C14A197-2A1E-409E-99F7-A8C19E5E3527}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Redis", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Redis\Genie.Adapters.Persistence.Redis.csproj", "{4C14A197-2A1E-409E-99F7-A8C19E5E3527}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ScyllaDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.ScyllaDB\Genie.Adapters.Persistence.ScyllaDB.csproj", "{0B16DEA5-508B-4D78-A2B3-271907EA9A09}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.ScyllaDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.ScyllaDB\Genie.Adapters.Persistence.ScyllaDB.csproj", "{0B16DEA5-508B-4D78-A2B3-271907EA9A09}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.SqlServer", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.SqlServer\Genie.Adapters.Persistence.SqlServer.csproj", "{475A2BE3-7A3E-4C1C-9AD2-EAF05A53A1D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.SqlServer", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.SqlServer\Genie.Adapters.Persistence.SqlServer.csproj", "{475A2BE3-7A3E-4C1C-9AD2-EAF05A53A1D2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.SingleStore", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.SingleStore\Genie.Adapters.Persistence.SingleStore.csproj", "{8B61FC0D-703D-485D-A287-E5228A8489C0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.SingleStore", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.SingleStore\Genie.Adapters.Persistence.SingleStore.csproj", "{8B61FC0D-703D-485D-A287-E5228A8489C0}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.RavenDB", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.RavenDB\Genie.Adapters.Persistence.RavenDB.csproj", "{957C9851-AB1A-44ED-8A0B-73B7426D3039}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.RavenDB", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.RavenDB\Genie.Adapters.Persistence.RavenDB.csproj", "{957C9851-AB1A-44ED-8A0B-73B7426D3039}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Common.Crypto", "..\Genie.Common.Adapters.Crypto\Genie.Common.Crypto.csproj", "{4EB6B820-E47C-44D6-BE9C-122FD072030E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Common.Crypto.Nist", "..\Genie.Common.Crypto.Nist\Genie.Common.Crypto.Nist.csproj", "{EF9140C6-DD72-4840-9B31-047BEA22BD29}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Couchbase", "..\Genie.Adapters.Persistencce\Genie.Adapters.Persistence.Couchbase\Genie.Adapters.Persistence.Couchbase.csproj", "{D6E9A91F-AC50-490A-893F-778A3A5A92CB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Genie.Adapters.Persistence.Couchbase", "..\Genie.Adapters.Persistence\Genie.Adapters.Persistence.Couchbase\Genie.Adapters.Persistence.Couchbase.csproj", "{D6E9A91F-AC50-490A-893F-778A3A5A92CB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
