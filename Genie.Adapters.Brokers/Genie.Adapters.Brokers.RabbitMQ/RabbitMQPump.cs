@@ -92,7 +92,7 @@ public sealed class RabbitMQPump<T>
 
             BufferBlock<RabbitMessage> buffer = new(bufferOptions);
 
-            MessageQueue.Received += async (sender, ea) =>
+            MessageQueue.ReceivedAsync += async (sender, ea) =>
             {
                 await buffer.SendAsync(new RabbitMessage(ea.Body.ToArray(), ea.BasicProperties.ReplyTo), ct).ConfigureAwait(false);
                 WaitHandle.Set();

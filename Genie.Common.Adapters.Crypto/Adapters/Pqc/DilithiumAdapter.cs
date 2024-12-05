@@ -46,7 +46,7 @@ public class DilithiumAdapter : IAsymmetricBase, IAsymmetricSignature<ICipherPar
     {
         var verifier = new DilithiumSigner();
         if (key is DilithiumPrivateKeyParameters @private)
-            verifier.Init(false, @private.GetPublicKeyParameters());
+            verifier.Init(false, @private.Parameters);
         else
             verifier.Init(false, key);
 

@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Chr.Avro" Version="10.4.0" />
-    <PackageReference Include="Chr.Avro.Confluent" Version="10.4.0" />
-    <PackageReference Include="Chr.Avro.Json" Version="10.4.0" />
-    <PackageReference Include="ZLogger" Version="2.5.7" />
-    <PackageReference Include="ZstdSharp.Port" Version="0.8.1" />
+    <PackageReference Include="Chr.Avro" Version="10.5.0" />
+    <PackageReference Include="Chr.Avro.Confluent" Version="10.5.0" />
+    <PackageReference Include="Chr.Avro.Json" Version="10.5.0" />
+    <PackageReference Include="ZLogger" Version="2.5.8" />
+    <PackageReference Include="ZstdSharp.Port" Version="0.8.3" />
   </ItemGroup>
 
   <ItemGroup>

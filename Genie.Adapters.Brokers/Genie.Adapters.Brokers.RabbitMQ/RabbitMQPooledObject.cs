@@ -59,7 +59,7 @@ public class RabbitMQPooledObject<T,K> : GeniePooledObject
         var deserializerBuilder = AvroSupport.GetBinaryDeserializerBuilder();
         Deserializer = deserializerBuilder.BuildDelegate<T>(schema);
 
-        AsyncHandler.Received += EventReceived;
+        AsyncHandler.ReceivedAsync += EventReceived;
     }
 
     private Task EventReceived(object sender, BasicDeliverEventArgs @event)
